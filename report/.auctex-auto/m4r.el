@@ -61,6 +61,7 @@
     '("MR" 2)
     '("fall" 2)
     '("lift" 2)
+    '("term" 1)
     '("nnintp" 1)
     '("mmintp" 1)
     '("modintp" 2)
@@ -100,10 +101,12 @@
     "AND"
     "OR"
     "bigop"
+    "supp"
     "st"
     "minus"
     "subs"
     "ssubs"
+    "im"
     "nothing"
     "al"
     "be"
@@ -165,11 +168,36 @@
     "iso"
     "nsub"
     "inv"
+    "dom"
+    "codom"
+    "coker"
+    "spec"
+    "Orb"
+    "Stab"
+    "const"
+    "func"
+    "rel"
+    "GRP"
     "RNG"
     "ER"
+    "FLD"
+    "ID"
+    "ZFC"
+    "ACF"
     "BLN"
     "PO"
+    "tp"
+    "qftp"
+    "qf"
+    "eqzero"
+    "MD"
+    "acl"
+    "cl"
+    "mdeg"
+    "kdim"
+    "ord"
     "NEG"
+    "tdeg"
     "widecheck"
     "lstlanguagefiles")
    (LaTeX-add-environments

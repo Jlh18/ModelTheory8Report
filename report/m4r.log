@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.12.11)  20 DEC 2021 17:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.12.11)  20 DEC 2021 22:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -993,46 +993,74 @@ File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 58.
+(mdframed)              on input line 60.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 77.
- [2]) (./m4r.bbl) [3] (./m4r.aux)
+(mdframed)              on input line 79.
+ [2]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 155.
+ [3]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 226.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+278.
+
+(/usr/share/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [4] [5]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 322.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 327.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 345.
+) (./m4r.bbl) [6]
+(./m4r.aux)
 Package rerunfilecheck Info: File `m4r.out' has not changed.
 (rerunfilecheck)             Checksum: AFE28F978E52D781E7BFC996D60DA611;1254.
  ) 
 Here is how much of TeX's memory you used:
- 27385 strings out of 478994
- 495168 string characters out of 5864750
- 981995 words of memory out of 5000000
- 44291 multiletter control sequences out of 15000+600000
- 444720 words of font info for 93 fonts, out of 8000000 for 9000
+ 27525 strings out of 478994
+ 497237 string characters out of 5864750
+ 1118142 words of memory out of 5000000
+ 44351 multiletter control sequences out of 15000+600000
+ 447980 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,6n,116p,1192b,1194s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 113i,6n,116p,1192b,1287s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{dfn_cat} has been referenced but does not exist, 
 replaced by a fixed one
 
 pdfTeX warning (dest): name{dfn_bin_rel} has been referenced but does not exist
 , replaced by a fixed one
 
-{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}{/usr/share/texmf-d
-ist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/d
-vips/tex-gyre/q-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.en
-c}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/
-fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/
-qplr.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf-dist/f
-onts/type1/public/cm-super/sftt1000.pfb>
-Output written on m4r.pdf (3 pages, 285772 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/te
+xmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}{/usr/share/texmf-dist/fonts/enc/
+dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/
+q-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf-dist/f
+onts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/type1/public/t
+ex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb><
+/usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texm
+f-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on m4r.pdf (6 pages, 333451 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
- 52 named destinations out of 1000 (max. 500000)
+ 297 PDF objects out of 1000 (max. 8388607)
+ 269 compressed objects within 3 object streams
+ 128 named destinations out of 1000 (max. 500000)
  69 words of extra memory for PDF output out of 10000 (max. 10000000)
 

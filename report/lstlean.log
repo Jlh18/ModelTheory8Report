@@ -1,0 +1,4486 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.12.11)  20 DEC 2021 22:33
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**lstlean.tex
+(./lstlean.tex
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18>
+./lstlean.tex:5: Undefined control sequence.
+l.5 \lstdefinelanguage
+                      {lean} {
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./lstlean.tex:5: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 \lstdefinelanguage{l
+                        ean} {
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 5--6
+[]
+ []
+
+
+./lstlean.tex:35: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 m
+      athescape=false,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 35--38
+[]
+ []
+
+
+./lstlean.tex:40: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40 m
+      orekeywords=[1]{
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+./lstlean.tex:47: Missing $ inserted.
+<inserted text> 
+                $
+l.47 alias, help, precedence, reserve, declare_
+                                               trace, add_key_equivalence,
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 47.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 47.
+./lstlean.tex:56: Extra }, or forgotten $.
+l.56 ...or, macro_rules,declare_syntax_cat,abbrev}
+                                                  ,
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./lstlean.tex:57: Missing $ inserted.
+<inserted text> 
+                $
+l.57 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 40--57
+[]
+ []
+
+
+Overfull \hbox (2595.26303pt too wide) in paragraph at lines 40--57
+[]\OML/cmm/m/it/10 race; add[]ey[]quivalence; match; infix; infixl; infixr; not
+ation; postfix; prefix; instance; eval; vm[]val; check; coercion; end; this; su
+ppose; using; using[]ell[]ounded; namespace; section; fields; attribute; local;
+ set[]ption; extends; include; omit; classes; class; instances; coercions; attr
+ibutes; raw; replacing; calc; have; show; suffices; by; in; at; let; forall; Pi
+; fun; exists; if; dif; then; else; assume; obtain; from; aliases; register[]im
+p[]xt; unless; break; continue; mutual; do; def; run[]md; constpartial; mut; wh
+ere; macro; syntax; deriving; return; try; catch; for; macro[]ules; declare[]yn
+tax[]at; abbrev;$ 
+ []
+
+
+./lstlean.tex:59: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.59 m
+      orekeywords=[2]{Sort, Type, Prop},
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no S in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 59--60
+[]
+ []
+
+
+./lstlean.tex:62: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.62 m
+      orekeywords=[3]{
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+./lstlean.tex:67: Missing $ inserted.
+<inserted text> 
+                $
+l.67 simp, simp_
+                all, contradiction,
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./lstlean.tex:70: Extra }, or forgotten $.
+l.70 }
+      ,
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./lstlean.tex:71: Missing $ inserted.
+<inserted text> 
+                $
+l.71 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 62--71
+[]
+ []
+
+
+Overfull \hbox (230.59286pt too wide) in paragraph at lines 62--71
+[]\OML/cmm/m/it/10 ll; contradiction; constructor; injection; induction; ;$ 
+ []
+
+
+./lstlean.tex:87: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.87 l
+      iterate=
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+
+./lstlean.tex:88: Package inputenc Error: Unicode character α (U+03B1)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.88 {α
+        }{{\ensuremath{\mathrm{\alpha}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:89: Package inputenc Error: Unicode character β (U+03B2)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 {β
+        }{{\ensuremath{\mathrm{\beta}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:90: Package inputenc Error: Unicode character γ (U+03B3)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.90 {γ
+        }{{\ensuremath{\mathrm{\gamma}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:91: Package inputenc Error: Unicode character δ (U+03B4)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 {δ
+        }{{\ensuremath{\mathrm{\delta}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:92: Package inputenc Error: Unicode character ε (U+03B5)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.92 {ε
+        }{{\ensuremath{\mathrm{\varepsilon}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:93: Package inputenc Error: Unicode character ζ (U+03B6)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.93 {ζ
+        }{{\ensuremath{\mathrm{\zeta}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:94: Package inputenc Error: Unicode character η (U+03B7)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.94 {η
+        }{{\ensuremath{\mathrm{\eta}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:95: Package inputenc Error: Unicode character θ (U+03B8)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.95 {θ
+        }{{\ensuremath{\mathrm{\theta}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:96: Package inputenc Error: Unicode character ι (U+03B9)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.96 {ι
+        }{{\ensuremath{\mathrm{\iota}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:97: Package inputenc Error: Unicode character κ (U+03BA)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97 {κ
+        }{{\ensuremath{\mathrm{\kappa}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:98: Package inputenc Error: Unicode character μ (U+03BC)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.98 {μ
+        }{{\ensuremath{\mathrm{\mu}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:99: Package inputenc Error: Unicode character ν (U+03BD)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.99 {ν
+        }{{\ensuremath{\mathrm{\nu}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:100: Package inputenc Error: Unicode character ξ (U+03BE)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.100 {ξ
+         }{{\ensuremath{\mathrm{\xi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:101: Package inputenc Error: Unicode character π (U+03C0)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101 {π
+         }{{\ensuremath{\mathrm{\mathnormal{\pi}}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:102: Package inputenc Error: Unicode character ρ (U+03C1)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.102 {ρ
+         }{{\ensuremath{\mathrm{\rho}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:103: Package inputenc Error: Unicode character σ (U+03C3)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.103 {σ
+         }{{\ensuremath{\mathrm{\sigma}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:104: Package inputenc Error: Unicode character τ (U+03C4)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.104 {τ
+         }{{\ensuremath{\mathrm{\tau}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:105: Package inputenc Error: Unicode character φ (U+03C6)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.105 {φ
+         }{{\ensuremath{\mathrm{\varphi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:106: Package inputenc Error: Unicode character χ (U+03C7)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 {χ
+         }{{\ensuremath{\mathrm{\chi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:107: Package inputenc Error: Unicode character ψ (U+03C8)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.107 {ψ
+         }{{\ensuremath{\mathrm{\psi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:108: Package inputenc Error: Unicode character ω (U+03C9)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.108 {ω
+         }{{\ensuremath{\mathrm{\omega}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 87--109
+[]
+ []
+
+
+Overfull \hbox (6.43404pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 $
+ []
+
+
+Overfull \hbox (6.18402pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^L$
+ []
+
+
+Overfull \hbox (5.73285pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^M$
+ []
+
+
+Overfull \hbox (4.8229pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^N$
+ []
+
+
+Overfull \hbox (4.66318pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 "$
+ []
+
+
+Overfull \hbox (5.11285pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^P$
+ []
+
+
+Overfull \hbox (5.32408pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^Q$
+ []
+
+
+Overfull \hbox (4.97223pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^R$
+ []
+
+
+Overfull \hbox (3.53937pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^S$
+ []
+
+
+Overfull \hbox (5.76158pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^T$
+ []
+
+
+Overfull \hbox (6.02548pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^V$
+ []
+
+
+Overfull \hbox (5.57639pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^W$
+ []
+
+
+Overfull \hbox (4.83508pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^X$
+ []
+
+
+Overfull \hbox (6.05905pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^Y$
+ []
+
+
+Overfull \hbox (5.17015pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^Z$
+ []
+
+
+Overfull \hbox (6.0729pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^[$
+ []
+
+
+Overfull \hbox (5.50348pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^\$
+ []
+
+
+Overfull \hbox (6.54167pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 '$
+ []
+
+
+Overfull \hbox (6.25691pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 ^^_$
+ []
+
+
+Overfull \hbox (6.8727pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10  $
+ []
+
+
+Overfull \hbox (6.58331pt too wide) in paragraph at lines 87--109
+\OML/cmm/m/it/10 !$ 
+ []
+
+
+./lstlean.tex:110: Package inputenc Error: Unicode character Γ (U+0393)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.110 {Γ
+         }{{\ensuremath{\mathrm{\Gamma}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:110: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.110 {Γ}{{\ensuremath{\mathrm{\Gamma}}
+                                        }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:111: Package inputenc Error: Unicode character Δ (U+0394)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.111 {Δ
+         }{{\ensuremath{\mathrm{\Delta}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:112: Package inputenc Error: Unicode character Θ (U+0398)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.112 {Θ
+         }{{\ensuremath{\mathrm{\Theta}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:113: Package inputenc Error: Unicode character Λ (U+039B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113 {Λ
+         }{{\ensuremath{\mathrm{\Lambda}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:114: Package inputenc Error: Unicode character Σ (U+03A3)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.114 {Σ
+         }{{\ensuremath{\mathrm{\Sigma}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:115: Package inputenc Error: Unicode character Φ (U+03A6)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.115 {Φ
+         }{{\ensuremath{\mathrm{\Phi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:116: Package inputenc Error: Unicode character Ξ (U+039E)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.116 {Ξ
+         }{{\ensuremath{\mathrm{\Xi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:117: Package inputenc Error: Unicode character Ψ (U+03A8)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.117 {Ψ
+         }{{\ensuremath{\mathrm{\Psi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:118: Package inputenc Error: Unicode character Ω (U+03A9)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 {Ω
+         }{{\ensuremath{\mathrm{\Omega}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (26.25002pt too wide) in paragraph at lines 110--119
+[]$\OT1/cmr/m/n/10 ^^@$
+ []
+
+
+Overfull \hbox (8.33336pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 ^^A$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 ^^B$
+ []
+
+
+Overfull \hbox (6.94444pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 ^^C$
+ []
+
+
+Overfull \hbox (7.22223pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 ^^F$
+ []
+
+
+Overfull \hbox (7.22223pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 ^^H$
+ []
+
+
+Overfull \hbox (6.66669pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 ^^D$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 	$
+ []
+
+
+Overfull \hbox (7.22223pt too wide) in paragraph at lines 110--119
+\OT1/cmr/m/n/10 
+$ 
+ []
+
+
+./lstlean.tex:120: Package inputenc Error: Unicode character ℵ (U+2135)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120 {ℵ
+          }{{\ensuremath{\aleph}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:120: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120 {ℵ}{{\ensuremath{\aleph}
+                                }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (26.11111pt too wide) in paragraph at lines 120--121
+[]$\OMS/cmsy/m/n/10 @$ 
+ []
+
+
+./lstlean.tex:122: Package inputenc Error: Unicode character ≤ (U+2264)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 {≤
+          }{{\ensuremath{\leq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:122: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 {≤}{{\ensuremath{\leq}
+                              }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:123: Package inputenc Error: Unicode character ≥ (U+2265)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.123 {≥
+          }{{\ensuremath{\geq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:124: Package inputenc Error: Unicode character ≠ (U+2260)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.124 {≠
+          }{{\ensuremath{\neq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:125: Package inputenc Error: Unicode character ≈ (U+2248)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 {≈
+          }{{\ensuremath{\approx}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:126: Package inputenc Error: Unicode character ≡ (U+2261)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.126 {≡
+          }{{\ensuremath{\equiv}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:127: Package inputenc Error: Unicode character ≃ (U+2243)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.127 {≃
+          }{{\ensuremath{\simeq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (27.7778pt too wide) in paragraph at lines 122--128
+[]$\OMS/cmsy/m/n/10 ^^T$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 122--128
+\OMS/cmsy/m/n/10 ^^U$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 122--128
+\OMS/cmsy/m/n/10 6\OT1/cmr/m/n/10 =$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 122--128
+\OMS/cmsy/m/n/10 ^^Y$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 122--128
+\OMS/cmsy/m/n/10 ^^Q$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 122--128
+\OMS/cmsy/m/n/10 '$ 
+ []
+
+
+./lstlean.tex:129: Package inputenc Error: Unicode character ≤ (U+2264)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.129 {≤
+          }{{\ensuremath{\leq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:129: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.129 {≤}{{\ensuremath{\leq}
+                              }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:130: Package inputenc Error: Unicode character ≥ (U+2265)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 {≥
+          }{{\ensuremath{\geq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (27.7778pt too wide) in paragraph at lines 129--131
+[]$\OMS/cmsy/m/n/10 ^^T$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 129--131
+\OMS/cmsy/m/n/10 ^^U$ 
+ []
+
+
+./lstlean.tex:132: Package inputenc Error: Unicode character ∂ (U+2202)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.132 {∂
+          }{{\ensuremath{\partial}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:132: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.132 {∂}{{\ensuremath{\partial}
+                                  }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:133: Package inputenc Error: Unicode character ∆ (U+2206)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.133 {∆
+          }{{\ensuremath{\triangle}}}1 % or \laplace?
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (25.86458pt too wide) in paragraph at lines 132--134
+[]$\OML/cmm/m/it/10 @$
+ []
+
+
+Overfull \hbox (8.8889pt too wide) in paragraph at lines 132--134
+\OMS/cmsy/m/n/10 4$ 
+ []
+
+
+./lstlean.tex:135: Package inputenc Error: Unicode character ∫ (U+222B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.135 {∫
+          }{{\ensuremath{\int}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:135: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.135 {∫}{{\ensuremath{\int}
+                              }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:136: Package inputenc Error: Unicode character ∑ (U+2211)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.136 {∑
+          }{{\ensuremath{\mathrm{\Sigma}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:137: Package inputenc Error: Unicode character Π (U+03A0)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.137 {Π
+         }{{\ensuremath{\mathrm{\Pi}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (26.66667pt too wide) in paragraph at lines 135--138
+[]$[]$
+ []
+
+
+Overfull \hbox (7.22223pt too wide) in paragraph at lines 135--138
+\OT1/cmr/m/n/10 ^^F$
+ []
+
+
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 135--138
+\OT1/cmr/m/n/10 ^^E$ 
+ []
+
+
+./lstlean.tex:139: Package inputenc Error: Unicode character ⊥ (U+22A5)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.139 {⊥
+          }{{\ensuremath{\perp}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:139: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.139 {⊥}{{\ensuremath{\perp}
+                               }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:140: Package inputenc Error: Unicode character ∞ (U+221E)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.140 {∞
+          }{{\ensuremath{\infty}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:141: Package inputenc Error: Unicode character ∂ (U+2202)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.141 {∂
+          }{{\ensuremath{\partial}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (27.7778pt too wide) in paragraph at lines 139--142
+[]$\OMS/cmsy/m/n/10 ?$
+ []
+
+
+Overfull \hbox (10.00002pt too wide) in paragraph at lines 139--142
+\OMS/cmsy/m/n/10 1$
+ []
+
+
+Overfull \hbox (5.86458pt too wide) in paragraph at lines 139--142
+\OML/cmm/m/it/10 @$ 
+ []
+
+
+./lstlean.tex:143: Package inputenc Error: Unicode character ∓ (U+2213)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.143 {∓
+          }{{\ensuremath{\mp}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:143: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.143 {∓}{{\ensuremath{\mp}
+                             }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (27.7778pt too wide) in paragraph at lines 143--146
+[]$\OMS/cmsy/m/n/10 ^^G$
+ []
+
+
+Overfull \hbox (15.55368pt too wide) in paragraph at lines 143--146
+\TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 ^^F$
+ []
+
+
+Overfull \hbox (15.55368pt too wide) in paragraph at lines 143--146
+\TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 ^^B$ 
+ []
+
+
+./lstlean.tex:147: Package inputenc Error: Unicode character ⊕ (U+2295)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.147 {⊕
+          }{{\ensuremath{\oplus}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:147: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.147 {⊕}{{\ensuremath{\oplus}
+                                }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:148: Package inputenc Error: Unicode character ⊗ (U+2297)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.148 {⊗
+          }{{\ensuremath{\otimes}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:149: Package inputenc Error: Unicode character ⊞ (U+229E)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.149 {⊞
+          }{{\ensuremath{\boxplus}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:149: Undefined control sequence.
+<argument> \boxplus 
+                    
+l.149 {⊞}{{\ensuremath{\boxplus}
+                                  }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (27.7778pt too wide) in paragraph at lines 147--150
+[]$\OMS/cmsy/m/n/10 ^^H$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 147--150
+\OMS/cmsy/m/n/10 
+$
+ []
+
+
+./lstlean.tex:151: Package inputenc Error: Unicode character ∇ (U+2207)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.151 {∇
+          }{{\ensuremath{\nabla}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:151: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.151 {∇}{{\ensuremath{\nabla}
+                                }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:152: Package inputenc Error: Unicode character √ (U+221A)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152 {√
+          }{{\ensuremath{\sqrt}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:152: Missing { inserted.
+<to be read again> 
+                   $
+l.152 {√}{{\ensuremath{\sqrt}
+                               }}1
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./lstlean.tex:152: Missing } inserted.
+<inserted text> 
+                }
+l.152 {√}{{\ensuremath{\sqrt}
+                               }}1
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (28.33336pt too wide) in paragraph at lines 151--153
+[]$\OMS/cmsy/m/n/10 r$
+ []
+
+
+Overfull \hbox (8.33336pt too wide) in paragraph at lines 151--153
+[]$ 
+ []
+
+
+./lstlean.tex:154: Package inputenc Error: Unicode character ⬝ (U+2B1D)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.154 {⬝
+          }{{\ensuremath{\cdot}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:154: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.154 {⬝}{{\ensuremath{\cdot}
+                               }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:156: Package inputenc Error: Unicode character ∘ (U+2218)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 {∘
+          }{{\ensuremath{\circ}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (22.77779pt too wide) in paragraph at lines 154--157
+[]$\OMS/cmsy/m/n/10 ^^A$
+ []
+
+
+Overfull \hbox (7.77657pt too wide) in paragraph at lines 154--157
+\TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 ^^A$
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 154--157
+\OMS/cmsy/m/n/10 ^^N$ 
+ []
+
+
+./lstlean.tex:159: Package inputenc Error: Unicode character ⁻ (U+207B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159 {⁻
+          }{{\ensuremath{^{-}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:159: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159 {⁻}{{\ensuremath{^{-}}
+                              }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:160: Package inputenc Error: Unicode character ▸ (U+25B8)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.160 {▸
+          }{{\ensuremath{\blacktriangleright}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:160: Undefined control sequence.
+<argument> \blacktriangleright 
+                               
+l.160 {▸}{{\ensuremath{\blacktriangleright}
+                                             }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (26.75002pt too wide) in paragraph at lines 159--161
+[]$[]$
+ []
+
+
+./lstlean.tex:162: Package inputenc Error: Unicode character ∧ (U+2227)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.162 {∧
+          }{{\ensuremath{\wedge}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:162: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.162 {∧}{{\ensuremath{\wedge}
+                                }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:163: Package inputenc Error: Unicode character ∨ (U+2228)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 {∨
+          }{{\ensuremath{\vee}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:165: Package inputenc Error: Unicode character ⊢ (U+22A2)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.165 {⊢
+          }{{\ensuremath{\vdash}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (26.66669pt too wide) in paragraph at lines 162--166
+[]$\OMS/cmsy/m/n/10 ^$
+ []
+
+
+Overfull \hbox (6.66669pt too wide) in paragraph at lines 162--166
+\OMS/cmsy/m/n/10 _$
+ []
+
+
+Overfull \hbox (13.33173pt too wide) in paragraph at lines 162--166
+\TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 :$
+ []
+
+
+Overfull \hbox (6.11111pt too wide) in paragraph at lines 162--166
+\OMS/cmsy/m/n/10 `$ 
+ []
+
+
+./lstlean.tex:169: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.169 {⟨
+          }{{\ensuremath{\langle}}}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (27.77684pt too wide) in paragraph at lines 169--171
+[]\TS1/cmr/m/n/10 <$\OMS/cmsy/m/n/10 h$
+ []
+
+
+Overfull \hbox (7.77684pt too wide) in paragraph at lines 169--171
+\TS1/cmr/m/n/10 >$\OMS/cmsy/m/n/10 i$ 
+ []
+
+
+./lstlean.tex:172: Package inputenc Error: Unicode character ↦ (U+21A6)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.172 {↦
+          }{{\ensuremath{\mapsto}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:172: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.172 {↦}{{\ensuremath{\mapsto}
+                                 }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no < in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:176: Package inputenc Error: Unicode character ↔ (U+2194)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.176 {↔
+          }{{\ensuremath{\leftrightarrow}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:177: Package inputenc Error: Unicode character ⇒ (U+21D2)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.177 {⇒
+          }{{\ensuremath{\Rightarrow}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:178: Package inputenc Error: Unicode character ⟹ (U+27F9)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.178 {⟹
+          }{{\ensuremath{\Longrightarrow}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:179: Package inputenc Error: Unicode character ⇐ (U+21D0)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.179 {⇐
+          }{{\ensuremath{\Leftarrow}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:180: Package inputenc Error: Unicode character ⟸ (U+27F8)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.180 {⟸
+          }{{\ensuremath{\Longleftarrow}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (30.00002pt too wide) in paragraph at lines 172--181
+[]$\OMS/cmsy/m/n/10 7!$
+ []
+
+
+Overfull \hbox (19.99757pt too wide) in paragraph at lines 172--181
+\TS1/cmr/m/n/10 ^^X$\OMS/cmsy/m/n/10  $
+ []
+
+
+Overfull \hbox (10.00002pt too wide) in paragraph at lines 172--181
+\OMS/cmsy/m/n/10  $
+ []
+
+
+Overfull \hbox (19.99757pt too wide) in paragraph at lines 172--181
+\TS1/cmr/m/n/10 ^^Y$\OMS/cmsy/m/n/10 !$
+ []
+
+
+Overfull \hbox (10.00002pt too wide) in paragraph at lines 172--181
+\OMS/cmsy/m/n/10 $$
+ []
+
+
+Overfull \hbox (10.00002pt too wide) in paragraph at lines 172--181
+\OMS/cmsy/m/n/10 )$
+ []
+
+
+Overfull \hbox (16.11119pt too wide) in paragraph at lines 172--181
+[][]\OMS/cmsy/m/n/10 )$
+ []
+
+
+Overfull \hbox (10.00002pt too wide) in paragraph at lines 172--181
+\OMS/cmsy/m/n/10 ($
+ []
+
+
+Overfull \hbox (16.11119pt too wide) in paragraph at lines 172--181
+\OMS/cmsy/m/n/10 ([][]$ 
+ []
+
+
+./lstlean.tex:182: Package inputenc Error: Unicode character ∩ (U+2229)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182 {∩
+          }{{\ensuremath{\cap}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:182: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182 {∩}{{\ensuremath{\cap}
+                              }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:183: Package inputenc Error: Unicode character ∪ (U+222A)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.183 {∪
+          }{{\ensuremath{\cup}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:184: Package inputenc Error: Unicode character ⊂ (U+2282)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.184 {⊂
+          }{{\ensuremath{\subseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:185: Package inputenc Error: Unicode character ⊆ (U+2286)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.185 {⊆
+          }{{\ensuremath{\subseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:186: Package inputenc Error: Unicode character ⊄ (U+2284)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.186 {⊄
+          }{{\ensuremath{\nsubseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:186: Undefined control sequence.
+<argument> \nsubseteq 
+                      
+l.186 {⊄}{{\ensuremath{\nsubseteq}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:187: Package inputenc Error: Unicode character ⊈ (U+2288)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.187 {⊈
+          }{{\ensuremath{\nsubseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:187: Undefined control sequence.
+<argument> \nsubseteq 
+                      
+l.187 {⊈}{{\ensuremath{\nsubseteq}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:188: Package inputenc Error: Unicode character ⊃ (U+2283)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188 {⊃
+          }{{\ensuremath{\supseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:189: Package inputenc Error: Unicode character ⊇ (U+2287)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.189 {⊇
+          }{{\ensuremath{\supseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:190: Package inputenc Error: Unicode character ⊅ (U+2285)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.190 {⊅
+          }{{\ensuremath{\nsupseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:190: Undefined control sequence.
+<argument> \nsupseteq 
+                      
+l.190 {⊅}{{\ensuremath{\nsupseteq}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:191: Package inputenc Error: Unicode character ⊉ (U+2289)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.191 {⊉
+          }{{\ensuremath{\nsupseteq}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:191: Undefined control sequence.
+<argument> \nsupseteq 
+                      
+l.191 {⊉}{{\ensuremath{\nsupseteq}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:192: Package inputenc Error: Unicode character ∈ (U+2208)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.192 {∈
+          }{{\ensuremath{\in}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:193: Package inputenc Error: Unicode character ∉ (U+2209)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.193 {∉
+          }{{\ensuremath{\notin}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:194: Package inputenc Error: Unicode character ∋ (U+220B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.194 {∋
+          }{{\ensuremath{\ni}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:195: Package inputenc Error: Unicode character ∌ (U+220C)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.195 {∌
+          }{{\ensuremath{\notni}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:195: Undefined control sequence.
+<argument> \notni 
+                  
+l.195 {∌}{{\ensuremath{\notni}
+                                }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:196: Package inputenc Error: Unicode character ∅ (U+2205)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.196 {∅
+          }{{\ensuremath{\emptyset}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (26.66669pt too wide) in paragraph at lines 182--197
+[]$\OMS/cmsy/m/n/10 \$
+ []
+
+
+Overfull \hbox (6.66669pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 [$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 ^^R$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 ^^R$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 ^^S$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 ^^S$
+ []
+
+
+Overfull \hbox (6.66669pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 2$
+ []
+
+
+Overfull \hbox (6.66669pt too wide) in paragraph at lines 182--197
+[]$
+ []
+
+
+Overfull \hbox (6.66669pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 3$
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 182--197
+\OMS/cmsy/m/n/10 ;$ 
+ []
+
+
+./lstlean.tex:198: Package inputenc Error: Unicode character ∖ (U+2216)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.198 {∖
+          }{{\ensuremath{\setminus}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:198: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.198 {∖}{{\ensuremath{\setminus}
+                                   }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (25.00002pt too wide) in paragraph at lines 198--200
+[]$\OMS/cmsy/m/n/10 n$
+ []
+
+
+Overfull \hbox (8.8878pt too wide) in paragraph at lines 198--200
+\TS1/cmr/m/n/10 �$[]$ 
+ []
+
+
+./lstlean.tex:201: Package inputenc Error: Unicode character ℕ (U+2115)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.201 {ℕ
+          }{{\ensuremath{\mathbb{N}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:201: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.201 {ℕ}{{\ensuremath{\mathbb{N}}
+                                    }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./lstlean.tex:201: Undefined control sequence.
+<argument> \mathbb 
+                   {N}
+l.201 {ℕ}{{\ensuremath{\mathbb{N}}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:202: Package inputenc Error: Unicode character ℤ (U+2124)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.202 {ℤ
+          }{{\ensuremath{\mathbb{Z}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:202: Undefined control sequence.
+<argument> \mathbb 
+                   {Z}
+l.202 {ℤ}{{\ensuremath{\mathbb{Z}}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:203: Package inputenc Error: Unicode character ℝ (U+211D)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.203 {ℝ
+          }{{\ensuremath{\mathbb{R}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:203: Undefined control sequence.
+<argument> \mathbb 
+                   {R}
+l.203 {ℝ}{{\ensuremath{\mathbb{R}}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:204: Package inputenc Error: Unicode character ℚ (U+211A)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.204 {ℚ
+          }{{\ensuremath{\mathbb{Q}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:204: Undefined control sequence.
+<argument> \mathbb 
+                   {Q}
+l.204 {ℚ}{{\ensuremath{\mathbb{Q}}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:205: Package inputenc Error: Unicode character ℂ (U+2102)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.205 {ℂ
+          }{{\ensuremath{\mathbb{C}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:205: Undefined control sequence.
+<argument> \mathbb 
+                   {C}
+l.205 {ℂ}{{\ensuremath{\mathbb{C}}
+                                    }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:206: Package inputenc Error: Unicode character ⌞ (U+231E)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.206 {⌞
+          }{{\ensuremath{\llcorner}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:206: Undefined control sequence.
+<argument> \llcorner 
+                     
+l.206 {⌞}{{\ensuremath{\llcorner}
+                                   }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:207: Package inputenc Error: Unicode character ⌟ (U+231F)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.207 {⌟
+          }{{\ensuremath{\lrcorner}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:207: Undefined control sequence.
+<argument> \lrcorner 
+                     
+l.207 {⌟}{{\ensuremath{\lrcorner}
+                                   }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:208: Package inputenc Error: Unicode character ⦃ (U+2983)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.208 {⦃
+          }{{\ensuremath{\{\!|}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:209: Package inputenc Error: Unicode character ⦄ (U+2984)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.209 {⦄
+          }{{\ensuremath{|\!\}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (29.12497pt too wide) in paragraph at lines 201--210
+[]$\OML/cmm/m/it/10 N$
+ []
+
+
+Overfull \hbox (7.54167pt too wide) in paragraph at lines 201--210
+\OML/cmm/m/it/10 Z$
+ []
+
+
+Overfull \hbox (7.67015pt too wide) in paragraph at lines 201--210
+\OML/cmm/m/it/10 R$
+ []
+
+
+Overfull \hbox (7.90555pt too wide) in paragraph at lines 201--210
+\OML/cmm/m/it/10 Q$
+ []
+
+
+Overfull \hbox (7.86249pt too wide) in paragraph at lines 201--210
+\OML/cmm/m/it/10 C$
+ []
+
+
+Overfull \hbox (6.11118pt too wide) in paragraph at lines 201--210
+\OMS/cmsy/m/n/10 f j$
+ []
+
+
+Overfull \hbox (6.11118pt too wide) in paragraph at lines 201--210
+\OMS/cmsy/m/n/10 j g$ 
+ []
+
+
+./lstlean.tex:211: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.211 {‖
+          }{{\ensuremath{\|}}}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:212: Package inputenc Error: Unicode character ₁ (U+2081)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.212 {₁
+          }{{\ensuremath{_1}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:213: Package inputenc Error: Unicode character ₂ (U+2082)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.213 {₂
+          }{{\ensuremath{_2}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:214: Package inputenc Error: Unicode character ₃ (U+2083)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.214 {₃
+          }{{\ensuremath{_3}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:215: Package inputenc Error: Unicode character ₄ (U+2084)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.215 {₄
+          }{{\ensuremath{_4}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:216: Package inputenc Error: Unicode character ₅ (U+2085)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.216 {₅
+          }{{\ensuremath{_5}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:217: Package inputenc Error: Unicode character ₆ (U+2086)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.217 {₆
+          }{{\ensuremath{_6}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:218: Package inputenc Error: Unicode character ₇ (U+2087)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.218 {₇
+          }{{\ensuremath{_7}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:219: Package inputenc Error: Unicode character ₈ (U+2088)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.219 {₈
+          }{{\ensuremath{_8}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:220: Package inputenc Error: Unicode character ₉ (U+2089)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.220 {₉
+          }{{\ensuremath{_9}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:221: Package inputenc Error: Unicode character ₀ (U+2080)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.221 {₀
+          }{{\ensuremath{_0}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:222: Package inputenc Error: Unicode character ᵢ (U+1D62)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 {ᵢ
+          }{{\ensuremath{_i}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:223: Package inputenc Error: Unicode character ⱼ (U+2C7C)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.223 {ⱼ
+          }{{\ensuremath{_j}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:224: Package inputenc Error: Unicode character ₐ (U+2090)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.224 {ₐ
+          }{{\ensuremath{_a}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (29.9988pt too wide) in paragraph at lines 211--225
+[]\TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 k$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (3.32928pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.21356pt too wide) in paragraph at lines 211--225
+[]$
+ []
+
+
+Overfull \hbox (4.83765pt too wide) in paragraph at lines 211--225
+[]$ 
+ []
+
+
+./lstlean.tex:226: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.226 {¹
+         }{{\ensuremath{^1}}}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (28.92949pt too wide) in paragraph at lines 226--227
+[]\TS1/cmr/m/n/10 �$[]$ 
+ []
+
+
+./lstlean.tex:228: Package inputenc Error: Unicode character ₙ (U+2099)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.228 {ₙ
+          }{{\ensuremath{_n}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:228: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.228 {ₙ}{{\ensuremath{_n}
+                            }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:229: Package inputenc Error: Unicode character ₘ (U+2098)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.229 {ₘ
+          }{{\ensuremath{_m}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (25.44333pt too wide) in paragraph at lines 228--232
+[]$[]$
+ []
+
+
+Overfull \hbox (7.59612pt too wide) in paragraph at lines 228--232
+[]$
+ []
+
+
+Overfull \hbox (9.9988pt too wide) in paragraph at lines 228--232
+\TS1/cmr/m/n/10 ^$\OMS/cmsy/m/n/10 "$
+ []
+
+
+Overfull \hbox (9.9988pt too wide) in paragraph at lines 228--232
+\TS1/cmr/m/n/10 _$\OMS/cmsy/m/n/10 #$ 
+ []
+
+
+./lstlean.tex:233: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.233 {.
+        ..}{{\ensuremath{\ldots}}}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no . in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (31.66661pt too wide) in paragraph at lines 233--235
+[]$[]$
+ []
+
+
+Overfull \hbox (5.55489pt too wide) in paragraph at lines 233--235
+\TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 ^^A$ 
+ []
+
+
+./lstlean.tex:236: Package inputenc Error: Unicode character ▸ (U+25B8)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.236 {▸
+          }{{\ensuremath{\triangleright}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:236: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.236 {▸}{{\ensuremath{\triangleright}
+                                        }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (25.00002pt too wide) in paragraph at lines 236--237
+[]$\OML/cmm/m/it/10 .$ 
+ []
+
+
+./lstlean.tex:238: Package inputenc Error: Unicode character Σ (U+03A3)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.238 {Σ
+         }{{\color{symbolcolor}\ensuremath{\Sigma}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:238: Undefined control sequence.
+l.238 {Σ}{{\color
+                  {symbolcolor}\ensuremath{\Sigma}}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./lstlean.tex:238: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.238 {Σ}{{\color{s
+                    ymbolcolor}\ensuremath{\Sigma}}}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:239: Package inputenc Error: Unicode character Π (U+03A0)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.239 {Π
+         }{{\color{symbolcolor}\ensuremath{\Pi}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:239: Undefined control sequence.
+l.239 {Π}{{\color
+                  {symbolcolor}\ensuremath{\Pi}}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:240: Package inputenc Error: Unicode character ∀ (U+2200)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.240 {∀
+          }{{\color{symbolcolor}\ensuremath{\forall}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:240: Undefined control sequence.
+l.240 {∀}{{\color
+                   {symbolcolor}\ensuremath{\forall}}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:241: Package inputenc Error: Unicode character ∃ (U+2203)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.241 {∃
+          }{{\color{symbolcolor}\ensuremath{\exists}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:241: Undefined control sequence.
+l.241 {∃}{{\color
+                   {symbolcolor}\ensuremath{\exists}}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:242: Package inputenc Error: Unicode character λ (U+03BB)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.242 {λ
+         }{{\color{symbolcolor}\ensuremath{\mathrm{\lambda}}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:242: Undefined control sequence.
+l.242 {λ}{{\color
+                  {symbolcolor}\ensuremath{\mathrm{\lambda}}}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+./lstlean.tex:243: Undefined control sequence.
+l.243 {\$}{{\color
+                  {symbolcolor}\$}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (27.22223pt too wide) in paragraph at lines 238--244
+[]$\OT1/cmr/m/n/10 ^^F$
+ []
+
+
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 238--244
+\OT1/cmr/m/n/10 ^^E$
+ []
+
+
+Overfull \hbox (5.55557pt too wide) in paragraph at lines 238--244
+\OMS/cmsy/m/n/10 8$
+ []
+
+
+Overfull \hbox (5.55557pt too wide) in paragraph at lines 238--244
+\OMS/cmsy/m/n/10 9$
+ []
+
+
+Overfull \hbox (5.83336pt too wide) in paragraph at lines 238--244
+\OML/cmm/m/it/10 ^^U$
+ []
+
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 238--244
+\TS1/cmr/m/n/10 $$ 
+ []
+
+
+./lstlean.tex:245: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.245 {:
+        =}{{\color{symbolcolor}:=}}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no : in font nullfont!
+Missing character: There is no = in font nullfont!
+./lstlean.tex:245: Undefined control sequence.
+l.245 {:=}{{\color
+                  {symbolcolor}:=}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no = in font nullfont!
+./lstlean.tex:246: Undefined control sequence.
+l.246 {=}{{\color
+                 {symbolcolor}=}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no < in font nullfont!
+Missing character: There is no | in font nullfont!
+Missing character: There is no > in font nullfont!
+./lstlean.tex:247: Undefined control sequence.
+l.247 {<|>}{{\color
+                   {symbolcolor}<|>}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no < in font nullfont!
+Missing character: There is no | in font nullfont!
+Missing character: There is no > in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./lstlean.tex:248: Undefined control sequence.
+l.248 {<\$>}{{\color
+                    {symbolcolor}<\$>}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no + in font nullfont!
+./lstlean.tex:249: Undefined control sequence.
+l.249 {+}{{\color
+                 {symbolcolor}+}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no + in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no * in font nullfont!
+./lstlean.tex:250: Undefined control sequence.
+l.250 {*}{{\color
+                 {symbolcolor}*}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no * in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 245--251
+[]
+ []
+
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 245--251
+\TS1/cmr/m/n/10 $$
+ []
+
+
+./lstlean.tex:252: Package inputenc Error: Unicode character ⊓ (U+2293)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.252 {⊓
+          }{{\ensuremath{\sqcap}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:252: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.252 {⊓}{{\ensuremath{\sqcap}
+                                }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:253: Package inputenc Error: Unicode character ⊔ (U+2294)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.253 {⊔
+          }{{\ensuremath{\sqcup}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:254: Package inputenc Error: Unicode character ⟹ (U+27F9)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.254 {⟹
+          }{{\ensuremath{\implies}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:254: Undefined control sequence.
+<argument> \implies 
+                    
+l.254 {⟹}{{\ensuremath{\implies}
+                                  }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
+55.
+(/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 255.
+Missing character: There is no 1 in font nullfont!
+
+
+./lstlean.tex:256: Package inputenc Error: Unicode character ∃ (U+2203)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.256 {∃
+          '}{{\color{symbolcolor}\ensuremath{\exists}\textquotesingle}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no ' in font nullfont!
+./lstlean.tex:256: Undefined control sequence.
+l.256 {∃'}{{\color
+                    {symbolcolor}\ensuremath{\exists}\textquotesingle}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:257: Package inputenc Error: Unicode character ∀ (U+2200)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.257 {∀
+          '}{{\color{symbolcolor}\ensuremath{\forall}\textquotesingle}}1,
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no ' in font nullfont!
+./lstlean.tex:257: Undefined control sequence.
+l.257 {∀'}{{\color
+                    {symbolcolor}\ensuremath{\forall}\textquotesingle}}1,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (26.66669pt too wide) in paragraph at lines 252--258
+[]$\OMS/cmsy/m/n/10 u$
+ []
+
+
+Overfull \hbox (6.66669pt too wide) in paragraph at lines 252--258
+\OMS/cmsy/m/n/10 t$
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 252--258
+\OMS/cmsy/m/n/10 ^^X$g
+ []
+
+
+Overfull \hbox (8.33267pt too wide) in paragraph at lines 252--258
+\OMS/cmsy/m/n/10 9$\TS1/cmr/m/n/10 '
+ []
+
+
+Overfull \hbox (8.33267pt too wide) in paragraph at lines 252--258
+\OMS/cmsy/m/n/10 8$\TS1/cmr/m/n/10 ' 
+ []
+
+
+./lstlean.tex:262: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.262 m
+       orecomment=[s][\color{commentcolor}]{/-}{-/},
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no [ in font nullfont!
+./lstlean.tex:262: Undefined control sequence.
+l.262 morecomment=[s][\color
+                            {commentcolor}]{/-}{-/},
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 262--264
+[] 
+ []
+
+
+./lstlean.tex:266: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.266 s
+       howstringspaces=false,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 266--267
+[] 
+ []
+
+
+./lstlean.tex:269: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.269 k
+       eepspaces=true,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 269--270
+[] 
+ []
+
+
+./lstlean.tex:272: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.272 m
+       orestring=[b]",
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no " in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no ] in font nullfont!
+
+./lstlean.tex:273: Package inputenc Error: Unicode character  (U+0092)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.273 morestring=[d]
+                      ,
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 272--274
+[]
+ []
+
+
+./lstlean.tex:276: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.276 t
+       absize=3,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 276--277
+[] 
+ []
+
+
+./lstlean.tex:279: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.279 e
+       xtendedchars=false,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 279--280
+[] 
+ []
+
+
+./lstlean.tex:282: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.282 s
+       ensitive=true,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 282--283
+[] 
+ []
+
+
+./lstlean.tex:285: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.285 b
+       reaklines=true,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no b in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 285--287
+[]
+ []
+
+
+./lstlean.tex:289: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.289 b
+       asicstyle=\ttfamily\small,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+./lstlean.tex:289: Undefined control sequence.
+l.289 basicstyle=\ttfamily\small
+                                ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (25.24995pt too wide) in paragraph at lines 289--290
+[]\OT1/cmtt/m/n/10 , 
+ []
+
+
+./lstlean.tex:292: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.292 c
+       aptionpos=b,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (88.2494pt too wide) in paragraph at lines 292--293
+[]\OT1/cmtt/m/n/10 captionpos=b, 
+ []
+
+
+./lstlean.tex:295: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.295 c
+       olumns=[l]fullflexible,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (145.9989pt too wide) in paragraph at lines 295--296
+[]\OT1/cmtt/m/n/10 columns=[l]fullflexible, 
+ []
+
+
+./lstlean.tex:299: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.299 i
+       dentifierstyle={\ttfamily\color{draculaGrey}},
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./lstlean.tex:299: Undefined control sequence.
+l.299 identifierstyle={\ttfamily\color
+                                      {draculaGrey}},
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (166.99872pt too wide) in paragraph at lines 299--303
+[]\OT1/cmtt/m/n/10 identifierstyle=draculaGrey, 
+ []
+
+
+./lstlean.tex:305: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.305 k
+       eywordstyle=[1]{\ttfamily\color{keywordcolor}},
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./lstlean.tex:305: Undefined control sequence.
+l.305 keywordstyle=[1]{\ttfamily\color
+                                      {keywordcolor}},
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (172.24867pt too wide) in paragraph at lines 305--306
+[]\OT1/cmtt/m/n/10 keywordstyle=[1]keywordcolor, 
+ []
+
+
+./lstlean.tex:308: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.308 k
+       eywordstyle=[2]{\ttfamily\color{sortcolor}},
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./lstlean.tex:308: Undefined control sequence.
+l.308 keywordstyle=[2]{\ttfamily\color
+                                      {sortcolor}},
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (156.49881pt too wide) in paragraph at lines 308--309
+[]\OT1/cmtt/m/n/10 keywordstyle=[2]sortcolor, 
+ []
+
+
+./lstlean.tex:311: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.311 k
+       eywordstyle=[3]{\ttfamily\color{tacticcolor}},
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./lstlean.tex:311: Undefined control sequence.
+l.311 keywordstyle=[3]{\ttfamily\color
+                                      {tacticcolor}},
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (166.99872pt too wide) in paragraph at lines 311--312
+[]\OT1/cmtt/m/n/10 keywordstyle=[3]tacticcolor, 
+ []
+
+
+./lstlean.tex:314: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.314 k
+       eywordstyle=[4]{\ttfamily\color{attributecolor}},
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./lstlean.tex:314: Undefined control sequence.
+l.314 keywordstyle=[4]{\ttfamily\color
+                                      {attributecolor}},
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (182.74858pt too wide) in paragraph at lines 314--315
+[]\OT1/cmtt/m/n/10 keywordstyle=[4]attributecolor, 
+ []
+
+
+./lstlean.tex:317: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.317 s
+       tringstyle=\ttfamily,
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (88.2494pt too wide) in paragraph at lines 317--318
+[]\OT1/cmtt/m/n/10 stringstyle=, 
+ []
+
+)
+! Emergency stop.
+<*> lstlean.tex
+               
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 178 strings out of 478994
+ 1682 string characters out of 5864750
+ 290270 words of memory out of 5000000
+ 17759 multiletter control sequences out of 15000+600000
+ 403933 words of font info for 29 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 26i,8n,30p,159b,105s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
