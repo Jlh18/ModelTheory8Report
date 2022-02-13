@@ -8,46 +8,49 @@ I was expecting a `,' or a `}'---line 79 of file refs.bib
  :   title = {Model Theory, Spring 2008},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--entry type for "flypitch" isn't style-file defined
+--line 103 of file refs.bib
+Warning--to sort, need author or key in flypitch
 Warning--empty year in marker
-You've used 1 entry,
+You've used 2 entries,
             2118 wiz_defined-function locations,
-            501 strings with 3755 characters,
-and the built_in function-call counts, 236 in all, are:
-= -- 18
-> -- 7
+            504 strings with 3821 characters,
+and the built_in function-call counts, 395 in all, are:
+= -- 33
+> -- 8
 < -- 0
-+ -- 3
++ -- 4
 - -- 2
-* -- 12
-:= -- 46
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 3
+* -- 17
+:= -- 63
+add.period$ -- 5
+call.type$ -- 2
+change.case$ -- 6
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 12
-empty$ -- 23
+cite$ -- 4
+duplicate$ -- 19
+empty$ -- 46
 format.name$ -- 2
-if$ -- 46
+if$ -- 86
 int.to.chr$ -- 0
-int.to.str$ -- 1
+int.to.str$ -- 2
 missing$ -- 2
-newline$ -- 8
+newline$ -- 12
 num.names$ -- 2
-pop$ -- 10
+pop$ -- 18
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 5
 quote$ -- 0
-skip$ -- 5
+skip$ -- 13
 stack$ -- 0
-substring$ -- 5
-swap$ -- 1
+substring$ -- 10
+swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 2
-warning$ -- 1
+type$ -- 6
+warning$ -- 2
 while$ -- 2
-width$ -- 2
-write$ -- 11
+width$ -- 3
+write$ -- 18
 (There was 1 error message)

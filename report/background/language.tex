@@ -1,6 +1,9 @@
 For most definitions and proofs in this section we reference
 David Marker's book on Model Theory \cite{marker}.
-We introduce the formalisations of the content in \texttt{lean} alongside the theory.
+We introduce the formalisations of the content in \texttt{lean} alongside the theory,
+walking through the basics of definitions made in the \texttt{flypitch} project \cite{flypitch}.
+My work is based on a slightly updated (3.33.0) version of the flypitch project,
+combined with some of the model theory material put in \texttt{mathlib} (which was edited for compatibility).
 
 \subsection{Languages}
 \begin{dfn}[Language]
@@ -9,11 +12,11 @@ We introduce the formalisations of the content in \texttt{lean} alongside the th
   \begin{itemize}
     \item A sort symbol $A$, which we will have in the background for intuition.
     \item For each natural number $n$ we have $\func n$ -
-          the set of \textit{function symbols} for the language of \textit{arity} $n$.
+          the set of \textit{function symbols} of \textit{arity} $n$ for the language.
           For some $f \in \func n$ we might write
           $f : A^{n} \to A$ to denote $f$ with its arity.
     \item For each natural number $n$ we have $\rel n$ -
-          the set of \textit{relation symbols} for the language of \textit{arity} $n$.
+          the set of \textit{relation symbols} of \textit{arity} $n$ for the language.
           For some $r \in \rel n$ we might write
           $r \hookr A^{n}$ to denote $r$ with its arity.
   \end{itemize}
@@ -71,6 +74,8 @@ We introduce the formalisations of the content in \texttt{lean} alongside the th
           and to define the theory $\ZFC$ with the relation interpreted as $\in$.
     \item The \linkto{dfn_cat}{language of categories} %? missing
           can be used to define the theory of categories.
+    \item The \linkto{dfn_graph}{language of simple graphs}
+          can be used to define the theory of simple graphs
   \end{itemize}
   We will only be concerned with the language of rings and will
   focus our examples around this.
@@ -152,6 +157,8 @@ the only things we can write down using symbols $0,1,-,+,*$ and variables
 are elements of $\Z{[x_{k}]}_{k \in \N}$.
 We formalize this as terms.
 
+\subsection{Terms and formulas}
+
 \begin{dfn}[Terms]
   Let $\LL = (\func, \rel)$ be a language.
   To make a \textit{preterm} in $\LL$ with up to $n$ variables
@@ -218,15 +225,15 @@ In fact, we could even make degree two polynomials over any ring (if we had one)
 Here our variable is $x_{3}$, and we imaging that the other variables represent
 elements of our ring.
 
-To express ``for \textit{any} polynomial over our ring, it has a root'',
+To express ``any degree (up to) two polynomial over our ring has a root'',
 we might write
 \[ \forall x_{2} x_{1} x_{0} : A, \exists x_{3} : A, x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} = 0 \]
 Formulas allow us to do this.
 
 \begin{dfn}[Formulas]
   Let $\LL$ be a language.
-  A \textit{preformula} in $\LL$ with (up to) $n$ \textit{free} variables
-  can be built in the following ways:
+  A (classical first order) $\LL$-\textit{preformula} in $\LL$
+  with (up to) $n$ \textit{free} variables can be built in the following ways:
   \begin{itemize}
     \item[$\vert$] $\bot$ is an atomic preformula with $n$ free variables
           (and missing nothing).
@@ -258,6 +265,8 @@ Formulas allow us to do this.
   We write this in \texttt{lean},
   and also define sentences as preformulas with $0$ variables and nothing missing.
   Sentences are what we usually come up with when we make assertions.
+  For example $x = 0$ is not an assersion about rings,
+  but $\forall x : A, x = 0$ is.
 
   \begin{lstlisting}
     inductive bounded_preformula : ℕ → ℕ → Type u
@@ -285,13 +294,13 @@ Formulas allow us to do this.
   \end{lstlisting}
 \end{dfn}
 
-With just this much set up
-we can already write down the sentences that describe rings.
+With this set up we can already write down the sentences that describe rings.
+\link{sentences_for_ring_theory}
 
 \begin{lstlisting}
   /-- Assosiativity of addition -/
   def add_assoc : sentence ring_signature :=
-    ∀' ∀' ∀' ( (x_ 0 + x_ 1) + x_ 2 ≃ x_ 0 + (x_ 1 + x_ 2) )
+  ∀' ∀' ∀' ( (x_ 0 + x_ 1) + x_ 2 ≃ x_ 0 + (x_ 1 + x_ 2) )
 
   /-- Identity for addition -/
   def add_id : sentence ring_signature := ∀' ( x_ 0 + 0 ≃ x_ 0 )
@@ -314,35 +323,22 @@ we can already write down the sentences that describe rings.
 
   /-- Distributibity -/
   def add_mul : sentence ring_signature :=
-    ∀' ∀' ∀' ( (x_ 0 + x_ 1) * x_ 2 ≃ x_ 0 * x_ 2 + x_ 1 * x_ 2 )
-\end{lstlisting}
+  ∀' ∀' ∀' ( (x_ 0 + x_ 1) * x_ 2 ≃ x_ 0 * x_ 2 + x_ 1 * x_ 2 )\end{lstlisting}
 
-We can collect all of these into one and call it the \textit{theory of rings}.
+We later collect all of these into one set and call it the \linkto{ring_theory}{theory of rings}.
 
-\begin{dfn}[Theory]
-  Given a language $\LL$,
-  a set of sentences in the language is a theory in that language.
-\end{dfn}
+\subsection{Interpretation of symbols}
 
-\begin{dfn}[The theories of rings and fields]
-
-  \begin{lstlisting}
-    def ring_theory : Theory ring_signature :=
-    {add_assoc, add_id, add_inv, add_comm, mul_assoc, mul_id, mul_comm, add_mul}
-
-
-  \end{lstlisting}
-
-
-\end{dfn}
+In the above we set up a symbol treatment of logic.
+In this subsection we try to make these symbols into tangible mathematical objects.
 
 We intend to apply the statement
-``for \textit{any} polynomial over our ring, it has a root''
+``any degree two polynomial over our ring has a root''
 to a real, usable, tangible ring.
 We would like the sort symbol $A$ to be interpreted as the underlying type (set)
 for the ring and the function symbols to actually become maps from the ring to itself.
 
-\begin{dfn}[Interpretation and structures]
+\begin{dfn}[Structures]
     Given a language $\LL$, a $\LL$-\textit{structure} \texttt{M}
     interpreting $\LL$ consists of the following
     \begin{itemize}
@@ -361,397 +357,291 @@ for the ring and the function symbols to actually become maps from the ring to i
   (carrier : Type u)
   (fun_map : ∀{n}, L.functions n → dvector carrier n → carrier)
   (rel_map : ∀{n}, L.relations n → dvector carrier n → Prop)\end{lstlisting}
+
+  The \texttt{flypitch} library uses \texttt{dvector A n} for $n$-ary tuples of terms in \texttt{A}.
+
+  Note that rather comically \texttt{Structure} is itself a mathematical structure.
+  This is sensible, since \texttt{Structure} is meant to generalize the algebraic
+  (and relational) definitions of mathematical structures such as groups and rings.
+
+  Also note that for constant symbols the interpretation has domain empty tuples,
+  i.e. only the term \texttt{dvector.nil} as its domain. Hence it is a constant map
+  - a term of the interpreted carrier type.
+\end{dfn}
+
+The structures in a language will become the models of \linkto{dfn_theory}{theories}.
+For example $\Z$ is a structure in the \linkto{dfn_rings}{language of rings},
+a model of the \linkto{ring_theory}{theory of rings} but not a model of the theory of fields.
+In the language of \linkto{dfn_bin_rel}{binary relations},
+$\N$ with the usual ordering $\leq$ is a structure that models of
+the theory of partial orders (with the order relation)
+but not the theory of equivalence relations (with $\le$).
+
+Before continuing on formalizing ``any degree two polynomial over our ring has a root'',
+we stop to make the remark that the collection of all structures in a language forms a category.
+To this end we define morphisms of structures.
+
+\begin{dfn}[$\LL$-morphism, $\LL$-embedding]
+    \link{category_of_structures}
+    The collection of all $\LL$-structures forms a category with objects
+    as $\LL$-structures and morphisms as $\LL$-morphisms.
+
+    \begin{lstlisting}
+protected structure hom :=
+(to_fun : M → N)
+(map_fun' : ∀{n} (f : L.functions n) x, to_fun (M.fun_map f x)
+  = N.fun_map f (dvector.map to_fun x) . obviously)
+(map_rel' : ∀{n} (r : L.relations n) x, M.rel_map r x
+  → N.rel_map r (dvector.map to_fun x) . obviously)\end{lstlisting}
+
+    The induced map between the $n$-ary tuples is called \texttt{dvector.map}.
+    The above says a morphism is a mathematical structure
+    consisting of three pieces of data.
+    The first says that we have a functions between the carrier types,
+    the second gives a sensible commutative diagram for functions,
+    and the last gives a sensible commutative diagram for relations\footnote{
+      The way to view relations on a structure categorically is to view it
+      as a subobject of the carrier type.}.
+
+    \begin{cd}
+      \texttt{dvector M.carrier n}
+      \ar[r, "\texttt{M.fun\_map}"] \ar[d, "\texttt{dvector.map to\_fun}", swap]
+      & \texttt{M.carrier} \ar[d, "\texttt{to\_fun}"]\\
+      \texttt{dvector N.carrier n}
+      \ar[r, "\texttt{N.fun\_map}"] & \texttt{N.carrier}\\
+        \mmintp{r}
+        \ar[hookrightarrow]{r} \ar[d, "\texttt{dvector.map to\_fun}", swap]
+        & \texttt{dvector M.carrier n}
+        \ar[d, "\texttt{dvector.map to\_fun}"]\\
+        \nnintp{r}
+        \ar[hookrightarrow]{r} & \texttt{dvector N.carrier n}
+      \end{cd}
+
+      The notion of morphisms here will be the same as that of
+      morphisms in the algebraic setting.
+      For example in the \linkto{dfn_rings}{language of rings},
+      preserving interpretation of function symbols says
+      the zero is sent to the zero, one is sent to one,
+      subtraction, multiplication and addition is preserved.
+      In languages that have relation symbols,
+      such as that of simple graphs, preserving relations says that
+      if the relation holds for terms in the domain,
+      then the relation holds for their images.
+\end{dfn}
+
+Returning to our objective,
+we realize that we need to interpret our degree two polynomial (a term)
+is something in our ring. The term
+
+\[ x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} \]
+Should be a map from $4$-tuples from the ring to a value in the ring,
+namely, taking $(a, b, c, d)$ to
+
+\[ a c^{2} + b c + d \]
+
+We thus need to figure out how terms in the language interact with
+structures in the language.
+
+\begin{dfn}[Interpretation of terms]
+    \link{interpretation_terms}
+    Given $\LL$-structure $\MM$ and a $\LL$-term $t$ with up to $n$-variables.
+    Then we can naturally interpret (a.k.a realize) $t$ in the $\LL$-structure $\MM$ as a
+    map from the $n$-tuples of $\MM$ to $\MM$ that
+    commutes with the interpretation of function symbols.
+
+    \begin{lstlisting}
+@[simp] def realize_bounded_term {M : Structure L} {n} (v : dvector M n) :
+  ∀{l} (t : bounded_preterm L n l) (xs : dvector M l), M.carrier
+| _ (x_ k)         xs := v.nth k.1 k.2
+| _ (bd_func f)    xs := M.fun_map f xs
+| _ (bd_app t₁ t₂) xs := realize_bounded_term t₁ (realize_bounded_term t₂ ([])::xs) \end{lstlisting}
+
+    This is defined by induction on (pre)terms.
+    When the preterm $t$ is a variable $x_{k}$, we interpret $t$ as a map
+    that picks out the $k$-th part of the $n$-tuple \texttt{xs}.
+    This is like projecting to the $n$-th axis if the structure looks like an affine line.
+    When the term is a function symbol, then we automatically get a map from the
+    definition of structures.
+    In the last case we are applying a preterm $t_{1}$ to a term $t_{2}$,
+    and by induction we already have interpretation of these two preterms
+    in our structure, so we compose these in the obvious way.
+\end{dfn}
+
+We can finally completely formalize
+``any (at most) degree two polynomial has a root''.
+
+\begin{dfn}[Interpretation of formulas]
+
+    Given $\LL$-structure $\MM$ and a $\LL$-formula $f$ with up to $n$-variables.
+    Then we can interpret (a.k.a realize or satisfy) $f$ in the $\LL$-structure $\MM$ as a
+    proposition about $n$ terms from the carrier type.
+
+    \begin{lstlisting}
+@[simp] def realize_bounded_formula {M : Structure L} :
+  ∀{n l} (v : dvector M n) (f : bounded_preformula L n l) (xs : dvector M l), Prop
+| _ _ v bd_falsum       xs := false
+| _ _ v (t₁ ≃ t₂)       xs := realize_bounded_term v t₁ xs = realize_bounded_term v t₂ xs
+| _ _ v (bd_rel R)      xs := M.rel_map R xs
+| _ _ v (bd_apprel f t) xs := realize_bounded_formula v f (realize_bounded_term v t ([])::xs)
+| _ _ v (f₁ ⟹ f₂)       xs := realize_bounded_formula v f₁ xs → realize_bounded_formula v f₂ xs
+| _ _ v (∀' f)          xs := ∀(x : M), realize_bounded_formula (x::v) f xs \end{lstlisting}
+
+  This is defined by induction on (pre)formulas.
+  \begin{itemize}
+    \item[$\vert$] $\bot$ is interpreted as the type theoretic proposition \texttt{false}.
+    \item[$\vert$] $t = s$ is interpreted as type theoretic equality of the interpreted terms.
+    \item[$\vert$] Interpretation of relation symbols is part of the data of an
+          $\LL$-structure (\texttt{rel\_map}).
+    \item[$\vert$] If $f$ is a preformula with $n$ free variables that is missing
+          $l + 1$ inputs and $t$ is a term with $n$ variables
+          then $f$ applied to $t$ can be interpreted using the interpretation of $f$ and
+          applied to the interpretation of $t$, both of which are given by induction.
+    \item[$\vert$] An implication can be interpreted as a type theoretic implication
+          using the inductively given interpretations on each formula.
+    \item[$\vert$] $\forall x_{0}, f$ can be interpreted as the type theoretic proposition
+          ``for each $x$ in the carrier set $P$'',
+          where $P$ is the inductively given interpretation.
+  \end{itemize}
+
+  We write $\MM \models f(a)$ to mean ``the realization of $f$ holds in $\MM$ for the terms $a$''.
+  We are particularly interested in the case when the formula is a sentence,
+  which we denote as $\MM \models f$ (since we need no terms).
+  \begin{lstlisting}
+@[reducible] def realize_sentence (M : Structure L) (f : sentence L) : Prop :=
+realize_bounded_formula ([] : dvector M 0) f ([])\end{lstlisting}
+\end{dfn}
+
+Now we are able to express ``this structure in the language of rings has roots
+of all degree two polynomials'', using interpretation of sentences.
+
+\subsection{Theories}
+
+%?missing a description
+
+\begin{dfn}[Theory]
+  \link{dfn_theory}
+  Given a language $\LL$,
+  a set of sentences in the language is a theory in that language.
+  \begin{lstlisting}
+    def Theory := set (sentence L)   \end{lstlisting}
 \end{dfn}
 
 
+\begin{dfn}[Models]
+    Given an $\LL$-structure $\MM$ and $\LL$-theory $T$,
+    we write $\MM \models T$ and say
+    \emph{$\MM$ is a model of $T$} when
+    for all sentences $f \in T$ we have $\MM \models f$.
 
-% The structures in a language will become the models of theories.
-% For example $\Z$ is a structure in the \linkto{dfn_rings}{language of rings},
-% a model of the theory of rings but not a model of the theory of fields.
-% In the language of \linkto{sig_just_one_bin_rel}{binary relations},
-% $\N$ with the usual ordering $\leq$ is a structure that models of
-% the theory of partial orders but not the theory of equivalence relations.
+    \begin{lstlisting}
+      def all_realize_sentence (M : Structure L) (T : Theory L) := ∀ f, f ∈ T → M ⊨ f \end{lstlisting}
+  \end{dfn}
 
-% \begin{dfn}[$\LL$-morphism, $\LL$-embedding]
-%     \link{category_of_structures}
-%     The collection of all $\LL$-structures over a category $\CC$
-%     forms a category
-%     denoted by $\struc{\LL, \CC}$, which has objects
-%     as $\LL$-structures and morphisms as $\LL$-morphisms:
+A model of the \linkto{ring_theory}{theory of rings} should be exactly the data of a ring.
+Before \linkto{algebraic_objects_iff_models}{converting between algebraic objects
+  and their model theoretic counterparts}, so we first write down the theories of
+rings, fields, and algebraically closed fields.
 
-%     Suppose $\MM, \NN$ are $\LL$-structures in $\CC$
-%     and for each sort symbol $A$
-%     we have $\io_A : \mmintp{A} \to \nnintp{A}$.
-%     We say $\io := (\io_A)_{A \in \sort{\LL}}$ is
-%     a \textit{$\LL$-morphism} from $\MM$ to $\NN$ when
-%     \begin{itemize}
-%         \item For all function symbols $f : A_1 \tdt A_n \to B$ this diagram
-%         commutes:
-%         \begin{cd}
-%             \mmintp{A_1} \tdt \mmintp{A_n}
-%             \ar[r, "\mmintp{f}"] \ar[d, "\io_{A_1} \tdt \io_{A_n}", swap]
-%             & \mmintp{B} \ar[d, "\io_B"]\\
-%             \nnintp{A_1} \tdt \nnintp{A_n}
-%             \ar[r, "\nnintp{f}"] & \nnintp{B}
-%         \end{cd}
-%         \item For all relation symbols $r \hookr A_1 \tdt A_n$
-%             there exists a morphism $\io_r : \mmintp{r} \to \nnintp{r}$
-%             such that
-%         \begin{cd}
-%             \mmintp{r}
-%             \ar[hookrightarrow]{r} \ar[d, "\io_r", swap]
-%             & \mmintp{A_1} \tdt \mmintp{A_n}
-%             \ar[d, "\io_{A_1} \tdt \io_{A_n}"]\\
-%             \nnintp{r}
-%             \ar[hookrightarrow]{r} & \nnintp{A_1} \tdt \nnintp{A_n}
-%         \end{cd}
-%     \end{itemize}
-%     $\io$ is called a $\LL$-embedding (and $\NN$ a $\LL$-extension)
-%     when each $\io_A$ is a monomorphism
-%     and $\mmintp{r}$ is the pullback of the last diagram.
-%     Restricting morphisms between objects to purely $\LL$-embeddings
-%     results in a subcategory of $\struc{\LL,C}$.
-% \end{dfn}
-% The notion of morphisms here will be the same as that of
-% morphisms in the algebraic setting.
-% For example in the \linkto{dfn_grp}{language of groups},
-% preserving interpretation of function symbols says
-% the identity is sent to the identity, multiplication is preserved,
-% and inverses are sent to inverses.
+\begin{dfn}[The theories of rings, fields and algebraically closed fields]
+  \link{ring_theory}
+  The theory of rings is just the set of the
+  \linkto{sentences_for_ring_theory}{sentences describing a ring}
+\begin{lstlisting}
+def ring_theory : Theory ring_signature :=
+{add_assoc, add_id, add_inv, add_comm, mul_assoc, mul_id, mul_comm, add_mul}\end{lstlisting}
 
-% \begin{dfn}[Interpretation of terms]
-%     \link{interpretation_terms}
-%     Given a $\LL$-structure $\MM$ in category $\CC$ and a $\LL$-term
-%     $t : B$ with
-%     $\tv{t} = \set{v_1 : A_1, \dots, v_n : A_n}$.
-%     Then we can naturally interpret $t$ in the $\LL$-structure $\MM$ as a
-%     morphism in $\CC$
-%     \[
-%         \mmintp{t} : \mmintp{A_1} \tdt \mmintp{A_n} \to \mmintp{B}
-%     \]
-%     that commutes with the interpretation of function symbols
-%     (see proof).
-%     We then refer to this map as \emph{the}
-%     interpretation of the term $t$.\footnote{
-%         In type theory this is can be seen as the function type
-%         \[
-%             \la v_1 : A_1, \dots \la v_n : A_n, \mmintp{t} :
-%             \mmintp{A_1} \tdt \mmintp{A_n} \to \mmintp{B}
-%         \]}
+  To make the theory of fields we can add two sentences saying that
+  the ring is non-trivial and has multiplicative inverses:
+  \begin{lstlisting}
+def mul_inv : sentence ring_signature :=
+∀' (x_ 1 ≃ 0) ⊔ (∃' x_ 1 * x_ 0 ≃ 1)
 
-%     The following notation will be used for the interpretation of a tuple
-%     of terms (which is the product of their interpretations)
-%     \[
-%         s = (s_1,\dots,s_n) \text{ gives us a map }\mmintp{s}
-%         := \mmintp{s_1} \tdt \mmintp{s_n}
-%     \]
-% \end{dfn}
-% \begin{proof}
-%     We use the inductive definition of $t$:
-%     \begin{itemize}
-%         \item If $t$ is a variable $v : A$
-%         then $\tv{t} = \set{v : A}$ and $t : A$.
-%         Thus it makes sense to define $\mmintp{t} : \mmintp{A} \to \mmintp{A}$
-%         to be the identity.
-%         \item Suppose $t = f(s) : C$ for some function symbol
-%         $f : B_1 \tdt B_n \to C$ and terms
-%         $s : B_1 \tdt B_n$.
-%         Since
-%         $\tv{t} = \bigcup_{i=1}^n \tv{s_i}$
-%         we must have
-%         $\mmintp{t} : \prod_{x : A \in \tv{t}} \mmintp{A} \to \mmintp{C}$.
-%         Induction gives each $\mmintp{s_i}$,
-%         and there is naturally the map
-%         \[
-%             \mmintp{s} := \mmintp{s_1} \tdt \mmintp{s_n} :
-%             \prod_{x : A \in \tv{t}}
-%             \mmintp{A} \to \mmintp{B_1} \tdt \mmintp{B_n}
-%         \]
-%         so we define the interpretation of $t$
-%         to be the composition $\mmintp{t} := \mmintp{f} \circ \mmintp{s}$.
-%     \end{itemize}
-% \end{proof}
-% Note that for constant symbols the interpretation has the empty product
-% - a `singleton' - as its domain hence is a constant map -
-% an `element' of the interpreted sort.
+def non_triv : sentence ring_signature := ~ (0 ≃ 1)
 
-% \begin{eg}
-%     Following the \linkto{terms_as_polys_example}{previous example},
-%     in the language of rings
-%     \linkto{terms_in_RNG_are_polynomials}{terms will be multivariable
-%         integer polynomials}
-%     and then terms interpreted in some structure - say a ring $A$ -
-%     are then multivariable integer polynomial functions
-%     $A^n \to A$.
-% \end{eg}
+def field_theory : Theory ring_signature := ring_theory ∪ {mul_inv , non_triv} \end{lstlisting}
 
-% The following is exactly what we expect - that terms are well behaved
-% with respect to morphisms.
-% \begin{prop}[$\LL$-morphisms commute with interpretation of terms]
-%     \link{morph_comm_term_intp}
-%     Given a $\LL$-morphism $\io : \MM \to \NN$,
-%     we have that for any $\LL$-term $t$
-%     with $\tv{t} = \set{v_1 : A_1, \dots, v_n : A_n}$
-%     this diagram commutes
-%     \begin{cd}
-%         \mmintp{A_1} \tdt \mmintp{A_n} \ar[r, "\mmintp{t}"]
-%         \ar[d, "\io_{A_1} \tdt \io_{A_n}", swap] &
-%         \mmintp{B} \ar[d, "\io_B"]\\
-%         \nnintp{A_1} \tdt \nnintp{A_n} \ar[r, "\nnintp{t}"]
-%         &
-%         \nnintp{B}
-%     \end{cd}
-% \end{prop}
-% \begin{proof}
-%     We case on what $t$ is:
-%     \begin{itemize}
-%         \item If $t$ is a variable $v : A$ then
-%         $\mmintp{t} = \id{\mmintp{A}}$ and $\nnintp{t} = \id{\nnintp{A}}$
-%         hence the following commutes
-%         \begin{cd}
-%             \mmintp{A}  \ar[r, "\mmintp{t}"]
-%             \ar[d, "\io_{A}", swap] &
-%             \mmintp{A} \ar[d, "\io_A"]\\
-%             \nnintp{A} \ar[r, "\nnintp{t}"]
-%             &
-%             \nnintp{A}
-%         \end{cd}
-%         \item Suppose $t = f(s) : C$ for some function symbol
-%         $f : B_1 \tdt B_n \to C$ and terms
-%         $s : B_1 \tdt B_n$.
-%         We consider the diagram
-%         \begin{cd}
-%             {\prod_{x : A \in \tv{t}}\mmintp{A}} & {} & {\mmintp{B}} \\
-%             & {\mmintp{B_1}\tdt \mmintp{B_n}} \\
-%             {\prod_{x : A \in \tv{t}}\nnintp{A}} && {\nnintp{B}} \\
-%             & {\nnintp{B_1}\tdt \nnintp{B_n}}
-%             \ar["{\mmintp{t}}", from=1-1, to=1-3]
-%             \ar["{\nnintp{t}}"{description, pos=0.2}, from=3-1, to=3-3]
-%             \ar["{\prod\io_A}", from=1-1, to=3-1, swap]
-%             \ar[
-%                 "{\mmintp{s_1}\tdt \mmintp{s_n}}"{description},
-%                 from=1-1, to=2-2]
-%             \ar[
-%                 "{\nnintp{s_1}\tdt \nnintp{s_n}}"{description}, from=3-1,
-%                 to=4-2]
-%             \ar["{\nnintp{f}}"{description}, from=4-2, to=3-3]
-%             \ar["{\mmintp{f}}"{description}, from=2-2, to=1-3]
-%             \ar[
-%                 "{\io_{B_1} \tdt \io_{B_n}}"{description, pos=0.2},
-%                 from=2-2, to=4-2, crossing over]
-%             \ar["{\io_B}", from=1-3, to=3-3]
-%         \end{cd}
-%         Induction gives that the left face commutes and the definition
-%         of interpretation gives us that the top and bottom faces commute.
-%         By definition of interpretation of function
-%         symbols the right face commutes.
-%         From this we can deduce that the background of the following diagram
-%         commutes, as required.
-%     \end{itemize}
-% \end{proof}
+  To make the theory of algebraically closed fields we need to express
+  ``every non-constant polynomial has a root''.
+  We replace this with the equivalent statement ``every monic polynomial has a root''.
+  We do this by first making ``generic polynomials''
+  in the form of $a_{n+1}x^{n} + \cdots + a_{2}x + a_{1}$,
+  then adding $x^{n+1}$ to it, making it a ``generic monic polynomial''.
+  The (polynomial) variable $x$ will be represented by the variable \texttt{x\_ 0},
+  and the coefficient $a_{k}$ for each $0 < k$ will be represented by the variable
+  \texttt{x\_ k}.
 
-% \begin{dfn}[Models in different languages]
-%     \link{move_down_mod_0}
-%     Given two languages
-%     $\LL \leq \LL^*$ and
-%     a $\LL^*$-structure $\MM$ is naturally a $\LL$-structure $\NN$ such that
-%     $\subintp{\LL}{\MM}{\star} = \subintp{\LL^*}{\NN}{\star}$.
-%     We will often just write $\MM$ to mean either.
-% \end{dfn}
+  We define generic polynomials of degree (at most) $n$ as bounded ring signature terms
+  in $n + 2$ variables by induction on $n$:
+  when the degree is $0$, we just take the constant polynomial $x_{1}$
+  and supply a proof that $1 < 0 + 2$ (we omit these below using underscores).
+  When the degree is $n + 1$, we can take the previous generic polynomial,
+  lift it up from a term in $n + 2$ variables to $n + 3$ variables
+  (this is \texttt{lift\_succ}),
+  then add $x_{n + 2} x_{0}^{n+1}$ at the front.
 
-% \begin{prop}[Morphisms in different languages]
-%     \link{morph_diff_sigs}
-%     Suppose $\LL \leq \LL^*$
-%     and we have $\LL^*$-structures $\MM$ and $\NN$
-%     (\linkto{move_down_mod_0}{naturally $\LL$-structures}).
-%     If $\io : \MM \to \NN$ is a morphism in $\CC$ then
-%     $\io$ is a $\LL$-morphism if and only if it is a $\LL^*$-morphism, and
-%     an embedding in $\LL$ if and only if in $\LL^*$.
-% \end{prop}
-% \begin{proof}
-%     If $f : \prod A \to B$ is a function symbol
-%     then $\prod \subintp{\LL}{\MM}{A} = \prod \subintp{\LL^*}{\MM}{A}$
-%     and $\subintp{\LL}{\MM}{B} = \subintp{\LL^*}{\MM}{B}$
-%     (similarly for $\NN$).
-%     Hence the commuting diagram is the same diagram.
-%     Similarly the commuting diagram is the same for any relation symbol.
-%     Giving us the result.
-% \end{proof}
+  \begin{lstlisting}
+def gen_poly : Π (n : ℕ), bounded_ring_term (n + 2)
+| 0       := x_ ⟨ 1 , _ ⟩
+| (n + 1) := (x_ ⟨ n + 2 , _ ⟩) * (npow_rec (n + 1) (x_ ⟨ 0 , _ ⟩))
+  + bounded_preterm.lift_succ (gen_poly n)
+\end{lstlisting}
 
-% \subsection{Formulas in classical first order logic}
-% From this point onwards we will work in classical first order logic.
+  Since the type of terms in the language of rings has notions of
+  addition and multiplication (using the function symbols),
+  we automatically have a way of taking (natural number) powers.
+  This is \texttt{npow\_rec}.
 
-% \begin{dfn}[Atomic formula, quantifier free formula]
-%     Given $\LL$ a language,
-%     its set of atomic $\LL$-formulas along with their
-%     associated set of typed free variables $\tv{\star}$ is defined by
-%     \begin{itemize}
-%         \item[$\vert$] $\top$ is an atomic $\LL$-formula
-%         with no typed free variables $\tv{\top} = \nothing$.
-%         \item[$\vert$]
-%         Given $t, s \in \term{\LL}$ of the same type,
-%         the string $t = s$ is an atomic $\LL$-formula.
-%         The set of typed free variables is
-%         $\tv{t = s} = \tv{t} \cup \tv{s}$.
-%         \item[$\vert$] Given $r \in \rel{\LL}$ such that
-%         $r \hookr A_1 \times \dots A_n$ and $t : A_1 \times \dots \times A_n$,
-%         the string $r(t)$ is an atomic $\LL$-formula.
-%         The typed free variables are $\tv{r(t)} = \bigcup_{i = 1}^n \tv{t_i}$.
-%     \end{itemize}
+  We proceed to making generic monic polynomials by adding
+  $x_{0}^{n+2}$ at the front of the generic polynomial.
 
-%     We extend this to the set of quantifier free $\LL$-formulas inductively:
-%     \begin{itemize}
-%         \item[$\vert$] Given $\phi$ an atomic $\LL$-formula,
-%             $\phi$ is a quantifier free $\LL$-formula.
-%         \item[$\vert$] Given $\phi$ a quantifier free $\LL$-formula,
-%         the string $\NOT \phi$ is a quantifier free $\LL$-formula with the
-%         same set of typed free variables as $\phi$.
-%         \item[$\vert$] Given $\phi, \psi$ both quantifier free $\LL$-formulas,
-%         the string $\phi \OR \psi$ is a quantifier free $\LL$-formula.
-%         The set of typed free variables is
-%         $\tv{\phi \OR \psi} = \tv{\phi} \cup \tv{\psi}$.
-%     \end{itemize}
+  \begin{lstlisting}
+def gen_monic_poly (n : ℕ) : bounded_term ring_signature (n + 2) :=
+npow_rec (n + 1) (x_ 0) + gen_poly n
 
-%     The set of all $\LL$-formulas $\form{\LL}$
-%     is defined by extending the above:
-%     \begin{itemize}
-%         \item[$\vert$] Given $\phi$ a quantifier free $\LL$-formula,
-%         $\phi$ is a $\LL$-formula.
-%         \item[$\vert$] Given $\phi \in \form{\LL}$, a sort $A$
-%         and a variable $v : A$, we take the string $\forall v : A, \phi$ and
-%         replace all occurrences of
-%         $v$ with an unused symbol
-%         $z \in \var{A}$,
-%         producing a new a $\LL$-formula $\psi = \forall z : A, \phi$.
-%         The set of typed free variables is
-%         $\tv{\psi} = \tv{\phi} \setminus \set{v : A}$.
-%     \end{itemize}
-%     Shorthand for some $\LL$-formulas include
-%     \begin{itemize}
-%         \item $\bot := \NOT \top$
-%         \item $\phi \land \psi := \NOT((\NOT\phi) \lor (\NOT\psi))$
-%         \item $\phi \to \psi := (\NOT\phi) \lor \psi$
-%         \item $\exists v : A, \phi := \NOT(\forall v : A, \NOT\phi)$
-%     \end{itemize}
+/-- ∀ a₁ ⋯ ∀ aₙ, ∃ x₀, (aₙ x₀ⁿ⁻¹ + ⋯ + a₂ x₀+ a₁ = 0) -/
+def all_gen_monic_poly_has_root (n : ℕ) : sentence ring_signature :=
+fol.bd_alls (n + 1) (∃' gen_monic_poly n ≃ 0) \end{lstlisting}
 
-%     The symbol $z$ is thought of as a `bounded variable' as oppose to
-%     a `free variable',
-%     and will not be considered when we want to evaluate
-%     variables in formulas.
+  We can then easily state ``all generic monic polynomials have a root''.
+  The order of the variables is important here:
+  the $\exists$ removes the first variable $x_{0}$ in the $n+2$ variable formula
+  $\texttt{gen\_monic\_poly} n \simeq 0$, and moves the index of all the
+  variables down by $1$, making the remaining expression
+  $\exists \texttt{gen\_monic\_poly} n \simeq 0$ a formula in $n+1$ variables.
+  The function \texttt{fol.bd\_alls n} then adds $n+1$ many ``foralls''
+  in front, leaving us a formula with no free variables, i.e. sentence.
 
-%     Often we will be in 1-sorted languages,
-%     in which case we will just write
-%     \[
-%         \forall v, \phi \text{ and } \exists v, \phi
-%     \]
-%     since the type is obvious.
-% \end{dfn}
-% \begin{rmk}
-%     Formulas should be thought of as propositions with some bits loose,
-%     namely the free variables, since it does not make any sense to ask if
-%     $x = a$ without saying what $x$ you are taking
-%     (where $x$ is a variable as $a$ is a constant symbol, say).
-%     When there are no free variables we get what intuitively looks like a
-%     proposition, and we will call these particular formulas \linkto{sentences}{sentences}.
-% \end{rmk}
+  \begin{lstlisting}
+/-- The theory of algebraically closed fields -/
+def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_poly_has_root)\end{lstlisting}
 
-% \begin{dfn}[Substituting in terms]
-%     If a $\LL$-formula $\phi$ has a typed free variable $v : A$
-%     then to remind ourselves of the variable we can write
-%     $\phi = \phi(v : A) = \phi(v)$ instead.
+  Since \texttt{all\_gen\_monic\_poly\_has\_root} is a function from the naturals,
+  we can take its set theoretic image (called \texttt{set.range}),
+  i.e. a sentence for each degree $n$ saying
+  ``any monic polynomial of degree $n$ has a root''.
+\end{dfn}
 
-%     If we have term $t : A$ for some typed free variable $v : A$
-%     in $\tv{\phi}$,
-%     then we write $\phi(t)$ to mean $\phi(v : A)$ with
-%     $t$ substituted for $v$.
-%     By induction on terms and formulas this is still a
-%     $\LL$-formula and has
-%     \[\tv{\phi(t)} = \tv{t} \cup \brkt{\tv{\phi(v)} \setminus \set{v : A}}\]
-% \end{dfn}
-
-% \subsection{Classical models, theories}
-% From now on we will be interpreting only in the category $* / \SET$
-% of non-empty sets.
-% We require non-emptiness because the classical proof of compactness,
-% given by a \linkto{make_wit}{Henkin construction}
-% relies on non-emptiness of our models.
-
-% \begin{dfn}[Satisfaction]
-%     Let $\MM$ be a $\LL$-structure (interpreted in $* / \SET$
-%     and $\phi$ a $\LL$-formula.
-%     Let $a \in \prod_{x : A \in \tv{\phi}} \mmintp{A}$ be a tuple indexed by
-%     the typed free variables of $\phi$.
-%     Then we define $\MM \modelsi \phi(a)$ by induction on formulas:
-%     \begin{itemize}
-%         \item If $\phi$ is $\top$ then $\MM \model{\LL} \phi$.\footnote{
-%             We can omit the $a$ when there are no free variables.
-%             Formally $a$ is the unique element in the empty product.}
-%         \item If $\phi$ is $t = s$ then
-%             $\MM \model{\LL} \phi(a)$ when
-%             $\modintp{\MM}{t}(a) = \modintp{\MM}{s}(a)$.
-%             \item If $\phi$ is $r(t)$,
-%             where $r \hookr A_1 \tdt A_n$ is a relation symbol and
-%             $t : A_1 \tdt A_n$ are terms,
-%             then $\MM \model{\LL} \phi(a)$ when
-%             $\modintp{\MM}{t}(a) \in \modintp{\MM}{r}$.\footnote{
-%             $\modintp{\MM}{t}$ was the
-%             \linkto{interpretation_terms}{product of interpreted terms}.
-%             }
-%             \vspace{1em}
-%         \item If $\phi$ is
-%             $\NOT\psi$ for some $\psi \in \form{\LL}$,
-%             then $\MM \model{\LL} \phi(a)$ when $\MM \nodel{\LL} \psi(a)$
-%         \item If $\phi$ is  $\psi \lor \chi$,
-%             then $\MM \model{\LL} \phi(a)$ when
-%             $\MM \model{\LL} \psi(a)$ or $\MM \model{\LL} \chi(a)$.
-%         \item If $\phi$ is
-%             $\forall v : A, \psi$,
-%             then $\MM \model{\LL} \phi(a)$
-%             if for any $b \in \mmintp{A}$,
-%             $\MM \model{\LL} \psi(a,b)$.
-%     \end{itemize}
-% \end{dfn}
-
-% \begin{rmk}
-%     Any $\LL$-structure satisfies $\top$
-%     and does not satisfy $\bot$.
-%     Note that for $c$ a tuple of constant symbols
-%     $\MM \model{\LL} \phi(c)$ if and only if
-%     $\MM \model{\LL} \phi(\mmintp{c})$.
-% \end{rmk}
-
-% \begin{dfn}[Sentences and theories]
-%     \link{sentences}
-%     Let $\LL$ be a language and $\phi$ a $\LL$-formula.
-%     We say $\phi \in \form{\LL}$ is a $\LL$-sentence when
-%     it has no free variables, $\tv{\phi} = \nothing$.
-
-%     $T$ is an $\LL$-theory when it is a subset of $\form{\LL}$
-%     such that all elements of $T$ are $\LL$-sentences.
-%     We denote the set of $\LL$-theories as $\theory{\LL}$.
-% \end{dfn}
-
-% \begin{dfn}[Models]
-%     Given an $\LL$-structure $\MM$ and $\LL$-theory $T$,
-%     we write $\MM \model{\LL} T$ and say
-%     \emph{$\MM$ is a $\LL$-model of $T$} when
-%     for all $\phi \in T$ we have $\MM \model{\LL} \phi$.
-% \end{dfn}
-
-% \begin{eg}
-%     In the language of rings,
-%     \linkto{dfn_rings}{the rings axioms} will be the theory
-%     of rings and each model of the theory will consist of a single sort - the ring.
-%     The %?\linkto{missing_link}{
-%     theory of $\ZFC$ %} %? MISSING LINK
-%     consists of the $\ZFC$ axioms and a model of $\ZFC$
-%     would be a single sort thought of as the `class of all sets'.
-%     In the language of modules,
-%     \linkto{dfn_modules}{the theory of modules} will consist of the theory for rings,
-%     the theory for commutative groups, and the axioms for modules over a ring.
-%     A model of the theory of modules would consist of two sorts,
-%     one for the ring and one for the module.
-% \end{eg}
+\begin{prop}[Algebraic objects $\IFF$ models]
+  \link{algebraic_objects_iff_models}
+  The following are true
+  \begin{itemize}
+    \item A type $A$ is a ring (according to lean) if and only if
+          $A$ is a structure in the language of rings
+          that models the theory of rings.
+    \item A type $A$ is a field (according to lean) if and only if
+          it is a model of the theory of fields.
+    \item A type $A$ is an algebraically closed field (of characteristic p)
+          if and only if it is a model of $\ACF_{(p)}$.
+  \end{itemize}
+  For the purposes of design in lean it is
+  more sensible to split each ``if and only if'' into seperate constructions,
+  for converting the algebraic objects into their model theoretic counterparts
+  and vice versa.
+  Although these are very obvious facts on paper,
+  converting between them takes a bit of work in \texttt{lean},
+  especially for the last,
+  where some ground work needs to be done for interpreting \texttt{gen\_monic\_poly}.
+\end{prop}
 
 % \begin{dfn}[Consequence]
 %     Given a $\LL$-theory $T$
