@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  9 FEB 2022 17:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  14 FEB 2022 18:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -866,31 +866,31 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 294.
 \c@pp@a@footnote=\count336
  (./lstlean.tex)
 LaTeX Font Info:    Trying to load font information for T1+qpl on input line 46
-9.
+8.
 
 (/usr/share/texmf-dist/tex/latex/tex-gyre/t1qpl.fd
 File: t1qpl.fd 2009/09/25 v1.2 font definition file for T1/qpl
 ) (./m4r.aux)
 \openout1 = `m4r.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 469.
-LaTeX Font Info:    ... okay on input line 469.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 468.
+LaTeX Font Info:    ... okay on input line 468.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -948,10 +948,10 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 469.
-LaTeX Info: Redefining \ref on input line 469.
-LaTeX Info: Redefining \pageref on input line 469.
-LaTeX Info: Redefining \nameref on input line 469.
+Package hyperref Info: Link coloring ON on input line 468.
+LaTeX Info: Redefining \ref on input line 468.
+LaTeX Info: Redefining \pageref on input line 468.
+LaTeX Info: Redefining \nameref on input line 468.
  (./m4r.out)
 (./m4r.out)
 \@outlinefile=\write4
@@ -962,24 +962,24 @@ LaTeX Info: Redefining \nameref on input line 469.
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 473
+LaTeX Font Info:    Trying to load font information for U+msa on input line 472
 .
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 473
+LaTeX Font Info:    Trying to load font information for U+msb on input line 472
 .
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 4
-73.
+72.
 
 (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 47
-3.
+2.
 
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -988,11 +988,10 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 \openout5 = `m4r.toc'.
 
 
-(./background/language.tex
+(./src/language.tex
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 3.
 
-
-(/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+ (/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
@@ -1011,6 +1010,7 @@ LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Package mdframed Info: Not enough space on this page on input line 61.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 63.
@@ -1033,58 +1033,77 @@ File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
 (Font)              scaled to size 9.0pt on input line 287.
- [4] [5]
+ [4] [5] [6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 341.
+(mdframed)              on input line 380.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 384.
- [6]
-Package mdframed Info: Not enough space on this page on input line 430.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 445.
+(mdframed)              on input line 423.
+LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
+(Font)              scaled to size 10.0pt on input line 423.
  [7]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 473.
+(mdframed)              on input line 484.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 521.
-Package mdframed Info: Not enough space on this page on input line 527.
+(mdframed)              on input line 512.
 
 [8]
-Package mdframed Info: Not enough space on this page on input line 527.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 530.
+(mdframed)              on input line 561.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 545.
+(mdframed)              on input line 569.
 
-Overfull \hbox (40.47005pt too wide) in paragraph at lines 605--613
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 572.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 584.
+
+Overfull \hbox (40.47005pt too wide) in paragraph at lines 644--652
 \OT1/cmr/m/n/10 0$\T1/qpl/m/n/10 , and moves the in-dex of all the vari-ables d
 own by $\OT1/cmr/m/n/10 1$\T1/qpl/m/n/10 , mak-ing the re-main-ing ex-pres-sion
  $\OMS/cmsy/m/n/10 9[]\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 '
  []
 
+Package mdframed Info: Not enough space on this page on input line 661.
 [9]
+Package mdframed Info: Not enough space on this page on input line 661.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 661.
+ [10]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 624.
-) (./m4r.bbl) [10] (./m4r.aux)
+(mdframed)              on input line 684.
+) (./src/internalCompletenessAndSoundness.tex
+Overfull \hbox (12.37454pt too wide) in paragraph at lines 7--13
+[]\T1/qpl/m/n/10 An im-por-tant in-stance of the above phe-nomenon is the lack 
+of al-ge-braic struc-ture for \T1/zi4/m/it/10 bounded_ring_terms\T1/qpl/m/n/10 
+.
+ []
+
+[11] [12] [13]) (./m4r.bbl [14]) [15] (./m4r.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `m4r.out' has not changed.
-(rerunfilecheck)             Checksum: 93A6C0B903E74BF7A2F5F66D0AEF2BF3;1693.
+(rerunfilecheck)             Checksum: D4E4C317362A3631B2D1E7A8C3F9CEA1;2770.
  ) 
 Here is how much of TeX's memory you used:
- 28995 strings out of 478353
- 540919 string characters out of 5854636
- 1077747 words of memory out of 5000000
- 46387 multiletter control sequences out of 15000+600000
- 460430 words of font info for 101 fonts, out of 8000000 for 9000
+ 29258 strings out of 478353
+ 545066 string characters out of 5854636
+ 1075943 words of memory out of 5000000
+ 46486 multiletter control sequences out of 15000+600000
+ 472769 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,22n,104p,1192b,1342s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 100i,22n,104p,1192b,1321s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{dfn_graph} has been referenced but does not exist
 , replaced by a fixed one
 
@@ -1094,30 +1113,31 @@ placed by a fixed one
 pdfTeX warning (dest): name{dfn_bin_rel} has been referenced but does not exist
 , replaced by a fixed one
 
-{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr/share/texmf
--dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}{/usr/share/texmf-dist/fonts/enc/dvi
-ps/tex-gyre/q-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}
-{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</usr/share/texm
-f-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/s
-ymbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
-bm7.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share
-/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/tex-gyre/qplri.pfb>
-Output written on m4r.pdf (10 pages, 355708 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/share/texm
+f-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr/share/texmf-dist/fonts/enc/
+dvips/tex-gyre/q-ec-sc.enc}{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts
+1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/share/texm
+f-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/share/texmf-di
+st/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></us
+r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
+nts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.
+pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/tex
+mf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1
+/public/tex-gyre/qplri.pfb>
+Output written on m4r.pdf (15 pages, 383157 bytes).
 PDF statistics:
- 452 PDF objects out of 1000 (max. 8388607)
- 395 compressed objects within 4 object streams
- 197 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 697 PDF objects out of 1000 (max. 8388607)
+ 630 compressed objects within 7 object streams
+ 357 named destinations out of 1000 (max. 500000)
+ 149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

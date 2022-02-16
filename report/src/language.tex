@@ -7,15 +7,15 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
 
 \subsection{Languages}
 \begin{dfn}[Language]
-  A language (also known as a \textit{signature}) $\LL = ( \func , \rel )$ consists of
+  A language (also known as a \textit{signature}) \texttt{ L = (functions, relations) } consists of
 
   \begin{itemize}
     \item A sort symbol $A$, which we will have in the background for intuition.
-    \item For each natural number $n$ we have $\func n$ -
+    \item For each natural number $n$ we have \texttt{functions n} -
           the set of \textit{function symbols} of \textit{arity} $n$ for the language.
           For some $f \in \func n$ we might write
           $f : A^{n} \to A$ to denote $f$ with its arity.
-    \item For each natural number $n$ we have $\rel n$ -
+    \item For each natural number $n$ we have \texttt{relations n} -
           the set of \textit{relation symbols} of \textit{arity} $n$ for the language.
           For some $r \in \rel n$ we might write
           $r \hookr A^{n}$ to denote $r$ with its arity.
@@ -31,13 +31,13 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
   This says that \texttt{Language} is a mathematical structure
   (like a group structure, or ring structure)
   that consists of two pieces of data,
-  a map called \texttt{functions} and another called \texttt{relations}.
+  a map called \texttt{functions} and another called \texttt{relatio ns}.
   Both take a natural number and spit out a \textit{type}
   (which in \texttt{lean} might as well mean \textit{set})
-  that consists respectively of all the function symbols and relation symbols of arity $n$.
+  that consists respectively of all the function symbols and relation symbols of\texttt{functions narity $n$}.
 
   In more detail: in type theory when we write \texttt{a:A} we mean \texttt{a} is something
-  of \textit{type} \texttt{A}.
+  of \textit{type} \texttt{relations ntexttt{A}}.
   We can draw an analogy with the set theoretic notion $a \in A$,
   but types in \texttt{lean} have slightly different
   personalities, which we will gradually introduce.
@@ -55,7 +55,7 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
   \begin{lstlisting}
     def constants (L : Language) : Type u := functions 0\end{lstlisting}
 
-  This says that \texttt{constants} takes in a language $L$ and returns a type.
+  This says that \texttt{constants} takes in a language \texttt{L} and returns a type.
   Following the \texttt{:=} we have the definition of \texttt{constants L},
   which is the type \texttt{functions 0}.
 \end{dfn}
@@ -160,8 +160,8 @@ We formalize this as terms.
 \subsection{Terms and formulas}
 
 \begin{dfn}[Terms]
-  Let $\LL = (\func, \rel)$ be a language.
-  To make a \textit{preterm} in $\LL$ with up to $n$ variables
+  Let \texttt{ L = (functions, relations) } be a language.
+  To make a \textit{preterm} in \texttt{L} with up to $n$ variables
   we can do one of three things:
   \begin{itemize}
     \item[$\vert$] For each natural number $k < n$ we create a symbol
@@ -231,8 +231,8 @@ we might write
 Formulas allow us to do this.
 
 \begin{dfn}[Formulas]
-  Let $\LL$ be a language.
-  A (classical first order) $\LL$-\textit{preformula} in $\LL$
+  Let $\texttt{L}$ be a language.
+  A (classical first order) $\texttt{L}$-\textit{preformula} in $\texttt{L}$
   with (up to) $n$ \textit{free} variables can be built in the following ways:
   \begin{itemize}
     \item[$\vert$] $\bot$ is an atomic preformula with $n$ free variables
@@ -325,11 +325,50 @@ With this set up we can already write down the sentences that describe rings.
   def add_mul : sentence ring_signature :=
   ∀' ∀' ∀' ( (x_ 0 + x_ 1) * x_ 2 ≃ x_ 0 * x_ 2 + x_ 1 * x_ 2 )\end{lstlisting}
 
-We later collect all of these into one set and call it the \linkto{ring_theory}{theory of rings}.
+We later collect all of these into one set and call it the
+\linkto{ring_theory}{theory of rings}.
+
+\subsection{Lean symbols for ring symbols}
+
+We define \texttt{bounded\_ring\_term} and \texttt{bounded\_ring\_formula}
+for convenience.
+
+\begin{lstlisting}
+def bounded_ring_formula (n : ℕ) := bounded_formula ring_signature n
+def bounded_ring_term (n : ℕ) := bounded_term ring_signature n\end{lstlisting}
+
+We supply instances of \texttt{has\_zero}, \texttt{has\_one}, \texttt{has\_neg},
+\texttt{has\_add} and \texttt{has\_mul} to each type of bounded ring terms
+\texttt{bounded\_ring\_terms n}.
+This way we can use the lean symbols when writing terms and formulas.
+
+\begin{lstlisting}
+instance bounded_ring_term_has_zero {n} :
+  has_zero (bounded_ring_term n) := ⟨ bd_func ring_consts.zero ⟩
+
+instance bounded_ring_term_has_one {n} :
+  has_one (bounded_ring_term n) := ⟨ bd_func ring_consts.one ⟩
+
+instance bounded_ring_term_has_neg {n} : has_neg (bounded_ring_term n) :=
+⟨ bd_app (bd_func ring_unaries.neg) ⟩
+
+instance bounded_ring_term_has_add {n} : has_add (bounded_ring_term n) :=
+⟨ λ x, bd_app (bd_app (bd_func ring_binaries.add) x) ⟩
+
+instance bounded_ring_term_has_mul {n} : has_mul (bounded_ring_term n) :=
+⟨ λ x, bd_app (bd_app (bd_func ring_binaries.mul) x) ⟩\end{lstlisting}
+
+Since we have multiplication, we also can take terms to powers
+using \texttt{npow\_rec}.
+
+\begin{lstlisting}
+instance bounded_ring_term_has_pow {n} : has_pow (bounded_ring_term n) ℕ :=
+⟨ λ t n, npow_rec n t ⟩
+\end{lstlisting}
 
 \subsection{Interpretation of symbols}
 
-In the above we set up a symbol treatment of logic.
+In the above we set up a symbolic treatment of logic.
 In this subsection we try to make these symbols into tangible mathematical objects.
 
 We intend to apply the statement
@@ -339,8 +378,8 @@ We would like the sort symbol $A$ to be interpreted as the underlying type (set)
 for the ring and the function symbols to actually become maps from the ring to itself.
 
 \begin{dfn}[Structures]
-    Given a language $\LL$, a $\LL$-\textit{structure} \texttt{M}
-    interpreting $\LL$ consists of the following
+    Given a language $\texttt{L}$, a $\texttt{L}$-\textit{structure} \texttt{M}
+    interpreting $\texttt{L}$ consists of the following
     \begin{itemize}
       \item An underlying type \texttt{carrier}.
       \item Each function symbol $f : A^{n} \to A$ is interpreted as a
@@ -381,10 +420,10 @@ Before continuing on formalizing ``any degree two polynomial over our ring has a
 we stop to make the remark that the collection of all structures in a language forms a category.
 To this end we define morphisms of structures.
 
-\begin{dfn}[$\LL$-morphism, $\LL$-embedding]
+\begin{dfn}[$\texttt{L}$-morphism, $\texttt{L}$-embedding]
     \link{category_of_structures}
-    The collection of all $\LL$-structures forms a category with objects
-    as $\LL$-structures and morphisms as $\LL$-morphisms.
+    The collection of all $\texttt{L}$-structures forms a category with objects
+    as $\texttt{L}$-structures and morphisms as $\texttt{L}$-morphisms.
 
     \begin{lstlisting}
 protected structure hom :=
@@ -444,9 +483,9 @@ structures in the language.
 
 \begin{dfn}[Interpretation of terms]
     \link{interpretation_terms}
-    Given $\LL$-structure $\MM$ and a $\LL$-term $t$ with up to $n$-variables.
-    Then we can naturally interpret (a.k.a realize) $t$ in the $\LL$-structure $\MM$ as a
-    map from the $n$-tuples of $\MM$ to $\MM$ that
+    Given $\texttt{L}$-structure $\texttt{M}$ and a $\texttt{L}$-term $t$ with up to $n$-variables.
+    Then we can naturally interpret (a.k.a realize) $t$ in the $\texttt{L}$-structure $\texttt{M}$ as a
+    map from the $n$-tuples of $\texttt{M}$ to $\texttt{M}$ that
     commutes with the interpretation of function symbols.
 
     \begin{lstlisting}
@@ -472,8 +511,8 @@ We can finally completely formalize
 
 \begin{dfn}[Interpretation of formulas]
 
-    Given $\LL$-structure $\MM$ and a $\LL$-formula $f$ with up to $n$-variables.
-    Then we can interpret (a.k.a realize or satisfy) $f$ in the $\LL$-structure $\MM$ as a
+    Given $\texttt{L}$-structure $\texttt{M}$ and a $\texttt{L}$-formula $f$ with up to $n$-variables.
+    Then we can interpret (a.k.a realize or satisfy) $f$ in the $\texttt{L}$-structure $\texttt{M}$ as a
     proposition about $n$ terms from the carrier type.
 
     \begin{lstlisting}
@@ -491,7 +530,7 @@ We can finally completely formalize
     \item[$\vert$] $\bot$ is interpreted as the type theoretic proposition \texttt{false}.
     \item[$\vert$] $t = s$ is interpreted as type theoretic equality of the interpreted terms.
     \item[$\vert$] Interpretation of relation symbols is part of the data of an
-          $\LL$-structure (\texttt{rel\_map}).
+          $\texttt{L}$-structure (\texttt{rel\_map}).
     \item[$\vert$] If $f$ is a preformula with $n$ free variables that is missing
           $l + 1$ inputs and $t$ is a term with $n$ variables
           then $f$ applied to $t$ can be interpreted using the interpretation of $f$ and
@@ -503,35 +542,35 @@ We can finally completely formalize
           where $P$ is the inductively given interpretation.
   \end{itemize}
 
-  We write $\MM \models f(a)$ to mean ``the realization of $f$ holds in $\MM$ for the terms $a$''.
+  We write $\texttt{M} \models f(a)$ to mean ``the realization of $f$ holds in $\texttt{M}$ for the terms $a$''.
   We are particularly interested in the case when the formula is a sentence,
-  which we denote as $\MM \models f$ (since we need no terms).
+  which we denote as $\texttt{M} \vDash f$ (since we need no terms).
   \begin{lstlisting}
 @[reducible] def realize_sentence (M : Structure L) (f : sentence L) : Prop :=
 realize_bounded_formula ([] : dvector M 0) f ([])\end{lstlisting}
 \end{dfn}
 
-Now we are able to express ``this structure in the language of rings has roots
-of all degree two polynomials'', using interpretation of sentences.
-
 \subsection{Theories}
 
-%?missing a description
+Now we are able to express ``this structure in the language of rings has roots
+of all degree two polynomials'', using interpretation of sentences.
+A sensible task is to organize algebraic data, such as rings, fields,
+and algebraically closed fields, in terms of the sentences that axiomatize them.
+We call these theories.
 
 \begin{dfn}[Theory]
   \link{dfn_theory}
-  Given a language $\LL$,
+  Given a language $\texttt{L}$,
   a set of sentences in the language is a theory in that language.
   \begin{lstlisting}
     def Theory := set (sentence L)   \end{lstlisting}
 \end{dfn}
 
-
 \begin{dfn}[Models]
-    Given an $\LL$-structure $\MM$ and $\LL$-theory $T$,
-    we write $\MM \models T$ and say
-    \emph{$\MM$ is a model of $T$} when
-    for all sentences $f \in T$ we have $\MM \models f$.
+    Given an $\texttt{L}$-structure $\texttt{M}$ and $\texttt{L}$-theory $\texttt{T}$,
+    we write $\texttt{M} \vDash \texttt{T}$ and say
+    \emph{$\texttt{M}$ is a model of $\texttt{T}$} when
+    for all sentences $f \in \texttt{T}$ we have $\texttt{M} \vDash f$.
 
     \begin{lstlisting}
       def all_realize_sentence (M : Structure L) (T : Theory L) := ∀ f, f ∈ T → M ⊨ f \end{lstlisting}
@@ -621,7 +660,28 @@ def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_pol
   ``any monic polynomial of degree $n$ has a root''.
 \end{dfn}
 
-\begin{prop}[Algebraic objects $\IFF$ models]
+  Whilst completeness and soundness for first order logic
+  is about converting between symbolic and semantic deduction,
+  there is another layer of conversion that is often swept under the rug,
+  between the semantics and native mathematics.
+  Before the project began,
+  Kevin and I were both skeptical about model theory actually producing
+  results that were usable, in the sense of being compatible with \texttt{mathlib},
+  but I managed to show that this was the case:
+
+  \begin{itemize}
+    \item Structures in a language are the same thing
+          as our internal way of describing structures -
+          e.g. a ring structure is actually a type with instances $0,1,-,+,\times$.
+    \item Models of theories in a language are the same things
+          as our internal way of describing algebraic objects -
+          a model of the theory of rings is actually a ring in lean.
+  \end{itemize}
+
+  We informally use the term ``internal completeness and soundness''
+  for this kind of phenomenon (coined by Kenny Lau).
+
+\begin{prop}[Internal completeness and soundness]
   \link{algebraic_objects_iff_models}
   The following are true
   \begin{itemize}
@@ -642,39 +702,43 @@ def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_pol
   especially for the last,
   where some ground work needs to be done for interpreting \texttt{gen\_monic\_poly}.
 \end{prop}
+\begin{proof}
+  The proof of this formed a significant part of this project.
+  We leave this to the next section.
+\end{proof}
 
 % \begin{dfn}[Consequence]
-%     Given a $\LL$-theory $T$
-%     and a $\LL$-sentence $\phi$,
+%     Given a $\texttt{L}$-theory $T$
+%     and a $\texttt{L}$-sentence $\phi$,
 %     we say $\phi$ is a consequence of $T$
-%     and say $T \model{\LL} \phi$
-%     when for all $\LL$-models $\MM$ of $T$,
-%     we have $\MM \model{\LL} \phi$.
-%     We also write $T \model{\LL} \De$
-%     for $\LL$-theories $T$ and $\De$
-%     when for every $\phi \in \De$ we have $T \model{\LL} \phi$.
+%     and say $T \model{\texttt{L}} \phi$
+%     when for all $\texttt{L}$-models $\texttt{M}$ of $T$,
+%     we have $\texttt{M} \model{\texttt{L}} \phi$.
+%     We also write $T \model{\texttt{L}} \De$
+%     for $\texttt{L}$-theories $T$ and $\De$
+%     when for every $\phi \in \De$ we have $T \model{\texttt{L}} \phi$.
 % \end{dfn}
 
 % \begin{ex}[Logical consequence]
-%     Let $T$ be a $\LL$-theory and $\phi$ and $\psi$ be $\LL$-sentences.
+%     Let $T$ be a $\texttt{L}$-theory and $\phi$ and $\psi$ be $\texttt{L}$-sentences.
 %     Show that the following are equivalent:
 %     \begin{itemize}
-%         \item $T \model{\LL} \phi \to \psi$
-%         \item $T \model{\LL} \phi$ implies $T \model{\LL} \psi$.
+%         \item $T \model{\texttt{L}} \phi \to \psi$
+%         \item $T \model{\texttt{L}} \phi$ implies $T \model{\texttt{L}} \psi$.
 %     \end{itemize}
 % \end{ex}
 
 % \begin{dfn}[Consistent theory]
 %     \link{consistent}
-%     A $\LL$-theory $T$ is consistent if either of the following equivalent
+%     A $\texttt{L}$-theory $T$ is consistent if either of the following equivalent
 %     definitions hold:
 %     \begin{itemize}
 %         \item
 %             There does not exists a
-%             $\LL$-sentence $\phi$ such that
-%             $T \model{\LL} \phi$ and $T \model{\LL} \NOT \phi$.
+%             $\texttt{L}$-sentence $\phi$ such that
+%             $T \model{\texttt{L}} \phi$ and $T \model{\texttt{L}} \NOT \phi$.
 %         \item There exists
-%             a $\LL$-model of $T$.
+%             a $\texttt{L}$-model of $T$.
 %     \end{itemize}
 %     Thus the definition of consistent is intuitively
 %     `$T$ does not lead to a contradiction'.
@@ -687,75 +751,75 @@ def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_pol
 %     We show that the two definitions are equivalent.
 %     \begin{forward}
 %         Suppose no model exists.
-%         Take $\phi$ to be the $\LL$-sentence $\top$.
-%         Hence all $\LL$-models of $T$ satisfy $\top$ and $\bot$
+%         Take $\phi$ to be the $\texttt{L}$-sentence $\top$.
+%         Hence all $\texttt{L}$-models of $T$ satisfy $\top$ and $\bot$
 %         (there are none) so
-%         $T \model{\LL} \top$ and $T \model{\LL} \bot$.
+%         $T \model{\texttt{L}} \top$ and $T \model{\texttt{L}} \bot$.
 %     \end{forward}
 %     \begin{backward}
-%         Suppose $T$ has a $\LL$-model $\MM$
-%         and $T \model{\LL} \phi$ and $T \model{\LL} \NOT \phi$.
-%         This implies $\MM \model{\LL} \phi$ and $\MM \nodel{\LL} \phi$,
+%         Suppose $T$ has a $\texttt{L}$-model $\texttt{M}$
+%         and $T \model{\texttt{L}} \phi$ and $T \model{\texttt{L}} \NOT \phi$.
+%         This implies $\texttt{M} \model{\texttt{L}} \phi$ and $\texttt{M} \nodel{\texttt{L}} \phi$,
 %         a contradiction.
 %     \end{backward}
 % \end{proof}
 
 % \begin{dfn}[Elementary equivalence]
-%     Let $\MM$, $\NN$ be $\LL$-structures.
-%     They are elementarily equivalent if for any $\LL$-sentence $\phi$,
-%     $\MM \model{\LL} \phi$ if and only if $\NN \model{\LL} \phi$.
-%     We write $\MM \equiv_\LL \NN$.
+%     Let $\texttt{M}$, $\NN$ be $\texttt{L}$-structures.
+%     They are elementarily equivalent if for any $\texttt{L}$-sentence $\phi$,
+%     $\texttt{M} \model{\texttt{L}} \phi$ if and only if $\NN \model{\texttt{L}} \phi$.
+%     We write $\texttt{M} \equiv_\texttt{L} \NN$.
 % \end{dfn}
 
 % \begin{dfn}[Maximal and complete theories]
 %     \link{equiv_def_completeness_0}
-%     A $\LL$-theory $T$ is \textit{maximal} if
-%     for any $\LL$-sentence $\phi$,
+%     A $\texttt{L}$-theory $T$ is \textit{maximal} if
+%     for any $\texttt{L}$-sentence $\phi$,
 %     $\phi \in T$ or $\NOT \phi \in T$.
 
 %     $T$ is \textit{complete}
 %     when either of the following equivalent
 %     definitions hold:
 %     \begin{itemize}
-%         \item For any $\LL$-sentence $\phi$,
-%             $T \model{\LL} \phi$ or
-%             $T \model{\LL} \NOT \phi$.
+%         \item For any $\texttt{L}$-sentence $\phi$,
+%             $T \model{\texttt{L}} \phi$ or
+%             $T \model{\texttt{L}} \NOT \phi$.
 %         \item All models of $T$ are elementarily equivalent.
 %     \end{itemize}
 %     Note that maximal theories are complete.
 % \end{dfn}
 % \begin{proof}
 %     \begin{forward}
-%         Let $\MM$ and $\NN$ be models of $T$
-%         and $\phi$ be a $\LL$-sentence.
-%         If $T \model{\LL} \phi$ then both satisfy $\phi$.
+%         Let $\texttt{M}$ and $\NN$ be models of $T$
+%         and $\phi$ be a $\texttt{L}$-sentence.
+%         If $T \model{\texttt{L}} \phi$ then both satisfy $\phi$.
 %         Otherwise $\NOT \phi \in T$ and neither satisfy $\phi$.
 %     \end{forward}
 
 %     \begin{backward}
-%         If $\phi$ is a $\LL$-sentence then suppose for a contradiction
-%         \[T \nodel{\LL} \phi \text{ and } T \nodel{\LL} \NOT \phi\]
+%         If $\phi$ is a $\texttt{L}$-sentence then suppose for a contradiction
+%         \[T \nodel{\texttt{L}} \phi \text{ and } T \nodel{\texttt{L}} \NOT \phi\]
 %         Then there exist models of $T$
-%         such that $\MM \nodel{\LL} \phi$ and $\NN \nodel{\LL} \NOT \phi$.
+%         such that $\texttt{M} \nodel{\texttt{L}} \phi$ and $\NN \nodel{\texttt{L}} \NOT \phi$.
 %         By assumption they are elementarily equivalent and so
-%         $\MM \model{\LL} \NOT \phi$ implies $\NN \model{\LL} \NOT \phi$,
+%         $\texttt{M} \model{\texttt{L}} \NOT \phi$ implies $\NN \model{\texttt{L}} \NOT \phi$,
 %         a contradiction.
 %     \end{backward}
 % \end{proof}
 
 % \begin{ex}[Not consistent, not complete]
 %     \link{not_consequence}
-%     Let $T$ be a $\LL$-theory
-%     and $\phi$ is a $\LL$-sentence.
-%     Show that $T \nodel{\LL} \phi$
+%     Let $T$ be a $\texttt{L}$-theory
+%     and $\phi$ is a $\texttt{L}$-sentence.
+%     Show that $T \nodel{\texttt{L}} \phi$
 %     if and only if $T \cup \set{ \NOT \phi}$ is consistent.
-%     Furthermore, $T \nodel{\LL} \NOT \phi$
+%     Furthermore, $T \nodel{\texttt{L}} \NOT \phi$
 %     if and only if $T \cup \set{\phi}$ is consistent.
 
-%     Note that by definition for $\LL$-structures and
-%     $\LL$-formulas we (classically) have that
+%     Note that by definition for $\texttt{L}$-structures and
+%     $\texttt{L}$-formulas we (classically) have that
 %     \[
-%         \MM \modelsi \NOT \phi(a) \iff \MM \nodelsi \phi(a)
+%         \texttt{M} \modelsi \NOT \phi(a) \iff \texttt{M} \nodelsi \phi(a)
 %     \]
 %     Find examples of theories that do not satisfy
 %     \[

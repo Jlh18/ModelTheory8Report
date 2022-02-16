@@ -1,0 +1,224 @@
+Here we list some general facts and tips about working with models:
+\begin{itemize}
+  \item Things are easier to prove in models, so our proofs tend to
+        first translate everything we can to the ring,
+        then prove the property there,
+        making use of existing lemmas in the library for rings.
+  \item An important instance of the above phenomenon is the lack
+        of algebraic structure for \texttt{bounded\_ring\_terms}.
+        For example, addition for polynomials written as terms
+        is \textit{not commutative} until it is interpreted into a structure
+        satisfying commutativity,
+        even though it is true in a polynomial ring.
+  \item Sometimes there is extra definitional rewriting that needs to happen,
+        and \texttt{dsimp} (or something similar) is needed alongside \texttt{simp}.
+\end{itemize}
+
+\subsection{Ring Structures}
+
+We first make the very obvious observation that given
+the \texttt{lean} instances of \texttt{[has\_zero]} and \texttt{[has\_one]}
+in some type \texttt{A},
+we can make interpretations of the symbols \texttt{ring\_consts.zero}
+and \texttt{ring\_consts.one}.
+Similarly for the other symbols:
+
+\begin{lstlisting}
+def const_map [has_zero A] [has_one A] : ring_consts → dvector A 0 → A
+| ring_consts.zero _ := 0
+| ring_consts.one  _ := 1
+
+def unaries_map [has_neg A] : ring_unaries → (dvector A 1) → A
+| ring_unaries.neg a := - (dvector.last a)
+
+-- Induction on both ring_binaries and dvector
+def binaries_map [has_add A] [has_mul A] : ring_binaries → (dvector A 2) → A
+| ring_binaries.add (a :: b) := a + dvector.last b
+| ring_binaries.mul (a :: b) := a * dvector.last b
+
+def func_map [has_zero A] [has_one A] [has_neg A] [has_add A] [has_mul A] :
+  Π (n : ℕ), (ring_funcs n) → (dvector A n) → A
+| 0       := const_map
+| 1       := unaries_map
+| 2       := binaries_map
+| (n + 3) := pempty.elim\end{lstlisting}
+
+This allows us to make any type with such instances a ring structure:
+
+\begin{lstlisting}
+def Structure : Structure ring_signature :=
+Structure.mk A func_map (λ n, pempty.elim)\end{lstlisting}
+
+Conversely given any ring structure,
+we can easily pick out the above instances.
+For example
+\begin{lstlisting}
+def add {M : Structure ring_signature} (a b : M.carrier) : M.carrier := @Structure.fun_map _ M 2 ring_binaries.add ([a , b])
+
+instance : has_add M := ⟨ add ⟩\end{lstlisting}
+
+\subsection{Rings}
+If $A$ is a ring, then surely it is a model of the theory of rings.
+I have supplied \texttt{simp} with enough lemmas to reduce the definitions
+until requiring the corresponding property about rings,
+and I have chosen the sentences to replicate the format of
+each property from \texttt{mathlib}.
+For example \texttt{add\_comm} below
+is the internal property for the type \texttt{A}
+(it is not visible to \texttt{simp}),
+and it looks exactly like the statement $\texttt{M} \vDash \texttt{add\_comm}$.
+
+\begin{lstlisting}
+lemma realize_ring_theory :
+  (Structure A) ⊨ ring_signature.ring_theory :=
+  /- Structure A : is A as a ring structure as defined above -/
+begin
+  intros ϕ h,
+  repeat {cases h}, /- we are checking A ⊨ ϕ for each ϕ -/
+  { intros a b c,
+    simp [add_assoc] },
+  { intro a,
+    simp },
+  { intro a,
+    simp },
+  { intros a b,
+    simp [add_comm] },
+  { intros a b c,
+    simp [mul_assoc] },
+  { intro a,
+    simp [mul_one] },
+  { intros a b,
+    simp [mul_comm] },
+  { intros a b c,
+    simp [add_mul] }
+end\end{lstlisting}
+
+Conversely, given a model of the theory of rings
+we can supply an instance of a ring to the carrier type.
+I supply a lemma for each piece of data going into a \texttt{comm\_ring}.
+As an example, we look at \texttt{add\_comm}.
+
+\begin{lstlisting}
+/- First show that add_comm is in ring_theory -/
+lemma add_comm_in_ring_theory : add_comm ∈ ring_theory :=
+begin apply_rules [set.mem_insert, set.mem_insert_of_mem] end\end{lstlisting}
+
+Since \texttt{ring\_theory} was just built as
+\texttt{\{\_,\_,...,\_\}} (syntax sugar for
+insert, insert, ..., singleton), it suffices just to iteratively
+try a couple of lemmas for membership of such a construction.
+
+\begin{lstlisting}
+lemma add_comm (a b : M) : a + b = b + a :=
+begin
+  /- M ⊨ ring_theory -> M ⊨ add_comm -/
+  have hId : M ⊨ ring_signature.add_comm := h ring_signature.add_comm_in_ring_theory,
+  /- M ⊨ add_comm -> add_comm b a -/
+  have hab := hId b a,
+  simpa [hab]
+end\end{lstlisting}
+
+There is some definitional and internal simplification happening in here,
+but like before, for the most part \texttt{lean} recogizes that
+realizing the sentence \texttt{add\_comm} is the same as having
+an instance of \texttt{add\_comm}.
+
+\begin{lstlisting}
+instance comm_ring : comm_ring M :=
+{
+  add            := add,
+  add_assoc      := add_assoc h,
+  zero           := zero,
+  zero_add       := zero_add h,
+  add_zero       := add_zero h,
+  neg            := neg,
+  add_left_neg   := left_neg h,
+  add_comm       := add_comm h,
+  mul            := mul,
+  mul_assoc      := mul_assoc h,
+  one            := one,
+  one_mul        := one_mul h,
+  mul_one        := mul_one h,
+  left_distrib   := mul_add h,
+  right_distrib  := add_mul h,
+  mul_comm       := mul_comm h,
+}\end{lstlisting}
+
+\subsection{Fields}
+
+Our characterization of fields resembles the structure \texttt{is\_field}
+more than the default \texttt{field} instance;
+they are equivalent.
+
+\begin{lstlisting}
+structure is_field (R : Type u) [ring R] : Prop :=
+(exists_pair_ne : ∃ (x y : R), x ≠ y)
+(mul_comm : ∀ (x y : R), x * y = y * x)
+(mul_inv_cancel : ∀ {a : R}, a ≠ 0 → ∃ b, a * b = 1)\end{lstlisting}
+
+The proof that any field forms a model of the theory of fields is straight forward:
+since fields are commutative rings, it is a model of \texttt{ring\_theory}
+by our previous work; for the other two sentences we exploit \texttt{simp}
+and all the lemmas about fields that already exist in \texttt{mathlib}.
+
+\begin{lstlisting}
+lemma realize_field_theory :
+  Structure K ⊨ field_theory :=
+begin
+  intros ϕ h,
+  cases h,
+  {apply (comm_ring_to_model.realize_ring_theory K h)},
+  repeat {cases h},
+   { intro,
+     simp only [fol.bd_or, models_ring_theory_to_comm_ring.realize_one,
+       struc_to_ring_struc.func_map, fin.val_zero', realize_bounded_formula_not,
+       struc_to_ring_struc.binaries_map, fin.val_eq_coe, dvector.last,
+       realize_bounded_formula_ex, realize_bounded_term_bd_app,
+       realize_bounded_formula, realize_bounded_term,
+       fin.val_one, dvector.nth, models_ring_theory_to_comm_ring.realize_zero],
+     apply is_field.mul_inv_cancel (K_is_field K) },
+  { simp [fol.realize_sentence] },
+  end\end{lstlisting}
+
+Going backwards is even easier, and we omit the code here.
+
+\subsection{Algebraically closed fields}
+
+Suppose we have an algebraically field \texttt{K}.
+We want to show that it is a model of the theory of algebraically closed fields,
+which given our work so far amounts to showing that for each natural number $n$
+we have that all generic monic polynomials of degree $n$ have a root in \texttt{k}.
+Indeed using \texttt{is\_alg\_closed} we can obtain such a root for any polynomial,
+but this requires (internally) making a polynomial corresponding \texttt{gen\_monic\_poly n}.
+We first assume the existence of such a polynomial and that evaluating such a polynomial
+at some value \texttt{x} is the same thing as realising \texttt{gen\_monic\_poly n}
+at (its coefficients and then) \texttt{x}.
+
+\begin{lstlisting}
+/-- Algebraically closed fields model the theory ACF-/
+lemma realize_ACF : Structure K ⊨ ACF :=
+begin
+  intros ϕ h,
+  cases h,
+  /- we have shown that K models field_theory -/
+  { apply field_to.realize_field_theory _ h },
+  { cases h with n hϕ,
+    rw ← hϕ,
+    /- goal is now to show that all generic monic polynomials of degree n have a root -/
+    simp only [all_gen_monic_poly_has_root, realize_sentence_bd_alls,
+      realize_bounded_formula_ex, realize_bounded_formula,
+      models_ring_theory_to_comm_ring.realize_zero],
+    intro as,
+    have root := is_alg_closed.exists_root
+      (polynomial.term_evaluated_at_coeffs as (gen_monic_poly n)) gen_monic_poly_non_const,
+    cases root with x hx,
+    rw polynomial.eval_term_evaluated_at_coeffs_eq_realize_bounded_term at hx,
+    exact ⟨ x , hx ⟩ },
+  end\end{lstlisting}
+
+% check out the polynomial.term_evaluated_at_coeffs stuff and see if we can shorten
+% the proof for models ACF -> alg_closed
+
+
+
+\subsection{Characteristic}

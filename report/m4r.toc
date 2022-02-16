@@ -2,9 +2,16 @@
 \contentsline {section}{\numberline {2}Model Theory Background}{1}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Languages}{1}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Terms and formulas}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Interpretation of symbols}{6}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Theories}{8}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Model Theory of Algebraically Closed Fields}{10}{section.3}%
-\contentsline {section}{\numberline {4}The Lefschetz Principle}{10}{section.4}%
-\contentsline {section}{\numberline {5}Reducing to Locally Finite Fields}{10}{section.5}%
-\contentsline {section}{\numberline {6}Proving of the Locally Finite Case}{10}{section.6}%
+\contentsline {subsection}{\numberline {2.3}Lean symbols for ring symbols}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Interpretation of symbols}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Theories}{9}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Internal completeness and soundness}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Ring Structures}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Rings}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Fields}{13}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Algebraically closed fields}{14}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Characteristic}{15}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Model Theory of Algebraically Closed Fields}{15}{section.4}%
+\contentsline {section}{\numberline {5}The Lefschetz Principle}{15}{section.5}%
+\contentsline {section}{\numberline {6}Reducing to Locally Finite Fields}{15}{section.6}%
+\contentsline {section}{\numberline {7}Proving of the Locally Finite Case}{15}{section.7}%
