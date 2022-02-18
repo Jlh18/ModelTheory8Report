@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  14 FEB 2022 18:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  18 FEB 2022 12:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -996,6 +996,10 @@ File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 10.0pt on input line 3.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 9.
@@ -1007,10 +1011,6 @@ File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 9.0pt on input line 26.
- [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package mdframed Info: Not enough space on this page on input line 61.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 63.
@@ -1020,90 +1020,111 @@ Package mdframed Info: mdframed detected package amsthm
  [2]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 162.
+(mdframed)              on input line 163.
  [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 233.
+(mdframed)              on input line 234.
 LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 2
-87.
+91.
 
 (/usr/share/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
 File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 287.
- [4] [5] [6]
+(Font)              scaled to size 9.0pt on input line 291.
+Package mdframed Info: Not enough space on this page on input line 299.
+ [4]
+Package mdframed Info: Not enough space on this page on input line 299.
+ [5] [6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 380.
+(mdframed)              on input line 384.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 423.
+(mdframed)              on input line 427.
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
-(Font)              scaled to size 10.0pt on input line 423.
+(Font)              scaled to size 10.0pt on input line 427.
  [7]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 484.
+(mdframed)              on input line 488.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 512.
+(mdframed)              on input line 516.
 
 [8]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 561.
+(mdframed)              on input line 565.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 569.
+(mdframed)              on input line 573.
 
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 572.
+(Font)              using `T1/zi4/m/n' instead on input line 576.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 584.
-
-Overfull \hbox (40.47005pt too wide) in paragraph at lines 644--652
-\OT1/cmr/m/n/10 0$\T1/qpl/m/n/10 , and moves the in-dex of all the vari-ables d
-own by $\OT1/cmr/m/n/10 1$\T1/qpl/m/n/10 , mak-ing the re-main-ing ex-pres-sion
- $\OMS/cmsy/m/n/10 9[]\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 '
- []
-
-Package mdframed Info: Not enough space on this page on input line 661.
+(mdframed)              on input line 588.
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 8.0pt on input line 673.
+Package mdframed Info: Not enough space on this page on input line 690.
 [9]
-Package mdframed Info: Not enough space on this page on input line 661.
+Package mdframed Info: Not enough space on this page on input line 690.
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 661.
+(mdframed)              on input line 690.
  [10]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 684.
-) (./src/internalCompletenessAndSoundness.tex
+(mdframed)              on input line 714.
+
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 736.
+
+[11]) (./src/internalCompletenessAndSoundness.tex
 Overfull \hbox (12.37454pt too wide) in paragraph at lines 7--13
 []\T1/qpl/m/n/10 An im-por-tant in-stance of the above phe-nomenon is the lack 
 of al-ge-braic struc-ture for \T1/zi4/m/it/10 bounded_ring_terms\T1/qpl/m/n/10 
 .
  []
 
-[11] [12] [13]) (./m4r.bbl [14]) [15] (./m4r.aux)
+[12] [13] [14] [15]
+Overfull \hbox (3.16164pt too wide) in paragraph at lines 291--294
+[]\T1/qpl/m/n/10 We can feed the co-ef-fi-cients of $\OML/cmm/m/it/10 p$ \T1/qp
+l/m/n/10 to our model the-o-retic hy-poth-e-sis, which will give us a root to \
+T1/zi4/m/it/10 gen_monic_poly
+ []
+
+
+Overfull \hbox (64.24559pt too wide) in paragraph at lines 320--327
+[]\T1/qpl/m/n/10 In or-der to do this we \T1/qpl/m/it/10 could \T1/qpl/m/n/10 u
+se try to re-con-struct $\OML/cmm/m/it/10 p$ \T1/qpl/m/n/10 us-ing our pre-vi-o
+us con-struc-tion \T1/zi4/m/it/10 polynomial.term_evaluated_at_coeffs\T1/qpl/m/
+n/10 .
+ []
+
+[16]) (./src/AxGroth.tex) (./m4r.bbl [17]) [18] (./m4r.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `m4r.out' has not changed.
-(rerunfilecheck)             Checksum: D4E4C317362A3631B2D1E7A8C3F9CEA1;2770.
+(rerunfilecheck)             Checksum: FA8DFC090433959E6B205DEFF35B7C47;2889.
  ) 
 Here is how much of TeX's memory you used:
- 29258 strings out of 478353
- 545066 string characters out of 5854636
- 1075943 words of memory out of 5000000
- 46486 multiletter control sequences out of 15000+600000
- 472769 words of font info for 108 fonts, out of 8000000 for 9000
+ 29428 strings out of 478353
+ 547465 string characters out of 5854636
+ 1183163 words of memory out of 5000000
+ 46558 multiletter control sequences out of 15000+600000
+ 475977 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,22n,104p,1192b,1321s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 100i,22n,104p,1192b,1323s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{dfn_graph} has been referenced but does not exist
 , replaced by a fixed one
 
@@ -1134,10 +1155,10 @@ ls/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.
 pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/tex
 mf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1
 /public/tex-gyre/qplri.pfb>
-Output written on m4r.pdf (15 pages, 383157 bytes).
+Output written on m4r.pdf (18 pages, 399684 bytes).
 PDF statistics:
- 697 PDF objects out of 1000 (max. 8388607)
- 630 compressed objects within 7 object streams
- 357 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 828 PDF objects out of 1000 (max. 8388607)
+ 757 compressed objects within 8 object streams
+ 452 named destinations out of 1000 (max. 500000)
+ 157 words of extra memory for PDF output out of 10000 (max. 10000000)
 

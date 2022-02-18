@@ -145,7 +145,8 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
 \end{dfn}
 
 We use languages to express logical assertions about our structures, such as
-``any degree two polynomial over my ring has a root''.
+``any degree two polynomial over my ring has a root''
+(in preparation for expressing algebraic closure).
 In order to do so we must introduce terms (polynomials in our case),
 formulas (the assertion itself), structures and models (the ring),
 and the relation between structures and formulas
@@ -281,7 +282,10 @@ Formulas allow us to do this.
     def sentence := bounded_preformula L 0 0\end{lstlisting}
 
   Since we are working with classical logic we
-  make everything else we need by use of the excluded middle:
+  make everything else we need by use of the excluded middle\footnote{
+    Or rather, we \textit{will} need excluded middle once we start to
+    interpret these sentences.
+  }:
 
   \begin{lstlisting}
     /-- ⊥ is for bd_falsum, ≃ for bd_equal, ⟹ for bd_imp, and ∀' for bd_all -/
@@ -583,21 +587,23 @@ rings, fields, and algebraically closed fields.
 
 \begin{dfn}[The theories of rings, fields and algebraically closed fields]
   \link{ring_theory}
+
   The theory of rings is just the set of the
-  \linkto{sentences_for_ring_theory}{sentences describing a ring}
+  \linkto{sentences_for_ring_theory}{sentences describing a ring}.
+
 \begin{lstlisting}
-def ring_theory : Theory ring_signature :=
-{add_assoc, add_id, add_inv, add_comm, mul_assoc, mul_id, mul_comm, add_mul}\end{lstlisting}
+  def ring_theory : Theory ring_signature :=
+  {add_assoc, add_id, add_inv, add_comm, mul_assoc, mul_id, mul_comm, add_mul}\end{lstlisting}
 
   To make the theory of fields we can add two sentences saying that
   the ring is non-trivial and has multiplicative inverses:
   \begin{lstlisting}
-def mul_inv : sentence ring_signature :=
-∀' (x_ 1 ≃ 0) ⊔ (∃' x_ 1 * x_ 0 ≃ 1)
+    def mul_inv : sentence ring_signature :=
+    ∀' (x_ 1 ≃ 0) ⊔ (∃' x_ 1 * x_ 0 ≃ 1)
 
-def non_triv : sentence ring_signature := ~ (0 ≃ 1)
+    def non_triv : sentence ring_signature := ~ (0 ≃ 1)
 
-def field_theory : Theory ring_signature := ring_theory ∪ {mul_inv , non_triv} \end{lstlisting}
+    def field_theory : Theory ring_signature := ring_theory ∪ {mul_inv , non_triv} \end{lstlisting}
 
   To make the theory of algebraically closed fields we need to express
   ``every non-constant polynomial has a root''.
@@ -619,11 +625,10 @@ def field_theory : Theory ring_signature := ring_theory ∪ {mul_inv , non_triv}
   then add $x_{n + 2} x_{0}^{n+1}$ at the front.
 
   \begin{lstlisting}
-def gen_poly : Π (n : ℕ), bounded_ring_term (n + 2)
-| 0       := x_ ⟨ 1 , _ ⟩
-| (n + 1) := (x_ ⟨ n + 2 , _ ⟩) * (npow_rec (n + 1) (x_ ⟨ 0 , _ ⟩))
-  + bounded_preterm.lift_succ (gen_poly n)
-\end{lstlisting}
+    def gen_poly : Π (n : ℕ), bounded_ring_term (n + 2)
+    | 0       := x_ ⟨ 1 , _ ⟩
+    | (n + 1) := (x_ ⟨ n + 2 , _ ⟩) * (npow_rec (n + 1) (x_ ⟨ 0 , _ ⟩))
+    + bounded_preterm.lift_succ (gen_poly n)\end{lstlisting}
 
   Since the type of terms in the language of rings has notions of
   addition and multiplication (using the function symbols),
@@ -634,30 +639,54 @@ def gen_poly : Π (n : ℕ), bounded_ring_term (n + 2)
   $x_{0}^{n+2}$ at the front of the generic polynomial.
 
   \begin{lstlisting}
-def gen_monic_poly (n : ℕ) : bounded_term ring_signature (n + 2) :=
-npow_rec (n + 1) (x_ 0) + gen_poly n
+    def gen_monic_poly (n : ℕ) : bounded_term ring_signature (n + 2) :=
+    npow_rec (n + 1) (x_ 0) + gen_poly n
 
-/-- ∀ a₁ ⋯ ∀ aₙ, ∃ x₀, (aₙ x₀ⁿ⁻¹ + ⋯ + a₂ x₀+ a₁ = 0) -/
-def all_gen_monic_poly_has_root (n : ℕ) : sentence ring_signature :=
-fol.bd_alls (n + 1) (∃' gen_monic_poly n ≃ 0) \end{lstlisting}
+    /-- ∀ a₁ ⋯ ∀ aₙ, ∃ x₀, (aₙ x₀ⁿ⁻¹ + ⋯ + a₂ x₀+ a₁ = 0) -/
+    def all_gen_monic_poly_has_root (n : ℕ) : sentence ring_signature :=
+    fol.bd_alls (n + 1) (∃' gen_monic_poly n ≃ 0) \end{lstlisting}
 
   We can then easily state ``all generic monic polynomials have a root''.
   The order of the variables is important here:
   the $\exists$ removes the first variable $x_{0}$ in the $n+2$ variable formula
-  $\texttt{gen\_monic\_poly} n \simeq 0$, and moves the index of all the
+  $\texttt{gen\_monic\_poly n} \simeq 0$, and moves the index of all the
   variables down by $1$, making the remaining expression
-  $\exists \texttt{gen\_monic\_poly} n \simeq 0$ a formula in $n+1$ variables.
+  \[\exists \texttt{gen\_monic\_poly n} \simeq 0\] a formula in $n+1$ variables.
   The function \texttt{fol.bd\_alls n} then adds $n+1$ many ``foralls''
   in front, leaving us a formula with no free variables, i.e. sentence.
 
   \begin{lstlisting}
-/-- The theory of algebraically closed fields -/
-def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_poly_has_root)\end{lstlisting}
+    /-- The theory of algebraically closed fields -/
+    def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_poly_has_root)\end{lstlisting}
 
   Since \texttt{all\_gen\_monic\_poly\_has\_root} is a function from the naturals,
   we can take its set theoretic image (called \texttt{set.range}),
   i.e. a sentence for each degree $n$ saying
   ``any monic polynomial of degree $n$ has a root''.
+
+  Lastly, we express the characteristic of fields.
+  Suppose $p : \N$ is a prime.
+  If we view $p$ as a term in the language of rings\footnote{
+    \texttt{lean} figures this out automatically using \texttt{nat.cast},
+    which found our instances of \texttt{has\_zero}, \texttt{has\_one}
+    and \texttt{has\_add}.
+  },
+  then we can define the theory of algebraically closed fields of characteristic $p$
+  as \texttt{ACF} with the additional sentence $p = 0$.
+
+  \begin{lstlisting}
+    def ACFₚ {p : ℕ} (h : nat.prime p) : Theory ring_signature :=
+    set.insert (p ≃ 0) ACF\end{lstlisting}
+
+  To define the theory of algebraically closed fields of characteristic $0$,
+  we add a sentence $p + 1 \ne 0$ for each natural $p$.
+
+  \begin{lstlisting}
+    def plus_one_ne_zero (p : ℕ) : sentence ring_signature :=
+    ¬ (p + 1 ≃ 0)
+
+    def ACF₀ : Theory ring_signature := ACF ∪ (set.range plus_one_ne_zero)  \end{lstlisting}
+
 \end{dfn}
 
   Whilst completeness and soundness for first order logic
@@ -672,10 +701,11 @@ def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_pol
   \begin{itemize}
     \item Structures in a language are the same thing
           as our internal way of describing structures -
-          e.g. a ring structure is actually a type with instances $0,1,-,+,\times$.
+          a ring structure is actually a type with instances $0,1,-,+,\times$.
     \item Models of theories in a language are the same things
           as our internal way of describing algebraic objects -
           a model of the theory of rings is actually a ring in lean.
+    \item A proof of Ax-Grothendieck is actually usable in \texttt{mathlib}
   \end{itemize}
 
   We informally use the term ``internal completeness and soundness''
@@ -692,6 +722,8 @@ def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_pol
           it is a model of the theory of fields.
     \item A type $A$ is an algebraically closed field (of characteristic p)
           if and only if it is a model of $\ACF_{(p)}$.
+    \item (Details later) Ax-Grothendieck stated model theoretically corresponds to
+          Ax-Grothendieck stated internally. %?
   \end{itemize}
   For the purposes of design in lean it is
   more sensible to split each ``if and only if'' into seperate constructions,
@@ -704,7 +736,7 @@ def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_pol
 \end{prop}
 \begin{proof}
   The proof of this formed a significant part of this project.
-  We leave this to the next section.
+  We leave this to the next two sections.
 \end{proof}
 
 % \begin{dfn}[Consequence]

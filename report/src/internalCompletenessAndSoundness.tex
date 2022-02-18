@@ -70,28 +70,20 @@ and it looks exactly like the statement $\texttt{M} \vDash \texttt{add\_comm}$.
 
 \begin{lstlisting}
 lemma realize_ring_theory :
-  (Structure A) ⊨ ring_signature.ring_theory :=
-  /- Structure A : is A as a ring structure as defined above -/
+  (struc_to_ring_struc.Structure A) ⊨ ring_signature.ring_theory :=
 begin
   intros ϕ h,
-  repeat {cases h}, /- we are checking A ⊨ ϕ for each ϕ -/
-  { intros a b c,
-    simp [add_assoc] },
-  { intro a,
-    simp },
-  { intro a,
-    simp },
-  { intros a b,
-    simp [add_comm] },
-  { intros a b c,
-    simp [mul_assoc] },
-  { intro a,
-    simp [mul_one] },
-  { intros a b,
-    simp [mul_comm] },
-  { intros a b c,
-    simp [add_mul] }
-end\end{lstlisting}
+  repeat {cases h},
+  { intros a b c, simp [add_assoc] },
+  { intro a, simp }, -- add_zero
+  { intro a, simp }, -- add_left_neg
+  { intros a b, simp [add_comm] },
+  { intros a b c, simp [mul_assoc] },
+  { intro a, simp [mul_one] },
+  { intros a b, simp [mul_comm] },
+  { intros a b c, simp [add_mul] }
+end
+\end{lstlisting}
 
 Conversely, given a model of the theory of rings
 we can supply an instance of a ring to the carrier type.
@@ -216,9 +208,187 @@ begin
     exact ⟨ x , hx ⟩ },
   end\end{lstlisting}
 
-% check out the polynomial.term_evaluated_at_coeffs stuff and see if we can shorten
-% the proof for models ACF -> alg_closed
+In order to interpret \texttt{gen\_monic\_poly n} as a polynomial,
+we first note that it is natural to consider $n$-variable terms in the language of
+rings as $n$-variable polynomials over $\Z$:
 
+\begin{lstlisting}
+def mv_polynomial.term {n} :
+  bounded_ring_term n → mv_polynomial (fin n) ℤ :=
+@ring_term_rec n (λ _, mv_polynomial (fin n) ℤ)
+  mv_polynomial.X /- variable x_ i -> X i-/
+  0 /- zero -/
+  1 /- one -/
+  (λ _ p, - p) /- neg -/
+  (λ _ _ p q, p + q) /- add -/
+  (λ _ _ p q, p * q) /- mul -/\end{lstlisting}
 
+I designed a handy function that does
+``induction on terms in the language of rings'' (\texttt{ring\_term\_rec}),
+based on \texttt{bounded\_term.rec} from the \texttt{flypitch} project.
+This says that in order to make a multi-variable polynomial in variables $n$
+over $\Z$ (\texttt{mv\_polynomial (fin n) $\Z$}) we can just case on the term.
+If the term is a variable \texttt{x\_ i} for some $i < n$
+then we interpret that as the polynomial $X_{i} \in \Z[X_{0},\dots,X_{n-1}]$.
+The only other way we can get terms are by applying function symbols to other
+terms,
+hence we interpret the symbols for zero and one as $0$ and $1$,
+the symbolic negation of a term by subtracting the inductively given polynomial
+for the term in the ring, and so on.
+
+Then we use this to make an general algorithm that takes
+a term $t$ in the language of rings with up to $n + 1$ variables
+and a list of $n$ coefficients from a ring $A$,
+and returns a polynomial in $A[X]$.
+This is designed to treat he first variable $X_{0}$ of the associated polynomial
+as the polynomial variable $X$,
+and use the list (\texttt{dvector}) of coefficients
+$[a_{1},\dots,a_{n}]$ to evaluate the variables $X_{1},\dots,X_{n}$.
+
+\begin{lstlisting}
+def polynomial.term_evaluated_at_coeffs {n} (as : dvector A n) (t : bounded_ring_term n.succ) : polynomial A :=
+/- First make a map σ : {0, ..., n} → {X, as.nth' 0, ..., as.nth n} ⊆ A[X] -/
+let σ : fin n.succ → polynomial A :=
+@fin.cases n (λ _, polynomial A) polynomial.X (λ i, polynomial.C (as.nth' i)) in
+/- Then this induces a map mv_polynomial.eval σ : A[X_0, ..., X_n] → A[X] by evaluating coefficients -/
+mv_polynomial.eval
+  σ
+  (mv_polynomial.term t)
+/- We evaluate at the multivariable polynomial corresponding to the term t -/
+\end{lstlisting}
+
+It remains to show that this polynomial in $A[X]$
+evaluated at some $a_{0}$ gives the same value in the ring as the original term,
+realized at the \texttt{dvector} $[a_{0},\dots,a_{n}]$.
+This follows from the following two facts:
+\begin{itemize}
+  \item A term \texttt{t} realized at values $[a_{0},\dots,a_{n}]$ is equal to
+        the polynomial \texttt{mv\_polynomial.term t}
+        evaluated at the values $[a_{0},\dots,a_{n}]$.
+        I called this \texttt{realized\_term\_is\_evaluated\_poly}
+        and has a quick proof using \texttt{ring\_term\_rec}.
+  \item If a multi-variable polynomial is evaluated at $(X,a_{1}\dots,a_{n})$
+        in $A[X]$, then the resulting polynomial is evaluated at $a_{0}$,
+        then this is the same as simply evaluating the multi-variable polynomial
+        at $(a_{0},\dots,a_{n})$.
+        This has a rather uninteresting proof,
+        which I called \texttt{mv\_polynomial.eval\_eq\_poly\_eval\_mv\_coeffs}.
+\end{itemize}
+
+Moving on to the converse, we assume we have a model \texttt{M} of the theory
+of algebraically closed fields, and a non-constant polynomial $p$
+with coefficients in the model (as a field, by our previous work).
+We want to show that $p$ has a root.
+\begin{lstlisting}
+instance is_alg_closed : is_alg_closed M :=
+begin
+  apply is_alg_closed.of_exists_root_nat_degree,
+  intros p hmonic hirr hdeg,
+  sorry,
+end\end{lstlisting}
+% ? Subject to change due to PR
+
+We can feed the coefficients of $p$ to our model theoretic hypothesis,
+which will give us a root to \texttt{gen\_monic\_poly}
+realized at these coefficients, which I call \texttt{root}.
+
+\begin{lstlisting}
+instance is_alg_closed : is_alg_closed M :=
+begin
+  apply is_alg_closed.of_exists_root_nat_degree,
+  intros p hmonic hirr hdeg,
+  simp only [...] at hM,
+  obtain ⟨ _ , halg_closed ⟩ := hM.1,
+  set n := polynomial.nat_degree p - 1 with hn,
+  /- I call the coefficients xs -/
+  set xs := dvector.of_fn (λ (i : fin (n + 1)), polynomial.coeff p i) with hxs
+  obtain ⟨ root , hroot ⟩ := halg_closed n xs,
+  use root, /- root should be the root of p -/
+  convert hroot,
+  sorry,
+end
+\end{lstlisting}
+
+It suffices to show that \texttt{root} is the root of $p$.
+Given the hypotheses, this amounts to equating the (internal) algebraic goal
+and the model theoretic hypothesis \texttt{hroot} about \texttt{root}
+
+\begin{lstlisting}
+/- The goal (at 'convert hroot') -/
+polynomial.eval root p = realize_bounded_term (root::xs) (gen_monic_poly n) dvector.nil\end{lstlisting}
+
+In order to do this we \textit{could} use try to reconstruct $p$
+using our previous construction \texttt{polynomial.term\_evaluated\_at\_coeffs}.
+However, unfortunately I have discovered that generally it can be
+more straightforward to simply develop each side of the argument
+(interanal completeness and soundness) seperately.
+I make use of a result in the library that writes a polynomial
+evaluated at a root as a sum indexed by its degree:
+
+\begin{lstlisting}
+lemma eval_eq_finset_sum (p : R[X]) (x : R) :
+  p.eval x = ∑ i in range (p.nat_degree + 1), p.coeff i * x ^ i :=
+/- See mathlib. -/
+\end{lstlisting}
+
+Then we can directly compare this to \texttt{gen\_monic\_poly} realized
+at the values \texttt{xs} and \texttt{root}.
+After providing \texttt{simp} with the appropriate lemmas
+(such as the assumption that \texttt{p} is monic),
+the goal reduces to
+
+\begin{lstlisting}
+root ^ p.nat_degree + (finset.range p.nat_degree).sum (λ (x : ℕ), p.coeff x * root ^ x) =
+    root ^ p.nat_degree + realize_bounded_term (root::dvector.of_fn (λ (i : fin (n + 1)), p.coeff ↑i)) (gen_poly n) dvector.nil\end{lstlisting}
+
+The first monomial pops out on both sides,
+allowing us to cancel them with \texttt{congr}.
+It remains to find out how \texttt{gen\_poly n} is realised.
+We extract this as a lemma,
+which we prove by induction, since \texttt{gen\_poly} was built inductively.
+Again each part is just a long \texttt{simp} proof.
+
+\begin{lstlisting}
+lemma realize_gen_poly {n : ℕ} {root} {c : ℕ → M} :
+realize_bounded_term
+  (dvector.cons root (dvector.of_fn (λ (i : fin (n + 1)), c i)))
+  (gen_poly n) dvector.nil =
+(finset.range (n + 1)).sum (λ (x : ℕ), c x * root ^ x) :=
+begin
+  induction n with n hn,
+  { simpa only [finset.sum_range_one, _root_.pow_zero, mul_one,
+      gen_poly, dvector.nth_of_fn,
+      realize_bounded_term, dvector.nth_cons _ _ _ (nat.zero_lt_one)] },
+  { simp only [finset.sum_range_add, hn, finset.sum_range_one, mul_one,
+      gen_poly, dvector.nth_of_fn, add_zero, fin.mk_zero, fin.val_zero',
+      models_ring_theory_to_comm_ring.realize_add,
+      models_ring_theory_to_comm_ring.realize_mul, realize_bounded_term,
+      dvector.nth, realize_lift_succ, dvector.remove_mth,
+      dvector.remove_mth_of_fn_last, hn,
+      add_comm ((finset.range (n + 1)).sum (λ (x : ℕ), c x * root ^ x))],
+    congr1,
+    simp only [fin.val_zero', models_ring_theory_to_comm_ring.realize_mul,
+      realize_bounded_term, dvector.nth, dvector.nth_of_fn,
+      fin.coe_mk, realize_npow_rec] }
+end\end{lstlisting}
 
 \subsection{Characteristic}
+
+%? Only have code for internal soundness right now.
+
+\begin{lstlisting}
+  lemma models_ACFₚ_iff' {hp : nat.prime p} :
+    M ⊨ ACFₚ hp ↔ (p : M) = 0 ∧ M ⊨ ACF :=
+  by simp only [ACFₚ, all_realize_sentence_insert, realize_sentence_equal,
+  realize_closed_term, models_ring_theory_to_comm_ring.realize_nat,
+  models_ring_theory_to_comm_ring.realize_zero]
+
+  lemma models_ACFₚ_iff [hM : fact (M ⊨ ACF)] {hp : nat.prime p} :
+    M ⊨ ACFₚ hp ↔ ring_char M = p :=
+  begin
+    rw models_ACFₚ_iff',
+    split,
+    { intro hmodel, apply char_p.ring_char_of_prime_eq_zero hp hmodel.1 },
+    { intro hchar, refine ⟨ _ , hM.1 ⟩, rw [← hchar, ring_char.spec] },
+  end
+\end{lstlisting}
