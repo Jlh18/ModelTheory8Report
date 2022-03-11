@@ -69,6 +69,8 @@ is the internal property for the type \texttt{A}
 and it looks exactly like the statement $\texttt{M} \vDash \texttt{add\_comm}$.
 
 \begin{lstlisting}
+variables (A : Type*) [comm_ring A]
+
 lemma realize_ring_theory :
   (struc_to_ring_struc.Structure A) ⊨ ring_signature.ring_theory :=
 begin
@@ -101,7 +103,7 @@ insert, insert, ..., singleton), it suffices just to iteratively
 try a couple of lemmas for membership of such a construction.
 
 \begin{lstlisting}
-lemma add_comm (a b : M) : a + b = b + a :=
+lemma add_comm (a b : M) (h : M ⊨ ring_signature.ring_theory) : a + b = b + a :=
 begin
   /- M ⊨ ring_theory -> M ⊨ add_comm -/
   have hId : M ⊨ ring_signature.add_comm := h ring_signature.add_comm_in_ring_theory,
@@ -116,7 +118,7 @@ realizing the sentence \texttt{add\_comm} is the same as having
 an instance of \texttt{add\_comm}.
 
 \begin{lstlisting}
-instance comm_ring : comm_ring M :=
+def comm_ring (h : M ⊨ ring_signature.ring_theory) : comm_ring M :=
 {
   add            := add,
   add_assoc      := add_assoc h,
@@ -135,6 +137,20 @@ instance comm_ring : comm_ring M :=
   right_distrib  := add_mul h,
   mul_comm       := mul_comm h,
 }\end{lstlisting}
+
+We make use of lean's type class inference system by making
+the hypothesis of modelling \texttt{ring\_theory} an instance
+using \texttt{fact}.
+
+\begin{lstlisting}
+instance models_ring_theory_to_comm_ring {M : Structure ring_signature}
+  [h : fact (M ⊨ ring_signature.ring_theory)] : comm_ring M :=
+models_ring_theory_to_comm_ring.comm_ring h.1 \end{lstlisting}
+
+This way, we can supply an instance that any model of the theory of fields
+(as a \texttt{fact}) is a model of the theory of ring (as a \texttt{fact}),
+and is therefore a commutative ring.
+We can then extend this commutative ring to a field.
 
 \subsection{Fields}
 
@@ -172,7 +188,34 @@ begin
   { simp [fol.realize_sentence] },
   end\end{lstlisting}
 
-Going backwards is even easier, and we omit the code here.
+Going backwards is even easier.
+We prove that any model of \texttt{field\_theory}
+is a model of \texttt{ring\_theory} and therefore inherits a \texttt{comm\_ring} instance.
+Given this instance of \texttt{comm\_ring},
+it then makes sense to ask for a proof of \texttt{is\_field M},
+which is straightforward:
+
+\begin{lstlisting}
+variables {M : Structure ring_signature} [h : fact (M ⊨ field_theory)]
+
+include h
+
+instance ring_model : fact (M ⊨ ring_theory) :=
+⟨ all_realize_sentence_of_subset h.1 ring_theory_sub_field_theory ⟩
+
+lemma zero_ne_one : (0 : M) ≠ 1 :=
+by { have h1 := h.1, have h2 := h1 non_triv_in_field_theory, simpa [h2] }
+
+lemma mul_inv (a : M) (ha : a ≠ 0) : (∃ (b : M), a * b = 1) :=
+by { have h1 := h.1, have hmulinv := h1 mul_inv_in_field_theory, by simpa using hmulinv a ha }
+
+lemma is_field : is_field M :=
+{ exists_pair_ne := ⟨ 0 , 1 , zero_ne_one ⟩,
+  mul_comm := mul_comm,
+  mul_inv_cancel := mul_inv }
+
+noncomputable instance field : field M :=
+is_field.to_field M is_field \end{lstlisting}
 
 \subsection{Algebraically closed fields}
 
@@ -182,7 +225,8 @@ which given our work so far amounts to showing that for each natural number $n$
 we have that all generic monic polynomials of degree $n$ have a root in \texttt{k}.
 Indeed using \texttt{is\_alg\_closed} we can obtain such a root for any polynomial,
 but this requires (internally) making a polynomial corresponding \texttt{gen\_monic\_poly n}.
-We first assume the existence of such a polynomial and that evaluating such a polynomial
+We first assume the existence of such a polynomial \texttt{P}
+and that evaluating such a polynomial
 at some value \texttt{x} is the same thing as realising \texttt{gen\_monic\_poly n}
 at (its coefficients and then) \texttt{x}.
 
@@ -203,8 +247,10 @@ begin
     intro as,
     have root := is_alg_closed.exists_root
       (polynomial.term_evaluated_at_coeffs as (gen_monic_poly n)) gen_monic_poly_non_const,
+      -- the above is our polynomial P and a proof that it is non-constant
     cases root with x hx,
     rw polynomial.eval_term_evaluated_at_coeffs_eq_realize_bounded_term at hx,
+    -- the above is the lemma that evaluating P at x is the same as realizing gen_monic_poly n at x
     exact ⟨ x , hx ⟩ },
   end\end{lstlisting}
 
@@ -223,15 +269,14 @@ def mv_polynomial.term {n} :
   (λ _ _ p q, p + q) /- add -/
   (λ _ _ p q, p * q) /- mul -/\end{lstlisting}
 
-I designed a handy function that does
-``induction on terms in the language of rings'' (\texttt{ring\_term\_rec}),
+I designed a handy function called \texttt{ring\_term\_rec} that does
+``induction on terms in the language of rings'',
 based on \texttt{bounded\_term.rec} from the \texttt{flypitch} project.
 This says that in order to make a multi-variable polynomial in variables $n$
 over $\Z$ (\texttt{mv\_polynomial (fin n) $\Z$}) we can just case on the term.
 If the term is a variable \texttt{x\_ i} for some $i < n$
 then we interpret that as the polynomial $X_{i} \in \Z[X_{0},\dots,X_{n-1}]$.
-The only other way we can get terms are by applying function symbols to other
-terms,
+The only other way we can get terms is by applying function symbols to other terms,
 hence we interpret the symbols for zero and one as $0$ and $1$,
 the symbolic negation of a term by subtracting the inductively given polynomial
 for the term in the ring, and so on.
@@ -280,13 +325,14 @@ of algebraically closed fields, and a non-constant polynomial $p$
 with coefficients in the model (as a field, by our previous work).
 We want to show that $p$ has a root.
 \begin{lstlisting}
+variables {M : Structure ring_signature} [hM : fact (M ⊨ ACF)]
+
 instance is_alg_closed : is_alg_closed M :=
 begin
   apply is_alg_closed.of_exists_root_nat_degree,
   intros p hmonic hirr hdeg,
   sorry,
 end\end{lstlisting}
-% ? Subject to change due to PR
 
 We can feed the coefficients of $p$ to our model theoretic hypothesis,
 which will give us a root to \texttt{gen\_monic\_poly}
@@ -311,7 +357,7 @@ end
 
 It suffices to show that \texttt{root} is the root of $p$.
 Given the hypotheses, this amounts to equating the (internal) algebraic goal
-and the model theoretic hypothesis \texttt{hroot} about \texttt{root}
+and the model theoretic hypothesis \texttt{hroot} about \texttt{root}.
 
 \begin{lstlisting}
 /- The goal (at 'convert hroot') -/
@@ -345,8 +391,8 @@ The first monomial pops out on both sides,
 allowing us to cancel them with \texttt{congr}.
 It remains to find out how \texttt{gen\_poly n} is realised.
 We extract this as a lemma,
-which we prove by induction, since \texttt{gen\_poly} was built inductively.
-Again each part is just a long \texttt{simp} proof.
+which we prove by induction on $n$, since \texttt{gen\_poly} was built inductively.
+Each part is just a long \texttt{simp} proof which can be found in the source code.
 
 \begin{lstlisting}
 lemma realize_gen_poly {n : ℕ} {root} {c : ℕ → M} :
@@ -356,39 +402,23 @@ realize_bounded_term
 (finset.range (n + 1)).sum (λ (x : ℕ), c x * root ^ x) :=
 begin
   induction n with n hn,
-  { simpa only [finset.sum_range_one, _root_.pow_zero, mul_one,
-      gen_poly, dvector.nth_of_fn,
-      realize_bounded_term, dvector.nth_cons _ _ _ (nat.zero_lt_one)] },
-  { simp only [finset.sum_range_add, hn, finset.sum_range_one, mul_one,
-      gen_poly, dvector.nth_of_fn, add_zero, fin.mk_zero, fin.val_zero',
-      models_ring_theory_to_comm_ring.realize_add,
-      models_ring_theory_to_comm_ring.realize_mul, realize_bounded_term,
-      dvector.nth, realize_lift_succ, dvector.remove_mth,
-      dvector.remove_mth_of_fn_last, hn,
-      add_comm ((finset.range (n + 1)).sum (λ (x : ℕ), c x * root ^ x))],
-    congr1,
-    simp only [fin.val_zero', models_ring_theory_to_comm_ring.realize_mul,
-      realize_bounded_term, dvector.nth, dvector.nth_of_fn,
-      fin.coe_mk, realize_npow_rec] }
+  { simp ... },
+  { simp ... }
 end\end{lstlisting}
 
 \subsection{Characteristic}
 
-%? Only have code for internal soundness right now.
+We omit the details of similar proofs for characteristic as it is not
+as interesting as the other parts. Instead we simply state the important lemmas
+that are proven in the source code.
 
 \begin{lstlisting}
-  lemma models_ACFₚ_iff' {hp : nat.prime p} :
-    M ⊨ ACFₚ hp ↔ (p : M) = 0 ∧ M ⊨ ACF :=
-  by simp only [ACFₚ, all_realize_sentence_insert, realize_sentence_equal,
-  realize_closed_term, models_ring_theory_to_comm_ring.realize_nat,
-  models_ring_theory_to_comm_ring.realize_zero]
+instance models_ACFₚ_to_models_ACF [hp : fact (nat.prime p)] [hM : fact (M ⊨ ACFₚ hp.1)] : fact (M ⊨ ACF) := sorry
 
-  lemma models_ACFₚ_iff [hM : fact (M ⊨ ACF)] {hp : nat.prime p} :
-    M ⊨ ACFₚ hp ↔ ring_char M = p :=
-  begin
-    rw models_ACFₚ_iff',
-    split,
-    { intro hmodel, apply char_p.ring_char_of_prime_eq_zero hp hmodel.1 },
-    { intro hchar, refine ⟨ _ , hM.1 ⟩, rw [← hchar, ring_char.spec] },
-  end
+instance models_ACF₀_to_models_ACF [hM : fact (M ⊨ ACF₀)] : fact (M ⊨ ACF) := sorry
+
+lemma models_ACFₚ_char_p [hp : fact (nat.prime p)] [hM : fact (M ⊨ ACFₚ hp.1)] : char_p M p := sorry
+
+lemma models_ACF₀_char_zero' [hM : fact (M ⊨ ACF₀)] : char_zero M := sorry
+
 \end{lstlisting}
