@@ -9,10 +9,11 @@
 \contentsline {subsection}{\numberline {3.1}Ring Structures}{12}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Rings}{13}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Fields}{14}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Algebraically closed fields}{14}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.4}Algebraically closed fields}{15}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}Characteristic}{17}{subsection.3.5}%
 \contentsline {section}{\numberline {4}Ax-Grothendieck}{18}{section.4}%
-\contentsline {section}{\numberline {5}Model Theory of Algebraically Closed Fields}{18}{section.5}%
-\contentsline {section}{\numberline {6}The Lefschetz Principle}{18}{section.6}%
-\contentsline {section}{\numberline {7}Reducing to Locally Finite Fields}{18}{section.7}%
-\contentsline {section}{\numberline {8}Proving of the Locally Finite Case}{18}{section.8}%
+\contentsline {subsection}{\numberline {4.1}Stating Ax-Grothendieck model-theoretically}{18}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Model Theory of Algebraically Closed Fields}{20}{section.5}%
+\contentsline {section}{\numberline {6}The Lefschetz Principle}{20}{section.6}%
+\contentsline {section}{\numberline {7}Reducing to Locally Finite Fields}{20}{section.7}%
+\contentsline {section}{\numberline {8}Proving the Locally Finite Case}{20}{section.8}%

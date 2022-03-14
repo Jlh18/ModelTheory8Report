@@ -1,0 +1,126 @@
+It is a basic fact of linear algebra that any linear map
+between vector spaces of the same finite dimension is
+injective if and only if it is surjective.
+\linkto{ax_groth_thm}{Ax-Grothendieck} says that this is
+partly true for polynomial maps.
+
+\begin{dfn}[Polynomial maps]
+  \link{dfn_poly_map}
+  Let $K$ be a commutative ring and $n$ a natural
+  (we use $K$ since we are only interested in the case
+  when it is an algebraically closed field).
+  Let $f : K^n \to K^n$ such that for each $a \in K^n$,
+  \[f(a) = (f_1(a), \dots, f_n(a))\] for
+  $f_1, \dots, f_n \in K[x_1, \dots, x_n]$.
+  Then we call $f$ a polynomial map over $K$.
+
+  For the sake of computation it is simpler to simply assert
+  the data of the $n$ polynomials directly:
+
+  \begin{lstlisting}
+    def poly_map_data (K : Type*) [comm_semiring K] (n : ℕ) : Type* :=
+    fin n → mv_polynomial (fin n) K \end{lstlisting}
+\end{dfn}
+
+\begin{prop}[Ax-Grothendieck]
+    \link{ax_groth_thm}
+    If $K$ is an algebraically closed field of characterstic $0$
+    then any injective polynomial map over $K$ is surjective.
+    In particular injective polynomial maps over $\C$ are surjective.
+\end{prop}
+
+We present a model theoretic proof of this fact,
+assuming a proof of the prime characteristic case.
+A proof of the prime characteristic case on paper
+can be found in the \linkto{link}{appendix}. %? missing link; will this be done?
+
+The key lemma to prove this is the \linkto{lefschetz}{Lefschetz principle},
+which allows us to convert realization of model theoretically stated sentences
+between \texttt{ACF}$_{0}$ and \texttt{ACF}$_{p}$.
+Lefschetz will be proven in a later section.
+
+An overview of the proof fo Ax-Grothendieck follows:
+
+\begin{itemize}
+  \item We want to reduce the statement of Ax-Grothendieck to a model-theoretic one.
+        Then we can apply the \linkto{lefschetz}{Lefschetz principle} to
+        reduce to the prime characteristic case.
+  \item To express ``for any polynomial map ...'' model-theoretically,
+        which amounts to somehow quantifying over all polynomials
+        in $n$ variables,
+        we bound the degrees of all the polynomials,
+        i.e. asking instead ``for any polynomial map consisting of
+        polynomials with degree at most $d$''.
+        Then we can write the polynomial as a sum of its monomials,
+        with the coefficients as bounded variables.
+  \item We express injectivity and surjectivity model-theoretically,
+        and prove internal completeness and soundness for these statements.
+  \item We apply Lefschetz, and use the assumed proof of the
+        prime characteristic case.
+\end{itemize}
+
+\subsection{Stating Ax-Grothendieck model-theoretically}
+
+Our first objective is to state Ax-Grothendieck model-theoretically.
+Let us assume we have an $n$-variable polynomial $p \in K[x_{1},\dots,x_{n}]$.
+We know that $p$ can be written as a sum of its monomials,
+and the set of monomials \texttt{monom\_deg\_le n d} is finite,
+depending on the degree $d$ of the polynomial $p$.
+It can be indexed by
+
+\[ \texttt{monom\_deg\_le\_finset n d} := \set{ f : \texttt{fin n} \to \N \st \sum_{i < n} f i \le d }\]
+
+Then we write
+\[ p = \sum_{f\texttt{ : monom\_deg\_le n d}} p_{f}\prod_{i < n} x^{f i}\]
+
+The typical approach to writing a sum like this in lean would be
+to tell lean that only finitely many of the $p_{f}$ are non-zero
+($p_{\star}$ is finitely supported - \texttt{finsupp}).
+However, the API built for this assumes that the underlying
+type in which the sum takes place is a commutative monoid,
+which is not the case here,
+as we will be expressing the above as a sum of terms
+in the language of rings.
+This type has addition and multiplication and so on,
+which we supplied as \linkto{lean_symbols_for_ring_symbols}{instances} already,
+but these are neither commutative nor associative.
+Thus the workaround here was to use \texttt{list.sumr}
+(my own definition, similar to \texttt{list.sum}) instead,
+which will take a list of terms in the language of rings, and sum them together.
+
+The below definition is meant to (re)construct polynomials as described above,
+using free variables to represent the coefficients of some polynomial.
+This can then be used to express injectivity and surjectivity.
+
+\begin{lstlisting}
+def poly_indexed_by_monoms (n d s p c : ℕ)
+  (hndsc : (monom_deg_le n d).length + s ≤ c)
+  (hnpc : n + p ≤ c) :
+  bounded_ring_term c :=
+-- sum indexed by the n-variable monom of degree < d
+list.sumr
+(list.map
+  (
+    λ f : (fin n → ℕ),
+    let
+      x_js : bounded_ring_term c :=
+      x_ ⟨(list.index_of' f (monom_deg_le n d) + s) ,
+        poly_indexed_by_monoms_aux0 n d s c hndsc f ⟩,
+      x_ip (i : fin n) : bounded_ring_term c :=
+      x_ ⟨ (i : ℕ) + p , fin_add_lt_of_add_le n p c hnpc i ⟩
+    in
+    x_js * (n.non_comm_prod (λ i, npow_rec (f i) (x_ip i)))
+  )
+  (monom_deg_le n d)
+) \end{lstlisting}
+
+To explain the above:
+\begin{itemize}
+  \item \texttt{list.map} takes the list \texttt{monom\_deg\_le n d}
+        (which is just \texttt{monom\_deg\_le\_finset n d} as a list instead\footnote{
+          This uses the axiom of choice!})
+        and gives us a list of terms looking like
+        \[x_{js} \prod_{i < n} (x_{ip} i) ^{f i}\] one for each
+        $f \in \texttt{monom\_deg\_le\_finset n d}$.
+  \item Then \texttt{list.sumr} sums these terms together, producing one big polynomial.
+\end{itemize}
