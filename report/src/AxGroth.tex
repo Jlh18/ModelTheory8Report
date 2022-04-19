@@ -18,28 +18,32 @@ partly true for polynomial maps.
   the data of the $n$ polynomials directly:
 
   \begin{lstlisting}
-    def poly_map_data (K : Type*) [comm_semiring K] (n : ℕ) : Type* :=
-    fin n → mv_polynomial (fin n) K \end{lstlisting}
+  def poly_map (K : Type*) [comm_semiring K] (n : ℕ) : Type* :=
+  fin n → mv_polynomial (fin n) K \end{lstlisting}
+
+  Then we can take the map on types/sets by evaluating each polynomial
+  \begin{lstlisting}
+  def eval : poly_map K n → (fin n → K) → (fin n → K) :=
+  λ ps as k, mv_polynomial.eval as (ps k) \end{lstlisting}
 \end{dfn}
 
 \begin{prop}[Ax-Grothendieck]
     \link{ax_groth_thm}
-    If $K$ is an algebraically closed field of characterstic $0$
-    then any injective polynomial map over $K$ is surjective.
+    Any injective polynomial map over an algebraically closed field is surjective.
     In particular injective polynomial maps over $\C$ are surjective.
+
+\begin{lstlisting}
+  theorem Ax_Groth {n : ℕ} {ps : poly_map K n} (hinj : function.injective (poly_map.eval ps)) :
+  function.surjective (poly_map.eval ps) := sorry \end{lstlisting}
 \end{prop}
 
-We present a model theoretic proof of this fact,
-assuming a proof of the prime characteristic case.
-A proof of the prime characteristic case on paper
-can be found in the \linkto{link}{appendix}. %? missing link; will this be done?
-
 The key lemma to prove this is the \linkto{lefschetz}{Lefschetz principle},
-which allows us to convert realization of model theoretically stated sentences
-between \texttt{ACF}$_{0}$ and \texttt{ACF}$_{p}$.
-Lefschetz will be proven in a later section.
+which says that ring theoretic statements are true in instances of algebraically closed fields
+if and only if they are true in all algebraically closed fields
+(assuming zero or large enough prime characteristic).
+Lefschetz will be stated and proven in a later section.
 
-An overview of the proof fo Ax-Grothendieck follows:
+An overview of the proof of Ax-Grothendieck follows:
 
 \begin{itemize}
   \item We want to reduce the statement of Ax-Grothendieck to a model-theoretic one.
@@ -55,8 +59,8 @@ An overview of the proof fo Ax-Grothendieck follows:
         with the coefficients as bounded variables.
   \item We express injectivity and surjectivity model-theoretically,
         and prove internal completeness and soundness for these statements.
-  \item We apply Lefschetz, and use the assumed proof of the
-        prime characteristic case.
+  \item We apply Lefschetz, so that it suffices to prove Ax-Grothendieck for
+        algebraic closures of a finite fields.
 \end{itemize}
 
 \subsection{Stating Ax-Grothendieck model-theoretically}
@@ -149,12 +153,14 @@ To explain the above, we wish to express the ring term with $c$ many free variab
         in our polynomial map don't overlap.
 \end{itemize}
 
+\subsubsection*{Injectivity and surjectivity}
+
 We can then express injectivity of a polynomial map.
 
 \begin{lstlisting}
 def inj_formula (n d : ℕ) :
   bounded_ring_formula (n * (monom_deg_le n d).length) :=
-  let monom := (monom_deg_le n d).length in
+let monom := (monom_deg_le n d).length in
 -- for all pairs in the domain x₋ ∈ Kⁿ and ...
 bd_alls' n _
 $
@@ -196,5 +202,33 @@ if $p x = p y$ then $x = y$''.
         as well as $x = y$, by breaking this up into the data of ``for each $i < n$,
         $x_{i+n} = x_{i}$''
   \item To write $p_{j} x$ and $p_{j} y$ we simply find the right variable indices
-        to supply \texttt{poly\_indexed\_by\_monoms}.
+        to supply \texttt{poly\_indexed\_by\_monoms},
+        and we ask for them to be equal.
 \end{itemize}
+
+Surjectivity is similar
+
+\begin{lstlisting}
+def surj_formula (n d : ℕ) :
+  bounded_ring_formula (n * (monom_deg_le n d).length) :=
+let monom := (monom_deg_le n d).length in
+-- for all x₋ ∈ Kⁿ in the codomain
+bd_alls' n _
+$
+-- there exists y₋ ∈ Kⁿ in the domain such that
+bd_exs' n _
+$
+-- at each 0 ≤ j < n
+bd_big_and n
+-- pⱼ y₋ = xⱼ
+λ j,
+  poly_indexed_by_monoms n d (j * monom + n + n) 0 _
+    inj_formula_aux0 inj_formula_aux1
+  ≃
+  x_ ⟨ j + n , ... ⟩ \end{lstlisting}
+
+We wish to express ``for all $x \in K^{n}$, there exists $y \in K^{n}$ such that $p y = x$''.
+Just like \texttt{bd\_alls' n}, \texttt{bd\_exs' n} adds $n$ many $\ex$s in front of the
+formula coming after.
+
+%% The statement of Ax-Groth in lean
