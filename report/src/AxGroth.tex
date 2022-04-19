@@ -97,30 +97,104 @@ def poly_indexed_by_monoms (n d s p c : ℕ)
   (hndsc : (monom_deg_le n d).length + s ≤ c)
   (hnpc : n + p ≤ c) :
   bounded_ring_term c :=
--- sum indexed by the n-variable monom of degree < d
 list.sumr
 (list.map
   (
     λ f : (fin n → ℕ),
     let
       x_js : bounded_ring_term c :=
-      x_ ⟨(list.index_of' f (monom_deg_le n d) + s) ,
-        poly_indexed_by_monoms_aux0 n d s c hndsc f ⟩,
+      x_ ⟨((monom_deg_le n d).index_of' f + s) , ... ⟩,
       x_ip (i : fin n) : bounded_ring_term c :=
-      x_ ⟨ (i : ℕ) + p , fin_add_lt_of_add_le n p c hnpc i ⟩
+      x_ ⟨ (i : ℕ) + p , ... ⟩
     in
     x_js * (n.non_comm_prod (λ i, npow_rec (f i) (x_ip i)))
   )
   (monom_deg_le n d)
 ) \end{lstlisting}
 
-To explain the above:
+To explain the above, we wish to express the ring term with $c$ many free variables
+(``in context $c$'')
+\[\sum_{f \in \texttt{monom\_deg\_le n d}} x_{j+s} \prod_{0 \le i < n} x_{i+p}^{f(i)}\]
 \begin{itemize}
+  \item When we write \texttt{x\_ < n , ... >} we are giving a natural $n$
+        and a proof that $n$ is less than the context/variable bound $c$,
+        which we omit here.
   \item \texttt{list.map} takes the list \texttt{monom\_deg\_le n d}
         (which is just \texttt{monom\_deg\_le\_finset n d} as a list instead\footnote{
-          This uses the axiom of choice!})
+          This uses the axiom of choice, in the form of \texttt{finset.to\_list}.})
         and gives us a list of terms looking like
         \[x_{js} \prod_{i < n} (x_{ip} i) ^{f i}\] one for each
         $f \in \texttt{monom\_deg\_le\_finset n d}$.
-  \item Then \texttt{list.sumr} sums these terms together, producing one big polynomial.
+  \item Then \texttt{list.sumr} sums these terms together,
+        producing a term in $c$ many free variables representing a polynomial.
+  \item To define \texttt{x\_js} we take the index of $f$ in the list that $f$ came from
+        and we add $s$ at the end and take the variable $x_{\texttt{index f} + s}$.
+  \item To make the product we use \texttt{non\_comm\_prod}
+        (this makes products indexed by \texttt{fin n},
+        and works without commutativity or associativity conditions).
+        For each $i < n$ we multiply together $x_{i + p}$.
+  \item The purpose of adding $s$ and $p$ is to ensure we are not repeating variables in
+        this expression. They give us control of where the variables begin and end.
+
+        In the two situations where these polynomials are used $p$ is taken to be
+        either $0$ or $n$; this makes the realizing variables $x_{0},\dots,x_{n - 1}$
+        or $x_{n}, \dots, x_{2n - 1}$ represent evaluating the polynomials at values
+        assigned to $x_{0},\dots,x_{2n - 1}$.
+
+        The value $s$ in both instances taken to be
+        $j \times \abs{\texttt{monom\_deg\_le\_finset n d}} + 2n$, where
+        $j$ will represent the $j$-th polynomial
+        (out of the $n$ polynomials from \texttt{poly\_map\_data}).
+        This ensures that the variables between different polynomials
+        in our polynomial map don't overlap.
+\end{itemize}
+
+We can then express injectivity of a polynomial map.
+
+\begin{lstlisting}
+def inj_formula (n d : ℕ) :
+  bounded_ring_formula (n * (monom_deg_le n d).length) :=
+  let monom := (monom_deg_le n d).length in
+-- for all pairs in the domain x₋ ∈ Kⁿ and ...
+bd_alls' n _
+$
+-- ... y₋ ∈ Kⁿ
+bd_alls' n _
+$
+-- if at each pⱼ
+(bd_big_and n
+-- pⱼ x₋ = pⱼ y₋
+  (λ j,
+    (poly_indexed_by_monoms n d (j * monom + n + n) n _ _ ) -- note n
+    ≃
+    (poly_indexed_by_monoms n d (j * monom + n + n) 0 _ _ ) -- note 0
+  )
+)
+-- then
+⟹
+-- at each 0 ≤ i < n,
+(bd_big_and n ( λ i,
+-- xᵢ = yᵢ (where yᵢ is written as xᵢ₊ₙ₊₁)
+  x_ ⟨ i + n , ... ⟩ ≃ x_ (⟨ i , ... ⟩)
+))
+\end{lstlisting}
+
+To explain the above, suppose we have $p$ the data of a polynomial map
+(i.e. for each $j < n$ we have $p_j$ a polynomial).
+We wish to express ``for all $x,y \in K^{n}$,
+if $p x = p y$ then $x = y$''.
+\begin{itemize}
+  \item \texttt{bd\_alls' n} adds $n$ many $\forall$s in front of the
+        formula coming after.
+        The first represents $x = (x_{n},\dots,x_{2n-1})$ and the second represents
+        $y = (y_{0},\dots,y_{n-1}) = (x_{0},\dots,x_{n-1})$.
+        We choose this ordering since when we quantify this expression
+        we first introduce $x$, which is of a higher index.
+  \item \texttt{bd\_big\_and n} takes $n$ many formulas and places $\AND$s between
+        each of them. In particular it expresses $p x = p y$, by breaking this up
+        into the data of ``for each $j < n$, $p_{j} x = p_{j} y$'',
+        as well as $x = y$, by breaking this up into the data of ``for each $i < n$,
+        $x_{i+n} = x_{i}$''
+  \item To write $p_{j} x$ and $p_{j} y$ we simply find the right variable indices
+        to supply \texttt{poly\_indexed\_by\_monoms}.
 \end{itemize}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  14 MAR 2022 17:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  14 MAR 2022 18:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1123,7 +1123,15 @@ Overfull \hbox (3.08035pt too wide) in paragraph at lines 56--58
 ally, and prove in-ter-nal com-plete-ness and sound-
  []
 
-[18]) (./m4r.bbl [19]) [20] (./m4r.aux)
+[18] [19]
+Overfull \hbox (1.73366pt too wide) in paragraph at lines 187--193
+[]\T1/zi4/m/it/10 bd_alls' n \T1/qpl/m/n/10 adds $\OML/cmm/m/it/10 n$ \T1/qpl/m
+/n/10 many $\OMS/cmsy/m/n/10 8$\T1/qpl/m/n/10 s in front of the for-mula com-in
+g af-ter. The first rep-re-sents $\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 = (\OML/cm
+m/m/it/10 x[]; [] ; x[]\OT1/cmr/m/n/10 )$
+ []
+
+) (./m4r.bbl [20]) [21] (./m4r.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1131,10 +1139,10 @@ Package rerunfilecheck Info: File `m4r.out' has not changed.
 (rerunfilecheck)             Checksum: 9BF70CE2CCBCE2DA4995CA779E0218B0;3150.
  ) 
 Here is how much of TeX's memory you used:
- 29499 strings out of 478353
- 548390 string characters out of 5854636
- 1184163 words of memory out of 5000000
- 46582 multiletter control sequences out of 15000+600000
+ 29530 strings out of 478353
+ 548795 string characters out of 5854636
+ 1184603 words of memory out of 5000000
+ 46588 multiletter control sequences out of 15000+600000
  475977 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,22n,104p,1192b,1323s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1175,10 +1183,10 @@ am10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 e/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/
 type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gy
 re/qplri.pfb>
-Output written on m4r.pdf (20 pages, 419250 bytes).
+Output written on m4r.pdf (21 pages, 426430 bytes).
 PDF statistics:
- 907 PDF objects out of 1000 (max. 8388607)
- 831 compressed objects within 9 object streams
- 499 named destinations out of 1000 (max. 500000)
+ 940 PDF objects out of 1000 (max. 8388607)
+ 863 compressed objects within 9 object streams
+ 524 named destinations out of 1000 (max. 500000)
  165 words of extra memory for PDF output out of 10000 (max. 10000000)
 

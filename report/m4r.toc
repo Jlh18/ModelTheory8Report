@@ -13,7 +13,7 @@
 \contentsline {subsection}{\numberline {3.5}Characteristic}{17}{subsection.3.5}%
 \contentsline {section}{\numberline {4}Ax-Grothendieck}{18}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Stating Ax-Grothendieck model-theoretically}{18}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Model Theory of Algebraically Closed Fields}{20}{section.5}%
-\contentsline {section}{\numberline {6}The Lefschetz Principle}{20}{section.6}%
-\contentsline {section}{\numberline {7}Reducing to Locally Finite Fields}{20}{section.7}%
-\contentsline {section}{\numberline {8}Proving the Locally Finite Case}{20}{section.8}%
+\contentsline {section}{\numberline {5}Model Theory of Algebraically Closed Fields}{21}{section.5}%
+\contentsline {section}{\numberline {6}The Lefschetz Principle}{21}{section.6}%
+\contentsline {section}{\numberline {7}Reducing to Locally Finite Fields}{21}{section.7}%
+\contentsline {section}{\numberline {8}Proving the Locally Finite Case}{21}{section.8}%
