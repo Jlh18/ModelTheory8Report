@@ -5,17 +5,18 @@
 \contentsline {subsection}{\numberline {2.3}Lean symbols for ring symbols}{6}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Interpretation of symbols}{7}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Theories}{9}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Internal completeness and soundness}{12}{section.3}%
+\contentsline {section}{\numberline {3}Internal completeness and soundness for ring theories}{12}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Ring Structures}{12}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Rings}{13}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Fields}{14}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Algebraically closed fields}{15}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}Characteristic}{17}{subsection.3.5}%
-\contentsline {section}{\numberline {4}Ax-Grothendieck}{18}{section.4}%
+\contentsline {section}{\numberline {4}Internal completeness and soundness for Ax-Grothendieck}{18}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Writing down polynomials}{19}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Injectivity and surjectivity}{20}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Completeness and soundness}{21}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Model Theory of Algebraically Closed Fields}{22}{section.5}%
-\contentsline {section}{\numberline {6}The Lefschetz Principle}{22}{section.6}%
-\contentsline {section}{\numberline {7}Reducing to Locally Finite Fields}{22}{section.7}%
-\contentsline {section}{\numberline {8}Proving the Locally Finite Case}{22}{section.8}%
+\contentsline {section}{\numberline {5}The Locally Finite Case}{23}{section.5}%
+\contentsline {section}{\numberline {6}The Lefschetz Principle}{23}{section.6}%
+\contentsline {section}{\numberline {7}Vaught's completeness test}{23}{section.7}%
+\contentsline {section}{\numberline {8}Compactness}{23}{section.8}%
+\contentsline {section}{\numberline {9}Reducing to Locally Finite Fields}{23}{section.9}%

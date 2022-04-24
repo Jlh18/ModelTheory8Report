@@ -245,12 +245,11 @@ sorry
 \subsection{Completeness and soundness}
 
 It is important that the model theoretic statements of the above translate to
-our statements in lean. The rest of this section is dedicated to proving the
-theorem `\texttt{realize\_Ax\_Groth\_formula}`.
+our statements in lean. We finish by showing `\texttt{realize\_Ax\_Groth\_formula}`.
 
 \subsubsection*{Injectivity (and surjectivity)}
 
-We first show completeness and soundness for injectivity.
+We only discuss completeness and soundness for injectivity.
 The same results for surjectivity are very similar.
 A closer inspection reveals that we actually need two results:
 \begin{itemize}
@@ -302,3 +301,35 @@ lemma realize_inj_formula_of_model
 
 Both of the above facts are simple to prove,
 but tiresome to work out.
+
+%% More work here?
+
+Now that we have introduced completeness and soundness for
+Ax-Grothendieck, we can move back and forth between
+algebra and model theory, so that we can do the following
+\[\begin{tikzcd}
+	{\text{(algebraic) locally finite Ax-G}} \\
+	{\text{(model theoretic) locally finite Ax-G}} \\
+	{\text{(model theoretic) }\chi_p \text{ Ax-G}} & {\text{(algebraic) }\chi_p \text{ Ax-G}} \\
+	{\text{(model theoretic) }\chi_0 \text{ Ax-G}} & {\text{(algebraic) }\chi_0 \text{ Ax-G}} && {\text{(algebraic) Ax-G}}
+	\arrow["{\ACF_{p} \text{is complete}}"', shift right=5, from=2-1, to=3-1]
+	\arrow["{\text{(internal) completeness}_p}", shift right=5, from=1-1, to=2-1]
+	\arrow["{\text{Lefschetz }\chi\text{-change}}", shift right=5, from=3-1, to=4-1]
+	\arrow["{\text{int. soundness}_p}", from=3-1, to=3-2]
+	\arrow["{\text{int. soundness}_0}"', from=4-1, to=4-2]
+	\arrow[from=3-2, to=4-4]
+	\arrow["{\text{case on }\chi}", from=4-2, to=4-4]
+\end{tikzcd}\]
+
+The reason that we need to split into cases depending on characteristic
+(the final two arrows above) is because $\ACF$ alone is not a complete theory,
+but adding in contraints on characteristic makes it so.
+
+Hence the following parts remain:
+The locally finite part of the proof is given in
+\linkto{locally_finite}{the next section}.
+The fact that $\ACF_{p}$ and $\ACF_{0}$ are {complete theories} and the
+{characteristic-change lemma} are usually packaged together
+in \linkto{}{the Lefschetz principle}, %%missing link
+which will be proven (with \texttt{sorry}s) in the section after that.
+The rest of the components of the proof are covered by our work so far.

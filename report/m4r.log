@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.16)  20 APR 2022 17:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.16)  24 APR 2022 16:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1013,7 +1013,10 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 84.
- [2] [3]
+Package mdframed Info: Not enough space on this page on input line 145.
+ [2]
+Package mdframed Info: Not enough space on this page on input line 145.
+ [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 163.
@@ -1125,18 +1128,24 @@ g af-ter. The first rep-re-sents $\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 = (\OML/cm
 m/m/it/10 x[]; [] ; x[]\OT1/cmr/m/n/10 )$
  []
 
-[20]) [21] (./m4r.bbl) [22] (./m4r.aux)
+[20] [21]
+
+Package hyperref Warning: Suppressing link with empty target on input line 334.
+
+
+) (./src/locally_finite.tex) (./src/Lefschetz.tex) [22] (./m4r.bbl) [23]
+(./m4r.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `m4r.out' has not changed.
-(rerunfilecheck)             Checksum: 7135A17E2687E6559889122447722186;3453.
+(rerunfilecheck)             Checksum: A18392D00A0C3E93BFF38125EEC7E573;3729.
  ) 
 Here is how much of TeX's memory you used:
- 29538 strings out of 478276
- 548907 string characters out of 5853013
- 1176744 words of memory out of 5000000
- 46646 multiletter control sequences out of 15000+600000
+ 29707 strings out of 478276
+ 552669 string characters out of 5853013
+ 1176942 words of memory out of 5000000
+ 46788 multiletter control sequences out of 15000+600000
  541806 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,22n,104p,1192b,1323s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1160,24 +1169,25 @@ f-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/share/texmf-di
 st/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
-am10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/
-type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gy
-re/qplri.pfb>
-Output written on m4r.pdf (22 pages, 431982 bytes).
+m/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
+sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf-dist/fonts/type1/public
+/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb>
+</usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on m4r.pdf (23 pages, 454260 bytes).
 PDF statistics:
- 990 PDF objects out of 1000 (max. 8388607)
- 911 compressed objects within 10 object streams
- 557 named destinations out of 1000 (max. 500000)
- 181 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1034 PDF objects out of 1200 (max. 8388607)
+ 950 compressed objects within 10 object streams
+ 578 named destinations out of 1000 (max. 500000)
+ 189 words of extra memory for PDF output out of 10000 (max. 10000000)
 

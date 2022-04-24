@@ -4,21 +4,23 @@
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "left=1in" "right=1in" "tmargin=25mm" "bmargin=25mm") ("xcolor" "dvipsnames") ("fontenc" "T1") ("inputenc" "utf8")))
    (add-to-list 'LaTeX-verbatim-environments-local "lstlisting")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "lstinline")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "href")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "lstinline")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "href")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "lstinline")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "lstinline")
    (TeX-run-style-hooks
     "latex2e"
     "src/language"
     "src/internalCompletenessAndSoundness"
     "src/AxGroth"
+    "src/locally_finite"
+    "src/Lefschetz"
     "article"
     "art10"
     "geometry"
@@ -104,10 +106,12 @@
     "AND"
     "OR"
     "bigop"
+    "supp"
     "st"
     "minus"
     "subs"
     "ssubs"
+    "im"
     "nothing"
     "al"
     "be"
@@ -169,11 +173,36 @@
     "iso"
     "nsub"
     "inv"
+    "dom"
+    "codom"
+    "coker"
+    "spec"
+    "Orb"
+    "Stab"
+    "const"
+    "func"
+    "rel"
+    "GRP"
     "RNG"
     "ER"
+    "FLD"
+    "ID"
+    "ZFC"
+    "ACF"
     "BLN"
     "PO"
+    "tp"
+    "qftp"
+    "qf"
+    "eqzero"
+    "MD"
+    "acl"
+    "cl"
+    "mdeg"
+    "kdim"
+    "ord"
     "NEG"
+    "tdeg"
     "widecheck"
     "lstlanguagefiles")
    (LaTeX-add-environments
