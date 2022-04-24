@@ -63,9 +63,9 @@ An overview of the proof of Ax-Grothendieck follows:
         algebraic closures of a finite fields.
 \end{itemize}
 
-\subsection{Stating Ax-Grothendieck model-theoretically}
+\subsection{Writing down polynomials}
 
-Our first objective is to state Ax-Grothendieck model-theoretically.
+Our objective is to state Ax-Grothendieck model-theoretically.
 Let us assume we have an $n$-variable polynomial $p \in K[x_{1},\dots,x_{n}]$.
 We know that $p$ can be written as a sum of its monomials,
 and the set of monomials \texttt{monom\_deg\_le n d} is finite,
@@ -153,7 +153,7 @@ To explain the above, we wish to express the ring term with $c$ many free variab
         in our polynomial map don't overlap.
 \end{itemize}
 
-\subsubsection*{Injectivity and surjectivity}
+\subsection{Injectivity and surjectivity}
 
 We can then express injectivity of a polynomial map.
 
@@ -228,7 +228,77 @@ bd_big_and n
   x_ ⟨ j + n , ... ⟩ \end{lstlisting}
 
 We wish to express ``for all $x \in K^{n}$, there exists $y \in K^{n}$ such that $p y = x$''.
-Just like \texttt{bd\_alls' n}, \texttt{bd\_exs' n} adds $n$ many $\ex$s in front of the
+Just like \texttt{bd\_alls' n}, \texttt{bd\_exs' n} adds $n$ many $\exists$s in front of the
 formula coming after.
 
-%% The statement of Ax-Groth in lean
+Now we are ready to express Ax-Grothendieck model theoretically and state internal
+soundness and completeness.
+\begin{lstlisting}
+theorem realize_Ax_Groth_formula {n : ℕ} :
+  (∀ d : ℕ, Structure K ⊨ Ax_Groth_formula n d)
+  ↔
+  (∀ (ps : poly_map K n),
+    function.injective (poly_map.eval ps) → function.surjective (poly_map.eval ps)) :=
+sorry
+\end{lstlisting}
+
+\subsection{Completeness and soundness}
+
+It is important that the model theoretic statements of the above translate to
+our statements in lean. The rest of this section is dedicated to proving the
+theorem `\texttt{realize\_Ax\_Groth\_formula}`.
+
+\subsubsection*{Injectivity (and surjectivity)}
+
+We first show completeness and soundness for injectivity.
+The same results for surjectivity are very similar.
+A closer inspection reveals that we actually need two results:
+\begin{itemize}
+  \item (\texttt{realize\_inj\_formula\_of\_ring})
+    Given a ring $A$ and a polynomial map,
+    $A$ (as a model of \texttt{ring\_theory})
+    realizes the formula \texttt{inj\_formula} evaluated at the coefficients
+    of a polynomial map if and only if the polynomial map over $A$ is injective.
+  \item (\texttt{realize\_inj\_formula\_of\_model})
+    Given a model $M$ of \texttt{ring\_theory} and a (huge) list
+    (\texttt{dvector}) of coefficients (representing $n$ polynomials),
+    $M$ realizes the formula
+    \texttt{inj\_formula} evaluated at the coefficients of a polynomial map
+    if and only if the polynomial map over $M$ (as a field) is injective.
+\end{itemize}
+
+Clearly these are slightly different lemmas.
+They are necessary because of the data one has at hand
+depends on the direction one is working on.
+In more detail
+
+\begin{lstlisting}
+lemma realize_inj_formula_of_ring
+  {n d : ℕ}
+  (ps : poly_map A n)
+  (hdeg : ∀ (i : fin n), (ps i).total_degree ≤ d) :
+  @realize_bounded_formula _ (struc_to_ring_struc.Structure A)
+    _ _ (@poly_map.coeffs_dvector' A _ n d ps)
+    (inj_formula n d) dvector.nil
+  ↔
+  function.injective (poly_map.eval ps) := sorry \end{lstlisting}
+
+The function \texttt{poly\_map.coeffs\_dvector'} takes the polynomial \texttt{ps}
+and finds all the coefficients of each polynomial in \texttt{ps}
+and converts that to a \texttt{dvector}.
+This is the only way we can use the data of \texttt{ps} in terms of realization.
+Conversely all we have access to on the side of ring structures
+will be a list of the coefficients, so we need
+
+\begin{lstlisting}
+lemma realize_inj_formula_of_model
+  {n d : ℕ} (coeffs : dvector ↥(struc_to_ring_struc.Structure A)
+    (n * (monom_deg_le n d).length)) :
+  function.injective
+    (poly_map.eval (λ i : fin n, mv_polynomial_of_coeffs (dvector.ith_chunk i coeffs)))
+  ↔
+  realize_bounded_formula coeffs (inj_formula n d) dvector.nil := sorry
+\end{lstlisting}
+
+Both of the above facts are simple to prove,
+but tiresome to work out.
