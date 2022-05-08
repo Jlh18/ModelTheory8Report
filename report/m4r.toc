@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {section}{\numberline {2}Model Theory Background}{1}{section.2}%
+\contentsline {section}{\numberline {2}Model Theory Background}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Languages}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Terms and formulas}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Lean symbols for ring symbols}{6}{subsection.2.3}%
@@ -10,13 +10,15 @@
 \contentsline {subsection}{\numberline {3.2}Rings}{13}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Fields}{14}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Algebraically closed fields}{15}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Characteristic}{17}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.5}Characteristic}{18}{subsection.3.5}%
 \contentsline {section}{\numberline {4}Internal completeness and soundness for Ax-Grothendieck}{18}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Writing down polynomials}{19}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Injectivity and surjectivity}{20}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Completeness and soundness}{21}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.3}Completeness and soundness}{22}{subsection.4.3}%
 \contentsline {section}{\numberline {5}The Locally Finite Case}{23}{section.5}%
-\contentsline {section}{\numberline {6}The Lefschetz Principle}{23}{section.6}%
-\contentsline {section}{\numberline {7}Vaught's completeness test}{23}{section.7}%
-\contentsline {section}{\numberline {8}Compactness}{23}{section.8}%
-\contentsline {section}{\numberline {9}Reducing to Locally Finite Fields}{23}{section.9}%
+\contentsline {section}{\numberline {6}The Lefschetz Principle}{24}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Vaught's test}{25}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Compactness}{27}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Proving Lefschetz}{27}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Vaught's test}{27}{section.7}%
+\contentsline {section}{\numberline {8}Compactness}{27}{section.8}%

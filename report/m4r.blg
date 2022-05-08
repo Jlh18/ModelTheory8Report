@@ -3,6 +3,8 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: m4r.aux
 The style file: abbrv.bst
 Database file #1: refs.bib
+Warning--entry type for "stack0" isn't style-file defined
+--line 53 of file refs.bib
 I was expecting a `,' or a `}'---line 79 of file refs.bib
  :   
  :   title = {Model Theory, Spring 2008},
@@ -11,46 +13,47 @@ I'm skipping whatever remains of this entry
 Warning--entry type for "flypitch" isn't style-file defined
 --line 103 of file refs.bib
 Warning--to sort, need author or key in flypitch
+Warning--to sort, need author or key in stack0
 Warning--empty year in marker
-You've used 2 entries,
+You've used 3 entries,
             2118 wiz_defined-function locations,
-            504 strings with 3821 characters,
-and the built_in function-call counts, 395 in all, are:
-= -- 33
-> -- 8
+            507 strings with 3939 characters,
+and the built_in function-call counts, 554 in all, are:
+= -- 48
+> -- 9
 < -- 0
-+ -- 4
++ -- 5
 - -- 2
-* -- 17
-:= -- 63
-add.period$ -- 5
-call.type$ -- 2
-change.case$ -- 6
+* -- 22
+:= -- 80
+add.period$ -- 7
+call.type$ -- 3
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 19
-empty$ -- 46
+cite$ -- 6
+duplicate$ -- 26
+empty$ -- 69
 format.name$ -- 2
-if$ -- 86
+if$ -- 126
 int.to.chr$ -- 0
-int.to.str$ -- 2
+int.to.str$ -- 3
 missing$ -- 2
-newline$ -- 12
+newline$ -- 16
 num.names$ -- 2
-pop$ -- 18
+pop$ -- 26
 preamble$ -- 1
-purify$ -- 5
+purify$ -- 7
 quote$ -- 0
-skip$ -- 13
+skip$ -- 21
 stack$ -- 0
-substring$ -- 10
-swap$ -- 2
+substring$ -- 15
+swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
-warning$ -- 2
+type$ -- 10
+warning$ -- 3
 while$ -- 2
-width$ -- 3
-write$ -- 18
+width$ -- 4
+write$ -- 25
 (There was 1 error message)

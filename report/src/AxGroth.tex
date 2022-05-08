@@ -1,8 +1,6 @@
-It is a basic fact of linear algebra that any linear map
-between vector spaces of the same finite dimension is
-injective if and only if it is surjective.
-\linkto{ax_groth_thm}{Ax-Grothendieck} says that this is
-partly true for polynomial maps.
+In this section we will introduce both \linkto{ax_groth_thm}{Ax-Grothendieck} and
+its model theoretic counterpart.
+We then investigate internal completeness and soundness for these statements.
 
 \begin{dfn}[Polynomial maps]
   \link{dfn_poly_map}
@@ -61,6 +59,7 @@ An overview of the proof of Ax-Grothendieck follows:
         and prove internal completeness and soundness for these statements.
   \item We apply Lefschetz, so that it suffices to prove Ax-Grothendieck for
         algebraic closures of a finite fields.
+        This is quite straight forward.
 \end{itemize}
 
 \subsection{Writing down polynomials}
@@ -305,7 +304,7 @@ but tiresome to work out.
 %% More work here?
 
 Now that we have introduced completeness and soundness for
-Ax-Grothendieck, we can move back and forth between
+Ax-Grothendieck we can move back and forth between
 algebra and model theory, so that we can do the following
 \[\begin{tikzcd}
 	{\text{(algebraic) locally finite Ax-G}} \\
@@ -322,7 +321,8 @@ algebra and model theory, so that we can do the following
 \end{tikzcd}\]
 
 The reason that we need to split into cases depending on characteristic
-(the final two arrows above) is because $\ACF$ alone is not a complete theory,
+(the final two arrows above) is because $\ACF$ alone is not a
+\linkto{dfn_complete_theory}{complete theory}, %missing link
 but adding in contraints on characteristic makes it so.
 
 Hence the following parts remain:
@@ -330,6 +330,6 @@ The locally finite part of the proof is given in
 \linkto{locally_finite}{the next section}.
 The fact that $\ACF_{p}$ and $\ACF_{0}$ are {complete theories} and the
 {characteristic-change lemma} are usually packaged together
-in \linkto{}{the Lefschetz principle}, %%missing link
-which will be proven (with \texttt{sorry}s) in the section after that.
+in \linkto{lefschetz}{the Lefschetz principle}, %%missing link
+which we work on in the section after that.
 The rest of the components of the proof are covered by our work so far.

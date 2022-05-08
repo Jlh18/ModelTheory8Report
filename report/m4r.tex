@@ -474,7 +474,31 @@
 
 \section{Introduction}
 
-\section{Model Theory Background} %follow along definitions in lean
+It is a basic fact of linear algebra that any linear map
+between vector spaces of the same finite dimension is
+injective if and only if it is surjective.
+\linkto{ax_groth_thm}{Ax-Grothendieck} says that this is
+partly true for polynomial maps.
+
+Here are some examples of polynomial maps
+\begin{itemize}
+  \item Surjective but not injective: $f : \C \to \C := x \mapsto x^{2}$
+  \item Neither surjective nor injective:
+      $f : \C^{2} \to \C^{2} := (x,y) \mapsto (x,xy)$
+  \item Bijective:
+      $f : \C^{3} \to \C^{3} := (x,y,z) \mapsto ( x , y , z + xy )$
+\end{itemize}
+
+One might try very hard to look for an example of an injective polynomial map
+that is not surjective.
+Replacing $\C$ with an arbitrary field, we notice that
+surjectivity and injectivity coincide on finite fields.
+% and indeed on small enough fields (locally finite fields).
+% Then we notice that this implies they coincide for
+Ax-Grothendieck states that over any algebraically closed field,
+injectivity of a polynomial map implies surjectivity.
+
+\section{Model Theory Background}
 
 \input{src/language.tex}
 
@@ -496,11 +520,20 @@
 
 \input{src/Lefschetz.tex}
 
-\section{Vaught's completeness test}
+One way of stating compactness is the idea that proofs are finite.
+If $T$ is an $L$-theory and $\phi$ is an $L$-sentence
+then $T \vDash \phi$ implies there is some finite subtheory $\De \subs T$
+such that $\De \subs \phi$.
+
+\begin{dfn}[Finitely consistent]
+  An $L$-theory $T$ is finitely consistent if
+\end{dfn}
+
+
+\section{Vaught's test}
+\link{vaught_proof}
 
 \section{Compactness}
-
-\section{Reducing to Locally Finite Fields}
 
 \bibliography{refs}{}
 \bibliographystyle{abbrv}

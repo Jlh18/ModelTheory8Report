@@ -31,21 +31,21 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
   This says that \texttt{Language} is a mathematical structure
   (like a group structure, or ring structure)
   that consists of two pieces of data,
-  a map called \texttt{functions} and another called \texttt{relatio ns}.
+  a map called \texttt{functions} and another called \texttt{relations}.
   Both take a natural number and spit out a \textit{type}
-  (which in \texttt{lean} might as well mean \textit{set})
-  that consists respectively of all the function symbols and relation symbols of\texttt{functions narity $n$}.
+  (in set theory a \textit{set})
+  that consists respectively of all the function symbols and relation symbols
+  of\texttt{functions narity $n$}.
 
   In more detail: in type theory when we write \texttt{a:A} we mean \texttt{a} is something
-  of \textit{type} \texttt{relations ntexttt{A}}.
+  of \textit{type} \texttt{A}.
   We can draw an analogy with the set theoretic notion $a \in A$,
-  but types in \texttt{lean} have slightly different
-  personalities, which we will gradually introduce.
+  but types in \texttt{lean} have slightly different personalities.
   Hence in the above definitions \texttt{functions n} and \texttt{relations n}
   are things of type \texttt{Type u}.
   \texttt{Type u} is a collection of all types at level \texttt{u},
   so things of type \texttt{Type u} are types.
-  ``Types are type \texttt{Type u}.''
+  ``Types are of type \texttt{Type u}.''
 
   For convenience we single out $0$-ary (arity $0$) functions and
   call them \textit{constant} symbols, usually denoting them by $c : A$.
@@ -116,9 +116,9 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
     the only constructors are terms in the type.
     In the appendix we give more examples of inductive types %? missing
     \begin{itemize}
-      \item The \link{dfn_nat}{natural numbers} are defined as inductive types
-      \item \link{dfn_list}{Lists} are defined as inductive types
-      \item The \link{dfn_int}{integers} can be defined as inductive types
+      \item The \linkto{dfn_nat}{natural numbers} are defined as inductive types
+      \item \linkto{dfn_list}{Lists} are defined as inductive types
+      \item The \linkto{dfn_int}{integers} can be defined as inductive types
     \end{itemize}
 
     We now collect all the above into a single definition \texttt{ring funcs}
@@ -187,7 +187,7 @@ We formalize this as terms.
     | bd_func : ∀ {l : ℕ} (f : L.functions l), bounded_preterm l
     | bd_app : ∀ {l : ℕ} (t : bounded_preterm (l + 1)) (s : bounded_preterm 0), bounded_preterm l
 
-  def bounded_term (n : ℕ) := bounded_preterm L n 0\end{lstlisting}
+    def bounded_term (n : ℕ) := bounded_preterm L n 0\end{lstlisting}
 
   To explain notation
   \begin{itemize}
@@ -223,9 +223,8 @@ One can imagine writing down any degree two polynomial over the integers
 as a term in the language of rings.
 In fact, we could even make degree two polynomials over any ring (if we had one):
 \[ x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} \]
-Here our variable is $x_{3}$, and we imaging that the other variables represent
+Here our variable is $x_{3}$, and we imagine that the other variables represent
 elements of our ring.
-
 To express ``any degree (up to) two polynomial over our ring has a root'',
 we might write
 \[ \forall x_{2} x_{1} x_{0} : A, \exists x_{3} : A, x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} = 0 \]
@@ -293,7 +292,6 @@ Formulas allow us to do this.
     def bd_not {n} (f : bounded_formula L n) : bounded_formula L n := f ⟹ ⊥
     def bd_and {n} (f₁ f₂ : bounded_formula L n) : bounded_formula L n := ~(f₁ ⟹ ∼f₂)
     def bd_or {n} (f₁ f₂ : bounded_formula L n) : bounded_formula L n := ~f₁ ⟹ f₂
-    def bd_biimp {n} (f₁ f₂ : bounded_formula L n) : bounded_formula L n := (f₁ ⟹ f₂) ⊓ (f₂ ⟹ f₁)
     def bd_ex {n} (f : bounded_formula L (n+1)) : bounded_formula L n := ~ (∀' ~ f))
   \end{lstlisting}
 \end{dfn}
@@ -363,6 +361,10 @@ instance bounded_ring_term_has_add {n} : has_add (bounded_ring_term n) :=
 instance bounded_ring_term_has_mul {n} : has_mul (bounded_ring_term n) :=
 ⟨ λ x, bd_app (bd_app (bd_func ring_binaries.mul) x) ⟩\end{lstlisting}
 
+Note that in the above a choice as been made for which side
+addition and multiplication work on (symbolically),
+but this won't matter once we interpret into commutative rings.
+
 Since we have multiplication, we also can take terms to powers
 using \texttt{npow\_rec}.
 
@@ -370,6 +372,7 @@ using \texttt{npow\_rec}.
 instance bounded_ring_term_has_pow {n} : has_pow (bounded_ring_term n) ℕ :=
 ⟨ λ t n, npow_rec n t ⟩
 \end{lstlisting}
+
 
 \subsection{Interpretation of symbols}
 
@@ -421,9 +424,8 @@ $\N$ with the usual ordering $\leq$ is a structure that models of
 the theory of partial orders (with the order relation)
 but not the theory of equivalence relations (with $\le$).
 
-Before continuing on formalizing ``any degree two polynomial over our ring has a root'',
-we stop to make the remark that the collection of all structures in a language forms a category.
-To this end we define morphisms of structures.
+Before continuing to formalize ``any degree two polynomial over our ring has a root'',
+we stop to notice that structures in a language form suitable objects for a category.
 
 \begin{dfn}[$\texttt{L}$-morphism, $\texttt{L}$-embedding]
     \link{category_of_structures}
@@ -474,7 +476,7 @@ protected structure hom :=
 \end{dfn}
 
 Returning to our objective,
-we realize that we need to interpret our degree two polynomial (a term)
+we realize that we need to interpret our polynomial (a term)
 is something in our ring. The term
 
 \[ x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} \]
@@ -483,8 +485,7 @@ namely, taking $(a, b, c, d)$ to
 
 \[ a c^{2} + b c + d \]
 
-We thus need to figure out how terms in the language interact with
-structures in the language.
+Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
 
 \begin{dfn}[Interpretation of terms]
     \link{interpretation_terms}
@@ -557,11 +558,18 @@ realize_bounded_formula ([] : dvector M 0) f ([])\end{lstlisting}
 
 \subsection{Theories}
 
-Now we are able to express ``this structure in the language of rings has roots
+Now we are able to express statements such as
+``this structure in the language of rings has roots
 of all degree two polynomials'', using interpretation of sentences.
 A sensible task is to organize algebraic data, such as rings, fields,
 and algebraically closed fields, in terms of the sentences that axiomatize them.
 We call these theories.
+
+Note that this is \textit{the whole point of model theory},
+we will be able to work with terms, formulas, structures and theories tangibly,
+as terms in types (or set theoretically as elements of some sets).
+This allows us to reason about logic itself,
+and its interaction with the real world.
 
 \begin{dfn}[Theory]
   \link{dfn_theory}
@@ -571,7 +579,7 @@ We call these theories.
     def Theory := set (sentence L)   \end{lstlisting}
 \end{dfn}
 
-\begin{dfn}[Models]
+\begin{dfn}[Models, consistent]
     Given an $\texttt{L}$-structure $\texttt{M}$ and $\texttt{L}$-theory $\texttt{T}$,
     we write $\texttt{M} \vDash \texttt{T}$ and say
     \emph{$\texttt{M}$ is a model of $\texttt{T}$} when
@@ -579,11 +587,12 @@ We call these theories.
 
     \begin{lstlisting}
       def all_realize_sentence (M : Structure L) (T : Theory L) := ∀ f, f ∈ T → M ⊨ f \end{lstlisting}
+
+    We say an $\texttt{L}$-theory is consistent if it has a model.
   \end{dfn}
 
 A model of the \linkto{ring_theory}{theory of rings} should be exactly the data of a ring.
-Before \linkto{algebraic_objects_iff_models}{converting between algebraic objects
-  and their model theoretic counterparts}, so we first write down the theories of
+To \linkto{algebraic_objects_iff_models}{show this} we must write down the theories of
 rings, fields, and algebraically closed fields.
 
 \begin{dfn}[The theories of rings, fields and algebraically closed fields]
@@ -629,7 +638,7 @@ rings, fields, and algebraically closed fields.
     def gen_poly : Π (n : ℕ), bounded_ring_term (n + 2)
     | 0       := x_ ⟨ 1 , _ ⟩
     | (n + 1) := (x_ ⟨ n + 2 , _ ⟩) * (npow_rec (n + 1) (x_ ⟨ 0 , _ ⟩))
-    + bounded_preterm.lift_succ (gen_poly n)\end{lstlisting}
+                   + bounded_preterm.lift_succ (gen_poly n)\end{lstlisting}
 
   Since the type of terms in the language of rings has notions of
   addition and multiplication (using the function symbols),
@@ -695,9 +704,10 @@ rings, fields, and algebraically closed fields.
   there is another layer of conversion that is often swept under the rug,
   between the semantics and native mathematics.
   Before the project began,
-  Kevin and I were both skeptical about model theory actually producing
-  results that were usable, in the sense of being compatible with \texttt{mathlib},
-  but I managed to show that this was the case:
+  the part of this project that Kevin and I were most skeptical about was
+  model theory actually producing results that were usable,
+  in the sense of being compatible with \texttt{mathlib}.
+  We can formalize this problem:
 
   \begin{itemize}
     \item Structures in a language are the same thing
@@ -706,39 +716,18 @@ rings, fields, and algebraically closed fields.
     \item Models of theories in a language are the same things
           as our internal way of describing algebraic objects -
           a model of the theory of rings is actually a ring in lean.
-    \item A proof of Ax-Grothendieck is actually usable in \texttt{mathlib}
+    \item A model theoretic statement of Ax-Grothendieck holds if and only if
+          an algebraic statement of Ax-Grothendieck holds.
+          (For fixed characteristic.) \texttt{mathlib}
   \end{itemize}
 
   We informally use the term ``internal completeness and soundness''
   for this kind of phenomenon (coined by Kenny Lau).
 
-\begin{prop}[Internal completeness and soundness]
-  \link{algebraic_objects_iff_models}
-  The following are true
-  \begin{itemize}
-    \item A type $A$ is a ring (according to lean) if and only if
-          $A$ is a structure in the language of rings
-          that models the theory of rings.
-    \item A type $A$ is a field (according to lean) if and only if
-          it is a model of the theory of fields.
-    \item A type $A$ is an algebraically closed field (of characteristic p)
-          if and only if it is a model of $\ACF_{(p)}$.
-    \item (Details later) Ax-Grothendieck stated model theoretically corresponds to
-          Ax-Grothendieck stated internally. %?
-  \end{itemize}
-  For the purposes of design in lean it is
-  more sensible to split each ``if and only if'' into seperate constructions,
-  for converting the algebraic objects into their model theoretic counterparts
-  and vice versa.
-  Although these are very obvious facts on paper,
-  converting between them takes a bit of work in \texttt{lean},
-  especially for the last,
-  where some ground work needs to be done for interpreting \texttt{gen\_monic\_poly}.
-\end{prop}
-\begin{proof}
-  The proof of this formed a significant part of this project.
-  We leave this to the next two sections.
-\end{proof}
+% \begin{proof}
+%   The proof of this formed a significant part of this project.
+%   We leave this to the next two sections.
+% \end{proof}
 
 % \begin{dfn}[Consequence]
 %     Given a $\texttt{L}$-theory $T$

@@ -1,6 +1,228 @@
-Lefschetz allows us to do the following:
-instead of proving a result about an arbitrary algebraically closed field
-we can just show the result in the simple case of when
-it is the algebraic closure of a finite field.
+Returning to model theory of algebraically closed fields.
+We begin by introducing the notion of a complete theory:
+
+\begin{dfn}[Complete theories]
+    \link{dfn_complete_theory}
+    An $L$-theory $T$ is \textit{complete}
+    when either of the following equivalent definitions hold:
+    \begin{itemize}
+      \item  $T$ deduces any sentence of its negation
+    \begin{lstlisting}
+      def is_complete' (T : Theory L) : Prop :=
+      ∀ (ϕ : sentence L), T ⊨ ϕ ∨ T ⊨ ∼ ϕ \end{lstlisting}
+      \item Sentences true in any model are deduced by the theory.
+    \begin{lstlisting}
+      def is_complete'' (T : Theory L) : Prop :=
+      ∀ (M : Structure L) (hM : nonempty M) (ϕ : sentence L), M ⊨ T → M ⊨ ϕ → T ⊨ ϕ \end{lstlisting}
+      \item All models of $T$ satisfy the same sentences
+            (``are elementarily equivalent'').
+    \end{itemize}
+    Note that the definition \texttt{is\_complete} from the flypitch project
+    is stronger than these conditions, and is useful when constructing
+    theories with nice properties\footnote{
+      Personally, I prefer the word maximal consistent theory for
+      their definition \texttt{is\_complete}}.
+    However in practice there is no reason to throw that many sentences
+    into our language, so we use the versions above.
+\end{dfn}
+\begin{proof}
+  The statement is
+\begin{lstlisting}
+  lemma is_complete''_iff_is_complete' {T : Theory L} :
+    is_complete' T ↔ is_complete'' T := sorry \end{lstlisting}
+  The forward direction involves casing on the hypothesis of $T \vDash \phi$
+  or $T \vDash \neg \phi$, in the first case we are done,
+  and in the second we get a contradiction by
+  $\phi$ being both true and false in our model $M$.
+\begin{lstlisting}
+  { intros H M hM ϕ hMT hMϕ,
+    cases H ϕ with hTϕ hTϕ,
+    { exact hTϕ },
+    {
+      have hbot := hTϕ hM hMT,
+      rw realize_sentence_not at hbot,
+      exfalso,
+      exact hbot hMϕ } },
+\end{lstlisting}
+    On the other hand we need to case on whether $T$
+    is consistent or not.
+    When $T$ is consistent we can show $T$ deduces
+    $\phi$ or its negation by checking in that model,
+    otherwise $T$ should deduce anything.
+\begin{lstlisting}
+  { intros H ϕ,
+    by_cases hM : ∃ M : Structure L, nonempty M ∧ M ⊨ T,
+    {
+      rcases hM with ⟨ M , hM0 , hMT ⟩,
+      by_cases hMϕ : M ⊨ ϕ,
+      { left, exact H M hM0 ϕ hMT hMϕ },
+      {
+        right,
+        rw ← realize_sentence_not at hMϕ,
+        exact H M hM0 _ hMT hMϕ} },
+    { left,
+      intros M hM0 hMT,
+      exfalso,
+      apply hM ⟨ M , hM0 , hMT ⟩} } \end{lstlisting}
+\end{proof}
+
+\begin{prop}[Lefschetz principle]
+    \link{lefschetz}
+    Let $\phi$ be a sentence in the language of rings.
+    Then the following are equivalent:
+    \begin{enumerate}
+        \item Some model of $\ACF_0$ satisfies $\phi$.
+        (If you like $\C \vDash \phi$.)
+        \item $\ACF_0 \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+            greater than $n$, $\ACF_p \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+        greater than $n$, some model of $\ACF_p$ satisfies $\phi$.
+    \end{enumerate}
+    The first and last equivalences are due to the theories $\ACF_{p}$
+    being complete for any $p$ ($0$ or prime).
+\end{prop}
+
+To prove the above we need the following
+\begin{itemize}
+  \item \link{vaught_test}{Vaught's test} for showing a theory is complete
+        (this does the first and last equivalences and
+        is needed in the middle equivalence)
+  \item The compactness theorem for the middle equivalence.
+\end{itemize}
+In this section we will introduce these notions properly and how
+they are used.
+Vaught's test will be proven in a \linkto{vaught_proof}{later section}.
+The compactness theorem will not be proven
+(it was part of the flypitch project).
+
+\subsection{Vaught's test}
+Another way of expressing that a theory $T$ is complete is to
+ask for models of $T$ to satisfy the same sentences
+(that they are elementarily equivalent).
+In particular it is known that isomorphic models %? Ref?
+satisfy the same sentences.
+
+\begin{dfn}[Categoricity]
+    Given a language $L$ and a cardinal $\ka$,
+    an $L$-theory $T$ is called $\ka$-categorical
+    if any two models of $T$ of size $\ka$ are isomorphic.
+
+    \begin{lstlisting}
+  def categorical (κ : cardinal) (T : Theory L) :=
+  ∀ (M N : Structure L) (hM : M ⊨ T) (hN : N ⊨ T), #M = κ → #N = κ → nonempty (M ≃[L] N) \end{lstlisting}
+\end{dfn}
+
+Vaught's test says that categoricity is a useful condition for showing a theory is complete.
+Another condition we will need is that there are only infinite models to the theory
+
+\begin{lstlisting}
+  def only_infinite (T : Theory L) : Prop := ∀ (M : Model T), infinite M.1\end{lstlisting}
+
+\begin{prop}[Vaught's Test]
+  \link{vaught_test}
+  Let $L$ be a language and $T$ be a consistent theory in the language $L$
+  with only infinite models, such that it is $\ka$-categorical
+  for some large enough cardinal $\ka$ (see below for details).
+  Then $T$ is a complete theory.
+
+  \begin{lstlisting}
+  lemma is_complete'_of_only_infinite_of_categorical
+    [is_algebraic L] {T : Theory L} (M : Structure L) (hM : M ⊨ T)
+    (hinf : only_infinite T) {κ : cardinal}
+    (hκ : ∀ n, #(L.functions n) ≤ κ) (hωκ : ω ≤ κ) (hcat : categorical κ T) :
+    is_complete' T := sorry
+\end{lstlisting}
+  This may differ slightly to the statement in other sources;
+  the reason for the choice of these (stronger than usual)
+  hypotheses will be discussed
+  in the \linkto{vaught_proof}{section dedicated it its proof}.
+  % In practice it is less work to prove this when $L$ has no relation symbols,
+  % which is the case we are interested in (we say $L$ \textit{is algebraic}).
+  % Another practical simplification is asking for $\kappa$ to be larger than
+  % the collection of all function symbols.
+  % The proof that Marker gives %? Ref
+  % only requires that $\kappa$ is larger than the collection of constant symbols.
+\end{prop}
+
+We apply Vaught's test in our case to show that the theory
+of algebraically closed fields of a fixed characteristic is complete.
+
+\begin{prop}
+  $\ACF_{0}$ is complete and for any prime $p$, $\ACF_{p}$ is complete.
+\end{prop}
+\begin{proof}
+  The two proofs are similar, so we focus on the characteristic $0$ case.
+  According to Vaught's test, we first need to show that $\ACF_{0}$ is consistent,
+  which we can do my simply giving a model: the algebraic closure of $\Q$.
+  (For $\ACF_{p}$ we take the algebraic closure of $\F_{p}$.)
+  We already have all the tools to make such a model:
+  \begin{itemize}
+    \item Mathlib has definitions of the rationals \texttt{rat} and finite fields \texttt{zmod}.
+    \item (I lift them to an arbitrary universe level for generality.)
+    \item Mathlib already has a definition of algebraic closure \texttt{algebraic\_closure}.
+    \item We showed that any algebraically closed field is a model of $\ACF$
+          and that characteristic $n$ fields are models of $\ACF_{n}$.
+  \end{itemize}
+  \begin{lstlisting}
+def algebraic_closure_of_rat :
+  Structure ring_signature :=
+Rings.struc_to_ring_struc.Structure algebraic_closure.of_ulift_rat
+
+instance algebraic_closure_of_rat_models_ACF : fact (algebraic_closure_of_rat ⊨ ACF) :=
+by {split, classical, apply is_alg_closed_to.realize_ACF }
+
+instance : char_zero algebraic_closure_of_rat := ...
+
+theorem algebraic_closure_of_rat_models_ACF₀ :
+  algebraic_closure_of_rat ⊨ ACF₀ :=
+models_ACF₀_iff.2 ring_char.eq_zero \end{lstlisting}
+
+The next thing to show is that any model of $\ACF_{0}$ is infinite.
+This is true since any algebraically closed field is infinite
+(I give a proof of this in \texttt{Rings.ToMathlib.algebraic\_closure};
+it is just considering the roots of the separable polynomial $x^{n} - 1$ for each $0 < n$):
+\begin{lstlisting}
+lemma only_infinite_ACF : only_infinite ACF :=
+  by { intro M, haveI : fact (M.1 ⊨ ACF) := ⟨ M.2 ⟩, exact is_alg_closed.infinite }\end{lstlisting}
+
+We need categoricity, for a large cardinal.
+We choose this to be the continuum $\f{c}$, the cardinality of $\C$.
+For each natural there are only finitely many function symbols
+of that arity in the language of rings, and of course $\om \le \f{c}$.
+It remains to show that any two algebraically closed fields of characteristic $0$
+of size $\f{c}$ are isomorphic.
+This was proven by Chris Hughes,
+and is now available in \texttt{mathlib}.
+
+\begin{lstlisting}
+lemma categorical_ACF₀ {κ} (hκ : ω < κ) : fol.categorical κ ACF₀ :=
+begin
+  intros M N hM hN hMκ hNκ,
+  haveI : fact (M ⊨ ACF₀) := ⟨ hM ⟩, haveI : fact (N ⊨ ACF₀) := ⟨ hN ⟩,
+  split,
+  apply equiv_of_ring_equiv,
+  apply classical.choice,
+  apply ring_equiv_of_cardinal_eq_of_char_zero, -- credit to Chris Hughes
+  repeat { apply_instance },
+  repeat { cc },
+end\end{lstlisting}
+
+Putting the above together we have
+\begin{lstlisting}
+theorem is_complete'_ACF₀ : is_complete' ACF₀ :=
+is_complete'_of_only_infinite_of_categorical
+    instances.algebraic_closure_of_rat
+    instances.algebraic_closure_of_rat_models_ACF₀ -- algebraic closure of ℚ is a model of ACF₀
+    (only_infinite_subset ACF_subset_ACF₀ only_infinite_ACF) -- alg closed fields are infinite
+    -- pick the cardinal κ := 𝔠
+    card_functions_omega_le_continuum
+    omega_le_continuum
+    (categorical_ACF₀ omega_lt_continuum) \end{lstlisting}
+\end{proof}
+
+\subsection{Compactness}
 
 
+
+\subsection{Proving Lefschetz}

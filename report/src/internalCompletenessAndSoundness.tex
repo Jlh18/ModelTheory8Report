@@ -1,4 +1,31 @@
-We start by listing some general facts and tips about working with models:
+In this section and the next we focus on proving internal
+completeness and soundness results:
+\begin{prop}[Internal completeness and soundness]
+  \link{algebraic_objects_iff_models}
+  The following are true
+  \begin{itemize}
+    \item A type $A$ is a ring (according to lean) if and only if
+          $A$ is a structure in the language of rings
+          that models the theory of rings.
+    \item A type $A$ is a field (according to lean) if and only if
+          it is a model of the theory of fields.
+    \item A type $A$ is an algebraically closed field (of characteristic p)
+          if and only if it is a model of $\ACF_{(p)}$.
+    \item (Details later) Ax-Grothendieck stated model theoretically corresponds to
+          Ax-Grothendieck stated internally.
+  \end{itemize}
+  For the purposes of design in lean it is
+  more sensible to split each ``if and only if'' into seperate constructions,
+  for converting the algebraic objects into their model theoretic counterparts
+  and vice versa.
+  Although rather trivial,
+  converting between these facts takes a bit of work in \texttt{lean},
+  especially for case of $\ACF_{p}$
+  where some ground work needs to be done for interpreting \texttt{gen\_monic\_poly}.
+\end{prop}
+
+Before we embark on a proof,
+we list some general facts and tips about working with models:
 \begin{itemize}
   \item Proofs are easier when working in models, so our proofs tend to
         first translate everything we can to the ring,
@@ -409,8 +436,9 @@ end\end{lstlisting}
 \subsection{Characteristic}
 
 We omit the details of similar proofs for characteristic as it is not
-as interesting as the other parts. Instead we simply state the important lemmas
-that are proven in the source code.
+as interesting as the other parts.
+Here are the lemmas we prove along the way,
+some of which are convenient to feed to \texttt{lean} as \texttt{instances}
 
 \begin{lstlisting}
 instance models_ACFₚ_to_models_ACF [hp : fact (nat.prime p)] [hM : fact (M ⊨ ACFₚ hp.1)] : fact (M ⊨ ACF) := sorry
