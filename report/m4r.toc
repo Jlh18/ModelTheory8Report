@@ -17,8 +17,7 @@
 \contentsline {subsection}{\numberline {4.3}Completeness and soundness}{22}{subsection.4.3}%
 \contentsline {section}{\numberline {5}The Locally Finite Case}{23}{section.5}%
 \contentsline {section}{\numberline {6}The Lefschetz Principle}{24}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Vaught's test}{25}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Compactness}{27}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Proving Lefschetz}{27}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Vaught's test}{27}{section.7}%
-\contentsline {section}{\numberline {8}Compactness}{27}{section.8}%
+\contentsline {subsection}{\numberline {6.1}$\ACF _{n}$ is complete (Vaught's test)}{25}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Compactness}{28}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Proving Lefschetz}{29}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Vaught's test}{30}{section.7}%

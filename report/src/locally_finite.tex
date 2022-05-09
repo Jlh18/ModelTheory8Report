@@ -55,7 +55,21 @@ talk about the \texttt{lean} formalization of it.
   hence $b \in K^{n} = f(K^{n})$.
 \end{proof}
 
-% In fact the same idea can be used to prove the converse:
-% that surjective polynomial maps on locally finite fields
-% are injective.
-%? Where does this stop being true??
+It is important to note that surjectivity does not imply
+injectivity for locally finite fields.
+An example:
+\[ P = x^{2} + x + 1 : \bar{\F}_{2} \to \bar{\F}_{2}\]
+is a polynomial map between locally finite fields.
+This is surjective since the algebraic closure has all
+roots of all polynomials over it.
+It is \textit{not injective} since this polynomial is
+separable in characteristic two (its derivative is a unit).
+
+The reason any imitation of the above proof will fail
+in this direction is that the restriction of a surjective polynomial map
+is not in general surjective.
+Let $a \in \bar{F}_{2}$ be a root of $x^{2} + x + 1$. Then
+\[ P |_{\F(a)} : \F(a) \to \F(a) \]
+takes $0,1 \mapsto 1$ and $a, a + 1 \mapsto 0$.
+Note that $\F(a)$ is size $4$ so we have shown it is
+neither injective nor surjective.

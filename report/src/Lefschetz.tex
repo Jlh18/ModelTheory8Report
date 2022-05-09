@@ -96,7 +96,8 @@ Vaught's test will be proven in a \linkto{vaught_proof}{later section}.
 The compactness theorem will not be proven
 (it was part of the flypitch project).
 
-\subsection{Vaught's test}
+\subsection{$\ACF_{n}$ is complete (Vaught's test)}
+We want to show that $\ACF_{n}$ is complete.
 Another way of expressing that a theory $T$ is complete is to
 ask for models of $T$ to satisfy the same sentences
 (that they are elementarily equivalent).
@@ -114,10 +115,60 @@ satisfy the same sentences.
 \end{dfn}
 
 Vaught's test says that categoricity is a useful condition for showing a theory is complete.
-Another condition we will need is that there are only infinite models to the theory
+We check that this holds for $\ACF_{n}$ and uncountable cardinals.
+\begin{prop}[Categoricity for $\ACF_{n}$]
+  If two algebraically closed fields have the same \textit{uncountable}
+  cardinality then they are (non-canonically) isomorphic.
+  \begin{lstlisting}
+lemma ring_equiv_of_cardinal_eq_of_char_eq
+  {K L : Type u} [hKf : field K] [hLf : field L]
+  (hKalg : is_alg_closed K) (hLalg : is_alg_closed L)
+  (p : ℕ) [char_p K p] [char_p L p]
+  (hKω : ω < #K) (hKL : #K = #L) : nonempty (K ≃+* L) := sorry \end{lstlisting}
+
+  Hence $\ACF_{n}$ is $\kappa$-categorical for any uncountable cardinal $\kappa$.
+\end{prop}
+\begin{proof}
+  This is proven by Chris Hughes and is now part of mathlib.
+  We outline the argument:
+
+  Let $\F$ be the minimal field in $K$ and $L$,
+  which is either finite or $\Q$
+  and is the same field since they are of the same characteristic.
+
+  There exist transcendence bases for $K$ and $L$ respectively,
+  which we can call $s$ and $t$.
+  Since $K$ and $L$ are both uncountable,
+  the transcendence bases must be of the same cardinality as the fields.
+  \[ \# K = \om + \# s = \# s \quad \text{ and }
+    \quad \# L = \om + \# t = \# t \]
+  Then $t$ and $s$ biject, hence we have ring isomorphisms
+  \[K \iso \F(s) \iso \F(t) \iso L\]
+
+  Then we can apply this to show categoricity:
+
+\begin{lstlisting}
+lemma categorical_ACF₀ {κ} (hκ : ω < κ) : fol.categorical κ ACF₀ :=
+begin
+  intros M N hM hN hMκ hNκ,
+  haveI : fact (M ⊨ ACF₀) := ⟨ hM ⟩, haveI : fact (N ⊨ ACF₀) := ⟨ hN ⟩,
+  split,
+  apply equiv_of_ring_equiv,
+  apply classical.choice,
+  apply ring_equiv_of_cardinal_eq_of_char_zero, -- the char 0 version of what we showed above
+  repeat { apply_instance },
+  repeat { cc },
+end\end{lstlisting}
+\end{proof}
+
+Another condition we will need for Vaught's test
+is that there are only infinite models to the theory
 
 \begin{lstlisting}
   def only_infinite (T : Theory L) : Prop := ∀ (M : Model T), infinite M.1\end{lstlisting}
+
+This will hold in our case since algebraically closed fields are infinite.
+We are now in a position to state Vaught's test.
 
 \begin{prop}[Vaught's Test]
   \link{vaught_test}
@@ -147,6 +198,8 @@ Another condition we will need is that there are only infinite models to the the
 
 We apply Vaught's test in our case to show that the theory
 of algebraically closed fields of a fixed characteristic is complete.
+However, before we do so we need a field theory lemma.
+
 
 \begin{prop}
   $\ACF_{0}$ is complete and for any prime $p$, $\ACF_{p}$ is complete.
@@ -186,27 +239,10 @@ it is just considering the roots of the separable polynomial $x^{n} - 1$ for eac
 lemma only_infinite_ACF : only_infinite ACF :=
   by { intro M, haveI : fact (M.1 ⊨ ACF) := ⟨ M.2 ⟩, exact is_alg_closed.infinite }\end{lstlisting}
 
-We need categoricity, for a large cardinal.
+We need a large cardinal for categoricity.
 We choose this to be the continuum $\f{c}$, the cardinality of $\C$.
-For each natural there are only finitely many function symbols
+It is large enough since for each natural there are only finitely many function symbols
 of that arity in the language of rings, and of course $\om \le \f{c}$.
-It remains to show that any two algebraically closed fields of characteristic $0$
-of size $\f{c}$ are isomorphic.
-This was proven by Chris Hughes,
-and is now available in \texttt{mathlib}.
-
-\begin{lstlisting}
-lemma categorical_ACF₀ {κ} (hκ : ω < κ) : fol.categorical κ ACF₀ :=
-begin
-  intros M N hM hN hMκ hNκ,
-  haveI : fact (M ⊨ ACF₀) := ⟨ hM ⟩, haveI : fact (N ⊨ ACF₀) := ⟨ hN ⟩,
-  split,
-  apply equiv_of_ring_equiv,
-  apply classical.choice,
-  apply ring_equiv_of_cardinal_eq_of_char_zero, -- credit to Chris Hughes
-  repeat { apply_instance },
-  repeat { cc },
-end\end{lstlisting}
 
 Putting the above together we have
 \begin{lstlisting}
@@ -223,6 +259,191 @@ is_complete'_of_only_infinite_of_categorical
 
 \subsection{Compactness}
 
+One way of stating compactness is the idea that proofs are finite.
 
+\begin{prop}[Compactness (in terms of deduction)]
+If $T$ is an $L$-theory and $f$ is an $L$-sentence
+then $T$ deduces $\phi$ if and only if there is some finite subtheory of $T$
+that deduces $f$.
+
+\begin{lstlisting}
+theorem compactness {L : Language} {T : Theory L} {f : sentence L} :
+  T ⊨ f ↔ ∃ fs : finset (sentence L), (↑fs : Theory L) ⊨ (f : sentence L) ∧ ↑fs ⊆ T := sorry
+\end{lstlisting}
+\end{prop}
+
+Confusingly, this can be found in a file called \texttt{completeness.lean}.
+The backwards direction of this is obvious since any model of $T$ automatically
+is a model of a finite subset.
+
+There is an alternative formulation of compactness which we do not use for Lefschetz,
+but is important as a tool for showing that a theory is consistent.
+The reader may choose to come back to it when it is referred to later on.
+
+\begin{prop}[Compactness (in terms of consistency)]
+  If $T$ is an $L$-theory then $T$ is consistent if and only if
+  each finite subtheory of $T$ is consistent.
+
+  \begin{lstlisting}
+theorem compactness' {L} {T : Theory L} : is_consistent T ↔
+  ∀ fs : finset (sentence L), ↑fs ⊆ T → is_consistent (↑fs : Theory L) := \end{lstlisting}
+
+  Often the term ``finitely consistent'' is used to describe the latter case.
+\end{prop}
+
+I prove the second statement (using the lemmas made for the first) in
+\texttt{Rings.ToMathlib.completeness.lean}.
+The proof I give below is \textit{not exactly} this proof,
+since I wish to avoid first order logic syntax ($\vdash$),
+which is the default layer of
+definitions used in the \texttt{flypitch} library,
+and just argue using model theory ($\vDash$).
+However the essence of the proof is the same.
+
+\begin{prop}
+  The two formulations of compactness are equivalent.
+\end{prop}
+\begin{proof}
+  \begin{forward}
+    Clearly if $T$ is consistent with a model $\MM$ then $\MM$
+    is also a model of any subtheory of $T$.
+
+    For the converse we prove the contrapositive.
+    Suppose $T$ is inconsistent, then $T \vDash \bot$,
+    since proving this requires assuming a model of $T$.
+    The first version of compactness
+    implies there is a finite subset of $T$ that deduces $\bot$.
+    This subset cannot be consistent, as any model will satisfy $\bot$.
+  \end{forward}
+
+  \begin{backward}
+    Clearly if a finite subtheory of $T$ deduces a sentence $\phi$ then
+    any model of $T$ is a model of the subtheory, hence also satisfies $\phi$.
+
+    For the converse we again prove the contrapositive.
+    \textit{Note that for a theory $\De$ and a sentence $\phi$ we have
+      $\De \nvDash \phi$ if and only if $\De \cup \set{\neg \phi}$ is consistent.}
+    We make use of this fact:
+    Suppose all finite subtheories of $T$ do not deduce a sentence $\phi$.
+    Then for any finite subtheory $\De \subs T$, we have $\De \nvDash \phi$ and so
+    $\De \cup {\neg \phi}$ is consistent.
+    Then $T \cup \set{\neg \phi}$ is a finitely consistent theory,
+    hence is consistent by the second version of compactness.
+    Hence $T \nvDash \phi$.
+  \end{backward}
+\end{proof}
 
 \subsection{Proving Lefschetz}
+
+We are now ready to prove the Lefschetz principle.
+We begin by showing that if $\ACF_{0}$ deduces a ring sentence $\phi$
+then $\ACF_{p}$ deduces $\phi$ for large $p$.
+We prove it seperately because it will be used in the converse!
+
+\begin{lstlisting}
+theorem characteristic_change_left (ϕ : sentence ring_signature) :
+ACF₀ ⊨ ϕ → ∃ (n : ℕ), ∀ {p : ℕ} (hp : nat.prime p), n < p → ACFₚ hp ⊨ ϕ := sorry \end{lstlisting}
+
+\begin{proof}
+We apply compactness:
+if $\ACF_{0}$ deduces $\phi$ then we must have a finite subtheory of
+$\ACF_{0}$ that deduces $\phi$.
+In particular since $\ACF_{0}$ consisted of the axioms for $\ACF$ plus
+$p + 1 \ne 0$ for each $p \in \N$ we know that only finitely many
+such formulas are needed to deduce $\phi$.
+Hence our $n$ should be the maximum $p$ such that $p + 1 \ne 0$
+is in our finite subtheory, plus $1$.
+\begin{lstlisting}
+begin
+  rw compactness,
+  intro hsatis,
+  obtain ⟨ fs , hsatis , hsub ⟩ := hsatis,
+  classical,
+  obtain ⟨ fsACF , fsrange , hunion, hACF , hrange ⟩ :=
+    finset.subset_union_elim hsub,
+  set fsnat : finset ℕ := finset.preimage fsrange plus_one_ne_zero
+      (set.inj_on_of_injective injective_plus_one_ne_zero _) with hfsnat,
+  use fsnat.sup id + 1, \end{lstlisting}
+
+In the above \texttt{fs} is our finite subtheory,
+\texttt{fsrange} is the part consisting of the formulas $p + 1 \ne 0$,
+and the other part from $\ACF$ is called \texttt{fsACF}.
+
+Let us then suppose that we have a prime that is larger than this $n$.
+By design,
+it should be that $\ACF_{p}$ deduces all the formulas from
+our finite subtheory, hence $\ACF_{p}$ should deduce $\phi$.
+Supposing that $M$ is a model of $\ACF_{p}$,
+it suffices that $M$ deduces $\phi$.
+Since $\texttt{fs} = \texttt{fsACF} \cup \texttt{fsrange}$
+deduces $\phi$ it suffices that $M$ deduces \texttt{fsrange}
+(it deduces $\ACF$ so it deduces any subset of $\ACF$).
+
+\begin{lstlisting}
+  intros p hp hlt M hMx hmodel,
+  haveI : fact (M ⊨ ACF) := ⟨ (models_ACFₚ_iff'.mp hmodel).2 ⟩,
+  have hchar := (@models_ACFₚ_iff _ _ _inst_1 _).1 hmodel,
+  apply hsatis hMx,
+  rw [← hunion, finset.coe_union, all_realize_sentence_union],
+  split,
+  { apply all_realize_sentence_of_subset _ hACF,
+    exact all_realize_sentence_of_subset hmodel ACF_subset_ACFₚ},
+  {sorry}, \end{lstlisting}
+
+It suffices to show that for each $q$ in \texttt{fsnat}
+(the list of $q$ such that $q + 1 \ne 0$ is in the subtheory \texttt{fs}),
+$M$ satisfies $q + 1 \ne 0$.
+We can then conclude that this is true since $M$ is characteristic $p$,
+and $q < p$.
+\end{proof}
+
+Now for the whole theorem:
+
+\begin{lstlisting}
+theorem characteristic_change (ϕ : sentence ring_signature) :
+ACF₀ ⊨ ϕ ↔ (∃ (n : ℕ), ∀ {p : ℕ} (hp : nat.prime p), n < p → ACFₚ hp ⊨ ϕ) := sorry \end{lstlisting}
+\begin{proof}
+It remains to prove the converse.
+We know that $\ACF_{0}$ is complete,
+so either $\ACF_{0} \vDash \phi$ or $\ACF_{0} \vDash \neg \phi$,
+and it suffices to refute the latter case.
+
+\begin{lstlisting}
+begin
+  split,
+  { apply characteristic_change_left },
+  {
+    intro hn,
+    cases is_complete'_ACF₀ ϕ with hsatis hsatis,
+    { exact hsatis },
+    { sorry }, \end{lstlisting}
+
+We can apply the forward direction of Lefschetz,
+and have that $\ACF_{p}$ deduces $\neg \phi$ for large $p$.
+We instantiate these lower bounds, and take any prime $p$ that is larger
+than their maximum.
+
+\begin{lstlisting}
+    { have hm := characteristic_change_left (∼ ϕ) hsatis,
+      cases hn with n hn,
+      cases hm with m hm,
+      obtain ⟨ p , hle , hp ⟩ := nat.exists_infinite_primes (max n m).succ, \end{lstlisting}
+
+We take the algebraic closure $\Om$ of $\F_{p}$ as a model of $\ACF_{p}$,
+and since $p$ is suitably large, we have that $\Om \vDash \phi$ and
+$\Om \vDash \neg \phi$, which is a contradiction.
+
+\begin{lstlisting}
+      have hnp : n < p :=
+        lt_of_lt_of_le (nat.lt_succ_of_le (le_max_left _ _)) hle,
+      have hmp : m < p :=
+        lt_of_lt_of_le (nat.lt_succ_of_le (le_max_right _ _)) hle,
+      have hS := instances.algebraic_closure_of_zmod_models_ACFₚ hp, -- Ω ⊨ ACFₚ
+      specialize @hn p hp hnp _ ⟨ 0 ⟩ hS,
+      specialize @hm p hp hmp _ ⟨ 0 ⟩ hS,
+      simp only [realize_sentence_not] at hm,
+      exfalso,
+      apply hm hn } },
+end \end{lstlisting}
+
+\end{proof}

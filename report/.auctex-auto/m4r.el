@@ -21,6 +21,7 @@
     "src/AxGroth"
     "src/locally_finite"
     "src/Lefschetz"
+    "src/vaught"
     "article"
     "art10"
     "geometry"
