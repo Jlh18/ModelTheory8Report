@@ -495,119 +495,170 @@
 \section{Vaught's test and Upwards L\"{o}wenheim-Skolem}
 \input{src/vaught.tex}
 
-
-In this section we go back to general model theory,
-with the goal of proving \linkto{vaught_test}{Vaught's test}.
-However, the proof of Vaught's test relies on a (a variant of) the
-\linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem Theorem}.
-It says the following:
-
-\begin{prop}[Upwards L\"{o}wenheim-Skolem]
-  \link{upwards_lowenheim_skolem}
-  Suppose $L$ is an algebraic language and $T$ is an $L$-theory.
-  If $\kappa$ is a sufficiently large cardinal and $T$ has an infinite model,
-  then $T$ has a model of size $\kappa$.
-
-  \begin{lstlisting}
-theorem has_sized_model_of_has_infinite_model [is_algebraic L] {T : Theory L} {κ : cardinal}
-  (hκ : ∀ n, #(L.functions n) ≤ κ) (hωκ : ω ≤ κ) :
-  (∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ infinite M) →
-  ∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ #M = κ := sorry \end{lstlisting}
-\end{prop}
-
-This is often stated in terms of starting with an $L$-structure,
-and extending it to a larger $L$-structure,
-hence the word ``upward'' in the name.
-This can be done using the above by taking $T$ to be the set of
-sentences satisfied by the structure.
-
-\subsection{Proof of Vaught's Test}
-\link{vaught_proof}
-
-We first apply \linkto{upwards_lowenheim_skolem}{
-  Upwards L\"{o}wenheim-Skolem} to prove \linkto{vaught_test}{Vaught's test}.
-Recall the statement:
-
-\begin{lstlisting}
-lemma is_complete'_of_only_infinite_of_categorical
-  [is_algebraic L] {T : Theory L} (M : Structure L) (hM : M ⊨ T)
-  (hinf : only_infinite T) {κ : cardinal}
-  (hκ : ∀ n, #(L.functions n) ≤ κ) (hωκ : ω ≤ κ) (hcat : categorical κ T) :
-  is_complete' T := sorry \end{lstlisting}
-
-\begin{proof}
-The proof is by contradiction.
-Suppose $T$ is not complete;
-this gives us a formula $\phi$ such that
-\[ T \nvDash \phi \quad \text{and} \quad T \nvDash \neg \phi \]
-which in turn (after unfolding the definition of $T \nvDash \phi$)
-gives us two models $M$ and $N$ of $T$ such that
-\[ M \nvDash \phi \quad \text{and} \quad N \nvDash \neg \phi \]
-our aim is to adjust these to two models of $T$
-of cardinality $\kappa$ so that they are isomorphic by categoricity,
-but satisfy different sentences.
-
-\begin{lstlisting}
-begin
-  intro ϕ,
-  by_contra hbot,
-  simp only [not_or_distrib, not_ssatisfied] at hbot,
-  obtain ⟨ ⟨ M , hM0 , hM ⟩ , ⟨ N , hN0 , hN ⟩ ⟩ := hbot,
-\end{lstlisting}
-
-We can adjust cardinality using Upwards L\"{o}wenheim-Skolem,
-obtaining models of cardinality $\kappa$.
-This is why we need $T$ to only have infinite models.
-\begin{lstlisting}
-  obtain ⟨ M' , hM'0 , hM' , hMcard ⟩ := has_sized_model_of_has_infinite_model hκ hωκ
-    ⟨
-      M , hM0 , hM ,
-      hinf ⟨ M , all_realize_sentence_of_subset hM (set.subset_insert _ _) ⟩
-    ⟩,
-  obtain ⟨ N' , hN'0 , hN' , hNcard ⟩ := has_sized_model_of_has_infinite_model hκ hωκ
-    ⟨
-      N , hN0 , hN ,
-      hinf ⟨ N , all_realize_sentence_of_subset hN (set.subset_insert _ _) ⟩
-    ⟩, \end{lstlisting}
-
-By categoricity, $M$ and $N$ are isomorphic as $L$-structures.
-We supply a proof that isomorphic structures satisfy the same
-sentences in \texttt{Rings.ToMathlib.fol.lean}.
-It follows from a series of proofs by induction on terms and formulas.
-
-\begin{lstlisting}
-  have hiso := hcat M' N'
-    (all_realize_sentence_of_subset hM' (set.subset_insert _ _))
-    (all_realize_sentence_of_subset hN' (set.subset_insert _ _)) hMcard hNcard,
-  rw all_realize_sentence_insert at hM' hN',
-  rw Language.equiv.realize_sentence _ (classical.choice hiso) at hN',
-  exact hN'.1 hM'.1,
-end
-\end{lstlisting}
-\end{proof}
-
-\subsection{Upwards L\"{o}wenheim-Skolem}
-
-Our remaining goal is to prove
-\linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem}.
-
-\begin{lstlisting}
-theorem has_sized_model_of_has_infinite_model [is_algebraic L] {T : Theory L} {κ : cardinal}
-  (hκ : ∀ n, #(L.functions n) ≤ κ) (hωκ : ω ≤ κ) :
-  (∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ infinite M) →
-  ∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ #M = κ := sorry \end{lstlisting}
-
-The idea of the proof is that we want to design a model of the right size
-by making a language $L'$ extending $L$ and an $L'$-theory $T'$ extending $T$
-(extending in the sense that any $L'$-model of $T'$ reduces down to a $L$-model of $T$),
-such that the design of $L'$ and $T'$ guarantee that any model of $T'$ is large enough.
-Meanwhile, we design the most obvious $L'$-model \texttt{term\_model} of $T'$,
-by taking the type of all the $L'$-terms, and quotienting by equality deduced by $T'$,
-guaranteeing that \texttt{term\_model} is small enough.
-
 \subsubsection{Language extension and Henkinization}
 
+%? Where to talk about is_algebraic ∧ cardinality choice
 
+Suppose we have a language $L$ and a consistent theory $T$ that has
+an infinite model $M$, as well as an infinite cardinal $\kappa$.
+Our first goal is to make a consistent theory $T_\kappa$
+in a language $L_{\kappa}$ such that any model of $T_{\kappa}$
+is size at least $\kappa$.
+
+\textit{The language extended to have $\kappa$ many symbols:}
+For design reasons it is convenient to work generally.
+We will do the following
+\begin{enumerate}
+  \item Define the type of language morphisms $\texttt{L1} \to^{L} \texttt{L2}$
+  \item Define the sum of two languages \texttt{L1.sum L2}
+        and the language morphisms into the sum.
+  \item Define the language that has constant symbols indexed by a type $\al$,
+        called \texttt{of\_constants $\al$}.
+        In our situation we will take $\al$ to be \texttt{$\ka$.out},
+        which is a type of cardinality $\kappa$ (by the axiom of choice)
+  \item Define the theory \texttt{distinct\_constants $\al$}
+        in the language \texttt{of\_constants $\al$}
+        that consists of $\texttt{a} \ne \texttt{b}$
+        for each pair of distinct terms \texttt{a b : $\al$}.
+  \item Define the induced $\texttt{L2}$-theory
+        from a morphism of languages $\texttt{L1} \to^{L} \texttt{L2}$ and
+        an \texttt{L1}-theory
+  \item Make the sum of the languages $L$ (from the above hypotheses)
+        and \texttt{of\_constants $\al$}.
+        We are interested in taking the union of the induced theory from \texttt{T}
+        and the induced theory from
+        \texttt{distinct\_constants $\al$}.
+        We call this theory \texttt{union\_add\_distinct\_constants T $\al$}
+  \item Show that \texttt{union\_add\_distinct\_constants T $\al$} is consistent
+\end{enumerate}
+
+$(1)$ A morphism of languages consists of a map on function symbols
+and a map on relation symbols (for each arity).
+\begin{lstlisting}
+structure Lhom (L1 L2 : Language) :=
+(on_function : ∀{n}, L1.functions n → L2.functions n)
+(on_relation : ∀{n}, L1.relations n → L2.relations n) \end{lstlisting}
+We denote this type by $\texttt{L1} \to^{L} \texttt{L2}$.
+
+$(2)$ The sum of two languages takes two languages and makes the
+disjoint sum of the function symbols and relation symbols of
+each arity.
+\begin{lstlisting}
+def sum (L1 L2 : Language) : Language :=
+⟨λn, L1.functions n ⊕ L2.functions n, λ n, L1.relations n ⊕ L2.relations n⟩ \end{lstlisting}
+The obvious morphisms into the sum are from the maps into the disjoint
+sum of types
+\begin{lstlisting}
+def sum_inl {L L' : Language} : L →ᴸ L.sum L' :=
+⟨λn, sum.inl, λ n, sum.inl⟩
+
+def sum_inr {L L' : Language} : L' →ᴸ L.sum L' :=
+⟨λn, sum.inr, λ n, sum.inr⟩ \end{lstlisting}
+
+$(3)$ \texttt{of\_constants $\al$} sets $\al$ as the set of function symbols
+of arity $0$, and makes no other function or relation symbols.
+\begin{lstlisting}
+def of_constants (α : Type*) : Language :=
+{ functions := λ n, match n with | 0 := α | (n+1) := pempty end,
+  relations := λ _, pempty } \end{lstlisting}
+
+$(4)$ We first make a function from the product $\al \times \al$ to
+the set of sentences, that takes $(x_1,x_2)$ and returns the sentence
+$x_{1} \ne x_{2}$.
+Then the image of the complement of the diagonal in $\al \times \al$
+is the theory we want.
+
+\begin{lstlisting}
+def distinct_constants_aux (x : α × α) : sentence (Language.of_constants α) :=
+∼ (bd_const x.fst ≃ bd_const x.snd)
+
+def distinct_constants : Theory (Language.of_constants α) :=
+set.image (distinct_constants_aux _) { x : α × α | x.fst ≠ x.snd } \end{lstlisting}
+
+$(5)$ The theory induced by a language morphism is constructed by
+taking image of the induced map from \texttt{L1}-sentences
+to \texttt{L2}-sentences.
+This in turn is a special case of the induced map on bounded formulas,
+which is made by induction on bounded formulas and bounded terms.
+We don't go through the details of this;
+the code is from \texttt{flypitch} and can be found in
+\texttt{language\_extension.lean}.
+
+$(6)$ The theory we are interested in is the latter of the following
+\begin{lstlisting}
+def add_distinct_constants : Theory $ L.sum (Language.of_constants α) :=
+Theory_induced Lhom.sum_inr $ distinct_constants _
+
+def union_add_distinct_constants (T : Theory L) (α : Type u) :=
+(Theory_induced Lhom.sum_inl T : Theory $ L.sum (of_constants α)) ∪ add_distinct_constants α \end{lstlisting}
+It combines the induced theories from the maps into the sum,
+starting with the theory $T$ we want to build a $\kappa$-sized
+model for and adding $\kappa$ many symbols to it.
+
+$(7)$
+
+\begin{lstlisting}
+lemma is_consistent_union_add_distinct_constants {T : Theory L} (α : Type u)
+  {M : Structure L} (hMinf : infinite M) (hMT : M ⊨ T):
+  is_consistent $ union_add_distinct_constants T α :=
+begin
+  have hM0 : nonempty M := infinite.nonempty _,
+  rw compactness',
+  intros fs hfsTκ,
+  rw model_existence,
+  classical,
+  obtain ⟨Tfin, of_constants_fin, hfs, hTfin, h_of_constants_fin⟩ :=
+    finset.subset_union_elim hfsTκ,
+  classical,
+  -- pick out constants that appear in f_of_constants
+  set κfin : finset α := constants_appearing_in (of_constants.preimage of_constants_fin)
+    with hκfin,
+  let on_κfin : κfin ↪ M := classical.choice ((cardinal.le_def κfin M).1
+    (le_of_lt $ cardinal.finset_lt_infinite hMinf)),
+  -- send κfin to M injectively, map the rest to a point.
+  set c : α → M :=
+    λ x, dite (x ∈ κfin) (λ h, on_κfin ⟨x,h⟩) (λ _, classical.choice hM0) with hc,
+  -- have hc : ∀ a b : κ.out, a ∈ κfin → b ∈ κfin → c a ≠ c b, sorry,
+  refine ⟨ Language.of_constants.sum_Structure c , hM0 , _ ⟩,
+  rw [← hfs, finset.coe_union, all_realize_sentence_union],
+  split,
+  { apply all_realize_sentence_of_subset _ hTfin,
+    apply Language.of_constants.sum_Structure_Theory_induced hMT },
+  { intros ϕ hϕ,
+    have hϕ' := h_of_constants_fin hϕ,
+    simp only [add_distinct_constants, set.mem_diff, on_sentence,
+      set.mem_image, ne.def, prod.exists, not_exists, not_and] at hϕ',
+    obtain ⟨⟨ψ, ⟨⟨ a, b, ⟨ hab, abrw ⟩⟩ , ψrw⟩⟩, _ ⟩ := hϕ',
+    subst ψrw,
+    subst abrw,
+    simp only [← on_bounded_formula_not, on_bounded_formula, bd_const,
+      on_bounded_term, realize_sentence_not, realize_sentence_equal,
+      realize_closed_term, realize_bounded_term, Lhom.sum_inr,
+      Language.of_constants.sum_Structure, Language.of_constants.fun_map,
+      distinct_constants_aux] at hϕ ⊢,
+    rw hc,
+    have habκfin : a ∈ κfin ∧ b ∈ κfin,
+    { rw hκfin,
+      simp only [constants_appearing_in, pairs_appearing_in, bd_const,
+        of_constants.preimage, ←on_bounded_formula_not, on_bounded_formula, Lhom.sum_inr,
+        on_sentence, distinct_constants_aux, finset.mem_union, finset.mem_image,
+        finset.mem_preimage, on_bounded_term, exists_prop, prod.exists,
+        exists_and_distrib_right, exists_eq_right],
+      exact ⟨or.inl ⟨ b , hϕ ⟩, or.inr ⟨ a , hϕ ⟩⟩ },
+    simp only [dif_pos habκfin.1, dif_pos habκfin.2],
+    intro hbot,
+    have hbot' := (on_κfin.injective hbot),
+    simp only [set.mem_set_of_eq] at hab,
+      simp only [subtype.mk_eq_mk] at hbot',
+  apply hab hbot' },
+end
+\end{lstlisting}
+
+Now, to have an upper bound on the cardinality,
+we need to actually construct a model,
+but in order to do so we need that the language has enough
+constant symbols with respect to $T$.
+Therefore we need to do Henkinization.
 
 \subsubsection{\texttt{term\_model} and cardinality}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.16)  10 MAY 2022 19:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.16)  12 MAY 2022 18:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1261,11 +1261,11 @@ tch
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 308.
-[31] [32]) (./src/vaught.tex)
+[31] [32]) (./src/vaught.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 505.
- [33] (./m4r.bbl [34]) [35] (./m4r.aux)
+(mdframed)              on input line 7.
+ [33]) [34] [35] (./m4r.bbl) [36] (./m4r.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1273,10 +1273,10 @@ Package rerunfilecheck Info: File `m4r.out' has not changed.
 (rerunfilecheck)             Checksum: 900CFDDB740487ABA1A6B44D73D5CDA2;4959.
  ) 
 Here is how much of TeX's memory you used:
- 30104 strings out of 478276
- 558387 string characters out of 5853013
- 1096016 words of memory out of 5000000
- 46942 multiletter control sequences out of 15000+600000
+ 30161 strings out of 478276
+ 559157 string characters out of 5853013
+ 1096236 words of memory out of 5000000
+ 46962 multiletter control sequences out of 15000+600000
  542986 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,22n,104p,1192b,1323s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1324,10 +1324,10 @@ bols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 sr/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist
 /fonts/type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public
 /tex-gyre/qplri.pfb>
-Output written on m4r.pdf (35 pages, 530430 bytes).
+Output written on m4r.pdf (36 pages, 538607 bytes).
 PDF statistics:
- 1404 PDF objects out of 1440 (max. 8388607)
- 1299 compressed objects within 13 object streams
- 809 named destinations out of 1000 (max. 500000)
+ 1452 PDF objects out of 1728 (max. 8388607)
+ 1345 compressed objects within 14 object streams
+ 846 named destinations out of 1000 (max. 500000)
  229 words of extra memory for PDF output out of 10000 (max. 10000000)
 
