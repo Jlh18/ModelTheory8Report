@@ -85,7 +85,7 @@ We begin by introducing the notion of a complete theory:
 
 To prove the above we need the following
 \begin{itemize}
-  \item \link{vaught_test}{Vaught's test} for showing a theory is complete
+  \item \linkto{vaught_test}{Vaught's test} for showing a theory is complete
         (this does the first and last equivalences and
         is needed in the middle equivalence)
   \item The compactness theorem for the middle equivalence.
@@ -107,7 +107,9 @@ satisfy the same sentences.
 \begin{dfn}[Categoricity]
     Given a language $L$ and a cardinal $\ka$,
     an $L$-theory $T$ is called $\ka$-categorical
-    if any two models of $T$ of size $\ka$ are isomorphic.
+    if any two models of $T$ of size $\ka$ are isomorphic
+    (recalling the definition of an
+    \linkto{category_of_structures}{$L$-morphism}).
 
     \begin{lstlisting}
   def categorical (κ : cardinal) (T : Theory L) :=
@@ -184,17 +186,18 @@ We are now in a position to state Vaught's test.
     (hκ : ∀ n, #(L.functions n) ≤ κ) (hωκ : ω ≤ κ) (hcat : categorical κ T) :
     is_complete' T := sorry
 \end{lstlisting}
+\end{prop}
   This may differ slightly to the statement in other sources;
-  the reason for the choice of these (stronger than usual)
-  hypotheses will be discussed
-  in the \linkto{vaught_proof}{section dedicated it its proof}.
+  the details behind the choice of these (stronger than usual)
+  hypotheses for Vaught's Test and
+  \linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem}
+  will be discussed in the \linkto{vaught_proof}{section dedicated it their proofs}.
   % In practice it is less work to prove this when $L$ has no relation symbols,
   % which is the case we are interested in (we say $L$ \textit{is algebraic}).
   % Another practical simplification is asking for $\kappa$ to be larger than
   % the collection of all function symbols.
   % The proof that Marker gives %? Ref
   % only requires that $\kappa$ is larger than the collection of constant symbols.
-\end{prop}
 
 We apply Vaught's test in our case to show that the theory
 of algebraically closed fields of a fixed characteristic is complete.
@@ -268,7 +271,8 @@ that deduces $f$.
 
 \begin{lstlisting}
 theorem compactness {L : Language} {T : Theory L} {f : sentence L} :
-  T ⊨ f ↔ ∃ fs : finset (sentence L), (↑fs : Theory L) ⊨ (f : sentence L) ∧ ↑fs ⊆ T := sorry
+  T ⊨ f ↔ ∃ fs : finset (sentence L), (↑fs : Theory L) ⊨ (f : sentence L) ∧ ↑fs ⊆ T :=
+sorry
 \end{lstlisting}
 \end{prop}
 
@@ -291,8 +295,9 @@ theorem compactness' {L} {T : Theory L} : is_consistent T ↔
   Often the term ``finitely consistent'' is used to describe the latter case.
 \end{prop}
 
-I prove the second statement (using the lemmas made for the first) in
-\texttt{Rings.ToMathlib.completeness.lean}.
+I prove the second statement in
+\texttt{Rings.ToMathlib.completeness.lean}
+(using a lemma from \texttt{flypitch} made for the first).
 The proof I give below is \textit{not exactly} this proof,
 since I wish to avoid first order logic syntax ($\vdash$),
 which is the default layer of

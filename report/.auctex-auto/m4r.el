@@ -2,7 +2,7 @@
  "m4r"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("geometry" "left=1in" "right=1in" "tmargin=25mm" "bmargin=25mm") ("xcolor" "dvipsnames") ("fontenc" "T1") ("inputenc" "utf8")))
+                     '(("geometry" "tmargin=30mm" "bmargin=30mm") ("xcolor" "dvipsnames") ("fontenc" "T1") ("inputenc" "utf8")))
    (add-to-list 'LaTeX-verbatim-environments-local "lstlisting")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "lstinline")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "href")
@@ -16,6 +16,7 @@
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
+    "src/intro"
     "src/language"
     "src/internalCompletenessAndSoundness"
     "src/AxGroth"

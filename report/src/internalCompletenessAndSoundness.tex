@@ -12,7 +12,7 @@ completeness and soundness results:
     \item A type $A$ is an algebraically closed field (of characteristic p)
           if and only if it is a model of $\ACF_{(p)}$.
     \item (Details later) Ax-Grothendieck stated model theoretically corresponds to
-          Ax-Grothendieck stated internally.
+          the theorem stated internally.
   \end{itemize}
   For the purposes of design in lean it is
   more sensible to split each ``if and only if'' into seperate constructions,
@@ -32,7 +32,7 @@ we list some general facts and tips about working with models:
         then prove the property there,
         making use of existing lemmas in the library for rings.
   \item An important instance of the above phenomenon is the lack
-        of algebraic structure for \texttt{bounded\_ring\_terms}.
+        of algebraic properties in the type \texttt{bounded\_ring\_terms}.
         For example, addition for polynomials written as terms
         is \textit{not commutative} until it is interpreted into a structure
         satisfying commutativity,
@@ -344,7 +344,7 @@ This follows from the following two facts:
         then this is the same as simply evaluating the multi-variable polynomial
         at $(a_{0},\dots,a_{n})$.
         This has a rather uninteresting proof,
-        which I called \texttt{mv\_polynomial.eval\_eq\_poly\_eval\_mv\_coeffs}.
+        which I called \texttt{mv\_polynomial. eval\_eq\_poly\_eval\_mv\_coeffs}.
 \end{itemize}
 
 Moving on to the converse, we assume we have a model \texttt{M} of the theory
@@ -390,8 +390,8 @@ and the model theoretic hypothesis \texttt{hroot} about \texttt{root}.
 /- The goal (at 'convert hroot') -/
 polynomial.eval root p = realize_bounded_term (root::xs) (gen_monic_poly n) dvector.nil\end{lstlisting}
 
-In order to do this we \textit{could} use try to reconstruct $p$
-using our previous construction \texttt{polynomial.term\_evaluated\_at\_coeffs}.
+In order to do this we \textit{could} try to reconstruct $p$
+using our previous construction \texttt{polynomial. term\_evaluated\_at\_coeffs}.
 However, unfortunately I have discovered that generally it can be
 more straightforward to simply develop each side of the argument
 (interanal completeness and soundness) seperately.
