@@ -100,12 +100,12 @@ theorem has_sized_model_of_has_infinite_model [is_algebraic L] {T : Theory L} {�
   ∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ #M = κ := sorry \end{lstlisting}
 
 The idea of the proof is that we want to design a model of the right size
-by making a language $L'$ extending $L$ and an $L'$-theory $T'$ extending $T$
-(extending in the sense that any $L'$-model of $T'$ reduces down to a $L$-model of $T$),
-such that the design of $L'$ and $T'$ guarantee that any model of $T'$ is large enough.
-Meanwhile, we design an $L'$-model \texttt{term\_model} of $T'$,
-by taking the type of all the $L'$-terms,
-and quotienting by equality deduced by $T'$ (this requires $T'$ to be \linkto{henkization}{Henkin}),
+by making a language $L_{2}$ extending $L$ and an $L_{2}$-theory $T_{2}$ extending $T$
+(extending in the sense that any $L_{2}$-model of $T_{2}$ reduces down to a $L$-model of $T$),
+such that the design of $L_{2}$ and $T_{2}$ guarantee that any model of $T_{2}$ is large enough.
+Meanwhile, we design an $L_{2}$-model \texttt{term\_model} of $T_{2}$,
+by taking the type of all the $L_{2}$-terms,
+and quotienting by equality deduced by $T_{2}$ (this requires $T_{2}$ to be \linkto{henkization}{Henkin}),
 guaranteeing that \texttt{term\_model} is small enough
 - it will be bounded by the number of terms,
 and thus by the number of function symbols in the language.

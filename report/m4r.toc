@@ -26,4 +26,4 @@
 \contentsline {subsubsection}{\numberline {7.2.1}Adding distinct constant symbols}{35}{subsubsection.7.2.1}%
 \contentsline {subsubsection}{\numberline {7.2.2}\texttt {term\_model}}{37}{subsubsection.7.2.2}%
 \contentsline {subsubsection}{\numberline {7.2.3}Henkinization}{38}{subsubsection.7.2.3}%
-\contentsline {subsubsection}{\numberline {7.2.4}Cardinality of \texttt {term\_model}}{38}{subsubsection.7.2.4}%
+\contentsline {subsubsection}{\numberline {7.2.4}Cardinality of \texttt {term\_model}}{40}{subsubsection.7.2.4}%

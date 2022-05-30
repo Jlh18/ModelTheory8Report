@@ -715,6 +715,9 @@ These conditions are
 def has_enough_constants (T : Theory L) :=
 ∃(C : Π(f : bounded_formula L 1), L.constants),
   ∀(f : bounded_formula L 1), T ⊨ ∃' f ⟹ f[bd_const (C f)/0] \end{lstlisting}
+        This says for each formula with one free-variable
+        there is a constant symbol that would witness the
+        existence of a term satisfying the formula in any model.
 \end{itemize}
 
 We demonstrate the role of these conditions in the following.
@@ -730,7 +733,8 @@ we are showing that
 Assume $\texttt{term\_model} \vDash \forall x, \phi$.
 By \textbf{maximality} either $T \vDash \forall x, \phi$ or
 $T \vDash \exists x, \neg \phi$.
-It suffices to assume the latter case and get a contradiction.
+It suffices to refute the latter case.
+Suppose $T \vDash \exists x, \neg \phi$.
 As $T$ is \textbf{Henkin},
 there is some constant symbol $c$ such that $T \vDash \neg \phi_{c}$
 where $\phi_{c}$ is the sentence with $x$ replaced for $c$.
@@ -743,16 +747,18 @@ a contradiction.
 
 \subsubsection{Henkinization}
 
-The above motivates the need to extend to a further language and a further theory
+The above indicates we must extend to a further language and a further theory
 in the language, such that the extended theory is maximally consistent and Henkin.
 We start with a consistent theory $T_{\kappa}$
 (which in our situation is the theory with extra $\kappa$ constant symbols).
 The first thing to do is to make it Henkin, ensuring it is still consistent,
 we call the language we extended to $L_{H}$ and the new $L_{H}$-theory $T_{H}$.
-Then we can throw in enough formulas to make it maximally consistent,
+Secondly, we throw in enough formulas to make it maximally consistent,
 and call this new theory $T_{m}$.
+All of this is done in \texttt{flypitch} and can mostly be found in \texttt{henkin.lean}.
+An overview follows.
 
-The last step is very simple, and can be done in either of the following ways:
+The second step can be done in either of the following ways:
 \begin{itemize}
   \item Since the theory $T_{H}$ is consistent, it has a $L_{H}$-model,
         hence the set $T_{m}$ of $L_{H}$-sentences satisfied by the $L_{H}$-model is a
@@ -761,9 +767,10 @@ The last step is very simple, and can be done in either of the following ways:
         the model $M$ either satisfies a formula or not,
         hence
         \[ M \vDash \phi \quad \text{ or } \quad M \vDash \neg \phi \]
-        Note that the same idea does not hold for theories in general
-        since $T \nvDash \phi$ is not the same as $T \vDash \neg \phi$.
-        $T_{m}$ is consistent since $M$ is a model.
+        $T_{m}$ is consistent since $M$ is a model.\footnote{Note that
+          $T \nvDash \phi$ does not imply $T \vDash \NOT \phi$ in general.
+          This implication holds if and only if $T$ is complete.
+          Thus we needed to appeal to a model in the above.}
   \item We can use Zorn's lemma: the set of consistent $L_{H}$-theories extending
         $T_{H}$ is non-empty as $T$ is in the set.
         Any chain of consistent $L_{H}$-theories extending $T_{H}$ is bounded
@@ -774,19 +781,249 @@ The last step is very simple, and can be done in either of the following ways:
         Consistency is given for free by Zorn.
 \end{itemize}
 In the \texttt{flypitch} project, the setup of first order logic
-syntax (\vdash) means avoiding the usage of models, preferring the Zorn approach.
+syntax rather than its semantics means the Zorn approach is most natural.
 
-% Extend to a Henkin theory
+The first step requires recursively defined languages extending one another
+\[ L_{0} \to^{L} L_{1} \to^{L} \dots \]
+and theories in each language such that the induced theories
+at each level are sub-theories of the next
 
-% Link to the right code for extending to a Henkin language and continue with the
-% proof of Lowenheim until cardinality computation.
+\[\begin{tikzcd}[row sep = tiny]
+	{\texttt{T}_0} && {\texttt{induce T}_0 \subs \texttt{T}_1} \\
+	{\texttt{Theory L}_0} && {\texttt{Theory L}_1}
+	\arrow["{\texttt{induce}}", from=2-1, to=2-3]
+	\arrow[shorten <=17pt, shorten >=2pt, maps to, from=1-1, to=1-3]
+\end{tikzcd}\]
 
+Specifically, the inductive step is
+\begin{lstlisting}
+inductive henkin_language_functions (L : Language.{u}) : ℕ → Type u
+| inc : ∀ {n}, L.functions n → henkin_language_functions n
+| wit : bounded_formula L 1 → henkin_language_functions 0 \end{lstlisting}
+At each step we make a language $L_{i+1}$
+inheriting all the function symbols from $L_{i}$ via \texttt{inc},
+and for each $L_{i}$-formula $\phi$ with one free variable, we introduce a
+new constant symbol \texttt{wit $\phi$} for that specific formula.
 
+Then we can then make the new $L_{i+1}$-theory $T_{i+1}$ by taking the induced theory of
+$T_{i}$ and adding a new sentence $\exists \phi \implies \phi(\texttt{wit } \phi)$
+(as an induced $L_{i+1}$-sentence) for each $L_{i}$-formula $\phi$ with one free variable.
+
+\begin{lstlisting}
+def wit_property {L : Language} (f : bounded_formula L 1) (c : L.constants) :
+  sentence L := (∃'f) ⟹ f[bd_const c/0]
+
+def henkin_theory_step {L} (T : Theory L) : Theory $ henkin_language_step L :=
+Theory_induced henkin_language_inclusion T ∪
+(λ f : bounded_formula L 1,
+  wit_property (henkin_language_inclusion.on_bounded_formula f) (wit' f)) '' (set.univ : set $ bounded_formula L 1)
+\end{lstlisting}
+
+Each $T_{i+1}$ is consistent since $T_{i}$ is consistent;
+a model of $T_{i}$ will be a model of the new theory.
+Indeed if \texttt{a : M} realizes $\exists \phi$
+then we can interpret $\texttt{wit } \phi$ as \texttt{a},
+satisfying the new sentences in $T_{i+1}$.
+
+Hence we can take the colimit of these languages \texttt{L\_infty}
+(which amounts to a union of the function symbols in set theory)
+\[\begin{tikzcd}
+	{\texttt{L}_0} & {\texttt{L}_1} & \cdots \\
+	&& {\texttt{L\_infty}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-1, to=2-3]
+	\arrow[from=1-2, to=2-3]
+	\arrow[dotted, from=1-3, to=2-3]
+\end{tikzcd}\]
+and take the union of the induced theories in \texttt{L\_infty}
+to be our desired theory \texttt{T\_infty}.
+
+\begin{itemize}
+  \item
+        \texttt{T\_infty} is consistent since it is finitely consistent
+        (at each step the new theory $T_{i+1}$ is consistent
+        and since the theories form a chain,
+        any finite subset will be a subset of some $T_{i}$).
+  \item
+        \texttt{T\_infty} is Henkin since any \texttt{L\_infty}-formula in one free variable
+        is an induced formula from some $L_{i}$, which is witnessed by a constant symbol
+        from $L_{i+1}$ according to theory $T_{i+1}$, which is embedded in \texttt{T\_infty}.
+\end{itemize}
+
+Both of these steps are combined together as
+
+\begin{lstlisting}
+def completion_of_henkinization {L} {T : Theory L} (hT : is_consistent T) : Theory (henkin_language) := sorry
+\end{lstlisting}
+
+We are now ready to prove Upwards L\"{o}wenheim-Skolem
+sans the part about cardinality.
+
+\begin{lstlisting}
+theorem has_sized_model_of_has_infinite_model [is_algebraic L] {T : Theory L} {κ : cardinal}
+  (hκ : ∀ n, #(L.functions n) ≤ κ) (hωκ : ω ≤ κ) :
+  (∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ infinite M) →
+  ∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ #M = κ :=
+begin
+  rintro ⟨ M , hM0, hMT, hMinf ⟩, \end{lstlisting}
+
+Supposing $T$ is consistent, we can come up with a model $M$.
+We can then add $\kappa$ many constant symbols to form $L_\kappa$
+and ensure they are all distinct in theory $T_\kappa$,
+which is consistent by our work above.
+\begin{lstlisting}
+  set Tκ := union_add_distinct_constants T κ.out,
+  have hTκ_consis := is_consistent_union_add_distinct_constants κ.out hMinf hMT, \end{lstlisting}
+We henkinize $T_\kappa$ then take the maximal consistent $L_{2}$-theory $T_{2}$
+extending that (where $L_{2} := \texttt{henkin\_language}$).
+We know that this is consistent, maximal and Henkin,
+hence \texttt{term\_model T2} satisfies exactly the formulas
+that appear in $T_{2}$.
+However, we need to take the \texttt{reduct} of \texttt{term\_model T2},
+since we only want an $L$-structure which models the $L$-theory $T$.
+The reduct simply takes the original carrier set and realizes symbols
+as the realization of their images in the extended language.
+This is denoted \texttt{M[[ $\iota : L_{0} \to^{L} L_{1}$ ]]}, where $M$ is
+an $L_{1}$-structure.
+We first take the reduct to $L_{\kappa}$, then down to $L$.
+
+\begin{lstlisting}
+  set T2 := completion_of_henkinization hTκ_consis,
+  use (term_model T2)[[ henkin_language_over ]]
+    [[(Lhom.sum_inl : L →ᴸ L.sum (of_constants κ.out))]], \end{lstlisting}
+
+It remains to show that this reduct is non-empty and a model of $T$,
+which follows from general theory about reducts and API for
+\texttt{completion\_of\_henkinization} and \texttt{term\_model}.
+
+\begin{lstlisting}
+  split,
+  -- the reduction of a non-empty model is non-empty
+  { apply fol.nonempty_term_model, exact completion_of_henkinization_is_henkin _, },
+  split,
+  -- this reduction models T
+  { apply Lhom.reduct_Theory_induced Lhom.sum.is_injective_inl,
+    have h := reduct_of_complete_henkinization_models_T hTκ_consis,
+    simp only [all_realize_sentence_union] at h,
+    exact h.1 },
+  sorry, \end{lstlisting}
+
+The final goal is finding the cardinality of \texttt{term\_model},
+which we explore in the next subsection.
 
 \subsubsection{Cardinality of \texttt{term\_model}}
 
+Our goal is
+\begin{lstlisting}
+# ↥(term_model T2[[henkin_language_over]][[Lhom.sum_inl]]) = κ \end{lstlisting}
+which says the cardinality of the carrier type of the
+reduct of \texttt{term\_model T2} to $L$ is $\kappa$.
+We first show 
+\begin{lstlisting}
+# κ ≤ ↥(term_model T2[[henkin_language_over]][[Lhom.sum_inl]]) \end{lstlisting}
+To show this, it suffices to show
+\begin{itemize}
+  \item The carrier type of any \texttt{(Language.of\_constants $\al$)}-model of
+        \texttt{distinct\_constants $\al$} is at least size $\# \al$
+  \item The reduct of \texttt{term\_model} to
+        \texttt{Language.of\_constants $\kappa$.out} is a model of
+        \texttt{distinct\_constants $\kappa$.out}
+  \item The carrier type in the goal (the reduct of \texttt{term\_model} to \texttt{L})
+        equals to the carrier type of the reduct of \texttt{term\_model} to
+        \texttt{Language.of\_constants $\al$}
+\end{itemize}
+
+The first point follows from our definition of \texttt{distinct\_constants}:
+Suppose $M$ is a (\texttt{Language.of\_constants $\al$})-model of
+\texttt{distinct\_constants $\al$}.
+Then to show that $\# \al \le \# M$ it suffices to show that the function
+taking any $a : \al$ to its realization in $M$ is an injection.
+\begin{lstlisting}
+lemma all_realize_sentence_distinct_constants (M : Structure _) (hM : M ⊨ distinct_constants α) : #α ≤ #M :=
+begin
+  apply @cardinal.mk_le_of_injective _ _ (λ a, M.constants a),
+  intros x y hfxy, \end{lstlisting}
+Let two terms $x$ and $y : \al$ be equal upon realization in $M$,
+and suppose for a contradiction $x \ne y$.
+Then by definition the sentence $x \ne y$ is in
+of the theory \texttt{distinct\_constants $/al$}, so
+$x$ and $y$ are not equal upon realization in $M$,
+a model of \texttt{distinct\_constants}.
+\begin{lstlisting}
+  by_contra' hxy,
+  rw all_realize_sentence_image at hM,
+  apply hM ⟨x,y⟩ hxy,
+  simp only [Structure.constants] at hfxy,
+  simp [bd_const, hfxy],
+end \end{lstlisting}
+
+The second point follows from the fact that
+for any injective morphism of languages,
+the reduct of models of induced theories are models of the original theories.
+
+The third point is just by simplification, which I have extracted for clarity.
+Putting the three parts together we have the inequality
+\begin{lstlisting}
+    have hle : #κ.out ≤ #((term_model T2)[[henkin_language_over]]
+             [[(Lhom.sum_inr : _ →ᴸ L.sum (of_constants κ.out))]]),
+    { apply all_realize_sentence_distinct_constants,
+      apply Lhom.reduct_Theory_induced Lhom.sum.is_injective_inr,
+      have h := reduct_of_complete_henkinization_models_T hTκ_consis,
+      simp only [all_realize_sentence_union] at h,
+      exact h.2 },
+    { simp only [fol.Lhom.reduct_coe, cardinal.mk_out] at hle ⊢,
+      exact hle } } \end{lstlisting}
+
+The goal is now to show that
+\begin{lstlisting}
+# ↥(term_model T2[[henkin_language_over]][[Lhom.sum_inl]]) ≤ κ \end{lstlisting}
+This will require opening up the definition of \texttt{term\_model}.
+We know that \texttt{term\_model T2} is a quotient of the type of closed
+terms in the language \texttt{henkin\_language}, thus
+
+\begin{lstlisting}
+lemma card_le_closed_term : #(term_model T) ≤ #(closed_term L) :=
+cardinal.mk_le_of_surjective quotient.surjective_quotient_mk' \end{lstlisting}
+
+Since intuitively induction on terms produces well-founded trees,
+we should be able to bound \texttt{closed\_term L} by
+the function symbols in $L$.
+More precisely, it is the total number of function symbols of all arities,
+or it is $\om$ (the countably infinite cardinal) if there are finitely many
+function symbols.
+This is non-trivial, and we will show it later. %?
+\begin{lstlisting}
+lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
+  max (cardinal.sum (λ n : ulift.{u} (ℕ), #(L.functions n.down))) ω := sorry \end{lstlisting}
+
+Applying this, we see that it suffices to show two facts
 
 
+
+\begin{lstlisting}
+lemma card_le_functions : #(term_model T) ≤
+  max (cardinal.sum (λ n : ulift.{u} (ℕ), #(L.functions n.down))) ω :=
+calc #(term_model T)
+      ≤ #(closed_term L) : card_le_closed_term T
+  ... ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(L.functions n.down))) ω :
+    cardinal.bounded_preterm_le_functions _
+
+lemma card_le_cardinal {κ : cardinal.{u}} (hωκ : ω ≤ κ)
+  (hκ : ∀ n : ulift.{u} ℕ, #(L.functions n.down) ≤ κ) : #(term_model T) ≤ κ :=
+begin
+  apply le_trans (card_le_functions T),
+  apply max_le _ hωκ,
+  apply le_trans (cardinal.sum_le_sup (λ n : ulift.{u} ℕ, #(L.functions n.down))),
+  apply le_trans (cardinal.mul_le_max _ _),
+  apply max_le _ hωκ,
+  apply max_le,
+  { simp [hωκ] },
+  { rw cardinal.sup_le,
+    exact hκ },
+end
+
+\end{lstlisting}
 
 \bibliography{refs}{}
 \bibliographystyle{abbrv}
