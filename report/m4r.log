@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  31 MAY 2022 17:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  2 JUN 2022 15:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1280,14 +1280,14 @@ t/10 distinct_constants\T1/qpl/m/n/10 : Sup-pose $\OML/cmm/m/it/10 M$ \T1/qpl/m
  []
 
 [41] [42] [43]) [44]
-Overfull \hbox (9.57767pt too wide) in paragraph at lines 578--587
+Overfull \hbox (9.57767pt too wide) in paragraph at lines 589--598
 []\T1/qpl/m/n/10 The cases where $\OML/cmm/m/it/10 x$ \T1/qpl/m/n/10 and $\OML/
 cmm/m/it/10 y$ \T1/qpl/m/n/10 are not built by the same con-struc-tor are easy 
 to elim-i-nate, since \T1/zi4/m/it/10 no_confusion
  []
 
 
-Overfull \hbox (23.90099pt too wide) in paragraph at lines 578--587
+Overfull \hbox (23.90099pt too wide) in paragraph at lines 589--598
 \T1/qpl/m/n/10 for lists tells us two equal lists must have equal el-e-ments in
  the lists, and \T1/zi4/m/it/10 no_confusion \T1/qpl/m/n/10 for \T1/zi4/m/it/10
  preterm_symbol
@@ -1301,8 +1301,8 @@ Package rerunfilecheck Info: File `m4r.out' has not changed.
 (rerunfilecheck)             Checksum: 099894A156563B69EFB870DB7042F33A;5673.
  ) 
 Here is how much of TeX's memory you used:
- 30634 strings out of 478238
- 568084 string characters out of 5850456
+ 30640 strings out of 478238
+ 568179 string characters out of 5850456
  1096495 words of memory out of 5000000
  47232 multiletter control sequences out of 15000+600000
  543222 words of font info for 117 fonts, out of 8000000 for 9000
@@ -1367,10 +1367,10 @@ are/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf-
 dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplri
 .pfb>
-Output written on m4r.pdf (46 pages, 586331 bytes).
+Output written on m4r.pdf (46 pages, 586860 bytes).
 PDF statistics:
- 1804 PDF objects out of 2073 (max. 8388607)
- 1682 compressed objects within 17 object streams
- 1080 named destinations out of 1200 (max. 500000)
+ 1813 PDF objects out of 2073 (max. 8388607)
+ 1691 compressed objects within 17 object streams
+ 1086 named destinations out of 1200 (max. 500000)
  277 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -499,7 +499,8 @@
 
 \subsubsection{Terms}
 
-In this section we prove
+In this subsection we prove that the number of preterms is bounded by
+the number of function symbols in the language.
 
 \begin{lstlisting}
 lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
@@ -507,9 +508,20 @@ lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
 
 There should be many approaches to this problem.
 Mine was to note that preterms can be interpreted
-the collection of all lists of presymbols that satisfy certain rules.
+the collection of lists of preterm symbols that satisfy certain rules.
 Then the list of all these symbols can be easily bounded above.
-The preterm symbols can be made as an inductive type
+For example, the term \texttt{0 + (1 * x\_0)}
+will be written as a list of symbols
+(the natural numbers for \texttt{app} will be explained later)
+\begin{lstlisting}
+  [app,10]
+    ++ ([app,1]
+      ++ [func +]
+      ++ ([app,4] ++ ([app,1] ++ [func *] ++ [func 1]) ++ [var 0]))
+    ++ [func 0]
+\end{lstlisting}
+
+The \textbf{preterm symbols} can be made as an inductive type
 \begin{lstlisting}
 inductive preterm_symbol (L : Language) : Type u
 | nat : ℕ → preterm_symbol
@@ -517,8 +529,8 @@ inductive preterm_symbol (L : Language) : Type u
 | func : Π {l}, L.functions l → preterm_symbol
 | app : preterm_symbol \end{lstlisting}
 
-Then we inject any \texttt{bounded\_preterm L n l}
-into the collection of lists of these preterm symbols.
+Then we \textbf{inject} \texttt{bounded\_preterm L n l}
+into the collection of lists of preterm symbols.
 
 \begin{lstlisting}
 def preterm_symbol_of_preterm {n} : ∀ {l},
@@ -530,11 +542,11 @@ def preterm_symbol_of_preterm {n} : ∀ {l},
   ++ preterm_symbol_of_preterm t ++ preterm_symbol_of_preterm s
  \end{lstlisting}
 
-The choice of list as each image is designed to capture all
+The choice of each list is designed to capture all
 the pieces of data that went into constructing the term.
-For example, if the term was built as a variable \texttt{\&k}
-then we only need to include the data of how it was built
-(\texttt{preterm\_symbol.var}), and that it used $k$,
+If the term was built as a variable \texttt{\&k}
+then we only need to include the data that
+it was built as a variable symbol and that it used bounded natural $k$,
 so we take the list consisting of only
 the preterm symbol \texttt{[ preterm\_symbol.var k ]}.
 The case for a function symbol is similar.
@@ -546,7 +558,7 @@ inductively given lists to the end of everything else we need.
 It turns out that preserving the length of the list from $t$
 is important for showing injectivity.
 
-To show injectivity of the above we induct on $L$-terms $x$ and $y$.
+To \textbf{show injectivity} of the above we induct on $L$-terms $x$ and $y$.
 There are $9$ cases to work on since there are $3$ cases for $x$ and $y$
 respectively.
 
@@ -600,7 +612,7 @@ sublists, which is why we included that data in our definition of
 \texttt{preterm\_symbol\_of\_preterm}.
 
 Now that we have an injection into \texttt{list (preterm\_symbol L)}
-we should find the cardinality of \texttt{preterm\_symbol L},
+we should \textbf{compute the cardinality} of \texttt{preterm\_symbol L},
 which will determine the cardinality of lists of them.
 We make a type equivalent to \texttt{preterm\_symbol L}:
 
@@ -614,7 +626,7 @@ Equivalent types have the same cardinality, so
 we can just compute the cardinality of the latter,
 for which there is plenty of API.
 
-Hence we can complete the lemma.
+We are ready to complete the lemma.
 By the injection above we have the first inequality:
 \begin{lstlisting}
 lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
@@ -644,6 +656,130 @@ begin
 end \end{lstlisting}
 
 \subsubsection{Formulas}
+
+We make a similar construction for formulas,
+where we bound the number of formulas by the number of terms.
+We then utilize previous work bounding the number of terms by the
+number of function symbols to improve the bound:
+\begin{lstlisting}
+lemma bounded_formula_le_bounded_term [is_algebraic L] {n} :
+  #(bounded_formula L n) ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(bounded_term L n.down))) ω := sorry
+
+lemma bounded_formula_le_functions [is_algebraic L] {n} :
+  #(bounded_formula L n) ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(L.functions n.down))) ω :=
+begin
+  apply le_trans (bounded_formula_le_bounded_term L),
+  apply max_le _ (le_max_right _ _),
+  apply le_trans (cardinal.sum_le_sup _),
+  simp only [cardinal.mk_denumerable],
+  apply le_trans (cardinal.mul_le_max _ _),
+  apply max_le _ (le_max_right _ _),
+  apply max_le (le_max_right _ _),
+  rw cardinal.sup_le,
+  intro i,
+  apply bounded_preterm_le_functions,
+end \end{lstlisting}
+
+The \textbf{formula symbols} we need are
+
+\begin{lstlisting}
+inductive formula_symbol (L : Language.{u}) : Type u
+| bot : formula_symbol
+| eq : formula_symbol
+| imp : formula_symbol
+| all : formula_symbol
+| term : Π (l : ℕ), bounded_term L l → formula_symbol
+| nat : ℕ → formula_symbol \end{lstlisting}
+
+The structure of induction on formulas is more interesting than
+that of terms, since the constructor \texttt{bounded\_preformula.bd\_all} takes preformulas with $n + 1$ free variables and converts them to
+preformulas with $n$ free variables.
+Thus we must keep track of the data of the number of free variables
+when we write a formula as a list of symbols.
+We do so when we \textbf{inject} formulas into lists of formula symbols.
+
+\begin{lstlisting}
+def formula_symbol_of_formula [is_algebraic L] {n} :
+  bounded_formula L n → list (formula_symbol L) :=
+bounded_formula.rec2
+  (λ l, [formula_symbol.nat l, formula_symbol.bot]) -- ⊥
+  (λ l t s, [ formula_symbol.nat l, formula_symbol.eq ,
+    formula_symbol.term l t , formula_symbol.term l s ]) -- t ≃ s
+  (λ _ _ r, false.elim $ Language.is_algebraic.empty_relations _ r) -- bd_rel
+  (λ l ϕ ψ lϕ lψ, (formula_symbol.nat l) :: (formula_symbol.nat (list.length lϕ))
+    :: (formula_symbol.nat (list.length lψ)) :: formula_symbol.imp :: lϕ.append lψ ) -- ϕ ⟹ ψ
+  (λ l ϕ lϕ, (formula_symbol.nat l) :: formula_symbol.all :: lϕ) -- ∀ₗ ϕ \end{lstlisting}
+
+Here we have taken advantage of an induction lemma made for \texttt{bounded\_{formula}}
+rather than \texttt{bounded\_{preformula}}.
+Note that the assumption \texttt{is\_{algebraic}} here means that we need not
+worry about relation symbols.
+A generalization of this work would have to include the relation symbols
+in the final upper bound.
+
+To show that this assignment is \textbf{injective},
+we need to be careful.
+For the induction to work on the \texttt{bd\_all} case,
+we need the inducion hypothesis to include the statement about formulas
+with $n+1$ many free variables.
+(This is possible since we are not inducting on the naturals, but on formulas.)
+We quickly find that we are in the territory of \texttt{heq},
+since we need to ask for two terms of definitionally different types
+\texttt{bounded\_formula L n} and \texttt{bounded\_formula L m} to be equal.
+Thus we state it as follows:
+
+\begin{lstlisting}
+lemma formula_symbol_of_preformula_injective' [is_algebraic L] {n} : ∀ (x : bounded_formula L n)
+  {m} (y : bounded_formula L m),
+  formula_symbol_of_formula x = formula_symbol_of_formula y → x == y := sorry
+
+lemma formula_symbol_of_preformula_injective [is_algebraic L] {n}:
+  function.injective (@formula_symbol_of_formula L _ n) :=
+begin
+  intros x y hxy,
+  have h := formula_symbol_of_preformula_injective' x y hxy,
+  subst h,
+end \end{lstlisting}
+
+There are $6 * 6 = 36$ cases to check for the first lemma,
+of which $30$ are quite easily resolved by applications of
+\texttt{no\_confusion}.
+The rest of the $6$ are resolved by careful handling of the induction
+hypothesis and \texttt{heq}.
+
+We find \textbf{an equivalent type}, whose cardinality is easy to compute:
+
+\begin{lstlisting}
+def formula_symbol_equiv_bounded_term_sum_nat :
+  (formula_symbol L) ≃ ((Σ l : ulift.{u} ℕ, bounded_term L l.down) ⊕ ulift.{u} ℕ) := sorry \end{lstlisting}
+
+Finally we conclude our computation.
+By our injection into formula symbols,
+
+\begin{lstlisting}
+lemma bounded_formula_le_bounded_term [is_algebraic L] {n} :
+  #(bounded_formula L n) ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(bounded_term L n.down))) ω :=
+calc #(bounded_formula L n) ≤ # (list (formula_symbol L)) :
+    cardinal.mk_le_of_injective (formula_symbol_of_preformula_injective) \end{lstlisting}
+
+Then since the type of formula symbols is infinite,
+the size of lists is equal to its original size,
+which is equal to the size of the equivalent type above.
+
+\begin{lstlisting}
+
+  ... = # (formula_symbol L) : cardinal.mk_list_eq_mk _
+  ... = _ : cardinal.mk_congr formula_symbol_equiv_bounded_term_sum_nat \end{lstlisting}
+
+The rest is simple cardinal arithmetic.
+
+\begin{lstlisting}
+  ... ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(bounded_term L n.down))) ω : by {
+  simp only [le_refl, and_true, cardinal.mk_denumerable, cardinal.mk_sum, cardinal.lift_omega,
+    cardinal.mk_sigma, cardinal.lift_id],
+  apply le_trans (cardinal.add_le_max _ _) (max_le (max_le _ _) (le_max_right _ _)),
+  { exact le_max_left _ _ },
+  { exact le_max_right _ _ } } \end{lstlisting}
 
 \subsubsection{Henkinization}
 
