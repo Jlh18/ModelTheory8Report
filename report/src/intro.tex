@@ -2,7 +2,7 @@ It is a basic fact of linear algebra that any linear map
 between vector spaces of the same finite dimension is
 injective if and only if it is surjective.
 \linkto{ax_groth_thm}{Ax-Grothendieck} says that this is
-partly true for polynomial maps.
+partly true for \linkto{dfn_poly_map}{polynomial maps}.
 
 Here are some examples of polynomial maps
 \begin{itemize}
@@ -15,9 +15,24 @@ Here are some examples of polynomial maps
 
 One might try very hard to look for an example of an injective polynomial map
 that is not surjective.
-Replacing $\C$ with an arbitrary field, we notice that
-surjectivity and injectivity coincide on finite fields.
-% and indeed on small enough fields (locally finite fields).
-% Then we notice that this implies they coincide for
+Replacing $\C$ with a finite field, we notice that
+surjectivity and injectivity coincide in this case.
 Ax-Grothendieck states that over any algebraically closed field,
-injectivity of a polynomial map implies surjectivity.
+injectivity of a polynomial map implies surjectivity,
+and the proof we will give is model theoretic,
+roughly saying ``we may reduce to the finite field case''.
+
+This project formalizes this proof of Ax-Grothendieck in \texttt{lean}\footnote{
+  As far as I am aware this is the first attempt to formalize Ax-Grothendieck in
+  proof verification software. }.
+My github repository for this project is accessible at
+\url{github.com/Jlh18/ModelTheoryInLean8}.
+
+I work on a fork of the \texttt{flypitch} project \cite{flypitch},
+which built the framework for basic model theory and proved the
+independence of the continuum hypothesis.
+I have made many updates to this fork to make it compatible with
+more modern versions of \texttt{mathlib}.
+My original work all lies in the folder \texttt{src/Rings},
+even though a lot of the code (such as the proof of \linkto{vaught_test}{Vaught's test})
+is general model theory.

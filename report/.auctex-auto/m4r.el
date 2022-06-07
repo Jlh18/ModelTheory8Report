@@ -23,6 +23,7 @@
     "src/locally_finite"
     "src/Lefschetz"
     "src/vaught"
+    "src/appendix"
     "article"
     "art10"
     "geometry"

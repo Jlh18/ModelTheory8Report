@@ -154,6 +154,7 @@ structure Lhom (L1 L2 : Language) :=
 (on_relation : ∀{n}, L1.relations n → L2.relations n) \end{lstlisting}
 We denote this type by $\texttt{L1} \to^{L} \texttt{L2}$.
 
+\link{language_sum_dfn}
 $(2)$ The sum of two languages takes two languages and makes the
 disjoint sum of the function symbols and relation symbols of
 each arity.
@@ -189,6 +190,7 @@ def distinct_constants_aux (x : α × α) : sentence (Language.of_constants α) 
 def distinct_constants : Theory (Language.of_constants α) :=
 set.image (distinct_constants_aux _) { x : α × α | x.fst ≠ x.snd } \end{lstlisting}
 
+\link{induced_theory_dfn}
 $(5)$ The theory induced by a language morphism is constructed by
 taking image of the induced map from \texttt{L1}-sentences
 to \texttt{L2}-sentences.
@@ -588,7 +590,7 @@ Putting the three parts together we have the inequality
       simp only [all_realize_sentence_union] at h,
       exact h.2 },
     { simp only [fol.Lhom.reduct_coe, cardinal.mk_out] at hle ⊢,
-      exact hle } } \end{lstlisting}
+      exact hle } \end{lstlisting}
 
 Now we show $(\le)$.
 \begin{lstlisting}
@@ -604,13 +606,10 @@ cardinal.mk_le_of_surjective quotient.surjective_quotient_mk' \end{lstlisting}
 We see that we must investigate the cardinality of
 closed terms, or more generally terms and formulas.
 Since intuitively induction on terms and formulas
-produces well-founded trees,
+produces well-founded trees stemming from formula (and relation) symbols,
 we should be able to bound \texttt{bounded\_preterm L n l}
 and \texttt{bounded\_formula L n} by the collection of function symbols in $L$.
 More precisely,
-they are at most the total number of function symbols of all arities,
-$\om$ (the countably infinite cardinal)
-if there are finitely many function symbols:
 \begin{lstlisting}
 lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
   max (cardinal.sum (λ n : ulift.{u} (ℕ), #(L.functions n.down))) ω := sorry
@@ -618,7 +617,7 @@ lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
 lemma bounded_formula_le_functions [is_algebraic L] {n} : #(bounded_formula L n) ≤
   max (cardinal.sum (λ n : ulift.{u} ℕ, #(L.functions n.down))) ω := sorry \end{lstlisting}
 
-We will prove these facts in a later section. %?
+We will prove these facts in a \linkto{cardinality_lemmas}{later section}.
 For now, we conclude
 
 \begin{lstlisting}
@@ -635,8 +634,19 @@ arithmetic: it suffices that for each natural $n$,
 the number of function symbols with arity $n$ is bounded by $\ka$.
 
 \begin{lstlisting}
-lemma term_model.card_le_cardinal {κ : cardinal.{u}} (hωκ : ω ≤ κ)
-  (hκ : ∀ n : ulift.{u} ℕ, #(L.functions n.down) ≤ κ) : #(term_model T) ≤ κ := ... \end{lstlisting}
+
+lemma card_le_cardinal {κ : cardinal.{u}} (hωκ : ω ≤ κ)
+  (hκ : ∀ n : ulift.{u} ℕ, #(L.functions n.down) ≤ κ) : #(term_model T) ≤ κ :=
+begin
+  apply le_trans (card_le_functions T),
+  apply max_le _ hωκ,
+  apply le_trans (cardinal.sum_le_sup (λ n : ulift.{u} ℕ, #(L.functions n.down))),
+  apply le_trans (cardinal.mul_le_max _ _),
+  apply max_le _ hωκ,
+  apply max_le,
+  { simp [hωκ] },
+  { rw cardinal.sup_le, exact hκ },
+end \end{lstlisting}
 
 Now we can continue with our proof:
 
@@ -666,7 +676,7 @@ lemma henkin_language_le_cardinal [is_algebraic L] {T : Theory L}
   (hLκ : ∀ n, # (L.functions n) ≤ κ) (n : ℕ) :
   # ((@henkin_language _ _ hconsis).functions n) ≤ κ := sorry \end{lstlisting}
 
-We also prove this lemma later. %?
+We also prove this lemma in the \linkto{henkinization_cardinality}{next subsection}.
 Note that we assume the language is algebraic for simplicity.
 This condition can be dropped but saves a bit of work for our use case.
 Indeed in our use case, the sum of algebraic languages is algebraic,
@@ -708,3 +718,424 @@ Hence the sum is bounded by $\kappa$.
       { simp [of_constants] } } \end{lstlisting}
 
 Hence we have completed the proof of Upwards L\"{o}wenheim-Skolem.
+
+\subsection{Cardinality lemmas}
+
+\link{cardinality_lemmas}
+\subsubsection{Terms}
+
+In this subsection we prove that the number of preterms is bounded by
+the number of function symbols in the language.
+
+\begin{lstlisting}
+lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
+  max (cardinal.sum (λ n : ulift.{u} (ℕ), #(L.functions n.down))) ω := sorry \end{lstlisting}
+
+There should be many approaches to this problem.
+Mine was to note that preterms can be interpreted
+the collection of lists of preterm symbols that satisfy certain rules.
+Then the list of all these symbols can be easily bounded above.
+For example, the term \texttt{0 + (1 * x\_0)}
+will be written as a list of symbols
+(the natural numbers for \texttt{app} will be explained later)
+\begin{lstlisting}
+  [app,10]
+    ++ ([app,1]
+      ++ [func +]
+      ++ ([app,4] ++ ([app,1] ++ [func *] ++ [func 1]) ++ [var 0]))
+    ++ [func 0]
+\end{lstlisting}
+
+The \textbf{preterm symbols} can be made as an inductive type
+\begin{lstlisting}
+inductive preterm_symbol (L : Language) : Type u
+| nat : ℕ → preterm_symbol
+| var : Π {l}, fin l → preterm_symbol
+| func : Π {l}, L.functions l → preterm_symbol
+| app : preterm_symbol \end{lstlisting}
+
+Then we \textbf{inject} \texttt{bounded\_preterm L n l}
+into the collection of lists of preterm symbols.
+
+\begin{lstlisting}
+def preterm_symbol_of_preterm {n} : ∀ {l},
+  bounded_preterm L n l → list (preterm_symbol L)
+| _ (&k)         := [ preterm_symbol.var k ]
+| l (bd_func f)  := [ preterm_symbol.func f ]
+| l (bd_app t s) := [ preterm_symbol.app,
+  preterm_symbol.nat (preterm_symbol_of_preterm t).length ]
+  ++ preterm_symbol_of_preterm t ++ preterm_symbol_of_preterm s
+ \end{lstlisting}
+
+The choice of each list is designed to capture all
+the pieces of data that went into constructing the term.
+If the term was built as a variable \texttt{\&k}
+then we only need to include the data that
+it was built as a variable symbol and that it used bounded natural $k$,
+so we take the list consisting of only
+the preterm symbol \texttt{[ preterm\_symbol.var k ]}.
+The case for a function symbol is similar.
+More interestingly, when the preterm is built from
+applying a preterm \texttt{t : bounded\_preterm L n (l + 1)}
+to a preterm \texttt{s : bounded\_preterm L n 0},
+we preserve the data of $t$ and $s$ by appending their
+inductively given lists to the end of everything else we need.
+It turns out that preserving the length of the list from $t$
+is important for showing injectivity.
+
+To \textbf{show injectivity} of the above we induct on $L$-terms $x$ and $y$.
+There are $9$ cases to work on since there are $3$ cases for $x$ and $y$
+respectively.
+
+\begin{lstlisting}
+lemma preterm_symbol_of_preterm_injective {l} :
+  function.injective (@preterm_symbol_of_preterm L n l) :=
+begin
+  intros x,
+  induction x with k _ _ _ tx sx htx hsx,
+  { intro y,
+    cases y,
+    { intro h, simp only [...] at h, subst h },
+    { intro h, cases h },
+    { intro h, cases h } },
+  { intro y,
+    cases y,
+    { intro h, cases h },
+    { intro h, simp only [...] at h, subst h },
+    { intro h, cases h } },
+  { intro y,
+    cases y with _ _ _ _ ty sy,
+    { intro h, cases h },
+    { intro h, cases h },
+    { intro h, simp only [...] at h,
+      obtain ⟨ ht , hs ⟩ := list.append_inj h.2 h.1,
+      congr, { exact htx ht }, { exact hsx hs } } },
+end \end{lstlisting}
+
+The cases where $x$ and $y$ are not built by the same constructor
+are easy to eliminate, since \texttt{no\_confusion}
+for lists tells us two equal lists must have equal elements in the lists,
+and \texttt{no\_confusion} for \texttt{preterm\_symbol} tells us
+two equal preterm symbols must have come from the same constructor,
+which yields a contradiction in each case.
+This argument is hidden by the tactics \texttt{intro h, cases h},
+where $h$ is the assumption that $x$ and $y$
+make equal lists of preterm symbols.
+
+The remaining cases: when both are variable symbols or both are function symbols
+then we are assuming two lists with a single element are equal,
+since the elements are the same constructor applied to some variable,
+those variables must be equal by \texttt{no\_confusion} for
+\texttt{preterm\_symbol}.
+We thus have that $x = y$.
+In the case when $x$ and $y$ are both applications,
+we can use \texttt{no\_confusion} for lists and
+apply injectivity of \texttt{list.append}
+to deduce each part of the list is equal and apply the induction hypothesis.
+Injectivity of \texttt{list.append} uses equality of lengths of the
+sublists, which is why we included that data in our definition of
+\texttt{preterm\_symbol\_of\_preterm}.
+
+Now that we have an injection into \texttt{list (preterm\_symbol L)}
+we should \textbf{compute the cardinality} of \texttt{preterm\_symbol L},
+which will determine the cardinality of lists of them.
+We make a type equivalent to \texttt{preterm\_symbol L}:
+
+\begin{lstlisting}
+def preterm_symbol_equiv_fin_sum_formula_sum_nat :
+  (preterm_symbol L) ≃
+    (Σ l : ulift.{u} ℕ, ulift.{u} (fin l.down)) ⊕ (Σ l : ulift.{u} ℕ, L.functions l.down) ⊕ ℕ := ... \end{lstlisting}
+
+This equivalence of types is obvious.
+Equivalent types have the same cardinality, so
+we can just compute the cardinality of the latter,
+for which there is plenty of API.
+
+We are ready to complete the lemma.
+By the injection above we have the first inequality:
+\begin{lstlisting}
+lemma bounded_preterm_le_functions {l} : #(bounded_preterm L n l) ≤
+  max (cardinal.sum (λ n : ulift.{u} (ℕ), #(L.functions n.down))) ω :=
+calc #(bounded_preterm L n l) ≤ # (list (preterm_symbol L)) :
+    cardinal.mk_le_of_injective (@preterm_symbol_of_preterm_injective L n l)
+\end{lstlisting}
+For an infinite type $\al$, $\# \al = \# \texttt{list } \al$.
+Then replacing the cardinality along the equivalence above,
+and going through some simple cardinal arithmetic proves the final inequality.
+\begin{lstlisting}
+  ... = # (preterm_symbol L) : cardinal.mk_list_eq_mk (preterm_symbol L)
+  ... ≤ max (cardinal.sum (λ n : ulift.{u} (ℕ), #(L.functions n.down))) ω :
+begin
+  rw cardinal.mk_congr (preterm_symbol_equiv_fin_sum_formula_sum_nat L),
+  simp only [...],
+  apply le_trans (cardinal.add_le_max _ _) (max_le (max_le _ _) (le_max_right _ _)),
+  { apply le_max_of_le_right,
+    apply le_trans (cardinal.sum_le_sup.{u} (λ (i : ulift.{u} ℕ), (i.down : cardinal.{u}))),
+    apply le_trans (cardinal.mul_le_max _ _) (max_le (max_le _ _) (le_of_eq rfl)),
+    { simp },
+    { rw cardinal.sup_le, intro i, apply le_of_lt, rw cardinal.lt_omega, simp, }
+  },
+  { apply le_trans (cardinal.add_le_max _ _) (max_le (max_le _ _) (le_max_right _ _)),
+    { simp },
+    { exact le_max_right _ _ } }
+end \end{lstlisting}
+
+\subsubsection{Formulas}
+
+We make a similar construction for formulas,
+where we bound the number of formulas by the number of terms.
+We then utilize previous work bounding the number of terms by the
+number of function symbols to improve the bound:
+\begin{lstlisting}
+lemma bounded_formula_le_bounded_term [is_algebraic L] {n} :
+  #(bounded_formula L n) ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(bounded_term L n.down))) ω := sorry
+
+lemma bounded_formula_le_functions [is_algebraic L] {n} :
+  #(bounded_formula L n) ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(L.functions n.down))) ω :=
+begin
+  apply le_trans (bounded_formula_le_bounded_term L),
+  apply max_le _ (le_max_right _ _),
+  apply le_trans (cardinal.sum_le_sup _),
+  simp only [cardinal.mk_denumerable],
+  apply le_trans (cardinal.mul_le_max _ _),
+  apply max_le _ (le_max_right _ _),
+  apply max_le (le_max_right _ _),
+  rw cardinal.sup_le,
+  intro i,
+  apply bounded_preterm_le_functions,
+end \end{lstlisting}
+
+The \textbf{formula symbols} we need are
+
+\begin{lstlisting}
+inductive formula_symbol (L : Language.{u}) : Type u
+| bot : formula_symbol
+| eq : formula_symbol
+| imp : formula_symbol
+| all : formula_symbol
+| term : Π (l : ℕ), bounded_term L l → formula_symbol
+| nat : ℕ → formula_symbol \end{lstlisting}
+
+The structure of induction on formulas is more interesting than
+that of terms, since the constructor \texttt{bounded\_preformula.bd\_all} takes preformulas with $n + 1$ free variables and converts them to
+preformulas with $n$ free variables.
+Thus we must keep track of the data of the number of free variables
+when we write a formula as a list of symbols.
+We do so when we \textbf{inject} formulas into lists of formula symbols.
+
+\begin{lstlisting}
+def formula_symbol_of_formula [is_algebraic L] {n} :
+  bounded_formula L n → list (formula_symbol L) :=
+bounded_formula.rec2
+  (λ l, [formula_symbol.nat l, formula_symbol.bot]) -- ⊥
+  (λ l t s, [ formula_symbol.nat l, formula_symbol.eq ,
+    formula_symbol.term l t , formula_symbol.term l s ]) -- t ≃ s
+  (λ _ _ r, false.elim $ Language.is_algebraic.empty_relations _ r) -- bd_rel
+  (λ l ϕ ψ lϕ lψ, (formula_symbol.nat l) :: (formula_symbol.nat (list.length lϕ))
+    :: (formula_symbol.nat (list.length lψ)) :: formula_symbol.imp :: lϕ.append lψ ) -- ϕ ⟹ ψ
+  (λ l ϕ lϕ, (formula_symbol.nat l) :: formula_symbol.all :: lϕ) -- ∀ ϕ \end{lstlisting}
+
+Here we have taken advantage of an induction lemma made for \texttt{bounded\_{formula}}
+rather than \texttt{bounded\_{preformula}}.
+Note that the assumption \texttt{is\_{algebraic}} here means that we need not
+worry about relation symbols.
+A generalization of this work would have to include the relation symbols
+in the final upper bound.
+
+To show that this assignment is \textbf{injective},
+we need to be careful.
+For the induction to work on the \texttt{bd\_all} case,
+we need the inducion hypothesis to include the statement about formulas
+with $n+1$ many free variables.
+(This is possible since we are not inducting on the naturals, but on formulas.)
+We quickly find that we are in the territory of \texttt{heq},
+since we need to ask for two terms of definitionally different types
+\texttt{bounded\_formula L n} and \texttt{bounded\_formula L m} to be equal.
+Thus we state it as follows:
+
+\begin{lstlisting}
+lemma formula_symbol_of_preformula_injective' [is_algebraic L] {n} : ∀ (x : bounded_formula L n)
+  {m} (y : bounded_formula L m),
+  formula_symbol_of_formula x = formula_symbol_of_formula y → x == y := sorry
+
+lemma formula_symbol_of_preformula_injective [is_algebraic L] {n}:
+  function.injective (@formula_symbol_of_formula L _ n) :=
+begin
+  intros x y hxy,
+  have h := formula_symbol_of_preformula_injective' x y hxy,
+  subst h,
+end \end{lstlisting}
+
+There are $6 * 6 = 36$ cases to check for the first lemma,
+of which $30$ are quite easily resolved by applications of
+\texttt{no\_confusion}.
+The rest of the $6$ are resolved by careful handling of the induction
+hypothesis and \texttt{heq}.
+
+We find \textbf{an equivalent type}, whose cardinality is easy to compute:
+
+\begin{lstlisting}
+def formula_symbol_equiv_bounded_term_sum_nat :
+  (formula_symbol L) ≃ ((Σ l : ulift.{u} ℕ, bounded_term L l.down) ⊕ ulift.{u} ℕ) := sorry \end{lstlisting}
+
+Finally we conclude our computation.
+By our injection into formula symbols,
+
+\begin{lstlisting}
+lemma bounded_formula_le_bounded_term [is_algebraic L] {n} :
+  #(bounded_formula L n) ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(bounded_term L n.down))) ω :=
+calc #(bounded_formula L n) ≤ # (list (formula_symbol L)) :
+    cardinal.mk_le_of_injective (formula_symbol_of_preformula_injective) \end{lstlisting}
+
+Then since the type of formula symbols is infinite,
+the size of lists is equal to its original size,
+which is equal to the size of the equivalent type above.
+
+\begin{lstlisting}
+
+  ... = # (formula_symbol L) : cardinal.mk_list_eq_mk _
+  ... = _ : cardinal.mk_congr formula_symbol_equiv_bounded_term_sum_nat \end{lstlisting}
+
+The rest is simple cardinal arithmetic.
+
+\begin{lstlisting}
+  ... ≤ max (cardinal.sum (λ n : ulift.{u} ℕ, #(bounded_term L n.down))) ω : by {
+  simp only [le_refl, and_true, cardinal.mk_denumerable, cardinal.mk_sum, cardinal.lift_omega,
+    cardinal.mk_sigma, cardinal.lift_id],
+  apply le_trans (cardinal.add_le_max _ _) (max_le (max_le _ _) (le_max_right _ _)),
+  { exact le_max_left _ _ },
+  { exact le_max_right _ _ } } \end{lstlisting}
+
+\subsubsection{Henkinization}
+
+\link{henkinization_cardinality}
+
+We are showing
+
+\begin{lstlisting}
+lemma henkin_language_le_cardinal [is_algebraic L] {T : Theory L}
+  {hconsis : is_consistent T} (hωκ : ω ≤ κ)
+  (hLκ : ∀ n, # (L.functions n) ≤ κ) (n : ℕ) :
+  #((@henkin_language _ _ hconsis).functions n) ≤ κ := sorry \end{lstlisting}
+
+In \texttt{flypitch} they design a general process of taking the colimit
+of a collection (directed diagram) of languages,
+which specialises to making \texttt{henkin\_language}.
+To bound the cardinality of the colimit of languages we just need that
+\begin{itemize}
+  \item The function symbols are some quotient of a coproduct of languages.
+  \item The coproduct of languages is formalized as a sigma type,
+        whose cardinality can be computed as a sum of cardinalities.
+\end{itemize}
+
+We make a general lemma,
+which says if cardinal $\ka$ bounds the function symbols of each language
+in the directed diagram then $\ka$ also bounds
+the function symbols in the colimit of the directed diagram.
+
+\begin{lstlisting}
+lemma colimit_language_le_cardinal {F : colimit.directed_diagram_language ℕ'}
+  (n : ℕ) (h : ∀ i : ℕ, # ((F.obj i).functions n) ≤ κ) :
+  # ((colimit.colimit_language F).functions n) ≤ κ :=
+begin
+  apply le_trans cardinal.mk_quotient_le, \end{lstlisting}
+
+The above says that since the function symbols are a quotient,
+and the cardinality of a quotient type is bounded by the original type
+it suffices that the original type (the coproduct of function symbols)
+is bounded by $\ka$.
+
+\begin{lstlisting}
+  dsimp only [colimit.coproduct_of_directed_diagram],
+  rw cardinal.mk_sigma, \end{lstlisting}
+
+Since the coproduct is defined as a sigma type,
+we simply take the cardinality of the sigma type,
+which is a sum.
+The rest is cardinal arithmetic.
+
+\begin{lstlisting}
+  rw cardinal.sum_nat,
+  apply le_trans (cardinal.sum_le_sup _),
+  simp only [cardinal.mk_denumerable],
+  apply le_trans (cardinal.mul_le_max _ _) (max_le (max_le hωκ _) hωκ),
+  rw cardinal.sup_le,
+  intro i,
+  cases i,
+  apply h,
+end
+\end{lstlisting}
+
+To apply this lemma to our situation,
+we will need to show that at each inductive Henkinization step,
+the language has function symbols bounded by $\ka$.
+We prove this as well:
+
+\begin{lstlisting}
+lemma henkin_language_chain_obj_card [is_algebraic L] {T : Theory L}
+  (hconsis : is_consistent T)
+  (hLκ : ∀ n, # (L.functions n) ≤ κ) (i : ℕ) :
+  ∀ (n : ℕ), # (((@henkin_language_chain L).obj i).functions n) ≤ κ := \end{lstlisting}
+
+If we induct on $i$,
+we can use the way in which each step in the Henkinization was built.
+When $i = 0$ the language is just $L$ itself,
+which has function symbols bounded by assumption.
+
+\begin{lstlisting}
+  simp only [henkin_language_chain, henkin_language_chain_objects],
+  induction i with i hi,
+  { apply hLκ },
+\end{lstlisting}
+
+For the inductive step, we should also case on $n$ since
+we only add new constant symbols at each step.
+
+\begin{lstlisting}
+  { intro n,
+    cases n with n,
+    { rw cardinal.mk_congr (@henkin_language_functions_zero (@henkin_language_chain_objects L i)),
+      simp only [cardinal.mk_sum, cardinal.lift_id],
+      apply le_trans (cardinal.add_le_max _ _),
+      refine max_le (max_le (hi _) _) hωκ,
+      apply bounded_formula_card_le hωκ hi, },
+    { rw cardinal.mk_congr (@henkin_language_functions_succ (@henkin_language_chain_objects L i) n),
+      apply hi } }
+end \end{lstlisting}
+
+To explain the above:
+\begin{itemize}
+  \item The constant symbols of any successive language   (\texttt{henkin\_language\_chain\_object i.succ}) biject with
+  constant symbols from the previous language together with
+  formulas with a single variable from the previous language:
+  \begin{lstlisting}
+  henkin_language_functions (henkin_language_chain_objects i) 0 ≃
+    (henkin_language_chain_objects i).functions 0 ⊕ bounded_formula (henkin_language_chain_objects i) 1 \end{lstlisting}
+  Hence it suffices to bound the sum of the two cardinalities by $\ka$.
+  By the induction hypothesis \texttt{hi} we have the bound for
+  The constant symbols from the previous language.
+  By our previous work \texttt{bounded\_formula\_card\_le} we also
+  have a bound on the number of formulas in the previous language,
+  given a bound on the number of function symbols by the induction hypothesis \texttt{hi} again.
+
+  \item The function symbols with arity $n + 1$ of any successive language
+        biject with the the function symbols with arity $n + 1$ from the
+        previous language:
+\begin{lstlisting}
+  henkin_language_functions (henkin_language_chain_objects i) (n + 1) ≃
+    (henkin_language_chain_objects i).functions (n + 1) \end{lstlisting}
+        Hence by rewriting our goal to be the cardinality of this type
+        we can conclude using the induction hypothesis \texttt{hi}. \end{itemize}
+
+Using the above lemmas we prove the main result:
+
+\begin{lstlisting}
+lemma henkin_language_le_cardinal [is_algebraic L] {T : Theory L}
+  {hconsis : is_consistent T}
+  (hLκ : ∀ n, # (L.functions n) ≤ κ) (n : ℕ) :
+  # ((@henkin_language _ _ hconsis).functions n) ≤ κ :=
+begin
+  apply colimit_language_le_cardinal hωκ,
+  intro i,
+  apply henkin_language_chain_obj_card hωκ hconsis hLκ,
+end \end{lstlisting}

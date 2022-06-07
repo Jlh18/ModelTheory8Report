@@ -2,8 +2,6 @@ For most definitions and proofs in this section we reference
 David Marker's book on Model Theory \cite{marker}.
 We introduce the formalisations of the content in \texttt{lean} alongside the theory,
 walking through the basics of definitions made in the \texttt{flypitch} project \cite{flypitch}.
-My work is based on a slightly updated (3.33.0) version of the flypitch project,
-combined with some of the model theory material put in \texttt{mathlib} (which was edited for compatibility).
 
 \subsection{Languages}
 \begin{dfn}[Language]
@@ -12,21 +10,21 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
   \begin{itemize}
     \item A sort symbol $A$, which we will have in the background for intuition.
     \item For each natural number $n$ we have \texttt{functions n} -
-          the set of \textit{function symbols} of \textit{arity} $n$ for the language.
-          For some $f \in \func n$ we might write
+          the collection of \textit{function symbols} of \textit{arity} $n$ for the language.
+          For some function symbol $f$ of arity $n$ we might write
           $f : A^{n} \to A$ to denote $f$ with its arity.
     \item For each natural number $n$ we have \texttt{relations n} -
-          the set of \textit{relation symbols} of \textit{arity} $n$ for the language.
-          For some $r \in \rel n$ we might write
+          the collection of \textit{relation symbols} of \textit{arity} $n$ for the language.
+          For some relation symbol $r$ of arity $n$ we might write
           $r \hookr A^{n}$ to denote $r$ with its arity.
   \end{itemize}
 
   The \texttt{flypitch} project implements the above definition as
 
   \begin{lstlisting}
-    structure Language : Type (u+1) :=
-      (functions : ℕ → Type u)
-      (relations : ℕ → Type u)\end{lstlisting}
+  structure Language : Type (u+1) :=
+    (functions : ℕ → Type u)
+    (relations : ℕ → Type u)\end{lstlisting}
 
   This says that \texttt{Language} is a mathematical structure
   (like a group structure, or ring structure)
@@ -35,16 +33,14 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
   Both take a natural number and spit out a \textit{type}
   (in set theory a \textit{set})
   that consists respectively of all the function symbols and relation symbols
-  of\texttt{functions narity $n$}.
+  of arity $n$.
 
   In more detail: in type theory when we write \texttt{a:A} we mean \texttt{a} is something
   of \textit{type} \texttt{A}.
-  We can draw an analogy with the set theoretic notion $a \in A$,
-  but types in \texttt{lean} have slightly different personalities.
-  Hence in the above definitions \texttt{functions n} and \texttt{relations n}
-  are things of type \texttt{Type u}.
-  \texttt{Type u} is a collection of all types at level \texttt{u},
-  so things of type \texttt{Type u} are types.
+  With caution, we can draw an analogy with the set theoretic notion $a \in A$.
+  Note that in the above definitions, the two types
+  \texttt{functions n} and \texttt{relations n} are things of type \texttt{Type u},
+  where \texttt{Type u} is a collection of all types at level \texttt{u}.
   ``Types are of type \texttt{Type u}.''
 
   For convenience we single out $0$-ary (arity $0$) functions and
@@ -53,7 +49,7 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
   This is defined in \texttt{lean} by
 
   \begin{lstlisting}
-    def constants (L : Language) : Type u := functions 0\end{lstlisting}
+  def constants (L : Language) : Type u := functions 0\end{lstlisting}
 
   This says that \texttt{constants} takes in a language \texttt{L} and returns a type.
   Following the \texttt{:=} we have the definition of \texttt{constants L},
@@ -62,24 +58,27 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
 
 \begin{eg}
   The \linkto{dfn_rings}{language of rings}
-  will be used to define the theory of rings,
+  will be used to define the \linkto{ring_theory}{theory of rings},
   the theory of integral domains, the theory of fields, and so on.
-  In the appendix we give examples:
-  \begin{itemize}
-    \item The \linkto{dfn_bin_rel}{language with just a single binary relation} %? missing
-          can be used to define the theory of partial orders
-          with the interpretation of the relation as $<$,
-          to define the theory of equivalence relations with the
-          interpretation of the relation as $\sim$,
-          and to define the theory $\ZFC$ with the relation interpreted as $\in$.
-    \item The \linkto{dfn_cat}{language of categories} %? missing
-          can be used to define the theory of categories.
-    \item The \linkto{dfn_graph}{language of simple graphs}
-          can be used to define the theory of simple graphs
-  \end{itemize}
-  We will only be concerned with the language of rings and will
-  focus our examples around this.
+  In more generality we can make the language of groups and
+  theory of groups, abelian groups, cyclic groups and so on.
+
+  In the appendix we provide the example of the
+  \linkto{dfn_bin_rel}{language with just a single binary relation}.
+  This can be used to define the theory of graphs by taking edges as the binary relation,
+  to define the theory of partial orders with $<$ as the binary relation,
+  to define the theory of equivalence relations with $\sim$ as the binary relation,
+  and to define the theory $\ZFC$ with $\in$ as the binary relation.
+
+  Another interesting example is fixing a ring $A$ and making
+  the \linkto{dfn_module}{language of modules over $A$},
+  with which we can define the theory of modules.
+  In the same vein, we can consider the language of actions from
+  a particular monoid $M$ or a group $G$.
 \end{eg}
+
+We will only be concerned with the language of rings and will
+focus our examples around this.
 
 \begin{dfn}[Language of rings]
     \link{dfn_rings}
@@ -109,21 +108,24 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
       | add : ring_binaries
       | mul : ring_binaries\end{lstlisting}
 
-    These are \textit{inductively defined types} -
-    types that are `freely' generated by their constructors,
-    listed below after each bar `\texttt{|}'.
-    In these above cases they are particularly simple -
-    the only constructors are terms in the type.
+    These are \textit{inductive types}\footnote{
     In the appendix we give more examples of inductive types %? missing
     \begin{itemize}
-      \item The \linkto{dfn_nat}{natural numbers} are defined as inductive types
-      \item \linkto{dfn_list}{Lists} are defined as inductive types
-      \item The \linkto{dfn_int}{integers} can be defined as inductive types
+      \item The \linkto{nat_dfn}{natural numbers} are defined as inductive types
+      \item \linkto{list_dfn}{Lists} are defined as inductive types
     \end{itemize}
+    We soon introduce further inductive types such as
+    \linkto{terms_dfn}{terms in a language} and \linkto{formulas_dfn}{formulas in a language}. } -
+    types that are `freely' generated by their constructors,
+    which are listed after each bar `\texttt{|}'.
+    For example, the definition of \texttt{ring\_consts} reads
+    ``the only things of type \texttt{ring\_consts} are
+    \texttt{ring\_consts.zero} and \texttt{ring\_consts.one}''.
 
     We now collect all the above into a single definition \texttt{ring funcs}
     that takes each natural \texttt{n} to the type of \texttt{n}-ary
     function symbols in the language of rings.
+    The syntax below is casing (induction) on the naturals,
 
     \begin{lstlisting}
       /-- All function symbols in RingLanguage-/
@@ -141,28 +143,29 @@ combined with some of the model theory material put in \texttt{mathlib} (which w
       /-- The language of rings -/
       def ring_language : Language :=
       (Language.mk) (ring_funcs) (λ n, pempty)\end{lstlisting}
-
 \end{dfn}
 
-We use languages to express logical assertions about our structures, such as
-``any degree two polynomial over my ring has a root''
+We use languages to express logical assertions, such as
+``any (at most) degree two polynomial over my ring has a root''
 (in preparation for expressing algebraic closure).
 In order to do so we must introduce terms (polynomials in our case),
-formulas (the assertion itself), structures and models (the ring),
+formulas (assertions about rings), structures (``prerings'') and models (ring),
 and the relation between structures and formulas
-(that the ring satisfies this assertion).
+(whether the ring satisfies this assertion).
 
-We want to express ``all the combinations of symbols we can make in a language''.
+We want to write down all sensible combinations of symbols (and variables)
+we can make in a language.
 We can think of multivariable polynomials over the integers as such:
-the only things we can write down using symbols $0,1,-,+,*$ and variables
-are elements of $\Z{[x_{k}]}_{k \in \N}$.
-We formalize this as terms.
+the only sensible combinations of symbols $0,1,-,+,*$ and variables
+are elements of $\Z{[x_{k}]}_{k \in \N}$,
+where $x_{k}$ are the varaibles. We formalize this generally as terms.
 
 \subsection{Terms and formulas}
 
 \begin{dfn}[Terms]
+  \link{terms_dfn}
   Let \texttt{ L = (functions, relations) } be a language.
-  To make a \textit{preterm} in \texttt{L} with up to $n$ variables
+  To make a (bounded) \textit{preterm} in \texttt{L} with up to $n$ variables
   we can do one of three things:
   \begin{itemize}
     \item[$\vert$] For each natural number $k < n$ we create a symbol
@@ -192,7 +195,7 @@ We formalize this as terms.
   To explain notation
   \begin{itemize}
     \item The second constructor says ``for all natural numbers $l$ and function symbols $f$,
-          \texttt{bd\_func f} is something in \texttt{bounded\_preterm l}''.
+          \texttt{bd\_func f} is something of type \texttt{bounded\_preterm l}''.
           This makes sense since \texttt{bounded\_preterm l} is a type by the first line of code.
     \item The curley brackets just say
           ``you can leave out this input and \texttt{lean} will know what it is''.
@@ -202,20 +205,25 @@ We formalize this as terms.
   We first write the individual parts, which are
   \texttt{x\_ 1}, \texttt{bd\_func mul} and
   \texttt{bd\_func zero}.
-  Then we apply them to each other
+  \texttt{bd\_func mul} is a preterm missing $2$ inputs;
+  applying \texttt{mul} to \texttt{x\_ 1} gives us a preterm \texttt{bd\_app (bd\_func mul) (x\_ 1)}
+  missing $1$ input.
+  Then applying this to \texttt{bd\_func zero} gives a term
   \begin{lstlisting}
-    bd_app (bd_app (mul) (x_ 1)) zero \end{lstlisting}
-  Naturally, we will introduce nice notation in \texttt{lean} to replace all of this.
+    bd_app (bd_app (bd_func mul) (x_ 1)) (bd_func zero) \end{lstlisting}
+  We will introduce nice notation in \texttt{lean} to make this more legible.
 \end{dfn}
 
 \begin{rmk}
-  There are many terminology clashes between model theory and type theory,
+  There is an unfortunate terminology clash between model theory and type theory,
   since they are closely related.
-  The word ``term'' in type theory refers to anything on the left of a \texttt{:} sign,
-  or anything in a type.
+  The word ``term'' in type theory refers to anything on the left of a \texttt{:} sign;
+  ``a term of type \texttt{A}''.
+  In this document we say ``something of type \texttt{A}'' to avoid confusion.
+
   Terms in inductively defined types are (as mentioned before)
   freely generated symbols using the contructors.
-  Analogously terms in a language are freely generated symbols using
+  Similarly, terms in a language are freely generated symbols using
   the symbols from the language.
 \end{rmk}
 
@@ -226,13 +234,14 @@ In fact, we could even make degree two polynomials over any ring (if we had one)
 Here our variable is $x_{3}$, and we imagine that the other variables represent
 elements of our ring.
 To express ``any degree (up to) two polynomial over our ring has a root'',
-we might write
-\[ \forall x_{2} x_{1} x_{0} : A, \exists x_{3} : A, x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} = 0 \]
-Formulas allow us to do this.
+we are only missing logical connectives:
+\[ \forall x_{2} \, x_{1} \, x_{0} : A, \exists x_{3} : A, x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} = 0 \]
+This will be expressed as a formula.
 
 \begin{dfn}[Formulas]
+  \link{formulas_dfn}
   Let $\texttt{L}$ be a language.
-  A (classical first order) $\texttt{L}$-\textit{preformula} in $\texttt{L}$
+  A (classical first order bounded) $\texttt{L}$-\textit{preformula} in $\texttt{L}$
   with (up to) $n$ \textit{free} variables can be built in the following ways:
   \begin{itemize}
     \item[$\vert$] $\bot$ is an atomic preformula with $n$ free variables
@@ -262,11 +271,9 @@ Formulas allow us to do this.
   which is really $\forall x : A, x + x_{0} = x_{1}$,
   so that all the remaining free variables are shifted down.
 
-  We write this in \texttt{lean},
-  and also define sentences as preformulas with $0$ variables and nothing missing.
+  We define \textit{sentences} as preformulas with $0$ variables and nothing missing.
   Sentences are what we usually come up with when we make assertions.
-  For example $x = 0$ is not an assersion about rings,
-  but $\forall x : A, x = 0$ is.
+  For example $x = 0$ is not, but $\forall x : A, x = 0$ \textit{is} an assersion about rings.
 
   \begin{lstlisting}
     inductive bounded_preformula : ℕ → ℕ → Type u
@@ -296,7 +303,100 @@ Formulas allow us to do this.
   \end{lstlisting}
 \end{dfn}
 
-With this set up we can already write down the sentences that describe rings.
+\begin{rmk}[Induction principles]
+  Each inductive type is automatically given a mapping out property (or induction principle or recursor)
+  \footnote{
+    Due to \texttt{lean}'s type theory having a universe of propositions \texttt{Prop},
+    there is a slight difference between recursion and induction,
+    the former mapping into \textit{types} and the latter mapping into \textit{propositions}.
+    However, for the purposes of understanding they can be identified.
+  },
+  and this is central for any constructions and proofs involving terms and formulas.
+  Preterms and preformulas are quite elaborate inductive types,
+  due to \texttt{bd\_app}, \texttt{bd\_apprel} and \texttt{bd\_all},
+  and much more complicated than \texttt{nat} and \texttt{list T}.\footnote{
+    The recursors for \linkto{nat_dfn}{the naturals} and \linkto{list_dfn}{lists}
+    are explained in the appendix.
+    The difference in wording there should reflect that they are recursors
+    rather than induction principles.
+  }
+
+  The induction principle for terms states that to prove a statement about
+  bounded preterms missing \texttt{any number of inputs},
+  it suffices to prove the statement for the variables,
+  to prove the statement for \texttt{bd\_func f},
+  and to prove the statement for \texttt{bd\_app t s} given proofs for the statement
+  for preterms \texttt{t} and \texttt{s} respectively.
+
+  This induction requires working with preterms missing all $l$ inputs at once.
+  This is because if \texttt{t} is a preterm with $n$ variables and $l + 1$ missing inputs,
+  then \texttt{bd\_app t s} is a preterm with $n$ variables and $l$ missing inputs;
+  we needed information from \texttt{bounded\_preterm n (l + 1)} to deduce
+  information for something of type \texttt{bounded\_preterm n l}.
+
+  The induction principle for formulas is similar,
+  with \texttt{bd\_falsum} and \texttt{bd\_equal} behaving like \texttt{bd\_var},
+  \texttt{bd\_rel} behaving like \texttt{bd\_func},
+  and \texttt{bd\_apprel} behaving like \texttt{bd\_app}.
+  For the rest of the induction,
+  one must prove the statement about \texttt{bd\_imp f1 f2} given
+  proofs of the statement for preformulas \texttt{f1} and \texttt{f2},
+  and prove the statement about \texttt{bd\_all f} given a proof
+  of the statement for \texttt{f}.
+
+  This induction requires not only to work with preformulas missing all $l$ inputs at once,
+  but also to work with preformulas in all $n$ variables at once.
+  This is because if \texttt{f} is a preformula with $n + 1$ variables missing $l$ inputs then
+  then \texttt{bd\_all f} is a preformula with $n$ variables missing $l$ inputs;
+  we needed information from \texttt{bounded\_preformula (n + 1) l} to deduce information
+  for something of type \texttt{bounded\_preformula (n + 1) l}.
+
+\end{rmk}
+
+\subsection{Lean symbols for ring symbols}
+\link{lean_symbols_for_ring_symbols}
+
+We define \texttt{bounded\_ring\_term} and \texttt{bounded\_ring\_formula}
+for convenience.
+
+\begin{lstlisting}
+def bounded_ring_formula (n : ℕ) := bounded_formula ring_signature n
+def bounded_ring_term (n : ℕ) := bounded_term ring_signature n\end{lstlisting}
+
+We supply instances of \texttt{has\_zero}, \texttt{has\_one}, \texttt{has\_neg},
+\texttt{has\_add} and \texttt{has\_mul} to each type of bounded ring terms
+\texttt{bounded\_ring\_terms n}.
+This way we can use the lean symbols when writing terms and formulas.
+
+\begin{lstlisting}
+instance bounded_ring_term_has_zero {n} :
+  has_zero (bounded_ring_term n) := ⟨ bd_func ring_consts.zero ⟩
+
+instance bounded_ring_term_has_one {n} :
+  has_one (bounded_ring_term n) := ⟨ bd_func ring_consts.one ⟩
+
+instance bounded_ring_term_has_neg {n} : has_neg (bounded_ring_term n) :=
+⟨ bd_app (bd_func ring_unaries.neg) ⟩
+
+instance bounded_ring_term_has_add {n} : has_add (bounded_ring_term n) :=
+⟨ λ x, bd_app (bd_app (bd_func ring_binaries.add) x) ⟩
+
+instance bounded_ring_term_has_mul {n} : has_mul (bounded_ring_term n) :=
+⟨ λ x, bd_app (bd_app (bd_func ring_binaries.mul) x) ⟩\end{lstlisting}
+
+Note that the above fixes which order
+addition and multiplication work in (symbolically),
+but this won't matter once we interpret into commutative rings.
+
+Since we have multiplication, we also can take terms to powers
+using \texttt{npow\_rec}.
+
+\begin{lstlisting}
+instance bounded_ring_term_has_pow {n} : has_pow (bounded_ring_term n) ℕ :=
+⟨ λ t n, npow_rec n t ⟩
+\end{lstlisting}
+
+We can now write down the sentences that describe rings with ease.
 \link{sentences_for_ring_theory}
 
 \begin{lstlisting}
@@ -330,50 +430,6 @@ With this set up we can already write down the sentences that describe rings.
 We later collect all of these into one set and call it the
 \linkto{ring_theory}{theory of rings}.
 
-\subsection{Lean symbols for ring symbols}
-\link{lean_symbols_for_ring_symbols}
-
-We define \texttt{bounded\_ring\_term} and \texttt{bounded\_ring\_formula}
-for convenience.
-
-\begin{lstlisting}
-def bounded_ring_formula (n : ℕ) := bounded_formula ring_signature n
-def bounded_ring_term (n : ℕ) := bounded_term ring_signature n\end{lstlisting}
-
-We supply instances of \texttt{has\_zero}, \texttt{has\_one}, \texttt{has\_neg},
-\texttt{has\_add} and \texttt{has\_mul} to each type of bounded ring terms
-\texttt{bounded\_ring\_terms n}.
-This way we can use the lean symbols when writing terms and formulas.
-
-\begin{lstlisting}
-instance bounded_ring_term_has_zero {n} :
-  has_zero (bounded_ring_term n) := ⟨ bd_func ring_consts.zero ⟩
-
-instance bounded_ring_term_has_one {n} :
-  has_one (bounded_ring_term n) := ⟨ bd_func ring_consts.one ⟩
-
-instance bounded_ring_term_has_neg {n} : has_neg (bounded_ring_term n) :=
-⟨ bd_app (bd_func ring_unaries.neg) ⟩
-
-instance bounded_ring_term_has_add {n} : has_add (bounded_ring_term n) :=
-⟨ λ x, bd_app (bd_app (bd_func ring_binaries.add) x) ⟩
-
-instance bounded_ring_term_has_mul {n} : has_mul (bounded_ring_term n) :=
-⟨ λ x, bd_app (bd_app (bd_func ring_binaries.mul) x) ⟩\end{lstlisting}
-
-Note that in the above a choice as been made for which side
-addition and multiplication work on (symbolically),
-but this won't matter once we interpret into commutative rings.
-
-Since we have multiplication, we also can take terms to powers
-using \texttt{npow\_rec}.
-
-\begin{lstlisting}
-instance bounded_ring_term_has_pow {n} : has_pow (bounded_ring_term n) ℕ :=
-⟨ λ t n, npow_rec n t ⟩
-\end{lstlisting}
-
-
 \subsection{Interpretation of symbols}
 
 In the above we set up a symbolic treatment of logic.
@@ -382,17 +438,20 @@ In this subsection we try to make these symbols into tangible mathematical objec
 We intend to apply the statement
 ``any degree two polynomial over our ring has a root''
 to a real, usable, tangible ring.
-We would like the sort symbol $A$ to be interpreted as the underlying type (set)
+We would like the sort symbol $A$ to be interpreted as the underlying type
 for the ring and the function symbols to actually become maps from the ring to itself.
 
 \begin{dfn}[Structures]
-    Given a language $\texttt{L}$, a $\texttt{L}$-\textit{structure} \texttt{M}
+    Given a language $\texttt{L}$, an $\texttt{L}$-\textit{structure} \texttt{M}
     interpreting $\texttt{L}$ consists of the following
     \begin{itemize}
       \item An underlying type \texttt{carrier}.
       \item Each function symbol $f : A^{n} \to A$ is interpreted as a
             function that takes an $n$-ary tuple in \texttt{carrier}
-            to something in \texttt{carrier}.
+            to something of type \texttt{carrier}.
+            Note that the domain of this function for constant symbols is an empty tuples,
+            hence it is a constant map into \texttt{carrier},
+            or simply a constant of type \texttt{carrier}.
       \item Each relation symbol $r \hookr A^{n}$
             is interpreted as a proposition about $n$-ary tuples in \texttt{carrier},
             which can also be viewed as the subset of the set of $n$-ary tuples
@@ -400,29 +459,25 @@ for the ring and the function symbols to actually become maps from the ring to i
     \end{itemize}
 
   \begin{lstlisting}
-  structure Structure :=
+  structure Structure (L : Language) :=
   (carrier : Type u)
   (fun_map : ∀{n}, L.functions n → dvector carrier n → carrier)
   (rel_map : ∀{n}, L.relations n → dvector carrier n → Prop)\end{lstlisting}
 
   The \texttt{flypitch} library uses \texttt{dvector A n} for $n$-ary tuples of terms in \texttt{A}.
 
-  Note that rather comically \texttt{Structure} is itself a mathematical structure.
-  This is sensible, since \texttt{Structure} is meant to generalize the algebraic
-  (and relational) definitions of mathematical structures such as groups and rings.
-
-  Also note that for constant symbols the interpretation has domain empty tuples,
-  i.e. only the term \texttt{dvector.nil} as its domain. Hence it is a constant map
-  - a term of the interpreted carrier type.
+  Note that \texttt{Structure L}, like \texttt{Language},
+  is itself a mathematical \texttt{structure}.
+  This is sensible, since \texttt{Structure} is meant to generalize algebraic
+  and relational mathematical structures such as rings, modules, and graphs.
 \end{dfn}
 
 The structures in a language will become the models of \linkto{dfn_theory}{theories}.
 For example $\Z$ is a structure in the \linkto{dfn_rings}{language of rings},
 a model of the \linkto{ring_theory}{theory of rings} but not a model of the theory of fields.
 In the language of \linkto{dfn_bin_rel}{binary relations},
-$\N$ with the usual ordering $\leq$ is a structure that models of
-the theory of partial orders (with the order relation)
-but not the theory of equivalence relations (with $\le$).
+$\N$ with the usual ordering $<$ is a structure that models of
+the theory of partial orders but not the theory of equivalence relations.
 
 Before continuing to formalize ``any degree two polynomial over our ring has a root'',
 we stop to notice that structures in a language form suitable objects for a category.
@@ -462,25 +517,14 @@ protected structure hom :=
         \nnintp{r}
         \ar[hookrightarrow]{r} & \texttt{dvector N.carrier n}
       \end{cd}
-
-      The notion of morphisms here will be the same as that of
-      morphisms in the algebraic setting.
-      For example in the \linkto{dfn_rings}{language of rings},
-      preserving interpretation of function symbols says
-      the zero is sent to the zero, one is sent to one,
-      subtraction, multiplication and addition is preserved.
-      In languages that have relation symbols,
-      such as that of simple graphs, preserving relations says that
-      if the relation holds for terms in the domain,
-      then the relation holds for their images.
 \end{dfn}
 
 Returning to our objective,
 we realize that we need to interpret our polynomial (a term)
-is something in our ring. The term
+as something in our ring. The term
 
 \[ x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} \]
-Should be a map from $4$-tuples from the ring to a value in the ring,
+Should be a map sending $4$-tuples in the ring to a single value in the ring,
 namely, taking $(a, b, c, d)$ to
 
 \[ a c^{2} + b c + d \]
@@ -490,7 +534,7 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
 \begin{dfn}[Interpretation of terms]
     \link{interpretation_terms}
     Given $\texttt{L}$-structure $\texttt{M}$ and a $\texttt{L}$-term $t$ with up to $n$-variables.
-    Then we can naturally interpret (a.k.a realize) $t$ in the $\texttt{L}$-structure $\texttt{M}$ as a
+    Then we can naturally interpret (or realize) $t$ in the $\texttt{L}$-structure $\texttt{M}$ as a
     map from the $n$-tuples of $\texttt{M}$ to $\texttt{M}$ that
     commutes with the interpretation of function symbols.
 
@@ -512,8 +556,8 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
     in our structure, so we compose these in the obvious way.
 \end{dfn}
 
-We can finally completely formalize
-``any (at most) degree two polynomial has a root''.
+This completes our goal of conveying
+``any (at most) degree two polynomial in our ring has a root''.
 
 \begin{dfn}[Interpretation of formulas]
 

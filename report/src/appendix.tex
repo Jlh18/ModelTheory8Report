@@ -1,0 +1,156 @@
+\subsection{Relational languages}
+
+\begin{dfn}[Language of binary relations]
+  \link{dfn_bin_rel}
+  Let the following be the language of binary relations:
+    \begin{itemize}
+        \item There are no function symbols.
+        \item The only relation symbol is $<$, which has arity $2$.
+    \end{itemize}
+    For variables $x$ and $y$ of type $P$,
+    we write $x < y$ as notation for $<(x,y)$.
+\end{dfn}
+
+\begin{dfn}[Graph theory]
+  \link{graph_theory}
+  The theory of simple directed graphs is the language of binary relations is
+  given by the single formula
+  \begin{itemize}
+    \item Non-reflexivity - $\forall x, \NOT (x < x)$
+  \end{itemize}
+  Here the sort symbol is viewed as the set of vertices,
+  and the relation symbol viewed as an edge between vertices.
+  The fact that any model of this theory is a simple graph
+  follows from non-reflexivity and proposition extensionality.
+
+  The theory of simple undirected graphs includes the formula above and also
+  \begin{itemize}
+    \item Symmetry - $\forall x \, y, x < y \to y < x$
+  \end{itemize}
+\end{dfn}
+
+\begin{dfn}[Order theories]
+    \link{order_theories}
+    The theory of partial orders in the language of binary relations
+    is given by the two formulas
+    \begin{itemize}
+        \item Non-reflexivity - $\forall x, \NOT (x < x)$
+        \item Transitivity - $\forall x \, y \, z, x < y \AND y < z \implies x < z$
+    \end{itemize}
+    The theory of linear orders is the theory of partial orders plus
+    \begin{itemize}
+        \item Linearity - $\forall x \, y, x < y \OR x = y \OR y < x$
+    \end{itemize}
+\end{dfn}
+
+\begin{dfn}[Theory of equivalence relations]
+    \link{equiv_rel_theory}
+    The theory of equivalence relations in the language of binary relations
+    is given by the three formulas
+    \begin{itemize}
+      \item Reflexivity - $\forall x, x < x$
+      \item Symmetry - $\forall x \, y \, z, x < y \implies y < x$
+      \item Transitivity - $\forall x \, y \, z, x < y \AND y < z \implies x < z$
+    \end{itemize}
+\end{dfn}
+
+ZFC can also be described as a theory in the language of binary relations.
+The above theories all contain finitely many sentences,
+but one would need infinitely many sentences to make ZFC,
+since each axiom schema includes infinitely many sentences.
+
+\subsection{Actions}
+
+\begin{dfn}[Monoid and group actions]
+  \link{monoid_action_dfn}
+  Fix $M$ a monoid.
+  Let the following be the language of $M$-sets:
+  \begin{itemize}
+    \item For each monoid element $a$ from $M$
+          we have a function symbol $\rho_{a}$ of arity $1$.
+    \item There are no relation symbols.
+  \end{itemize}
+
+  In the language of $M$-sets we let the theory of left monoid actions consist of
+  the sentences
+  \begin{itemize}
+    \item Respecting multiplication - $\set{ \forall x, \rho_{a}(\rho_{b} x) = \rho_{ab} \st a , b \in M}$
+    \item Respecting the identity - $ \forall x, \rho_{e} x = x$, where $e$ is the identity in $M$
+  \end{itemize}
+
+  The above automatically defines $G$-sets and left $G$ actions for a group $G$.
+\end{dfn}
+
+\begin{dfn}[Modules]
+  \link{dfn_module}
+  Fix $A$ a ring.
+  Let the language of modules over $A$ be the \linkto{language_sum_dfn}{sum}
+  of the \linkto{monoid_action_dfn}{language $A$-sets} and the language of groups.
+  (We already made the language of groups and the theory of abelian groups
+  whilst making the language of rings and theory of commutative rings.)
+
+  In the langauge of modules we make the theory of left modules by taking the
+  union of the following
+  \begin{itemize}
+    \item The (\linkto{induced_theory_dfn}{induced}) theory of left monoid actions
+          from the language of $A$-sets.
+    \item The (\linkto{induced_theory_dfn}{induced}) theory of abelian groups
+          from the language of groups.
+    \item Ring and module distributivity:
+          \[
+            \set{ \forall x \, y, \rho_{a} (x + y) = \rho_{a} x + \rho_{a} y \st a \in A }
+            \cup
+            \set{ \forall x, \rho_{a + b} x = \rho_{a} x + \rho_{b} x \st a , b \in A }
+          \]
+  \end{itemize}
+\end{dfn}
+
+\subsection{Inductive types}
+
+\begin{dfn}[The naturals]
+  \link{nat_dfn}
+
+  The naturals convey the data of their induction principle,
+  which is embodied in the following.
+
+  \begin{lstlisting}
+  inductive nat
+  | zero : nat
+  | succ (n : nat) : nat \end{lstlisting}
+  This definition of the naturals reads
+  ``the only things of type \texttt{nat} are
+  \texttt{nat.zero} and \texttt{nat.succ n},
+  for some \texttt{n} of type \texttt{nat}''.
+\end{dfn}
+
+The recursor for the naturals says to make a map out of the naturals
+into some type \texttt{A} (i.e. recursively make things of type \texttt{A}),
+it suffices to send \texttt{nat.zero} to something of type \texttt{A}
+and, given the image of \texttt{n},
+to send \texttt{nat.succ n} to something of type \texttt{A}.
+
+\begin{dfn}[Lists]
+  \link{list_dfn}
+
+  Given a type \texttt{T}, we can build lists of things of type \texttt{A}.
+
+  \begin{lstlisting}
+  inductive list (T : Type u)
+  | nil : list
+  | cons (hd : T) (tl : list) : list \end{lstlisting}
+
+  This definition of lists on a type \texttt{T} reads
+  ``the only things of type \texttt{list T} are
+  \texttt{list.nil} and \texttt{list.cons hd tl},
+  for some \texttt{hd} of type \texttt{T}
+  and some \texttt{tl} of type \texttt{list T}''.
+  The first constructor is the empty list and the
+  second gives a way of making a new list by adding \texttt{hd}
+  at the beginning of an existing list.
+\end{dfn}
+
+The recursor for lists says to make a map out of lists on a type
+into some type \texttt{A} (i.e. recurse on lists),
+it suffices to send the empty list to something of type \texttt{A}
+and, given the image of a list \texttt{tl},
+to send \texttt{list.cons hd tl} to something of type \texttt{A}.
