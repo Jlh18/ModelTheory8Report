@@ -11,21 +11,18 @@ completeness and soundness results:
           it is a model of the theory of fields.
     \item A type $A$ is an algebraically closed field (of characteristic p)
           if and only if it is a model of $\ACF_{(p)}$.
-    \item (Details later) Ax-Grothendieck stated model theoretically corresponds to
-          the theorem stated internally.
   \end{itemize}
   For the purposes of design in lean it is
   more sensible to split each ``if and only if'' into seperate constructions,
   for converting the algebraic objects into their model theoretic counterparts
   and vice versa.
-  Although rather trivial,
+  Although rather trivial on paper,
   converting between these facts takes a bit of work in \texttt{lean},
-  especially for case of $\ACF_{p}$
+  especially for case of $\ACF_{p}$,
   where some ground work needs to be done for interpreting \texttt{gen\_monic\_poly}.
 \end{prop}
 
-Before we embark on a proof,
-we list some general facts and tips about working with models:
+Before we embark on a proof, we list some relevant facts and tips:
 \begin{itemize}
   \item Proofs are easier when working in models, so our proofs tend to
         first translate everything we can to the ring,

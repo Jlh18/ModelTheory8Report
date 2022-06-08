@@ -464,7 +464,9 @@ for the ring and the function symbols to actually become maps from the ring to i
   (fun_map : ∀{n}, L.functions n → dvector carrier n → carrier)
   (rel_map : ∀{n}, L.relations n → dvector carrier n → Prop)\end{lstlisting}
 
-  The \texttt{flypitch} library uses \texttt{dvector A n} for $n$-ary tuples of terms in \texttt{A}.
+  The \texttt{flypitch} library defines \texttt{dvector A n} to be
+  $n$-ary tuples of terms in \texttt{A}.
+  This is replaced with \texttt{fin} in the \texttt{mathlib} setup of model theory.
 
   Note that \texttt{Structure L}, like \texttt{Language},
   is itself a mathematical \texttt{structure}.
@@ -545,10 +547,10 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
 | _ (bd_func f)    xs := M.fun_map f xs
 | _ (bd_app t₁ t₂) xs := realize_bounded_term t₁ (realize_bounded_term t₂ ([])::xs) \end{lstlisting}
 
-    This is defined by induction on (pre)terms.
+    This is defined by recursion on (pre)terms.
     When the preterm $t$ is a variable $x_{k}$, we interpret $t$ as a map
     that picks out the $k$-th part of the $n$-tuple \texttt{xs}.
-    This is like projecting to the $n$-th axis if the structure looks like an affine line.
+    This is like projecting to the $k$-th axis when we view \texttt{M} as an affine line.
     When the term is a function symbol, then we automatically get a map from the
     definition of structures.
     In the last case we are applying a preterm $t_{1}$ to a term $t_{2}$,
@@ -558,6 +560,8 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
 
 This completes our goal of conveying
 ``any (at most) degree two polynomial in our ring has a root''.
+Whilst terms are interpreted as maps, formulas are interpreted as propositions,
+asking if the structure \texttt{M} satisfies the proposition.
 
 \begin{dfn}[Interpretation of formulas]
 
@@ -602,28 +606,25 @@ realize_bounded_formula ([] : dvector M 0) f ([])\end{lstlisting}
 
 \subsection{Theories}
 
-Now we are able to express statements such as
-``this structure in the language of rings has roots
-of all degree two polynomials'', using interpretation of sentences.
-A sensible task is to organize algebraic data, such as rings, fields,
-and algebraically closed fields, in terms of the sentences that axiomatize them.
+A ring should be exactly a structure in the language of rings satisfying the
+sentences that axiomatize rings.
+In this subsection we organize algebraic definitions such as rings, fields,
+and algebraically closed fields in terms of the sentences that axiomatize them.
 We call these theories.
 
 Note that this is \textit{the whole point of model theory},
 we will be able to work with terms, formulas, structures and theories tangibly,
-as terms in types (or set theoretically as elements of some sets).
+as terms in types (or set theoretically as elements of some sets''.
 This allows us to reason about logic itself,
 and its interaction with the real world.
 
-\begin{dfn}[Theory]
+\begin{dfn}[Theories and models]
   \link{dfn_theory}
   Given a language $\texttt{L}$,
   a set of sentences in the language is a theory in that language.
   \begin{lstlisting}
     def Theory := set (sentence L)   \end{lstlisting}
-\end{dfn}
 
-\begin{dfn}[Models, consistent]
     Given an $\texttt{L}$-structure $\texttt{M}$ and $\texttt{L}$-theory $\texttt{T}$,
     we write $\texttt{M} \vDash \texttt{T}$ and say
     \emph{$\texttt{M}$ is a model of $\texttt{T}$} when
@@ -635,15 +636,13 @@ and its interaction with the real world.
     We say an $\texttt{L}$-theory is consistent if it has a model.
   \end{dfn}
 
-A model of the \linkto{ring_theory}{theory of rings} should be exactly the data of a ring.
-To \linkto{algebraic_objects_iff_models}{show this} we must write down the theories of
-rings, fields, and algebraically closed fields.
-
 \begin{dfn}[The theories of rings, fields and algebraically closed fields]
   \link{ring_theory}
 
   The theory of rings is just the set of the
   \linkto{sentences_for_ring_theory}{sentences describing a ring}.
+  A model of the \linkto{ring_theory}{theory of rings} should be exactly the data of a ring.
+  We will show this in the \linkto{algebraic_objects_iff_models}{next section}.
 
 \begin{lstlisting}
   def ring_theory : Theory ring_signature :=
@@ -693,12 +692,12 @@ rings, fields, and algebraically closed fields.
   $x_{0}^{n+2}$ at the front of the generic polynomial.
 
   \begin{lstlisting}
-    def gen_monic_poly (n : ℕ) : bounded_term ring_signature (n + 2) :=
-    npow_rec (n + 1) (x_ 0) + gen_poly n
+  def gen_monic_poly (n : ℕ) : bounded_term ring_signature (n + 2) :=
+  npow_rec (n + 1) (x_ 0) + gen_poly n
 
-    /-- ∀ a₁ ⋯ ∀ aₙ, ∃ x₀, (aₙ x₀ⁿ⁻¹ + ⋯ + a₂ x₀+ a₁ = 0) -/
-    def all_gen_monic_poly_has_root (n : ℕ) : sentence ring_signature :=
-    fol.bd_alls (n + 1) (∃' gen_monic_poly n ≃ 0) \end{lstlisting}
+  /-- ∀ a₁ ⋯ ∀ aₙ, ∃ x₀, (aₙ x₀ⁿ⁻¹ + ⋯ + a₂ x₀+ a₁ = 0) -/
+  def all_gen_monic_poly_has_root (n : ℕ) : sentence ring_signature :=
+  fol.bd_alls (n + 1) (∃' gen_monic_poly n ≃ 0) \end{lstlisting}
 
   We can then easily state ``all generic monic polynomials have a root''.
   The order of the variables is important here:
@@ -710,8 +709,9 @@ rings, fields, and algebraically closed fields.
   in front, leaving us a formula with no free variables, i.e. sentence.
 
   \begin{lstlisting}
-    /-- The theory of algebraically closed fields -/
-    def ACF : Theory ring_signature := field_theory ∪ (set.range all_gen_monic_poly_has_root)\end{lstlisting}
+  /-- The theory of algebraically closed fields -/
+  def ACF : Theory ring_signature :=
+  field_theory ∪ (set.range all_gen_monic_poly_has_root)\end{lstlisting}
 
   Since \texttt{all\_gen\_monic\_poly\_has\_root} is a function from the naturals,
   we can take its set theoretic image (called \texttt{set.range}),
@@ -729,44 +729,32 @@ rings, fields, and algebraically closed fields.
   as \texttt{ACF} with the additional sentence $p = 0$.
 
   \begin{lstlisting}
-    def ACFₚ {p : ℕ} (h : nat.prime p) : Theory ring_signature :=
-    set.insert (p ≃ 0) ACF\end{lstlisting}
+  def ACFₚ {p : ℕ} (h : nat.prime p) : Theory ring_signature :=
+  set.insert (p ≃ 0) ACF\end{lstlisting}
 
   To define the theory of algebraically closed fields of characteristic $0$,
   we add a sentence $p + 1 \ne 0$ for each natural $p$.
 
   \begin{lstlisting}
-    def plus_one_ne_zero (p : ℕ) : sentence ring_signature :=
-    ¬ (p + 1 ≃ 0)
+  def plus_one_ne_zero (p : ℕ) : sentence ring_signature :=
+  ¬ (p + 1 ≃ 0)
 
-    def ACF₀ : Theory ring_signature := ACF ∪ (set.range plus_one_ne_zero)  \end{lstlisting}
+  def ACF₀ : Theory ring_signature := ACF ∪ (set.range plus_one_ne_zero)  \end{lstlisting}
 
 \end{dfn}
 
   Whilst completeness and soundness for first order logic
   is about converting between symbolic and semantic deduction,
   there is another layer of conversion that is often swept under the rug,
-  between the semantics and native mathematics.
-  Before the project began,
-  the part of this project that Kevin and I were most skeptical about was
-  model theory actually producing results that were usable,
-  in the sense of being compatible with \texttt{mathlib}.
-  We can formalize this problem:
-
-  \begin{itemize}
-    \item Structures in a language are the same thing
-          as our internal way of describing structures -
-          a ring structure is actually a type with instances $0,1,-,+,\times$.
-    \item Models of theories in a language are the same things
-          as our internal way of describing algebraic objects -
-          a model of the theory of rings is actually a ring in lean.
-    \item A model theoretic statement of Ax-Grothendieck holds if and only if
-          an algebraic statement of Ax-Grothendieck holds.
-          (For fixed characteristic.) \texttt{mathlib}
-  \end{itemize}
-
-  We informally use the term ``internal completeness and soundness''
-  for this kind of phenomenon (coined by Kenny Lau).
+  between the internal semantics and the ambient mathematics,
+  which we will informally call ``internal completeness and soundness''.
+  For example, we need to show that a model of a ring is
+  actually a ring, according to the \texttt{mathlib} definition of a ring.
+  Showing that models of structures are equivalent to their ``actual'' mathematical counterparts
+  and that model-theoretically stated theorems are equivalent to
+  their counterparts is arguably the most important part of the project:
+  it shows that model theory actually produces results that are usable
+  in other areas of maths.
 
 % \begin{proof}
 %   The proof of this formed a significant part of this project.

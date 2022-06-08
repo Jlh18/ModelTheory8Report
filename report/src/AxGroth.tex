@@ -31,7 +31,8 @@ We then investigate internal completeness and soundness for these statements.
     In particular injective polynomial maps over $\C$ are surjective.
 
 \begin{lstlisting}
-  theorem Ax_Groth {n : ℕ} {ps : poly_map K n} (hinj : function.injective (poly_map.eval ps)) :
+  theorem Ax_Groth {n : ℕ} {ps : poly_map K n}
+    (hinj : function.injective (poly_map.eval ps)) :
   function.surjective (poly_map.eval ps) := sorry \end{lstlisting}
 \end{prop}
 
@@ -76,7 +77,7 @@ It can be indexed by
 Then we write
 \[ p = \sum_{f\texttt{ : monom\_deg\_le n d}} p_{f}\prod_{i < n} x^{f i}\]
 
-The typical approach to writing a sum like this in lean would be
+The typical approach to writing a sum like this in \texttt{lean} would be
 to tell lean that only finitely many of the $p_{f}$ are non-zero
 ($p_{\star}$ is finitely supported - \texttt{finsupp}).
 However, the API built for this assumes that the underlying
@@ -241,10 +242,10 @@ theorem realize_Ax_Groth_formula {n : ℕ} :
 sorry
 \end{lstlisting}
 
-\subsection{Completeness and soundness}
+\subsection{Internal completeness and soundness}
 
 It is important that the model theoretic statements of the above translate to
-our statements in lean. We finish by showing `\texttt{realize\_Ax\_Groth\_formula}`.
+our statements in \texttt{lean}. We finish by showing `\texttt{realize\_Ax\_Groth\_formula}`.
 
 \subsubsection*{Injectivity (and surjectivity)}
 
@@ -298,10 +299,71 @@ lemma realize_inj_formula_of_model
   realize_bounded_formula coeffs (inj_formula n d) dvector.nil := sorry
 \end{lstlisting}
 
-Both of the above facts are simple to prove,
-but tiresome to work out.
+Since all of these proofs are quite similar and unenlightening,
+I will give an overview of one direction of the proof of
+\texttt{realize\_inj\_formula\_of\_ring} and leave the rest.
 
-%% More work here?
+We do some preliminary simplification and focus on the forward direction.
+We want to show that \texttt{xs} and \texttt{ys} of type \texttt{fin n $\to$ A} are equal,
+assuming that they are equal under evaluation through polynomial map \texttt{ps}.
+
+\begin{lstlisting}
+lemma realize_inj_formula_of_ring
+  {n d : ℕ}
+  (ps : poly_map A n)
+  (hdeg : ∀ (i : fin n), (ps i).total_degree ≤ d) :
+  @realize_bounded_formula _ (struc_to_ring_struc.Structure A)
+    _ _ (@poly_map.coeffs_dvector' A _ n d ps)
+    (inj_formula n d) dvector.nil
+  ↔
+  function.injective (poly_map.eval ps) :=
+begin
+  simp only [...],
+  split,
+    -- forward implication
+  { intros hInj xs ys himage, \end{lstlisting}
+
+We then make \texttt{xs} and \texttt{ys} into \texttt{dvector}s
+in the obvious way,
+and look to show that these are equal under evaluation
+of \texttt{ps} (via \texttt{poly\_indexed\_by\_monos}).
+
+\begin{lstlisting}
+    set xs' : dvector (struc_to_ring_struc.Structure A) n := dvector.of_fn xs with hxs',
+    set ys' : dvector (struc_to_ring_struc.Structure A) n := dvector.of_fn ys with hys',
+    have hImage :  ∀ (k : fin n),
+      realize_bounded_formula (ys'.append (xs'.append (poly_map.coeffs_dvector' d ps)))
+        (poly_indexed_by_monoms n d (↑k * (monom_deg_le n d).length + n + n) n (n * (monom_deg_le n d).length + n + n)
+             inj_formula_aux0
+             inj_formula_aux2 ≃
+           poly_indexed_by_monoms n d (↑k * (monom_deg_le n d).length + n + n) 0 (n * (monom_deg_le n d).length + n + n)
+             inj_formula_aux0
+             inj_formula_aux1)
+        dvector.nil,
+    { intro j,
+      simp only [poly_map.eval] at himage,
+      have himagej := congr_fun himage j,
+      simp [...],
+      convert himagej,
+      { convert symm (eval_poly_map_xs ps xs' ys' hdeg j),
+        funext k, simp [...], },
+      { convert symm (eval_poly_map_ys ps xs' ys' hdeg j),
+        funext k, simp [...], }, }, \end{lstlisting}
+
+The above is a result of the assumption \texttt{himage} of equality
+under \texttt{polynomial_map.eval ps}.
+Then it is a matter of applying injectivity (on the model theoretic side)
+
+\begin{lstlisting}
+    funext i, -- for each input (... they are equal)
+    have hPreimage := hInj xs' ys' hImage i,
+    simp [...] at hPreimage,
+    convert hPreimage,
+    {rw [hxs', dvector.nth_of_fn, fin.eta] },
+    {rw [hys', dvector.nth_of_fn, fin.eta] }, },
+  -- backward implication
+  { ... },
+end \end{lstlisting}
 
 Now that we have introduced completeness and soundness for
 Ax-Grothendieck we can move back and forth between
@@ -322,7 +384,7 @@ algebra and model theory, so that we can do the following
 
 The reason that we need to split into cases depending on characteristic
 (the final two arrows above) is because $\ACF$ alone is not a
-\linkto{dfn_complete_theory}{complete theory}, %missing link
+\linkto{dfn_complete_theory}{complete theory},
 but adding in contraints on characteristic makes it so.
 
 Hence the following parts remain:
@@ -330,6 +392,6 @@ The locally finite part of the proof is given in
 \linkto{locally_finite}{the next section}.
 The fact that $\ACF_{p}$ and $\ACF_{0}$ are {complete theories} and the
 {characteristic-change lemma} are usually packaged together
-in \linkto{lefschetz}{the Lefschetz principle}, %%missing link
+in \linkto{lefschetz}{the Lefschetz principle},
 which we work on in the section after that.
 The rest of the components of the proof are covered by our work so far.
