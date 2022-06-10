@@ -22,17 +22,25 @@ injectivity of a polynomial map implies surjectivity,
 and the proof we will give is model theoretic,
 roughly saying ``we may reduce to the finite field case''.
 
-This project formalizes this proof of Ax-Grothendieck in \texttt{lean}\footnote{
+This project formalizes this proof of Ax-Grothendieck in \code{lean}\footnote{
   As far as I am aware this is the first attempt to formalize Ax-Grothendieck in
   proof verification software. }.
 My github repository for this project is accessible at
 \url{github.com/Jlh18/ModelTheoryInLean8}.
 
-I work on a fork of the \texttt{flypitch} project \cite{flypitch},
+\subsection*{References}
+
+I work on a fork of the \code{flypitch} project \cite{flypitch},
 which built the framework for basic model theory and proved the
 independence of the continuum hypothesis.
 I have made many updates to this fork to make it compatible with
-more modern versions of \texttt{mathlib}.
-My original work all lies in the folder \texttt{src/Rings},
+more modern versions of \code{mathlib}.
+My original work all lies in the folder \code{src/Rings},
 even though a lot of the code (such as the proof of \linkto{vaught_test}{Vaught's test})
 is general model theory.
+Unless specified in comments above the theorems and definitions,
+the content of \code{src/Rings} is my original work.
+
+Unless specified otherwise,
+all definitions and proofs in this document follow the ideas given in
+David Marker's book on Model Theory \cite{marker} and formalization of the theory in \code{flypitch}.

@@ -401,35 +401,54 @@ theorem realize_Ax_Groth_formula {n : ℕ} :
   (∀ (ps : poly_map K n),
     function.injective (poly_map.eval ps) → function.surjective (poly_map.eval ps)) :=
 begin
-  split,
-  { intros H ps hinj,
-    set d := max_total_deg ps,
-    specialize H d,
-    let coeffs := poly_map.coeffs_dvector' d ps,
+  split,   \end{lstlisting}
+
+Assume the structure satisfies \texttt{Ax\_Groth\_formula d} for all $d$ and
+suppose we have a polynomial map \texttt{ps}.
+We can pick $d$ to be \texttt{max\_total\_deg ps},
+which is the maximum total degree across polynomials \texttt{ps i},
+for all $i < n$.
+We extract the monomial coefficients from \texttt{ps} as a \texttt{dvector}
+called \texttt{coeffs}.
+
+\begin{lstlisting}
+  { intros H ps,
+    specialize H (max_total_deg ps),
+    let coeffs := poly_map.coeffs_dvector' d ps, \end{lstlisting}
+
+Using internal completeness and soundness for injectivity and surjectivity
+we can convert the goal from
+\begin{lstlisting}
+  ⊢ function.injective ps.eval → function.surjective ps.eval \end{lstlisting}
+to
+\begin{lstlisting}
+  ⊢ realize_bounded_formula (poly_map.coeffs_dvector' coeffs ps)
+    (inj_formula n (max_total_deg (λ (i : fin n), ps i)))
+    dvector.nil →
+  realize_bounded_formula (poly_map.coeffs_dvector' coeffs ps)
+    (surj_formula n (max_total_deg (λ (i : fin n), ps i)))
+    dvector.nil \end{lstlisting}
+
+Then hypothesis $H$ is exactly what we need after simplification.
+
+\begin{lstlisting}
+    rw ← realize_surj_formula_of_ring ps (total_deg_le_max_total_deg ps),
+    rw ← realize_inj_formula_of_ring ps (total_deg_le_max_total_deg ps),
     simp only [realize_sentence_bd_alls, Ax_Groth_formula] at H,
-    -- injective -> realize inj_formula
-    have hInj : @realize_bounded_formula _ (struc_to_ring_struc.Structure K) _ _
-      (poly_map.coeffs_dvector' d ps) (inj_formula n d) dvector.nil,
-    {
-      rw realize_inj_formula_of_ring ps (total_deg_le_max_total_deg ps),
-      exact hinj,
-    },
-  rw ← realize_surj_formula_of_ring ps (total_deg_le_max_total_deg ps),
-  -- apply realize_Ax_Groth to ps, i.e. apply hAG to its coefficients
-  exact H coeffs hInj,
-  },
+    exact H coeffs, }, \end{lstlisting}
+
+The converse is similar
+\begin{lstlisting}
   { intros H d,
-    simp only [Ax_Groth_formula],
-    simp only [realize_sentence_bd_alls],
+    simp only [Ax_Groth_formula, realize_sentence_bd_alls],
     intro coeffs,
-    simp only [realize_bounded_formula_imp],
+    simp only [realize_bounded_formula_imp, ← realize_surj_formula_of_model],
     intro hinj,
-    rw ← realize_surj_formula_of_model,
     apply H,
     rw realize_inj_formula_of_model,
     exact hinj, },
 end
-\end{lstlisting} %? explanation
+\end{lstlisting}
 
 \subsection{The Lefschetz Principle}
 
@@ -453,15 +472,15 @@ To talk about Lefschetz it is sensible to first make the following definitions:
             (``are elementarily equivalent'').
     \end{itemize}
 
-    Another definition \texttt{is\_complete} from the flypitch project
+    Another definition \code{is\_complete} from the flypitch project
     is stronger than these conditions, and is useful when constructing
     theories with nice properties.
     We will not need this for now, but it is relevant to \linkto{henkinization}{Henkinization}.
     \begin{lstlisting}
       def is_complete (T : Theory L) :=
       is_consistent T ∧ ∀(f : sentence L), f ∈ T ∨ ∼ f ∈ T \end{lstlisting}
-    I will refer to \texttt{is\_complete} as ``maximal consistent''\footnote{
-      Given an \texttt{is\_complete'} theory that is also consistent,
+    I will refer to \code{is\_complete} as ``maximal consistent''\footnote{
+      Given an \code{is\_complete'} theory that is also consistent,
       there is an obvious way of extending it to a maximal consistent theory.}.
 \end{dfn}
 \begin{proof}
@@ -548,9 +567,9 @@ lemma Ax_Groth_algebraic_closure_zmod (p : ℕ) [hp : fact (nat.prime p)] {n} :
 Ax_Groth_of_locally_finite (ulift.{u} (zmod p))
     (algebraic_closure.is_algebraic (ulift.{u} (zmod p))) n \end{lstlisting}
 
-By internal soundness (\texttt{realize\_Ax\_Groth\_formula}),
+By internal soundness (\code{realize\_Ax\_Groth\_formula}),
 this implies that for any naturals $n$ and $d$,
-the algebraic closure of $\F_{p}$ satisfies \texttt{Ax\_Groth\_formula n d}.
+the algebraic closure of $\F_{p}$ satisfies \code{Ax\_Groth\_formula n d}.
 
 \begin{lstlisting}
 lemma ACFₚ_ssatisfied_Ax_Groth_formula {p : ℕ} [hp : fact p.prime] (n : ℕ) :
@@ -561,7 +580,7 @@ begin
     exact Ax_Groth_algebraic_closure_zmod p }, \end{lstlisting}
 
 Since $\ACF_{p}$ is complete and the algebraic closure of $\F_{p}$ is a model,
-\texttt{Ax\_Groth\_formula n d} is satisfied in any model of $\ACF_{p}$.
+\code{Ax\_Groth\_formula n d} is satisfied in any model of $\ACF_{p}$.
 
 \begin{lstlisting}
   intro d,
@@ -570,7 +589,7 @@ Since $\ACF_{p}$ is complete and the algebraic closure of $\F_{p}$ is a model,
     (instances.algebraic_closure_of_zmod_models_ACFₚ hp.1) (h d),
 end \end{lstlisting}
 
-Applying Lefschetz ($2. \IFF 3.$), this implies that \texttt{Ax\_Groth\_formula n d}
+Applying Lefschetz ($2. \IFF 3.$), this implies that \code{Ax\_Groth\_formula n d}
 is satisfied in models $\ACF_{0}$.
 
 \begin{lstlisting}
@@ -585,7 +604,7 @@ begin
 end \end{lstlisting}
 
 Since any algebraically closed field $K$ of characteristic zero is a model of $\ACF_{0}$,
-we have that it satisfies \texttt{Ax\_Groth\_formula n d} for all $n$ and $d$,
+we have that it satisfies \code{Ax\_Groth\_formula n d} for all $n$ and $d$,
 hence by internal completeness we see that Ax-Grothendieck is true for $K$.
 
 \begin{lstlisting}

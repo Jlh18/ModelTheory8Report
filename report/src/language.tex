@@ -1,7 +1,3 @@
-For most definitions and proofs in this section we reference
-David Marker's book on Model Theory \cite{marker}.
-We introduce the formalisations of the content in \texttt{lean} alongside the theory,
-walking through the basics of definitions made in the \texttt{flypitch} project \cite{flypitch}.
 
 \subsection{Languages}
 \begin{dfn}[Language]
@@ -109,7 +105,7 @@ focus our examples around this.
       | mul : ring_binaries\end{lstlisting}
 
     These are \textit{inductive types}\footnote{
-    In the appendix we give more examples of inductive types %? missing
+    In the appendix we give more examples of inductive types
     \begin{itemize}
       \item The \linkto{nat_dfn}{natural numbers} are defined as inductive types
       \item \linkto{list_dfn}{Lists} are defined as inductive types
@@ -122,8 +118,8 @@ focus our examples around this.
     ``the only things of type \texttt{ring\_consts} are
     \texttt{ring\_consts.zero} and \texttt{ring\_consts.one}''.
 
-    We now collect all the above into a single definition \texttt{ring funcs}
-    that takes each natural \texttt{n} to the type of \texttt{n}-ary
+    We now collect all the above into a single definition \code{ring\_funcs}
+    that takes each natural \code{n} to the type of \code{n}-ary
     function symbols in the language of rings.
     The syntax below is casing (induction) on the naturals,
 
@@ -135,7 +131,7 @@ focus our examples around this.
       | 2 := ring_binaries
       | (n + 3) := pempty\end{lstlisting}
 
-    The type \texttt{pempty} is the empty type and is meant to have no terms in it,
+    The type \code{pempty} is the empty type and is meant to have no terms in it,
     since we wish to have no function symbols beyond arity $2$.
     Finally we make the language of rings
 
@@ -164,8 +160,8 @@ where $x_{k}$ are the varaibles. We formalize this generally as terms.
 
 \begin{dfn}[Terms]
   \link{terms_dfn}
-  Let \texttt{ L = (functions, relations) } be a language.
-  To make a (bounded) \textit{preterm} in \texttt{L} with up to $n$ variables
+  Let \code{ L = (functions, relations) } be a language.
+  To make a (bounded) \textit{preterm} in \code{L} with up to $n$ variables
   we can do one of three things:
   \begin{itemize}
     \item[$\vert$] For each natural number $k < n$ we create a symbol
@@ -194,32 +190,32 @@ where $x_{k}$ are the varaibles. We formalize this generally as terms.
 
   To explain notation
   \begin{itemize}
-    \item The second constructor says ``for all natural numbers $l$ and function symbols $f$,
-          \texttt{bd\_func f} is something of type \texttt{bounded\_preterm l}''.
-          This makes sense since \texttt{bounded\_preterm l} is a type by the first line of code.
+    \item The second constructor says ``for all naturals $l$ and function symbols $f$,
+          \code{bd\_func f} is something of type \code{bounded\_preterm l}''.
+          This makes sense since \code{bounded\_preterm l} is a type by the first line of code.
     \item The curley brackets just say
-          ``you can leave out this input and \texttt{lean} will know what it is''.
+          ``you can leave out this input and \code{lean} will know what it is''.
   \end{itemize}
 
   To give an example of this in action we can write $x_{1} * 0$.
   We first write the individual parts, which are
-  \texttt{x\_ 1}, \texttt{bd\_func mul} and
-  \texttt{bd\_func zero}.
-  \texttt{bd\_func mul} is a preterm missing $2$ inputs;
-  applying \texttt{mul} to \texttt{x\_ 1} gives us a preterm \texttt{bd\_app (bd\_func mul) (x\_ 1)}
+  \code{x\_ 1}, \code{bd\_func mul} and
+  \code{bd\_func zero}.
+  \code{bd\_func mul} is a preterm missing $2$ inputs;
+  applying \code{mul} to \code{x\_ 1} gives us a preterm \code{bd\_app (bd\_func mul) (x\_ 1)}
   missing $1$ input.
-  Then applying this to \texttt{bd\_func zero} gives a term
+  Then applying this to \code{bd\_func zero} gives a term
   \begin{lstlisting}
     bd_app (bd_app (bd_func mul) (x_ 1)) (bd_func zero) \end{lstlisting}
-  We will introduce nice notation in \texttt{lean} to make this more legible.
+  We will introduce nice notation in \code{lean} to make this more legible.
 \end{dfn}
 
 \begin{rmk}
   There is an unfortunate terminology clash between model theory and type theory,
   since they are closely related.
-  The word ``term'' in type theory refers to anything on the left of a \texttt{:} sign;
-  ``a term of type \texttt{A}''.
-  In this document we say ``something of type \texttt{A}'' to avoid confusion.
+  The word ``term'' in type theory refers to anything on the left of a \code{:} sign;
+  ``a term of type \code{A}''.
+  In this document we say ``something of type \code{A}'' to avoid confusion.
 
   Terms in inductively defined types are (as mentioned before)
   freely generated symbols using the contructors.
@@ -240,8 +236,8 @@ This will be expressed as a formula.
 
 \begin{dfn}[Formulas]
   \link{formulas_dfn}
-  Let $\texttt{L}$ be a language.
-  A (classical first order bounded) $\texttt{L}$-\textit{preformula} in $\texttt{L}$
+  Let \code{L} be a language.
+  A (classical first order bounded) \code{L}-\textit{preformula} in \code{L}
   with (up to) $n$ \textit{free} variables can be built in the following ways:
   \begin{itemize}
     \item[$\vert$] $\bot$ is an atomic preformula with $n$ free variables
@@ -306,15 +302,15 @@ This will be expressed as a formula.
 \begin{rmk}[Induction principles]
   Each inductive type is automatically given a mapping out property (or induction principle or recursor)
   \footnote{
-    Due to \texttt{lean}'s type theory having a universe of propositions \texttt{Prop},
+    Due to \code{lean}'s type theory having a universe of propositions \code{Prop},
     there is a slight difference between recursion and induction,
     the former mapping into \textit{types} and the latter mapping into \textit{propositions}.
     However, for the purposes of understanding they can be identified.
   },
   and this is central for any constructions and proofs involving terms and formulas.
   Preterms and preformulas are quite elaborate inductive types,
-  due to \texttt{bd\_app}, \texttt{bd\_apprel} and \texttt{bd\_all},
-  and much more complicated than \texttt{nat} and \texttt{list T}.\footnote{
+  due to \code{bd\_app}, \code{bd\_apprel} and \code{bd\_all},
+  and much more complicated than \code{nat} and \code{list T}.\footnote{
     The recursors for \linkto{nat_dfn}{the naturals} and \linkto{list_dfn}{lists}
     are explained in the appendix.
     The difference in wording there should reflect that they are recursors
@@ -322,50 +318,50 @@ This will be expressed as a formula.
   }
 
   The induction principle for terms states that to prove a statement about
-  bounded preterms missing \texttt{any number of inputs},
+  bounded preterms missing \code{any number of inputs},
   it suffices to prove the statement for the variables,
-  to prove the statement for \texttt{bd\_func f},
-  and to prove the statement for \texttt{bd\_app t s} given proofs for the statement
-  for preterms \texttt{t} and \texttt{s} respectively.
+  to prove the statement for \code{bd\_func f},
+  and to prove the statement for \code{bd\_app t s} given proofs for the statement
+  for preterms \code{t} and \code{s} respectively.
 
   This induction requires working with preterms missing all $l$ inputs at once.
-  This is because if \texttt{t} is a preterm with $n$ variables and $l + 1$ missing inputs,
-  then \texttt{bd\_app t s} is a preterm with $n$ variables and $l$ missing inputs;
-  we needed information from \texttt{bounded\_preterm n (l + 1)} to deduce
-  information for something of type \texttt{bounded\_preterm n l}.
+  This is because if \code{t} is a preterm with $n$ variables and $l + 1$ missing inputs,
+  then \code{bd\_app t s} is a preterm with $n$ variables and $l$ missing inputs;
+  we needed information from \code{bounded\_preterm n (l + 1)} to deduce
+  information for something of type \code{bounded\_preterm n l}.
 
   The induction principle for formulas is similar,
-  with \texttt{bd\_falsum} and \texttt{bd\_equal} behaving like \texttt{bd\_var},
-  \texttt{bd\_rel} behaving like \texttt{bd\_func},
-  and \texttt{bd\_apprel} behaving like \texttt{bd\_app}.
+  with \code{bd\_falsum} and \code{bd\_equal} behaving like \code{bd\_var},
+  \code{bd\_rel} behaving like \code{bd\_func},
+  and \code{bd\_apprel} behaving like \code{bd\_app}.
   For the rest of the induction,
-  one must prove the statement about \texttt{bd\_imp f1 f2} given
-  proofs of the statement for preformulas \texttt{f1} and \texttt{f2},
-  and prove the statement about \texttt{bd\_all f} given a proof
-  of the statement for \texttt{f}.
+  one must prove the statement about \code{bd\_imp f1 f2} given
+  proofs of the statement for preformulas \code{f1} and \code{f2},
+  and prove the statement about \code{bd\_all f} given a proof
+  of the statement for \code{f}.
 
   This induction requires not only to work with preformulas missing all $l$ inputs at once,
   but also to work with preformulas in all $n$ variables at once.
-  This is because if \texttt{f} is a preformula with $n + 1$ variables missing $l$ inputs then
-  then \texttt{bd\_all f} is a preformula with $n$ variables missing $l$ inputs;
-  we needed information from \texttt{bounded\_preformula (n + 1) l} to deduce information
-  for something of type \texttt{bounded\_preformula (n + 1) l}.
+  This is because if \code{f} is a preformula with $n + 1$ variables missing $l$ inputs then
+  then \code{bd\_all f} is a preformula with $n$ variables missing $l$ inputs;
+  we needed information from \code{bounded\_preformula (n + 1) l} to deduce information
+  for something of type \code{bounded\_preformula (n + 1) l}.
 
 \end{rmk}
 
 \subsection{Lean symbols for ring symbols}
 \link{lean_symbols_for_ring_symbols}
 
-We define \texttt{bounded\_ring\_term} and \texttt{bounded\_ring\_formula}
+We define \code{bounded\_ring\_term} and \code{bounded\_ring\_formula}
 for convenience.
 
 \begin{lstlisting}
 def bounded_ring_formula (n : ℕ) := bounded_formula ring_signature n
 def bounded_ring_term (n : ℕ) := bounded_term ring_signature n\end{lstlisting}
 
-We supply instances of \texttt{has\_zero}, \texttt{has\_one}, \texttt{has\_neg},
-\texttt{has\_add} and \texttt{has\_mul} to each type of bounded ring terms
-\texttt{bounded\_ring\_terms n}.
+We supply instances of \code{has\_zero}, \code{has\_one}, \code{has\_neg},
+\code{has\_add} and \code{has\_mul} to each type of bounded ring terms
+\code{bounded\_ring\_terms n}.
 This way we can use the lean symbols when writing terms and formulas.
 
 \begin{lstlisting}
@@ -389,7 +385,7 @@ addition and multiplication work in (symbolically),
 but this won't matter once we interpret into commutative rings.
 
 Since we have multiplication, we also can take terms to powers
-using \texttt{npow\_rec}.
+using \code{npow\_rec}.
 
 \begin{lstlisting}
 instance bounded_ring_term_has_pow {n} : has_pow (bounded_ring_term n) ℕ :=
@@ -442,18 +438,18 @@ We would like the sort symbol $A$ to be interpreted as the underlying type
 for the ring and the function symbols to actually become maps from the ring to itself.
 
 \begin{dfn}[Structures]
-    Given a language $\texttt{L}$, an $\texttt{L}$-\textit{structure} \texttt{M}
-    interpreting $\texttt{L}$ consists of the following
+    Given a language \code{L}, an \code{L}-\textit{structure} \code{M}
+    interpreting \code{L} consists of the following
     \begin{itemize}
-      \item An underlying type \texttt{carrier}.
+      \item An underlying type \code{carrier}.
       \item Each function symbol $f : A^{n} \to A$ is interpreted as a
-            function that takes an $n$-ary tuple in \texttt{carrier}
-            to something of type \texttt{carrier}.
+            function that takes an $n$-ary tuple in \code{carrier}
+            to something of type \code{carrier}.
             Note that the domain of this function for constant symbols is an empty tuples,
-            hence it is a constant map into \texttt{carrier},
-            or simply a constant of type \texttt{carrier}.
+            hence it is a constant map into \code{carrier},
+            or simply a constant of type \code{carrier}.
       \item Each relation symbol $r \hookr A^{n}$
-            is interpreted as a proposition about $n$-ary tuples in \texttt{carrier},
+            is interpreted as a proposition about $n$-ary tuples in \code{carrier},
             which can also be viewed as the subset of the set of $n$-ary tuples
             satisfying that proposition.
     \end{itemize}
@@ -464,13 +460,13 @@ for the ring and the function symbols to actually become maps from the ring to i
   (fun_map : ∀{n}, L.functions n → dvector carrier n → carrier)
   (rel_map : ∀{n}, L.relations n → dvector carrier n → Prop)\end{lstlisting}
 
-  The \texttt{flypitch} library defines \texttt{dvector A n} to be
-  $n$-ary tuples of terms in \texttt{A}.
-  This is replaced with \texttt{fin} in the \texttt{mathlib} setup of model theory.
+  The \code{flypitch} library defines \code{dvector A n} to be
+  $n$-ary tuples of terms in \code{A}.
+  This is replaced with \code{fin} in the \code{mathlib} setup of model theory.
 
-  Note that \texttt{Structure L}, like \texttt{Language},
-  is itself a mathematical \texttt{structure}.
-  This is sensible, since \texttt{Structure} is meant to generalize algebraic
+  Note that \code{Structure L}, like \code{Language},
+  is itself a mathematical \code{structure}.
+  This is sensible, since \code{Structure} is meant to generalize algebraic
   and relational mathematical structures such as rings, modules, and graphs.
 \end{dfn}
 
@@ -484,10 +480,10 @@ the theory of partial orders but not the theory of equivalence relations.
 Before continuing to formalize ``any degree two polynomial over our ring has a root'',
 we stop to notice that structures in a language form suitable objects for a category.
 
-\begin{dfn}[$\texttt{L}$-morphism, $\texttt{L}$-embedding]
+\begin{dfn}[\code{L}-morphism, \code{L}-embedding]
     \link{category_of_structures}
-    The collection of all $\texttt{L}$-structures forms a category with objects
-    as $\texttt{L}$-structures and morphisms as $\texttt{L}$-morphisms.
+    The collection of all \code{L}-structures forms a category with objects
+    as \code{L}-structures and morphisms as \code{L}-morphisms.
 
     \begin{lstlisting}
 protected structure hom :=
@@ -497,7 +493,7 @@ protected structure hom :=
 (map_rel' : ∀{n} (r : L.relations n) x, M.rel_map r x
   → N.rel_map r (dvector.map to_fun x) . obviously)\end{lstlisting}
 
-    The induced map between the $n$-ary tuples is called \texttt{dvector.map}.
+    The induced map between the $n$-ary tuples is called \code{dvector.map}.
     The above says a morphism is a mathematical structure
     consisting of three pieces of data.
     The first says that we have a functions between the carrier types,
@@ -507,17 +503,17 @@ protected structure hom :=
       as a subobject of the carrier type.}.
 
     \begin{cd}
-      \texttt{dvector M.carrier n}
-      \ar[r, "\texttt{M.fun\_map}"] \ar[d, "\texttt{dvector.map to\_fun}", swap]
-      & \texttt{M.carrier} \ar[d, "\texttt{to\_fun}"]\\
-      \texttt{dvector N.carrier n}
-      \ar[r, "\texttt{N.fun\_map}"] & \texttt{N.carrier}\\
+      \code{dvector M.carrier n}
+      \ar[r, "\code{M.fun\_map}"] \ar[d, "\code{dvector.map to\_fun}", swap]
+      & \code{M.carrier} \ar[d, "\code{to\_fun}"]\\
+      \code{dvector N.carrier n}
+      \ar[r, "\code{N.fun\_map}"] & \code{N.carrier}\\
         \mmintp{r}
-        \ar[hookrightarrow]{r} \ar[d, "\texttt{dvector.map to\_fun}", swap]
-        & \texttt{dvector M.carrier n}
-        \ar[d, "\texttt{dvector.map to\_fun}"]\\
+        \ar[hookrightarrow]{r} \ar[d, "\code{dvector.map to\_fun}", swap]
+        & \code{dvector M.carrier n}
+        \ar[d, "\code{dvector.map to\_fun}"]\\
         \nnintp{r}
-        \ar[hookrightarrow]{r} & \texttt{dvector N.carrier n}
+        \ar[hookrightarrow]{r} & \code{dvector N.carrier n}
       \end{cd}
 \end{dfn}
 
@@ -535,9 +531,9 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
 
 \begin{dfn}[Interpretation of terms]
     \link{interpretation_terms}
-    Given $\texttt{L}$-structure $\texttt{M}$ and a $\texttt{L}$-term $t$ with up to $n$-variables.
-    Then we can naturally interpret (or realize) $t$ in the $\texttt{L}$-structure $\texttt{M}$ as a
-    map from the $n$-tuples of $\texttt{M}$ to $\texttt{M}$ that
+    Given \code{L}-structure $\code{M}$ and a \code{L}-term $t$ with up to $n$-variables.
+    Then we can naturally interpret (or realize) $t$ in the \code{L}-structure $\code{M}$ as a
+    map from the $n$-tuples of $\code{M}$ to $\code{M}$ that
     commutes with the interpretation of function symbols.
 
     \begin{lstlisting}
@@ -549,8 +545,8 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
 
     This is defined by recursion on (pre)terms.
     When the preterm $t$ is a variable $x_{k}$, we interpret $t$ as a map
-    that picks out the $k$-th part of the $n$-tuple \texttt{xs}.
-    This is like projecting to the $k$-th axis when we view \texttt{M} as an affine line.
+    that picks out the $k$-th part of the $n$-tuple \code{xs}.
+    This is like projecting to the $k$-th axis when we view \code{M} as an affine line.
     When the term is a function symbol, then we automatically get a map from the
     definition of structures.
     In the last case we are applying a preterm $t_{1}$ to a term $t_{2}$,
@@ -561,12 +557,12 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
 This completes our goal of conveying
 ``any (at most) degree two polynomial in our ring has a root''.
 Whilst terms are interpreted as maps, formulas are interpreted as propositions,
-asking if the structure \texttt{M} satisfies the proposition.
+asking if the structure \code{M} satisfies the proposition.
 
 \begin{dfn}[Interpretation of formulas]
 
-    Given $\texttt{L}$-structure $\texttt{M}$ and a $\texttt{L}$-formula $f$ with up to $n$-variables.
-    Then we can interpret (a.k.a realize or satisfy) $f$ in the $\texttt{L}$-structure $\texttt{M}$ as a
+    Given \code{L}-structure $\code{M}$ and a \code{L}-formula $f$ with up to $n$-variables.
+    Then we can interpret (a.k.a realize or satisfy) $f$ in the \code{L}-structure $\code{M}$ as a
     proposition about $n$ terms from the carrier type.
 
     \begin{lstlisting}
@@ -581,10 +577,10 @@ asking if the structure \texttt{M} satisfies the proposition.
 
   This is defined by induction on (pre)formulas.
   \begin{itemize}
-    \item[$\vert$] $\bot$ is interpreted as the type theoretic proposition \texttt{false}.
+    \item[$\vert$] $\bot$ is interpreted as the type theoretic proposition \code{false}.
     \item[$\vert$] $t = s$ is interpreted as type theoretic equality of the interpreted terms.
     \item[$\vert$] Interpretation of relation symbols is part of the data of an
-          $\texttt{L}$-structure (\texttt{rel\_map}).
+          \code{L}-structure (\code{rel\_map}).
     \item[$\vert$] If $f$ is a preformula with $n$ free variables that is missing
           $l + 1$ inputs and $t$ is a term with $n$ variables
           then $f$ applied to $t$ can be interpreted using the interpretation of $f$ and
@@ -596,9 +592,9 @@ asking if the structure \texttt{M} satisfies the proposition.
           where $P$ is the inductively given interpretation.
   \end{itemize}
 
-  We write $\texttt{M} \models f(a)$ to mean ``the realization of $f$ holds in $\texttt{M}$ for the terms $a$''.
+  We write $\code{M} \models f(a)$ to mean ``the realization of $f$ holds in $\code{M}$ for the terms $a$''.
   We are particularly interested in the case when the formula is a sentence,
-  which we denote as $\texttt{M} \vDash f$ (since we need no terms).
+  which we denote as $\code{M} \vDash f$ (since we need no terms).
   \begin{lstlisting}
 @[reducible] def realize_sentence (M : Structure L) (f : sentence L) : Prop :=
 realize_bounded_formula ([] : dvector M 0) f ([])\end{lstlisting}
@@ -620,20 +616,20 @@ and its interaction with the real world.
 
 \begin{dfn}[Theories and models]
   \link{dfn_theory}
-  Given a language $\texttt{L}$,
+  Given a language \code{L},
   a set of sentences in the language is a theory in that language.
   \begin{lstlisting}
     def Theory := set (sentence L)   \end{lstlisting}
 
-    Given an $\texttt{L}$-structure $\texttt{M}$ and $\texttt{L}$-theory $\texttt{T}$,
-    we write $\texttt{M} \vDash \texttt{T}$ and say
-    \emph{$\texttt{M}$ is a model of $\texttt{T}$} when
-    for all sentences $f \in \texttt{T}$ we have $\texttt{M} \vDash f$.
+    Given an \code{L}-structure $\code{M}$ and \code{L}-theory $\code{T}$,
+    we write $\code{M} \vDash \code{T}$ and say
+    \emph{$\code{M}$ is a model of $\code{T}$} when
+    for all sentences $f \in \code{T}$ we have $\code{M} \vDash f$.
 
     \begin{lstlisting}
       def all_realize_sentence (M : Structure L) (T : Theory L) := ∀ f, f ∈ T → M ⊨ f \end{lstlisting}
 
-    We say an $\texttt{L}$-theory is consistent if it has a model.
+    We say an \code{L}-theory is consistent if it has a model.
   \end{dfn}
 
 \begin{dfn}[The theories of rings, fields and algebraically closed fields]
@@ -664,9 +660,9 @@ and its interaction with the real world.
   We do this by first making ``generic polynomials''
   in the form of $a_{n+1}x^{n} + \cdots + a_{2}x + a_{1}$,
   then adding $x^{n+1}$ to it, making it a ``generic monic polynomial''.
-  The (polynomial) variable $x$ will be represented by the variable \texttt{x\_ 0},
+  The (polynomial) variable $x$ will be represented by the variable \code{x\_ 0},
   and the coefficient $a_{k}$ for each $0 < k$ will be represented by the variable
-  \texttt{x\_ k}.
+  \code{x\_ k}.
 
   We define generic polynomials of degree (at most) $n$ as bounded ring signature terms
   in $n + 2$ variables by induction on $n$:
@@ -674,7 +670,7 @@ and its interaction with the real world.
   and supply a proof that $1 < 0 + 2$ (we omit these below using underscores).
   When the degree is $n + 1$, we can take the previous generic polynomial,
   lift it up from a term in $n + 2$ variables to $n + 3$ variables
-  (this is \texttt{lift\_succ}),
+  (this is \code{lift\_succ}),
   then add $x_{n + 2} x_{0}^{n+1}$ at the front.
 
   \begin{lstlisting}
@@ -686,7 +682,7 @@ and its interaction with the real world.
   Since the type of terms in the language of rings has notions of
   addition and multiplication (using the function symbols),
   we automatically have a way of taking (natural number) powers.
-  This is \texttt{npow\_rec}.
+  This is \code{npow\_rec}.
 
   We proceed to making generic monic polynomials by adding
   $x_{0}^{n+2}$ at the front of the generic polynomial.
@@ -702,10 +698,10 @@ and its interaction with the real world.
   We can then easily state ``all generic monic polynomials have a root''.
   The order of the variables is important here:
   the $\exists$ removes the first variable $x_{0}$ in the $n+2$ variable formula
-  $\texttt{gen\_monic\_poly n} \simeq 0$, and moves the index of all the
+  $\code{gen\_monic\_poly n} \simeq 0$, and moves the index of all the
   variables down by $1$, making the remaining expression
-  \[\exists \texttt{gen\_monic\_poly n} \simeq 0\] a formula in $n+1$ variables.
-  The function \texttt{fol.bd\_alls n} then adds $n+1$ many ``foralls''
+  \[\exists \, \code{gen\_monic\_poly n} \simeq 0\] a formula in $n+1$ variables.
+  The function \code{fol.bd\_alls n} then adds $n+1$ many ``foralls''
   in front, leaving us a formula with no free variables, i.e. sentence.
 
   \begin{lstlisting}
@@ -713,8 +709,8 @@ and its interaction with the real world.
   def ACF : Theory ring_signature :=
   field_theory ∪ (set.range all_gen_monic_poly_has_root)\end{lstlisting}
 
-  Since \texttt{all\_gen\_monic\_poly\_has\_root} is a function from the naturals,
-  we can take its set theoretic image (called \texttt{set.range}),
+  Since \code{all\_gen\_monic\_poly\_has\_root} is a function from the naturals,
+  we can take its set theoretic image (called \code{set.range}),
   i.e. a sentence for each degree $n$ saying
   ``any monic polynomial of degree $n$ has a root''.
 
@@ -726,12 +722,12 @@ and its interaction with the real world.
 
   Suppose $p : \N$ is a prime.
   If we view $p$ as a term in the language of rings\footnote{
-    \texttt{lean} figures this out automatically using \texttt{nat.cast},
-    which found our instances of \texttt{has\_zero}, \texttt{has\_one}
-    and \texttt{has\_add}.
+    \code{lean} figures this out automatically using \code{nat.cast},
+    which found our instances of \code{has\_zero}, \code{has\_one}
+    and \code{has\_add}.
   },
   then we can define the theory of algebraically closed fields of characteristic $p$
-  as \texttt{ACF} with the additional sentence $p = 0$.
+  as \code{ACF} with the additional sentence $p = 0$.
 
   \begin{lstlisting}
   def ACFₚ {p : ℕ} (h : nat.prime p) : Theory ring_signature :=
@@ -754,7 +750,7 @@ and its interaction with the real world.
   between the internal semantics and the ambient mathematics,
   which we will informally call ``internal completeness and soundness''.
   For example, we need to show that a model of a ring is
-  actually a ring, according to the \texttt{mathlib} definition of a ring.
+  actually a ring, according to the \code{mathlib} definition of a ring.
   Showing that models of structures are equivalent to their ``actual'' mathematical counterparts
   and that model-theoretically stated theorems are equivalent to
   their counterparts is arguably the most important part of the project:
@@ -767,37 +763,37 @@ and its interaction with the real world.
 % \end{proof}
 
 % \begin{dfn}[Consequence]
-%     Given a $\texttt{L}$-theory $T$
-%     and a $\texttt{L}$-sentence $\phi$,
+%     Given a \code{L}-theory $T$
+%     and a \code{L}-sentence $\phi$,
 %     we say $\phi$ is a consequence of $T$
-%     and say $T \model{\texttt{L}} \phi$
-%     when for all $\texttt{L}$-models $\texttt{M}$ of $T$,
-%     we have $\texttt{M} \model{\texttt{L}} \phi$.
-%     We also write $T \model{\texttt{L}} \De$
-%     for $\texttt{L}$-theories $T$ and $\De$
-%     when for every $\phi \in \De$ we have $T \model{\texttt{L}} \phi$.
+%     and say $T \model{\code{L}} \phi$
+%     when for all \code{L}-models $\code{M}$ of $T$,
+%     we have $\code{M} \model{\code{L}} \phi$.
+%     We also write $T \model{\code{L}} \De$
+%     for \code{L}-theories $T$ and $\De$
+%     when for every $\phi \in \De$ we have $T \model{\code{L}} \phi$.
 % \end{dfn}
 
 % \begin{ex}[Logical consequence]
-%     Let $T$ be a $\texttt{L}$-theory and $\phi$ and $\psi$ be $\texttt{L}$-sentences.
+%     Let $T$ be a \code{L}-theory and $\phi$ and $\psi$ be \code{L}-sentences.
 %     Show that the following are equivalent:
 %     \begin{itemize}
-%         \item $T \model{\texttt{L}} \phi \to \psi$
-%         \item $T \model{\texttt{L}} \phi$ implies $T \model{\texttt{L}} \psi$.
+%         \item $T \model{\code{L}} \phi \to \psi$
+%         \item $T \model{\code{L}} \phi$ implies $T \model{\code{L}} \psi$.
 %     \end{itemize}
 % \end{ex}
 
 % \begin{dfn}[Consistent theory]
 %     \link{consistent}
-%     A $\texttt{L}$-theory $T$ is consistent if either of the following equivalent
+%     A \code{L}-theory $T$ is consistent if either of the following equivalent
 %     definitions hold:
 %     \begin{itemize}
 %         \item
 %             There does not exists a
-%             $\texttt{L}$-sentence $\phi$ such that
-%             $T \model{\texttt{L}} \phi$ and $T \model{\texttt{L}} \NOT \phi$.
+%             \code{L}-sentence $\phi$ such that
+%             $T \model{\code{L}} \phi$ and $T \model{\code{L}} \NOT \phi$.
 %         \item There exists
-%             a $\texttt{L}$-model of $T$.
+%             a \code{L}-model of $T$.
 %     \end{itemize}
 %     Thus the definition of consistent is intuitively
 %     `$T$ does not lead to a contradiction'.
@@ -810,75 +806,75 @@ and its interaction with the real world.
 %     We show that the two definitions are equivalent.
 %     \begin{forward}
 %         Suppose no model exists.
-%         Take $\phi$ to be the $\texttt{L}$-sentence $\top$.
-%         Hence all $\texttt{L}$-models of $T$ satisfy $\top$ and $\bot$
+%         Take $\phi$ to be the \code{L}-sentence $\top$.
+%         Hence all \code{L}-models of $T$ satisfy $\top$ and $\bot$
 %         (there are none) so
-%         $T \model{\texttt{L}} \top$ and $T \model{\texttt{L}} \bot$.
+%         $T \model{\code{L}} \top$ and $T \model{\code{L}} \bot$.
 %     \end{forward}
 %     \begin{backward}
-%         Suppose $T$ has a $\texttt{L}$-model $\texttt{M}$
-%         and $T \model{\texttt{L}} \phi$ and $T \model{\texttt{L}} \NOT \phi$.
-%         This implies $\texttt{M} \model{\texttt{L}} \phi$ and $\texttt{M} \nodel{\texttt{L}} \phi$,
+%         Suppose $T$ has a \code{L}-model $\code{M}$
+%         and $T \model{\code{L}} \phi$ and $T \model{\code{L}} \NOT \phi$.
+%         This implies $\code{M} \model{\code{L}} \phi$ and $\code{M} \nodel{\code{L}} \phi$,
 %         a contradiction.
 %     \end{backward}
 % \end{proof}
 
 % \begin{dfn}[Elementary equivalence]
-%     Let $\texttt{M}$, $\NN$ be $\texttt{L}$-structures.
-%     They are elementarily equivalent if for any $\texttt{L}$-sentence $\phi$,
-%     $\texttt{M} \model{\texttt{L}} \phi$ if and only if $\NN \model{\texttt{L}} \phi$.
-%     We write $\texttt{M} \equiv_\texttt{L} \NN$.
+%     Let $\code{M}$, $\NN$ be \code{L}-structures.
+%     They are elementarily equivalent if for any \code{L}-sentence $\phi$,
+%     $\code{M} \model{\code{L}} \phi$ if and only if $\NN \model{\code{L}} \phi$.
+%     We write $\code{M} \equiv_\code{L} \NN$.
 % \end{dfn}
 
 % \begin{dfn}[Maximal and complete theories]
 %     \link{equiv_def_completeness_0}
-%     A $\texttt{L}$-theory $T$ is \textit{maximal} if
-%     for any $\texttt{L}$-sentence $\phi$,
+%     A \code{L}-theory $T$ is \textit{maximal} if
+%     for any \code{L}-sentence $\phi$,
 %     $\phi \in T$ or $\NOT \phi \in T$.
 
 %     $T$ is \textit{complete}
 %     when either of the following equivalent
 %     definitions hold:
 %     \begin{itemize}
-%         \item For any $\texttt{L}$-sentence $\phi$,
-%             $T \model{\texttt{L}} \phi$ or
-%             $T \model{\texttt{L}} \NOT \phi$.
+%         \item For any \code{L}-sentence $\phi$,
+%             $T \model{\code{L}} \phi$ or
+%             $T \model{\code{L}} \NOT \phi$.
 %         \item All models of $T$ are elementarily equivalent.
 %     \end{itemize}
 %     Note that maximal theories are complete.
 % \end{dfn}
 % \begin{proof}
 %     \begin{forward}
-%         Let $\texttt{M}$ and $\NN$ be models of $T$
-%         and $\phi$ be a $\texttt{L}$-sentence.
-%         If $T \model{\texttt{L}} \phi$ then both satisfy $\phi$.
+%         Let $\code{M}$ and $\NN$ be models of $T$
+%         and $\phi$ be a \code{L}-sentence.
+%         If $T \model{\code{L}} \phi$ then both satisfy $\phi$.
 %         Otherwise $\NOT \phi \in T$ and neither satisfy $\phi$.
 %     \end{forward}
 
 %     \begin{backward}
-%         If $\phi$ is a $\texttt{L}$-sentence then suppose for a contradiction
-%         \[T \nodel{\texttt{L}} \phi \text{ and } T \nodel{\texttt{L}} \NOT \phi\]
+%         If $\phi$ is a \code{L}-sentence then suppose for a contradiction
+%         \[T \nodel{\code{L}} \phi \text{ and } T \nodel{\code{L}} \NOT \phi\]
 %         Then there exist models of $T$
-%         such that $\texttt{M} \nodel{\texttt{L}} \phi$ and $\NN \nodel{\texttt{L}} \NOT \phi$.
+%         such that $\code{M} \nodel{\code{L}} \phi$ and $\NN \nodel{\code{L}} \NOT \phi$.
 %         By assumption they are elementarily equivalent and so
-%         $\texttt{M} \model{\texttt{L}} \NOT \phi$ implies $\NN \model{\texttt{L}} \NOT \phi$,
+%         $\code{M} \model{\code{L}} \NOT \phi$ implies $\NN \model{\code{L}} \NOT \phi$,
 %         a contradiction.
 %     \end{backward}
 % \end{proof}
 
 % \begin{ex}[Not consistent, not complete]
 %     \link{not_consequence}
-%     Let $T$ be a $\texttt{L}$-theory
-%     and $\phi$ is a $\texttt{L}$-sentence.
-%     Show that $T \nodel{\texttt{L}} \phi$
+%     Let $T$ be a \code{L}-theory
+%     and $\phi$ is a \code{L}-sentence.
+%     Show that $T \nodel{\code{L}} \phi$
 %     if and only if $T \cup \set{ \NOT \phi}$ is consistent.
-%     Furthermore, $T \nodel{\texttt{L}} \NOT \phi$
+%     Furthermore, $T \nodel{\code{L}} \NOT \phi$
 %     if and only if $T \cup \set{\phi}$ is consistent.
 
-%     Note that by definition for $\texttt{L}$-structures and
-%     $\texttt{L}$-formulas we (classically) have that
+%     Note that by definition for \code{L}-structures and
+%     \code{L}-formulas we (classically) have that
 %     \[
-%         \texttt{M} \modelsi \NOT \phi(a) \iff \texttt{M} \nodelsi \phi(a)
+%         \code{M} \modelsi \NOT \phi(a) \iff \code{M} \nodelsi \phi(a)
 %     \]
 %     Find examples of theories that do not satisfy
 %     \[

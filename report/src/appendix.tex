@@ -85,7 +85,7 @@ since each axiom schema includes infinitely many sentences.
   \link{dfn_module}
   Fix $A$ a ring.
   Let the language of modules over $A$ be the \linkto{language_sum_dfn}{sum}
-  of the \linkto{monoid_action_dfn}{language $A$-sets} and the language of groups.
+  of the \linkto{monoid_action_dfn}{language of $A$-sets} and the language of groups.
   (We already made the language of groups and the theory of abelian groups
   whilst making the language of rings and theory of commutative rings.)
 
@@ -118,39 +118,39 @@ since each axiom schema includes infinitely many sentences.
   | zero : nat
   | succ (n : nat) : nat \end{lstlisting}
   This definition of the naturals reads
-  ``the only things of type \texttt{nat} are
-  \texttt{nat.zero} and \texttt{nat.succ n},
-  for some \texttt{n} of type \texttt{nat}''.
+  ``the only things of type \code{nat} are
+  \code{nat.zero} and \code{nat.succ n},
+  for some \code{n} of type \code{nat}''.
 \end{dfn}
 
 The recursor for the naturals says to make a map out of the naturals
-into some type \texttt{A} (i.e. recursively make things of type \texttt{A}),
-it suffices to send \texttt{nat.zero} to something of type \texttt{A}
-and, given the image of \texttt{n},
-to send \texttt{nat.succ n} to something of type \texttt{A}.
+into some type \code{A} (i.e. recursively make things of type \code{A}),
+it suffices to send \code{nat.zero} to something of type \code{A}
+and, given the image of \code{n},
+to send \code{nat.succ n} to something of type \code{A}.
 
 \begin{dfn}[Lists]
   \link{list_dfn}
 
-  Given a type \texttt{T}, we can build lists of things of type \texttt{A}.
+  Given a type \code{T}, we can build lists of things of type \code{A}.
 
   \begin{lstlisting}
   inductive list (T : Type u)
   | nil : list
   | cons (hd : T) (tl : list) : list \end{lstlisting}
 
-  This definition of lists on a type \texttt{T} reads
-  ``the only things of type \texttt{list T} are
-  \texttt{list.nil} and \texttt{list.cons hd tl},
-  for some \texttt{hd} of type \texttt{T}
-  and some \texttt{tl} of type \texttt{list T}''.
+  This definition of lists on a type \code{T} reads
+  ``the only things of type \code{list T} are
+  \code{list.nil} and \code{list.cons hd tl},
+  for some \code{hd} of type \code{T}
+  and some \code{tl} of type \code{list T}''.
   The first constructor is the empty list and the
-  second gives a way of making a new list by adding \texttt{hd}
+  second gives a way of making a new list by adding \code{hd}
   at the beginning of an existing list.
 \end{dfn}
 
 The recursor for lists says to make a map out of lists on a type
-into some type \texttt{A} (i.e. recurse on lists),
-it suffices to send the empty list to something of type \texttt{A}
-and, given the image of a list \texttt{tl},
-to send \texttt{list.cons hd tl} to something of type \texttt{A}.
+into some type \code{A} (i.e. recurse on lists),
+it suffices to send the empty list to something of type \code{A}
+and, given the image of a list \code{tl},
+to send \code{list.cons hd tl} to something of type \code{A}.

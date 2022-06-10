@@ -20,8 +20,19 @@
 \usepackage{url}
 \usepackage{listings}
 
+% xcolor
+\definecolor{darkgrey}{gray}{0.10}
+\definecolor{lightgrey}{gray}{0.30}
+\definecolor{slightgrey}{gray}{0.80}
+\definecolor{softblue}{RGB}{30,100,200}
+\definecolor{mono}{RGB}{150,100,100}
+
+
 % % Set the monospace font
 \usepackage{inconsolata}
+
+% % Monospace colour
+\newcommand{\code}[1]{\texttt{\color{mono}#1}}
 
 % % Misc
 \newcommand{\brkt}[1]{\left(#1\right)}
@@ -280,12 +291,6 @@
   }
 }
 
-% xcolor
-\definecolor{darkgrey}{gray}{0.10}
-\definecolor{lightgrey}{gray}{0.30}
-\definecolor{slightgrey}{gray}{0.80}
-\definecolor{softblue}{RGB}{30,100,200}
-
 % hyperref
 \hypersetup{
       colorlinks = true,
@@ -495,8 +500,6 @@
 
 \section{Appendix}
 \input{src/appendix.tex}
-
-
 
 \bibliography{refs}{}
 \bibliographystyle{abbrv}

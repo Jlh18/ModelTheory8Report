@@ -30,21 +30,21 @@ Before we embark on a proof, we list some relevant facts and tips:
         making use of existing lemmas in the library for rings.
   \item An important instance of the above phenomenon is the lack
         of algebraic properties in the type \texttt{bounded\_ring\_terms}.
-        For example, addition for polynomials written as terms
+        For example, addition for polynomials written as term
         is \textit{not commutative} until it is interpreted into a structure
         satisfying commutativity,
         even though it is true in a polynomial ring.
   \item Sometimes there is extra definitional rewriting that needs to happen,
-        and \texttt{dsimp} (or something similar) is needed alongside \texttt{simp}.
+        and \code{dsimp} (or something similar) is needed alongside \code{simp}.
 \end{itemize}
 
 \subsection{Ring Structures}
 
 We first make the very obvious observation that given
-the \texttt{lean} instances of \texttt{[has\_zero]} and \texttt{[has\_one]}
-in some type \texttt{A},
-we can make interpretations of the symbols \texttt{ring\_consts.zero}
-and \texttt{ring\_consts.one}.
+the \code{lean} instances of \code{[has\_zero]} and \code{[has\_one]}
+in some type \code{A},
+we can make interpretations of the symbols \code{ring\_consts.zero}
+and \code{ring\_consts.one}.
 Similarly for the other symbols:
 
 \begin{lstlisting}
@@ -83,14 +83,14 @@ instance : has_add M := ⟨ add ⟩\end{lstlisting}
 
 \subsection{Rings}
 If $A$ is a ring, then surely it is a model of the theory of rings.
-I have supplied \texttt{simp} with enough lemmas to reduce the definitions
+I have supplied \code{simp} with enough lemmas to reduce the definitions
 until requiring the corresponding property about rings,
 and I have chosen the sentences to replicate the format of
-each property from \texttt{mathlib}.
-For example \texttt{add\_comm} below
-is the internal property for the type \texttt{A}
-(it is not visible to \texttt{simp}),
-and it looks exactly like the statement $\texttt{M} \vDash \texttt{add\_comm}$.
+each property from \code{mathlib}.
+For example \code{add\_comm} below
+is the internal property for the type \code{A}
+(it is not visible to \code{simp}),
+and it looks exactly like the statement $\code{M} \vDash \code{add\_comm}$.
 
 \begin{lstlisting}
 variables (A : Type*) [comm_ring A]
@@ -113,16 +113,16 @@ end
 
 Conversely, given a model of the theory of rings
 we can supply an instance of a ring to the carrier type.
-I supply a lemma for each piece of data going into a \texttt{comm\_ring}.
-As an example, we look at \texttt{add\_comm}.
+I supply a lemma for each piece of data going into a \code{comm\_ring}.
+As an example, we look at \code{add\_comm}.
 
 \begin{lstlisting}
 /- First show that add_comm is in ring_theory -/
 lemma add_comm_in_ring_theory : add_comm ∈ ring_theory :=
 begin apply_rules [set.mem_insert, set.mem_insert_of_mem] end\end{lstlisting}
 
-Since \texttt{ring\_theory} was just built as
-\texttt{\{\_,\_,...,\_\}} (syntax sugar for
+Since \code{ring\_theory} was just built as
+\code{\{\_,\_,...,\_\}} (syntax sugar for
 insert, insert, ..., singleton), it suffices just to iteratively
 try a couple of lemmas for membership of such a construction.
 
@@ -137,9 +137,9 @@ begin
 end\end{lstlisting}
 
 There is some definitional and internal simplification happening in here,
-but like before, for the most part \texttt{lean} recogizes that
-realizing the sentence \texttt{add\_comm} is the same as having
-an instance of \texttt{add\_comm}.
+but like before, for the most part \code{lean} recogizes that
+realizing the sentence \code{add\_comm} is the same as having
+an instance of \code{add\_comm}.
 
 \begin{lstlisting}
 def comm_ring (h : M ⊨ ring_signature.ring_theory) : comm_ring M :=
@@ -163,8 +163,8 @@ def comm_ring (h : M ⊨ ring_signature.ring_theory) : comm_ring M :=
 }\end{lstlisting}
 
 We make use of lean's type class inference system by making
-the hypothesis of modelling \texttt{ring\_theory} an instance
-using \texttt{fact}.
+the hypothesis of modelling \code{ring\_theory} an instance
+using \code{fact}.
 
 \begin{lstlisting}
 instance models_ring_theory_to_comm_ring {M : Structure ring_signature}
@@ -172,14 +172,14 @@ instance models_ring_theory_to_comm_ring {M : Structure ring_signature}
 models_ring_theory_to_comm_ring.comm_ring h.1 \end{lstlisting}
 
 This way, we can supply an instance that any model of the theory of fields
-(as a \texttt{fact}) is a model of the theory of ring (as a \texttt{fact}),
+(as a \code{fact}) is a model of the theory of ring (as a \code{fact}),
 and is therefore a commutative ring.
 We can then extend this commutative ring to a field.
 
 \subsection{Fields}
 
-Our characterization of fields resembles the structure \texttt{is\_field}
-more than the default \texttt{field} instance;
+Our characterization of fields resembles the structure \code{is\_field}
+more than the default \code{field} instance;
 they are equivalent.
 
 \begin{lstlisting}
@@ -189,9 +189,9 @@ structure is_field (R : Type u) [ring R] : Prop :=
 (mul_inv_cancel : ∀ {a : R}, a ≠ 0 → ∃ b, a * b = 1)\end{lstlisting}
 
 The proof that any field forms a model of the theory of fields is straight forward:
-since fields are commutative rings, it is a model of \texttt{ring\_theory}
-by our previous work; for the other two sentences we exploit \texttt{simp}
-and all the lemmas about fields that already exist in \texttt{mathlib}.
+since fields are commutative rings, it is a model of \code{ring\_theory}
+by our previous work; for the other two sentences we exploit \code{simp}
+and all the lemmas about fields that already exist in \code{mathlib}.
 
 \begin{lstlisting}
 lemma realize_field_theory :
@@ -213,10 +213,10 @@ begin
   end\end{lstlisting}
 
 Going backwards is even easier.
-We prove that any model of \texttt{field\_theory}
-is a model of \texttt{ring\_theory} and therefore inherits a \texttt{comm\_ring} instance.
-Given this instance of \texttt{comm\_ring},
-it then makes sense to ask for a proof of \texttt{is\_field M},
+We prove that any model of \code{field\_theory}
+is a model of \code{ring\_theory} and therefore inherits a \code{comm\_ring} instance.
+Given this instance of \code{comm\_ring},
+it then makes sense to ask for a proof of \code{is\_field M},
 which is straightforward:
 
 \begin{lstlisting}
@@ -243,16 +243,16 @@ is_field.to_field M is_field \end{lstlisting}
 
 \subsection{Algebraically closed fields}
 
-Suppose we have an algebraically field \texttt{K}.
+Suppose we have an algebraically field \code{K}.
 We want to show that it is a model of the theory of algebraically closed fields,
 which given our work so far amounts to showing that for each natural number $n$
-we have that all generic monic polynomials of degree $n$ have a root in \texttt{k}.
-Indeed using \texttt{is\_alg\_closed} we can obtain such a root for any polynomial,
-but this requires (internally) making a polynomial corresponding \texttt{gen\_monic\_poly n}.
-We first assume the existence of such a polynomial \texttt{P}
+we have that all generic monic polynomials of degree $n$ have a root in \code{k}.
+Indeed using \code{is\_alg\_closed} we can obtain such a root for any polynomial,
+but this requires (internally) making a polynomial corresponding \code{gen\_monic\_poly n}.
+We first assume the existence of such a polynomial \code{P}
 and that evaluating such a polynomial
-at some value \texttt{x} is the same thing as realising \texttt{gen\_monic\_poly n}
-at (its coefficients and then) \texttt{x}.
+at some value \code{x} is the same thing as realising \code{gen\_monic\_poly n}
+at (its coefficients and then) \code{x}.
 
 \begin{lstlisting}
 /-- Algebraically closed fields model the theory ACF-/
@@ -278,7 +278,7 @@ begin
     exact ⟨ x , hx ⟩ },
   end\end{lstlisting}
 
-In order to interpret \texttt{gen\_monic\_poly n} as a polynomial,
+In order to interpret \code{gen\_monic\_poly n} as a polynomial,
 we first note that it is natural to consider $n$-variable terms in the language of
 rings as $n$-variable polynomials over $\Z$:
 
@@ -293,12 +293,12 @@ def mv_polynomial.term {n} :
   (λ _ _ p q, p + q) /- add -/
   (λ _ _ p q, p * q) /- mul -/\end{lstlisting}
 
-I designed a handy function called \texttt{ring\_term\_rec} that does
+I designed a handy function called \code{ring\_term\_rec} that does
 ``induction on terms in the language of rings'',
-based on \texttt{bounded\_term.rec} from the \texttt{flypitch} project.
+based on \code{bounded\_term.rec} from the \code{flypitch} project.
 This says that in order to make a multi-variable polynomial in variables $n$
-over $\Z$ (\texttt{mv\_polynomial (fin n) $\Z$}) we can just case on the term.
-If the term is a variable \texttt{x\_ i} for some $i < n$
+over $\Z$ (\code{mv\_polynomial (fin n) $\Z$}) we can just case on the term.
+If the term is a variable \code{x\_ i} for some $i < n$
 then we interpret that as the polynomial $X_{i} \in \Z[X_{0},\dots,X_{n-1}]$.
 The only other way we can get terms is by applying function symbols to other terms,
 hence we interpret the symbols for zero and one as $0$ and $1$,
@@ -311,7 +311,7 @@ and a list of $n$ coefficients from a ring $A$,
 and returns a polynomial in $A[X]$.
 This is designed to treat he first variable $X_{0}$ of the associated polynomial
 as the polynomial variable $X$,
-and use the list (\texttt{dvector}) of coefficients
+and use the list (\code{dvector}) of coefficients
 $[a_{1},\dots,a_{n}]$ to evaluate the variables $X_{1},\dots,X_{n}$.
 
 \begin{lstlisting}
@@ -328,23 +328,23 @@ mv_polynomial.eval
 
 It remains to show that this polynomial in $A[X]$
 evaluated at some $a_{0}$ gives the same value in the ring as the original term,
-realized at the \texttt{dvector} $[a_{0},\dots,a_{n}]$.
+realized at the \code{dvector} $[a_{0},\dots,a_{n}]$.
 This follows from the following two facts:
 \begin{itemize}
-  \item A term \texttt{t} realized at values $[a_{0},\dots,a_{n}]$ is equal to
-        the polynomial \texttt{mv\_polynomial.term t}
+  \item A term \code{t} realized at values $[a_{0},\dots,a_{n}]$ is equal to
+        the polynomial \code{mv\_polynomial.term t}
         evaluated at the values $[a_{0},\dots,a_{n}]$.
-        I called this \texttt{realized\_term\_is\_evaluated\_poly}
-        and has a quick proof using \texttt{ring\_term\_rec}.
+        I called this \code{realized\_term\_is\_evaluated\_poly}
+        and has a quick proof using \code{ring\_term\_rec}.
   \item If a multi-variable polynomial is evaluated at $(X,a_{1}\dots,a_{n})$
         in $A[X]$, then the resulting polynomial is evaluated at $a_{0}$,
         then this is the same as simply evaluating the multi-variable polynomial
         at $(a_{0},\dots,a_{n})$.
         This has a rather uninteresting proof,
-        which I called \texttt{mv\_polynomial. eval\_eq\_poly\_eval\_mv\_coeffs}.
+        which I called \code{mv\_polynomial. eval\_eq\_poly\_eval\_mv\_coeffs}.
 \end{itemize}
 
-Moving on to the converse, we assume we have a model \texttt{M} of the theory
+Moving on to the converse, we assume we have a model \code{M} of the theory
 of algebraically closed fields, and a non-constant polynomial $p$
 with coefficients in the model (as a field, by our previous work).
 We want to show that $p$ has a root.
@@ -359,8 +359,8 @@ begin
 end\end{lstlisting}
 
 We can feed the coefficients of $p$ to our model theoretic hypothesis,
-which will give us a root to \texttt{gen\_monic\_poly}
-realized at these coefficients, which I call \texttt{root}.
+which will give us a root to \code{gen\_monic\_poly}
+realized at these coefficients, which I call \code{root}.
 
 \begin{lstlisting}
 instance is_alg_closed : is_alg_closed M :=
@@ -379,16 +379,16 @@ begin
 end
 \end{lstlisting}
 
-It suffices to show that \texttt{root} is the root of $p$.
+It suffices to show that \code{root} is the root of $p$.
 Given the hypotheses, this amounts to equating the (internal) algebraic goal
-and the model theoretic hypothesis \texttt{hroot} about \texttt{root}.
+and the model theoretic hypothesis \code{hroot} about \code{root}.
 
 \begin{lstlisting}
 /- The goal (at 'convert hroot') -/
 polynomial.eval root p = realize_bounded_term (root::xs) (gen_monic_poly n) dvector.nil\end{lstlisting}
 
 In order to do this we \textit{could} try to reconstruct $p$
-using our previous construction \texttt{polynomial. term\_evaluated\_at\_coeffs}.
+using our previous construction \code{polynomial. term\_evaluated\_at\_coeffs}.
 However, unfortunately I have discovered that generally it can be
 more straightforward to simply develop each side of the argument
 (interanal completeness and soundness) seperately.
@@ -401,10 +401,10 @@ lemma eval_eq_finset_sum (p : R[X]) (x : R) :
 /- See mathlib. -/
 \end{lstlisting}
 
-Then we can directly compare this to \texttt{gen\_monic\_poly} realized
-at the values \texttt{xs} and \texttt{root}.
-After providing \texttt{simp} with the appropriate lemmas
-(such as the assumption that \texttt{p} is monic),
+Then we can directly compare this to \code{gen\_monic\_poly} realized
+at the values \code{xs} and \code{root}.
+After providing \code{simp} with the appropriate lemmas
+(such as the assumption that \code{p} is monic),
 the goal reduces to
 
 \begin{lstlisting}
@@ -412,11 +412,11 @@ root ^ p.nat_degree + (finset.range p.nat_degree).sum (λ (x : ℕ), p.coeff x *
     root ^ p.nat_degree + realize_bounded_term (root::dvector.of_fn (λ (i : fin (n + 1)), p.coeff ↑i)) (gen_poly n) dvector.nil\end{lstlisting}
 
 The first monomial pops out on both sides,
-allowing us to cancel them with \texttt{congr}.
-It remains to find out how \texttt{gen\_poly n} is realised.
+allowing us to cancel them with \code{congr}.
+It remains to find out how \code{gen\_poly n} is realised.
 We extract this as a lemma,
-which we prove by induction on $n$, since \texttt{gen\_poly} was built inductively.
-Each part is just a long \texttt{simp} proof which can be found in the source code.
+which we prove by induction on $n$, since \code{gen\_poly} was built inductively.
+Each part is just a long \code{simp} proof which can be found in the source code.
 
 \begin{lstlisting}
 lemma realize_gen_poly {n : ℕ} {root} {c : ℕ → M} :
@@ -435,7 +435,7 @@ end\end{lstlisting}
 We omit the details of similar proofs for characteristic as it is not
 as interesting as the other parts.
 Here are the lemmas we prove along the way,
-some of which are convenient to feed to \texttt{lean} as \texttt{instances}
+some of which are convenient to feed to \code{lean} as \code{instances}
 
 \begin{lstlisting}
 instance models_ACFₚ_to_models_ACF [hp : fact (nat.prime p)] [hM : fact (M ⊨ ACFₚ hp.1)] : fact (M ⊨ ACF) := sorry
