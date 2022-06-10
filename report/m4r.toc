@@ -12,26 +12,28 @@
 \contentsline {subsection}{\numberline {3.4}Algebraically closed fields}{18}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}Characteristic}{21}{subsection.3.5}%
 \contentsline {section}{\numberline {4}Ax-Grothendieck}{21}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Writing down polynomials}{22}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Writing down polynomials}{23}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Injectivity and surjectivity}{24}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Internal completeness and soundness}{25}{subsection.4.3}%
-\contentsline {section}{\numberline {5}The Locally Finite Case}{26}{section.5}%
-\contentsline {section}{\numberline {6}The Lefschetz Principle}{28}{section.6}%
-\contentsline {subsection}{\numberline {6.1}$\ACF _{n}$ is complete (Vaught's test)}{29}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Compactness}{32}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Proving Lefschetz}{33}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Vaught's test and Upwards L\"{o}wenheim-Skolem}{34}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Proof of Vaught's Test}{35}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Upwards L\"{o}wenheim-Skolem}{36}{subsection.7.2}%
-\contentsline {subsubsection}{\numberline {7.2.1}Adding distinct constant symbols}{36}{subsubsection.7.2.1}%
-\contentsline {subsubsection}{\numberline {7.2.2}\texttt {term\_model}}{38}{subsubsection.7.2.2}%
-\contentsline {subsubsection}{\numberline {7.2.3}Henkinization}{39}{subsubsection.7.2.3}%
-\contentsline {subsubsection}{\numberline {7.2.4}Cardinality of \texttt {term\_model}}{41}{subsubsection.7.2.4}%
-\contentsline {subsection}{\numberline {7.3}Cardinality lemmas}{44}{subsection.7.3}%
-\contentsline {subsubsection}{\numberline {7.3.1}Terms}{44}{subsubsection.7.3.1}%
-\contentsline {subsubsection}{\numberline {7.3.2}Formulas}{46}{subsubsection.7.3.2}%
-\contentsline {subsubsection}{\numberline {7.3.3}Henkinization}{48}{subsubsection.7.3.3}%
-\contentsline {section}{\numberline {8}Appendix}{50}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Relational languages}{50}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Actions}{51}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Inductive types}{52}{subsection.8.3}%
+\contentsline {subsection}{\numberline {4.3}Internal completeness and soundness}{26}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}The Lefschetz Principle}{28}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}The Locally Finite Case}{30}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Proving Ax-Grothendieck}{31}{subsection.4.6}%
+\contentsline {section}{\numberline {5}The Lefschetz Principle}{32}{section.5}%
+\contentsline {subsection}{\numberline {5.1}$\ACF _{n}$ is complete (Vaught's test)}{33}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Compactness}{35}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Proving Lefschetz}{36}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Vaught's test and Upwards L\"{o}wenheim-Skolem}{38}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Proof of Vaught's Test}{38}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Upwards L\"{o}wenheim-Skolem}{39}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Adding distinct constant symbols}{39}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}\texttt {term\_model}}{42}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Henkinization}{43}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4}Cardinality of \texttt {term\_model}}{45}{subsubsection.6.2.4}%
+\contentsline {subsection}{\numberline {6.3}Cardinality lemmas}{48}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Terms}{48}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}Formulas}{50}{subsubsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.3}Henkinization}{52}{subsubsection.6.3.3}%
+\contentsline {section}{\numberline {7}Appendix}{54}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Relational languages}{54}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Actions}{55}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Inductive types}{55}{subsection.7.3}%

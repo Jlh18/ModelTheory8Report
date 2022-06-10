@@ -1,8 +1,7 @@
 In this section we go back to general model theory,
 with the goal of proving \linkto{vaught_test}{Vaught's test}.
-However, the proof of Vaught's test relies on a (a variant of) the
-\linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem Theorem}.
-It says the following:
+This proof of Vaught's test relies on (a variant of) the
+Upwards L\"{o}wenheim-Skolem Theorem.
 
 \begin{prop}[Upwards L\"{o}wenheim-Skolem]
   \link{upwards_lowenheim_skolem}
@@ -72,10 +71,11 @@ This is why we need $T$ to only have infinite models.
       hinf ⟨ N , all_realize_sentence_of_subset hN (set.subset_insert _ _) ⟩
     ⟩, \end{lstlisting}
 
-By categoricity, $M$ and $N$ are isomorphic as $L$-structures.
-We supply a proof that isomorphic structures satisfy the same
-sentences in \texttt{Rings.ToMathlib.fol.lean}.
-It follows from a series of proofs by induction on terms and formulas.
+By categoricity, $M$ and $N$ are isomorphic as $L$-structures
+and therefore satisfy the same sentences by
+\texttt{Language.equiv.realize_sentence}
+(this follows a series of proofs by induction on terms and formulas in
+\texttt{Rings.ToMathlib.fol}).
 
 \begin{lstlisting}
   have hiso := hcat M' N'
@@ -89,6 +89,7 @@ end
 \end{proof}
 
 \subsection{Upwards L\"{o}wenheim-Skolem}
+\link{upwards_lowenheim_skolem_proof}
 
 Our remaining goal is to prove
 \linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem}.
@@ -118,7 +119,6 @@ Our first goal is to make a consistent theory $T_\kappa$
 in a language $L_{\kappa}$ such that any model of $T_{\kappa}$
 is size at least $\kappa$.
 
-\textit{The language extended to have $\kappa$ many symbols:}
 For design reasons it is convenient to work generally.
 We will do the following
 \begin{enumerate}
@@ -315,7 +315,7 @@ In brief, given an $L$-theory $T$, the structure consists of:
         (using \texttt{bd\_apps\_rel}).
 \end{itemize}
 
-Of course this construction is not always going to give a model of the
+Of course this structure is not always going to give a model of the
 theory, since there are theories that have no models.
 However, in suitable conditions we will have that for any $L$-sentence $\phi$
 \[
@@ -333,7 +333,7 @@ def has_enough_constants (T : Theory L) :=
 ∃(C : Π(f : bounded_formula L 1), L.constants),
   ∀(f : bounded_formula L 1), T ⊨ ∃' f ⟹ f[bd_const (C f)/0] \end{lstlisting}
         This says for each formula with one free-variable
-        there is a constant symbol that would witness the
+        there is a constant symbol that witnesses the
         existence of a term satisfying the formula in any model.
 \end{itemize}
 
@@ -363,6 +363,8 @@ and a bit of work shows $\texttt{term\_model} \vDash \phi_{c}$,
 a contradiction.
 
 \subsubsection{Henkinization}
+
+\link{henkinization}
 
 The above indicates we must extend to a further language and a further theory
 in the language, such that the extended theory is maximally consistent and Henkin.

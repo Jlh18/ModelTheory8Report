@@ -1,108 +1,113 @@
-Returning to model theory of algebraically closed fields.
-We begin by introducing the notion of a complete theory:
+% Returning to model theory of algebraically closed fields.
+% We begin by introducing the notion of a complete theory:
 
-\begin{dfn}[Complete theories]
-    \link{dfn_complete_theory}
-    An $L$-theory $T$ is \textit{complete}
-    when either of the following equivalent definitions hold:
-    \begin{itemize}
-      \item  $T$ deduces any sentence of its negation
-    \begin{lstlisting}
-      def is_complete' (T : Theory L) : Prop :=
-      ∀ (ϕ : sentence L), T ⊨ ϕ ∨ T ⊨ ∼ ϕ \end{lstlisting}
-      \item Sentences true in any model are deduced by the theory.
-    \begin{lstlisting}
-      def is_complete'' (T : Theory L) : Prop :=
-      ∀ (M : Structure L) (hM : nonempty M) (ϕ : sentence L), M ⊨ T → M ⊨ ϕ → T ⊨ ϕ \end{lstlisting}
-      \item All models of $T$ satisfy the same sentences
-            (``are elementarily equivalent'').
-    \end{itemize}
-    Note that the definition \texttt{is\_complete} from the flypitch project
-    is stronger than these conditions, and is useful when constructing
-    theories with nice properties\footnote{
-      Personally, I prefer the word maximal consistent theory for
-      their definition \texttt{is\_complete}}.
-    However in practice there is no reason to throw that many sentences
-    into our language, so we use the versions above.
-\end{dfn}
-\begin{proof}
-  The statement is
-\begin{lstlisting}
-  lemma is_complete''_iff_is_complete' {T : Theory L} :
-    is_complete' T ↔ is_complete'' T := sorry \end{lstlisting}
-  The forward direction involves casing on the hypothesis of $T \vDash \phi$
-  or $T \vDash \neg \phi$, in the first case we are done,
-  and in the second we get a contradiction by
-  $\phi$ being both true and false in our model $M$.
-\begin{lstlisting}
-  { intros H M hM ϕ hMT hMϕ,
-    cases H ϕ with hTϕ hTϕ,
-    { exact hTϕ },
-    {
-      have hbot := hTϕ hM hMT,
-      rw realize_sentence_not at hbot,
-      exfalso,
-      exact hbot hMϕ } },
-\end{lstlisting}
-    On the other hand we need to case on whether $T$
-    is consistent or not.
-    When $T$ is consistent we can show $T$ deduces
-    $\phi$ or its negation by checking in that model,
-    otherwise $T$ should deduce anything.
-\begin{lstlisting}
-  { intros H ϕ,
-    by_cases hM : ∃ M : Structure L, nonempty M ∧ M ⊨ T,
-    {
-      rcases hM with ⟨ M , hM0 , hMT ⟩,
-      by_cases hMϕ : M ⊨ ϕ,
-      { left, exact H M hM0 ϕ hMT hMϕ },
-      {
-        right,
-        rw ← realize_sentence_not at hMϕ,
-        exact H M hM0 _ hMT hMϕ} },
-    { left,
-      intros M hM0 hMT,
-      exfalso,
-      apply hM ⟨ M , hM0 , hMT ⟩} } \end{lstlisting}
-\end{proof}
+% \begin{dfn}[Maximal and complete theories]
+%     \link{dfn_complete_theory}
+%     An $L$-theory $T$ is \textit{complete}
+%     when either of the following equivalent definitions hold:
+%     \begin{itemize}
+%       \item  $T$ deduces any sentence or its negation
+%     \begin{lstlisting}
+%       def is_complete' (T : Theory L) : Prop :=
+%       ∀ (ϕ : sentence L), T ⊨ ϕ ∨ T ⊨ ∼ ϕ \end{lstlisting}
+%       \item Sentences true in any model are deduced by the theory.
+%     \begin{lstlisting}
+%       def is_complete'' (T : Theory L) : Prop :=
+%       ∀ (M : Structure L) (hM : nonempty M) (ϕ : sentence L),
+%         M ⊨ T → M ⊨ ϕ → T ⊨ ϕ \end{lstlisting}
+%       \item All models of $T$ satisfy the same sentences
+%             (``are elementarily equivalent'').
+%     \end{itemize}
 
-\begin{prop}[Lefschetz principle]
-    \link{lefschetz}
-    Let $\phi$ be a sentence in the language of rings.
-    Then the following are equivalent:
-    \begin{enumerate}
-        \item Some model of $\ACF_0$ satisfies $\phi$.
-        (If you like $\C \vDash \phi$.)
-        \item $\ACF_0 \vDash \phi$
-        \item There exists $n \in \N$ such that for any prime $p$
-            greater than $n$, $\ACF_p \vDash \phi$
-        \item There exists $n \in \N$ such that for any prime $p$
-        greater than $n$, some model of $\ACF_p$ satisfies $\phi$.
-    \end{enumerate}
-    The first and last equivalences are due to the theories $\ACF_{p}$
-    being complete for any $p$ ($0$ or prime).
-\end{prop}
+%     Another definition \texttt{is\_complete} from the flypitch project
+%     is stronger than these conditions, and is useful when constructing
+%     theories with nice properties.
+%     \begin{lstlisting}
+%       def is_complete (T : Theory L) :=
+%       is_consistent T ∧ ∀(f : sentence L), f ∈ T ∨ ∼ f ∈ T \end{lstlisting}
+%     I will refer to \texttt{is\_complete} as ``maximal consistent''\footnote{
+%       Given an \texttt{is\_complete'} theory that is also consistent,
+%       there is an obvious way of extending it to a maximal consistent theory.}.
+% \end{dfn}
+% \begin{proof}
+%   We show
+% \begin{lstlisting}
+%   lemma is_complete''_iff_is_complete' {T : Theory L} :
+%     is_complete' T ↔ is_complete'' T := sorry \end{lstlisting}
+%   The forward direction involves casing on the hypothesis of $T \vDash \phi$
+%   or $T \vDash \neg \phi$, in the first case we are done,
+%   and in the second we get a contradiction by
+%   $\phi$ being both true and false in our model $M$.
+% \begin{lstlisting}
+%   { intros H M hM ϕ hMT hMϕ,
+%     cases H ϕ with hTϕ hTϕ,
+%     { exact hTϕ },
+%     { have hbot := hTϕ hM hMT,
+%       rw realize_sentence_not at hbot,
+%       exfalso,
+%       exact hbot hMϕ } },
+% \end{lstlisting}
+%     On the other hand we need to case on whether $T$
+%     is consistent or not.
+%     When $T$ is consistent we can show $T$ deduces
+%     $\phi$ or its negation by checking in that model,
+%     otherwise $T$ should deduce anything.
+% \begin{lstlisting}
+%   { intros H ϕ,
+%     by_cases hM : ∃ M : Structure L, nonempty M ∧ M ⊨ T,
+%     {
+%       rcases hM with ⟨ M , hM0 , hMT ⟩,
+%       by_cases hMϕ : M ⊨ ϕ,
+%       { left, exact H M hM0 ϕ hMT hMϕ },
+%       { right,
+%         rw ← realize_sentence_not at hMϕ,
+%         exact H M hM0 _ hMT hMϕ} },
+%     { left,
+%       intros M hM0 hMT,
+%       exfalso,
+%       apply hM ⟨ M , hM0 , hMT ⟩} } \end{lstlisting}
+% \end{proof}
 
-To prove the above we need the following
+% \begin{prop}[Lefschetz principle]
+%     \link{lefschetz}
+%     Let $\phi$ be a sentence in the language of rings.
+%     Then the following are equivalent:
+%     \begin{enumerate}
+%         \item Some model of $\ACF_0$ satisfies $\phi$.
+%         (If you like $\C \vDash \phi$.)
+%         \item $\ACF_0 \vDash \phi$
+%         \item There exists $n \in \N$ such that for any prime $p$
+%             greater than $n$, $\ACF_p \vDash \phi$
+%         \item There exists $n \in \N$ such that for any prime $p$
+%         greater than $n$, some model of $\ACF_p$ satisfies $\phi$.
+%     \end{enumerate}
+%     ($1. \IFF 2.$) and ($3. \IFF 4.$) are due to the theories $\ACF_{p}$
+%     being complete for any $p$ ($0$ or prime).
+% \end{prop}
+
+\link{lefschetz_proof}
+
+To prove \linkto{lefschetz}{Lefschetz} we need the following
 \begin{itemize}
   \item \linkto{vaught_test}{Vaught's test} for showing a theory is complete
-        (this does the first and last equivalences and
-        is needed in the middle equivalence)
+        (this covers the first and last equivalences and
+        is also needed in the middle equivalence)
   \item The compactness theorem for the middle equivalence.
 \end{itemize}
-In this section we will introduce these notions properly and how
-they are used.
+In this section we will introduce and apply these lemmas.
 Vaught's test will be proven in a \linkto{vaught_proof}{later section}.
 The compactness theorem will not be proven
-(it was part of the flypitch project).
+in detail as it was part of the flypitch project.
 
 \subsection{$\ACF_{n}$ is complete (Vaught's test)}
 We want to show that $\ACF_{n}$ is complete.
-Another way of expressing that a theory $T$ is complete is to
-ask for models of $T$ to satisfy the same sentences
+Equivalently, we can show that all models of $T$ satisfy the same sentences
 (that they are elementarily equivalent).
-In particular it is known that isomorphic models %? Ref?
-satisfy the same sentences.
+One might imagine that isomorphic models satisfy the same sentences\footnote{
+  I supply a proof of this fact called
+  \texttt{Language.equiv.realize\_sentence} in \texttt{Rings.ToMathlib.fol}.
+}.
+The following condition turns out to be useful for showing a theory is complete.
 
 \begin{dfn}[Categoricity]
     Given a language $L$ and a cardinal $\ka$,
@@ -113,11 +118,11 @@ satisfy the same sentences.
 
     \begin{lstlisting}
   def categorical (κ : cardinal) (T : Theory L) :=
-  ∀ (M N : Structure L) (hM : M ⊨ T) (hN : N ⊨ T), #M = κ → #N = κ → nonempty (M ≃[L] N) \end{lstlisting}
+  ∀ (M N : Structure L) (hM : M ⊨ T) (hN : N ⊨ T),
+    #M = κ → #N = κ → nonempty (M ≃[L] N) \end{lstlisting}
 \end{dfn}
 
-Vaught's test says that categoricity is a useful condition for showing a theory is complete.
-We check that this holds for $\ACF_{n}$ and uncountable cardinals.
+We check that categoricity holds for $\ACF_{n}$ and uncountable cardinals.
 \begin{prop}[Categoricity for $\ACF_{n}$]
   If two algebraically closed fields have the same \textit{uncountable}
   cardinality then they are (non-canonically) isomorphic.
@@ -187,22 +192,12 @@ We are now in a position to state Vaught's test.
     is_complete' T := sorry
 \end{lstlisting}
 \end{prop}
-  This may differ slightly to the statement in other sources;
-  the details behind the choice of these (stronger than usual)
-  hypotheses for Vaught's Test and
-  \linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem}
-  will be discussed in the \linkto{vaught_proof}{section dedicated it their proofs}.
-  % In practice it is less work to prove this when $L$ has no relation symbols,
-  % which is the case we are interested in (we say $L$ \textit{is algebraic}).
-  % Another practical simplification is asking for $\kappa$ to be larger than
-  % the collection of all function symbols.
-  % The proof that Marker gives %? Ref
-  % only requires that $\kappa$ is larger than the collection of constant symbols.
+As mentioned before \texttt{is\_algebraic} could be replaced with a
+bound on the relation symbols by $\ka$ for more generality.
 
 We apply Vaught's test in our case to show that the theory
 of algebraically closed fields of a fixed characteristic is complete.
-However, before we do so we need a field theory lemma.
-
+% However, before we do so we need a field theory lemma.
 
 \begin{prop}
   $\ACF_{0}$ is complete and for any prime $p$, $\ACF_{p}$ is complete.
@@ -210,7 +205,7 @@ However, before we do so we need a field theory lemma.
 \begin{proof}
   The two proofs are similar, so we focus on the characteristic $0$ case.
   According to Vaught's test, we first need to show that $\ACF_{0}$ is consistent,
-  which we can do my simply giving a model: the algebraic closure of $\Q$.
+  which we can do by simply giving a model: the algebraic closure of $\Q$.
   (For $\ACF_{p}$ we take the algebraic closure of $\F_{p}$.)
   We already have all the tools to make such a model:
   \begin{itemize}
@@ -301,11 +296,10 @@ I prove the second statement in
 \texttt{Rings.ToMathlib.completeness.lean}
 (using a lemma from \texttt{flypitch} made for the first).
 The proof I give below is \textit{not exactly} this proof,
-since I wish to avoid first order logic syntax ($\vdash$),
-which is the default layer of
-definitions used in the \texttt{flypitch} library,
+since I wish to avoid first order logic syntax ($\vdash$) in this document,
+which is the default layer of definitions used in the \texttt{flypitch} library,
 and just argue using model theory ($\vDash$).
-However the essence of the proof is the same.
+However, the essence of the proof is the same.
 
 \begin{prop}
   The two formulations of compactness are equivalent.
@@ -339,6 +333,28 @@ However the essence of the proof is the same.
     Hence $T \nvDash \phi$.
   \end{backward}
 \end{proof}
+
+\begin{rmk} [Stone space compactness]\cite{marker}
+  The word compactness is related to topological compactness when we consider the
+  Stone space $S_{n}(T)$
+  of maximal consistent theories extending an $L-$theory $T$,
+  with a clopen basis consisting of
+  \[
+      \set{p \in S_n(T) \st \phi \in p}
+  \]
+  for each sentence $\phi$.
+  This generalizes to the Stone space of $n$-types\footnote{
+    Again, model theory terminology unfortunately coinciding with type theory terminology.
+  }.
+\end{rmk}
+
+\begin{rmk}
+  The proof of the compactness theorem given in \texttt{flypitch} essentially
+  appeals to a construction of a model called
+  \texttt{term\_model} via \linkto{henkinization}{Henkinization}.
+  We go through the essence of this construction whilst
+  \linkto{upwards_lowenheim_skolem_proof}{proving upwards L\"{o}wenheim-Skolem}.
+\end{rmk}
 
 \subsection{Proving Lefschetz}
 
@@ -419,8 +435,7 @@ and it suffices to refute the latter case.
 begin
   split,
   { apply characteristic_change_left },
-  {
-    intro hn,
+  { intro hn,
     cases is_complete'_ACF₀ ϕ with hsatis hsatis,
     { exact hsatis },
     { sorry }, \end{lstlisting}

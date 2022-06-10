@@ -1,6 +1,7 @@
 In this section we will introduce both \linkto{ax_groth_thm}{Ax-Grothendieck} and
 its model theoretic counterpart.
 We then investigate internal completeness and soundness for these statements.
+We state the lemmas used in its proof, and use them to prove it.
 
 \begin{dfn}[Polynomial maps]
   \link{dfn_poly_map}
@@ -37,35 +38,55 @@ We then investigate internal completeness and soundness for these statements.
 \end{prop}
 
 The key lemma to prove this is the \linkto{lefschetz}{Lefschetz principle},
-which says that ring theoretic statements are true in instances of algebraically closed fields
-if and only if they are true in all algebraically closed fields
+which (informally) says that ring theoretic statements are true in particular models
+of algebraically closed fields if and only if they are true in all algebraically closed fields
 (assuming zero or large enough prime characteristic).
-Lefschetz will be stated and proven in a later section.
 
 An overview of the proof of Ax-Grothendieck follows:
+\[\begin{tikzcd}[column sep=large]
+	{\text{(algebraic) $\chi_{p}$ Ax-G}} \\
+	{\text{(model th.) $\chi_{p}$ Ax-G}} \\
+	{\text{(model th.) }\chi_p \text{ Ax-G}} & {\text{(algebraic) }\chi_p \text{ Ax-G}} \\
+	{\text{(model th.) }\chi_0 \text{ Ax-G}} & {\text{(algebraic) }\chi_0 \text{ Ax-G}} && {\text{(algebraic) Ax-G}}
+	\arrow["{\ACF_{p} \text{is complete}}", shift right=5, from=2-1, to=3-1]
+	\arrow["{\text{Lefschetz }\chi\text{-change}}", shift right=5, from=3-1, to=4-1]
+  \arrow["{\text{soundness}}", shift right=5, from=1-1, to=2-1]
+  \arrow["{\text{completeness}}"', from=3-1, to=3-2]
+	\arrow["{\text{completeness}}"', from=4-1, to=4-2]
+	\arrow[from=3-2, to=4-4]
+	\arrow["{\text{case on }\chi}", from=4-2, to=4-4]
+\end{tikzcd}\]
 
 \begin{itemize}
-  \item We want to reduce the statement of Ax-Grothendieck to a model-theoretic one.
-        Then we can apply the \linkto{lefschetz}{Lefschetz principle} to
-        reduce to the prime characteristic case.
-  \item To express ``for any polynomial map ...'' model-theoretically,
-        which amounts to somehow quantifying over all polynomials
-        in $n$ variables,
-        we bound the degrees of all the polynomials,
-        i.e. asking instead ``for any polynomial map consisting of
-        polynomials with degree at most $d$''.
-        Then we can write the polynomial as a sum of its monomials,
-        with the coefficients as bounded variables.
-  \item We express injectivity and surjectivity model-theoretically,
-        and prove internal completeness and soundness for these statements.
-  \item We apply Lefschetz, so that it suffices to prove Ax-Grothendieck for
-        algebraic closures of a finite fields.
-        This is quite straight forward.
+  \item We make a model-theoretic statement of Ax-Grothendieck
+        and show internal completeness and soundness.
+  \item We intend to reduce to the finite characteristic case,
+        hence we first case on characteristic.
+  \item By internal completeness it suffices to show
+        each case (stated model-theoretically).
+  \item We apply \linkto{lefschetz}{Lefschetz}
+        so that it suffices to only prove the prime characteristic case
+        (stated model-theoretically).
+  \item By \linkto{lefchetz}{Lefschetz} again ($\ACF_{p}$ is complete),
+        it suffices to only prove the statement for a single model of $\ACF_{p}$,
+        for which we will pick the algebraic closure of $\F_{p}$.
+  \item Converting back using internal soundness, it suffices to prove
+        the algebraic statement for the algebraic closure of $\F_{p}$.
+        This wil be a specialization of
+        \linkto{ax_groth_locally_fin}{Ax-Grothendieck for locally finite fields}.
+        Intuitively this says: locally the polynomial map restricts to an injection
+        on finite affine varieties, and injectivity on a finite set is surjective.
 \end{itemize}
 
 \subsection{Writing down polynomials}
 
 Our objective is to state Ax-Grothendieck model-theoretically.
+To express ``for any polynomial map ...'',
+which amounts to somehow quantifying over all polynomials in $n$ variables,
+we bound the degrees of all the polynomials,
+i.e. asking instead ``for any polynomial map with degree at most $d$''.
+Then we can write the polynomial as a sum of its monomials,
+with the coefficients as bounded variables.
 Let us assume we have an $n$-variable polynomial $p \in K[x_{1},\dots,x_{n}]$.
 We know that $p$ can be written as a sum of its monomials,
 and the set of monomials \texttt{monom\_deg\_le n d} is finite,
@@ -234,6 +255,15 @@ formula coming after.
 Now we are ready to express Ax-Grothendieck model theoretically and state internal
 soundness and completeness.
 \begin{lstlisting}
+/-- Ax-Grothendieck stated model-theoretically -/
+def Ax_Groth_formula (n d : ℕ) : sentence ring_signature :=
+-- quantify over n many (n-variable polynomials) called ps;
+-- i.e. the data of a polynomial map
+-- by quantifying over (n * monom_of_bounded_degree) monomial coefficients
+bd_alls (n * ((monom_deg_le n d).length))
+-- if the polynomial function is injective then it is surjective
+(inj_formula n d ⟹ surj_formula n d)
+
 theorem realize_Ax_Groth_formula {n : ℕ} :
   (∀ d : ℕ, Structure K ⊨ Ax_Groth_formula n d)
   ↔
@@ -244,14 +274,9 @@ sorry
 
 \subsection{Internal completeness and soundness}
 
-It is important that the model theoretic statements of the above translate to
-our statements in \texttt{lean}. We finish by showing `\texttt{realize\_Ax\_Groth\_formula}`.
-
-\subsubsection*{Injectivity (and surjectivity)}
-
-We only discuss completeness and soundness for injectivity.
-The same results for surjectivity are very similar.
-A closer inspection reveals that we actually need two results:
+We first need internal completeness and soundness for injectivity and surjectivity,
+We only discuss injectivity as the results for surjectivity are very similar.
+For injectivity we actually need two results:
 \begin{itemize}
   \item (\texttt{realize\_inj\_formula\_of\_ring})
     Given a ring $A$ and a polynomial map,
@@ -269,7 +294,7 @@ A closer inspection reveals that we actually need two results:
 Clearly these are slightly different lemmas.
 They are necessary because of the data one has at hand
 depends on the direction one is working on.
-In more detail
+In more detail one direction says
 
 \begin{lstlisting}
 lemma realize_inj_formula_of_ring
@@ -351,7 +376,7 @@ of \texttt{ps} (via \texttt{poly\_indexed\_by\_monos}).
         funext k, simp [...], }, }, \end{lstlisting}
 
 The above is a result of the assumption \texttt{himage} of equality
-under \texttt{polynomial_map.eval ps}.
+under \texttt{polynomial\_map.eval ps}.
 Then it is a matter of applying injectivity (on the model theoretic side)
 
 \begin{lstlisting}
@@ -365,33 +390,232 @@ Then it is a matter of applying injectivity (on the model theoretic side)
   { ... },
 end \end{lstlisting}
 
-Now that we have introduced completeness and soundness for
-Ax-Grothendieck we can move back and forth between
-algebra and model theory, so that we can do the following
-\[\begin{tikzcd}
-	{\text{(algebraic) locally finite Ax-G}} \\
-	{\text{(model theoretic) locally finite Ax-G}} \\
-	{\text{(model theoretic) }\chi_p \text{ Ax-G}} & {\text{(algebraic) }\chi_p \text{ Ax-G}} \\
-	{\text{(model theoretic) }\chi_0 \text{ Ax-G}} & {\text{(algebraic) }\chi_0 \text{ Ax-G}} && {\text{(algebraic) Ax-G}}
-	\arrow["{\ACF_{p} \text{is complete}}"', shift right=5, from=2-1, to=3-1]
-	\arrow["{\text{(internal) completeness}_p}", shift right=5, from=1-1, to=2-1]
-	\arrow["{\text{Lefschetz }\chi\text{-change}}", shift right=5, from=3-1, to=4-1]
-	\arrow["{\text{int. soundness}_p}", from=3-1, to=3-2]
-	\arrow["{\text{int. soundness}_0}"', from=4-1, to=4-2]
-	\arrow[from=3-2, to=4-4]
-	\arrow["{\text{case on }\chi}", from=4-2, to=4-4]
-\end{tikzcd}\]
+We can conclude use the internal soundness and completeness lemmas for
+injectivity and surjectivity to show internal soundness and completeness
+for \texttt{Ax\_Groth\_formula}:
 
-The reason that we need to split into cases depending on characteristic
-(the final two arrows above) is because $\ACF$ alone is not a
-\linkto{dfn_complete_theory}{complete theory},
-but adding in contraints on characteristic makes it so.
+\begin{lstlisting}
+theorem realize_Ax_Groth_formula {n : ℕ} :
+  (∀ d : ℕ, Structure K ⊨ Ax_Groth_formula n d)
+  ↔
+  (∀ (ps : poly_map K n),
+    function.injective (poly_map.eval ps) → function.surjective (poly_map.eval ps)) :=
+begin
+  split,
+  { intros H ps hinj,
+    set d := max_total_deg ps,
+    specialize H d,
+    let coeffs := poly_map.coeffs_dvector' d ps,
+    simp only [realize_sentence_bd_alls, Ax_Groth_formula] at H,
+    -- injective -> realize inj_formula
+    have hInj : @realize_bounded_formula _ (struc_to_ring_struc.Structure K) _ _
+      (poly_map.coeffs_dvector' d ps) (inj_formula n d) dvector.nil,
+    {
+      rw realize_inj_formula_of_ring ps (total_deg_le_max_total_deg ps),
+      exact hinj,
+    },
+  rw ← realize_surj_formula_of_ring ps (total_deg_le_max_total_deg ps),
+  -- apply realize_Ax_Groth to ps, i.e. apply hAG to its coefficients
+  exact H coeffs hInj,
+  },
+  { intros H d,
+    simp only [Ax_Groth_formula],
+    simp only [realize_sentence_bd_alls],
+    intro coeffs,
+    simp only [realize_bounded_formula_imp],
+    intro hinj,
+    rw ← realize_surj_formula_of_model,
+    apply H,
+    rw realize_inj_formula_of_model,
+    exact hinj, },
+end
+\end{lstlisting} %? explanation
 
-Hence the following parts remain:
-The locally finite part of the proof is given in
-\linkto{locally_finite}{the next section}.
-The fact that $\ACF_{p}$ and $\ACF_{0}$ are {complete theories} and the
-{characteristic-change lemma} are usually packaged together
-in \linkto{lefschetz}{the Lefschetz principle},
-which we work on in the section after that.
-The rest of the components of the proof are covered by our work so far.
+\subsection{The Lefschetz Principle}
+
+To talk about Lefschetz it is sensible to first make the following definitions:
+
+\begin{dfn}[Maximal theories and complete theories]
+    \link{dfn_complete_theory}
+    An $L$-theory $T$ is \textit{complete}
+    when either of the following equivalent definitions hold:
+    \begin{itemize}
+      \item  $T$ deduces any sentence or its negation
+    \begin{lstlisting}
+      def is_complete' (T : Theory L) : Prop :=
+      ∀ (ϕ : sentence L), T ⊨ ϕ ∨ T ⊨ ∼ ϕ \end{lstlisting}
+      \item Sentences true in any model are deduced by the theory.
+    \begin{lstlisting}
+      def is_complete'' (T : Theory L) : Prop :=
+      ∀ (M : Structure L) (hM : nonempty M) (ϕ : sentence L),
+        M ⊨ T → M ⊨ ϕ → T ⊨ ϕ \end{lstlisting}
+      \item All models of $T$ satisfy the same sentences
+            (``are elementarily equivalent'').
+    \end{itemize}
+
+    Another definition \texttt{is\_complete} from the flypitch project
+    is stronger than these conditions, and is useful when constructing
+    theories with nice properties.
+    We will not need this for now, but it is relevant to \linkto{henkinization}{Henkinization}.
+    \begin{lstlisting}
+      def is_complete (T : Theory L) :=
+      is_consistent T ∧ ∀(f : sentence L), f ∈ T ∨ ∼ f ∈ T \end{lstlisting}
+    I will refer to \texttt{is\_complete} as ``maximal consistent''\footnote{
+      Given an \texttt{is\_complete'} theory that is also consistent,
+      there is an obvious way of extending it to a maximal consistent theory.}.
+\end{dfn}
+\begin{proof}
+  We show
+\begin{lstlisting}
+  lemma is_complete''_iff_is_complete' {T : Theory L} :
+    is_complete' T ↔ is_complete'' T := sorry \end{lstlisting}
+  The forward direction involves casing on the hypothesis of $T \vDash \phi$
+  or $T \vDash \neg \phi$, in the first case we are done,
+  and in the second we get a contradiction by
+  $\phi$ being both true and false in our model $M$.
+\begin{lstlisting}
+  { intros H M hM ϕ hMT hMϕ,
+    cases H ϕ with hTϕ hTϕ,
+    { exact hTϕ },
+    { have hbot := hTϕ hM hMT,
+      rw realize_sentence_not at hbot,
+      exfalso,
+      exact hbot hMϕ } },
+\end{lstlisting}
+    On the other hand we need to case on whether $T$
+    is consistent or not.
+    When $T$ is consistent we can show $T$ deduces
+    $\phi$ or its negation by checking in that model,
+    otherwise $T$ should deduce anything.
+\begin{lstlisting}
+  { intros H ϕ,
+    by_cases hM : ∃ M : Structure L, nonempty M ∧ M ⊨ T,
+    { rcases hM with ⟨ M , hM0 , hMT ⟩,
+      by_cases hMϕ : M ⊨ ϕ,
+      { left, exact H M hM0 ϕ hMT hMϕ },
+      { right,
+        rw ← realize_sentence_not at hMϕ,
+        exact H M hM0 _ hMT hMϕ} },
+    { left,
+      intros M hM0 hMT,
+      exfalso,
+      apply hM ⟨ M , hM0 , hMT ⟩} } \end{lstlisting}
+\end{proof}
+
+\begin{prop}[Lefschetz principle]
+    \link{lefschetz}
+    Let $\phi$ be a sentence in the language of rings.
+    Then the following are equivalent:
+    \begin{enumerate}
+        \item Some model of $\ACF_0$ satisfies $\phi$.
+        (If you like $\C \vDash \phi$.)
+        \item $\ACF_0 \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+            greater than $n$, $\ACF_p \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+        greater than $n$, some model of $\ACF_p$ satisfies $\phi$.
+    \end{enumerate}
+    ($1. \IFF 2.$) and ($3. \IFF 4.$) are due to the theories $\ACF_{p}$
+    being \linkto{dfn_complete_theory}{complete} for any $p$ ($0$ or prime).
+\end{prop}
+
+This will be proven in a \linkto{lefschetz_proof}{later section}.
+For now we name the relevant lemmas that we need:
+
+\begin{lstlisting}
+theorem is_complete''_ACF₀ : is_complete'' ACF₀ := sorry
+
+theorem characteristic_change (ϕ : sentence ring_signature) :
+ACF₀ ⊨ ϕ ↔ (∃ (n : ℕ), ∀ {p : ℕ} (hp : nat.prime p), n < p → ACFₚ hp ⊨ ϕ) := sorry
+
+theorem is_complete''_ACFₚ {p : ℕ} (hp : nat.prime p) : is_complete'' (ACFₚ hp) := sorry
+\end{lstlisting}
+
+\subsection{The Locally Finite Case}
+\input{src/locally_finite.tex}
+
+\subsection{Proving Ax-Grothendieck}
+
+We conclude with a proof of Ax-Grothendieck.
+
+\begin{proof}
+By \linkto{ax_groth_locally_fin}{Ax-Grothendieck for locally finite fields},
+the theorem holds for the algebraic closure of $\F_{p}$.
+\begin{lstlisting}
+lemma Ax_Groth_algebraic_closure_zmod (p : ℕ) [hp : fact (nat.prime p)] {n} :
+  ∀ (ps : poly_map (algebraic_closure.of_ulift_zmod.{u} p) n),
+    function.injective (poly_map.eval ps) → function.surjective (poly_map.eval ps) :=
+Ax_Groth_of_locally_finite (ulift.{u} (zmod p))
+    (algebraic_closure.is_algebraic (ulift.{u} (zmod p))) n \end{lstlisting}
+
+By internal soundness (\texttt{realize\_Ax\_Groth\_formula}),
+this implies that for any naturals $n$ and $d$,
+the algebraic closure of $\F_{p}$ satisfies \texttt{Ax\_Groth\_formula n d}.
+
+\begin{lstlisting}
+lemma ACFₚ_ssatisfied_Ax_Groth_formula {p : ℕ} [hp : fact p.prime] (n : ℕ) :
+  ∀ d, (ACFₚ hp.1) ⊨ Ax_Groth_formula n d :=
+begin
+  have h : ∀ d, (instances.algebraic_closure_of_zmod hp.1) ⊨ Ax_Groth_formula n d,
+  { rw realize_Ax_Groth_formula,
+    exact Ax_Groth_algebraic_closure_zmod p }, \end{lstlisting}
+
+Since $\ACF_{p}$ is complete and the algebraic closure of $\F_{p}$ is a model,
+\texttt{Ax\_Groth\_formula n d} is satisfied in any model of $\ACF_{p}$.
+
+\begin{lstlisting}
+  intro d,
+  exact Lefschetz.is_complete''_ACFₚ hp.1
+    (instances.algebraic_closure_of_zmod hp.1) ⟨ 0 ⟩ (Ax_Groth_formula n d)
+    (instances.algebraic_closure_of_zmod_models_ACFₚ hp.1) (h d),
+end \end{lstlisting}
+
+Applying Lefschetz ($2. \IFF 3.$), this implies that \texttt{Ax\_Groth\_formula n d}
+is satisfied in models $\ACF_{0}$.
+
+\begin{lstlisting}
+lemma ACF₀_ssatisfied_Ax_Groth_formula (n d : ℕ) :
+  ACF₀ ⊨ Ax_Groth_formula n d :=
+begin
+  rw Lefschetz.characteristic_change,
+  use 0,
+  intros p hp _,
+  haveI : fact p.prime := ⟨ hp ⟩,
+  apply ACFₚ_ssatisfied_Ax_Groth_formula,
+end \end{lstlisting}
+
+Since any algebraically closed field $K$ of characteristic zero is a model of $\ACF_{0}$,
+we have that it satisfies \texttt{Ax\_Groth\_formula n d} for all $n$ and $d$,
+hence by internal completeness we see that Ax-Grothendieck is true for $K$.
+
+\begin{lstlisting}
+lemma realize_Ax_Groth_formula_of_char_zero
+  (h0 : char_zero K) (n d : ℕ) :
+  Rings.struc_to_ring_struc.Structure K ⊨ Ax_Groth_formula n d :=
+@ACF₀_ssatisfied_Ax_Groth_formula n d (Structure K) ⟨ 0 ⟩
+    is_alg_closed_to.realize_ACF₀
+
+lemma Ax_Groth_char_zero (h0 : char_zero K) {n : ℕ} {ps : poly_map K n} :
+  function.injective (poly_map.eval ps) → function.surjective (poly_map.eval ps) :=
+realize_Ax_Groth_formula.mp (realize_Ax_Groth_formula_of_char_zero h0 _) _ \end{lstlisting}
+
+We can also apply internal completeness with our work above to obtain
+
+\begin{lstlisting}
+lemma Ax_Groth_char_p (hchar : (ring_char K).prime) {n : ℕ} {ps : poly_map K n} :
+  function.injective (poly_map.eval ps) → function.surjective (poly_map.eval ps) :=
+... \end{lstlisting}
+
+Finally, we combine these for the characteristic-free general theorem.
+
+\begin{lstlisting}
+theorem Ax_Groth {n : ℕ} {ps : poly_map K n} :
+  function.injective (poly_map.eval ps) → function.surjective (poly_map.eval ps) :=
+begin
+  rcases char_p.char_is_prime_or_zero K (ring_char K) with hp | hp,
+  { exact Ax_Groth_char_p hp },
+  { apply Ax_Groth_char_zero,
+    rw ring_char.eq_iff at hp,
+    apply @char_p.char_p_to_char_zero _ _ hp },
+end \end{lstlisting}
+\end{proof}

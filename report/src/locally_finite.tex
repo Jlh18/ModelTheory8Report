@@ -2,6 +2,9 @@ Since Chris Hughes wrote the proof to this part of the project
 I will only explain the mathematics behind the proof and not
 talk about the \texttt{lean} formalization of it.
 
+Clearly for finite fields injectivity implies surjectivity,
+it turns out that this fact also holds for subfields of their algebraic closures:
+
 \begin{dfn}[Locally finite fields \cite{stack0}]
     \link{locally_finite}
     Let $K$ be a field of characteristic $p$ a prime.
@@ -39,6 +42,13 @@ talk about the \texttt{lean} formalization of it.
   \link{ax_groth_locally_fin}
   Let $L$ be a locally finite field. Then any injective
   \linkto{dfn_poly_map}{polynomial map} $f : L^{n} \to L^{n}$ is surjective.
+
+  \begin{lstlisting}
+  lemma Ax_Groth_of_locally_finite (K₀ : Type*) {L : Type*}
+    [field K₀] [fintype K₀] [comm_ring L] [algebra K₀ L] (alg : algebra.is_algebraic K₀ L)
+    (n) (ps : poly_map L n) (hinj : function.injective (poly_map.eval ps)) :
+    function.surjective (poly_map.eval ps) :=
+  ... \end{lstlisting}
 \end{prop}
 \begin{proof}
   Let $b = (b_{1},\dots,b_{n}) \in L^{n}$.

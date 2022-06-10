@@ -718,7 +718,12 @@ and its interaction with the real world.
   i.e. a sentence for each degree $n$ saying
   ``any monic polynomial of degree $n$ has a root''.
 
-  Lastly, we express the characteristic of fields.
+  Lastly, we express the characteristic of fields,
+  which is important since $\ACF$ is not a \linkto{dfn_complete_theory}{complete theory},
+  but adding in sentences specifying characteristic makes it complete for any $p$ ($0$ or prime).
+  Characteristic considerations also allow us to reduce to proving the theorem for
+  \linkto{locally_finite}{locally finite fields}.
+
   Suppose $p : \N$ is a prime.
   If we view $p$ as a term in the language of rings\footnote{
     \texttt{lean} figures this out automatically using \texttt{nat.cast},

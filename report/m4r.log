@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  8 JUN 2022 13:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  10 JUN 2022 11:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -980,14 +980,14 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 47
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) (./m4r.toc
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 27
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 29
 .
 
 (/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 27.
+(Font)              scaled to size 10.0pt on input line 29.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
@@ -1067,10 +1067,10 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 639.
 [12]
-Package mdframed Info: Not enough space on this page on input line 744.
+Package mdframed Info: Not enough space on this page on input line 749.
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 744.
+(mdframed)              on input line 749.
  [13]) (./src/internalCompletenessAndSoundness.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -1095,246 +1095,243 @@ Overfull \hbox (9.15494pt too wide) in paragraph at lines 165--168
 g the hy-poth-e-sis of mod-elling \T1/zi4/m/it/10 ring_theory
  []
 
-
+[17]
 Overfull \hbox (2.83833pt too wide) in paragraph at lines 215--221
 []\T1/qpl/m/n/10 Going back-wards is even eas-ier. We prove that any model of \
 T1/zi4/m/it/10 field_theory \T1/qpl/m/n/10 is a model of \T1/zi4/m/it/10 ring_t
 heory
  []
 
-[17] [18] [19] [20]) (./src/AxGroth.tex
+[18] [19] [20]) (./src/AxGroth.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 5.
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 26.
+(mdframed)              on input line 6.
  [21]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 28.
- [22] [23]
-Overfull \hbox (13.06155pt too wide) in paragraph at lines 204--207
+(mdframed)              on input line 29.
+ [22] [23] [24]
+Overfull \hbox (13.06155pt too wide) in paragraph at lines 225--228
 []\T1/qpl/m/n/10 To write $\OML/cmm/m/it/10 p[]x$ \T1/qpl/m/n/10 and $\OML/cmm/
 m/it/10 p[]y$ \T1/qpl/m/n/10 we sim-ply find the right vari-able in-dices to su
 p-ply \T1/zi4/m/it/10 poly_indexed_by_monoms\T1/qpl/m/n/10 ,
  []
 
-[24]
-Overfull \hbox (7.18686pt too wide) in paragraph at lines 261--267
+[25]
+Overfull \hbox (7.18686pt too wide) in paragraph at lines 286--292
 []\T1/qpl/m/n/10 (\T1/zi4/m/it/10 realize_inj_formula_of_model\T1/qpl/m/n/10 ) 
 Given a model $\OML/cmm/m/it/10 M$ \T1/qpl/m/n/10 of \T1/zi4/m/it/10 ring_theor
 y \T1/qpl/m/n/10 and a (huge) list (\T1/zi4/m/it/10 dvector\T1/qpl/m/n/10 )
  []
 
-[25]) (./src/locally_finite.tex
+[26] [27]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 5.
- [26]
-Package mdframed Info: Not enough space on this page on input line 17.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 38.
-) (./src/Lefschetz.tex [27]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 4.
+(mdframed)              on input line 438.
  [28]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 69.
+(mdframed)              on input line 505.
+ [29] (./src/locally_finite.tex
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 8.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 41.
+ [30]) [31]) (./src/Lefschetz.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 99.
+(hyperref)                removing `\mathop' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathop' on input line 99.
+(hyperref)                removing `\mathcode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 99.
+(hyperref)                removing `\mathcode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 99.
+(hyperref)                removing `\mathcode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 99.
+(hyperref)                removing `\mathchardef' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchardef' on input line 99.
+(hyperref)                removing `\std@minus' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\std@minus' on input line 99.
+(hyperref)                removing `\mathcode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 99.
+(hyperref)                removing `\mathcode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 99.
+(hyperref)                removing `\mathcode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 99.
+(hyperref)                removing `\mathcode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 99.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 99.
+(hyperref)                removing `\leavevmode@ifvmode' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.22198pt
-(hyperref)                removed on input line 99.
+(hyperref)                removed on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathgroup' on input line 99.
+(hyperref)                removing `\mathgroup' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\symoperators' on input line 99.
+(hyperref)                removing `\symoperators' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 99.
+(hyperref)                removing `\@ifnextchar' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 99.
+(hyperref)                removing `subscript' on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 99.
+(hyperref)                removing `math shift' on input line 102.
 
+[32]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 107.
+(mdframed)              on input line 109.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 121.
-[29]
+(mdframed)              on input line 123.
+ [33]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 175.
- [30]
+(mdframed)              on input line 177.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 207.
-LaTeX Font Info:    Trying to load font information for U+euf on input line 246
+(mdframed)              on input line 199.
+ [34]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 238
 .
  (/usr/share/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [31]
+)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 267.
+(mdframed)              on input line 259.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 288.
+(mdframed)              on input line 280.
 
-Overfull \hbox (4.94426pt too wide) in paragraph at lines 300--309
+Overfull \hbox (4.94426pt too wide) in paragraph at lines 292--300
 []\T1/qpl/m/n/10 I prove the sec-ond state-ment in \T1/zi4/m/it/10 Rings.ToMath
 lib.completeness.lean \T1/qpl/m/n/10 (us-ing a lemma from \T1/zi4/m/it/10 flypi
 tch
  []
 
+[35]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 310.
-[32] [33]) (./src/vaught.tex
+(mdframed)              on input line 301.
+ [36] [37]) (./src/vaught.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 7.
- [34] [35] [36] [37]
+ [38] [39] [40] [41]
 Overfull \hbox (5.55994pt too wide) in paragraph at lines 312--316
 \T1/qpl/m/n/10 closed terms. The term we pick is $\OML/cmm/m/it/10 r$ \T1/qpl/m
 /n/10 ap-plied to the pre-vi-ous $\OML/cmm/m/it/10 n$ \T1/qpl/m/n/10 closed ter
 ms (us-ing \T1/zi4/m/it/10 bd_apps_rel\T1/qpl/m/n/10 ). 
  []
 
-[38] [39] [40] [41]
-Overfull \hbox (34.52176pt too wide) in paragraph at lines 554--559
+[42] [43] [44]
+Overfull \hbox (34.52176pt too wide) in paragraph at lines 556--561
 []\T1/qpl/m/n/10 The first point fol-lows from our def-i-ni-tion of \T1/zi4/m/i
 t/10 distinct_constants\T1/qpl/m/n/10 : Sup-pose $\OML/cmm/m/it/10 M$ \T1/qpl/m
 /n/10 is a (\T1/zi4/m/it/10 Language.of_constants
  []
 
-[42] [43] [44]
-Overfull \hbox (9.57767pt too wide) in paragraph at lines 815--824
+[45] [46] [47] [48]
+Overfull \hbox (9.57767pt too wide) in paragraph at lines 817--826
 []\T1/qpl/m/n/10 The cases where $\OML/cmm/m/it/10 x$ \T1/qpl/m/n/10 and $\OML/
 cmm/m/it/10 y$ \T1/qpl/m/n/10 are not built by the same con-struc-tor are easy 
 to elim-i-nate, since \T1/zi4/m/it/10 no_confusion
  []
 
 
-Overfull \hbox (23.90099pt too wide) in paragraph at lines 815--824
+Overfull \hbox (23.90099pt too wide) in paragraph at lines 817--826
 \T1/qpl/m/n/10 for lists tells us two equal lists must have equal el-e-ments in
  the lists, and \T1/zi4/m/it/10 no_confusion \T1/qpl/m/n/10 for \T1/zi4/m/it/10
  preterm_symbol
  []
 
-[45] [46]
-Overfull \hbox (63.02496pt too wide) in paragraph at lines 938--944
+[49] [50]
+Overfull \hbox (63.02496pt too wide) in paragraph at lines 940--946
 []\T1/qpl/m/n/10 Here we have taken ad-van-tage of an in-duc-tion lemma made fo
 r \T1/zi4/m/it/10 bounded_formula \T1/qpl/m/n/10 rather than \T1/zi4/m/it/10 bo
 unded_preformula\T1/qpl/m/n/10 .
  []
 
-[47] [48] [49]) (./src/appendix.tex
+[51] [52] [53]) (./src/appendix.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
- [50]
-Package mdframed Info: Not enough space on this page on input line 12.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 14.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 32.
+ [54]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 46.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 64.
- [51]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 84.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 110.
+ [55]
+Package mdframed Info: Not enough space on this page on input line 124.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 132.
-) [52] (./m4r.bbl) [53] (./m4r.aux)
+) (./m4r.bbl) [56] (./m4r.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `m4r.out' has not changed.
-(rerunfilecheck)             Checksum: 1811F33F39B329759702BB10C2CAAB87;5980.
+(rerunfilecheck)             Checksum: 4F8BFFB6DCD93F614DF1398F2569057A;6349.
  ) 
 Here is how much of TeX's memory you used:
- 30870 strings out of 478238
- 571892 string characters out of 5850456
- 1169495 words of memory out of 5000000
- 47280 multiletter control sequences out of 15000+600000
+ 31101 strings out of 478238
+ 575523 string characters out of 5850456
+ 1170495 words of memory out of 5000000
+ 47345 multiletter control sequences out of 15000+600000
  543605 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,22n,104p,1192b,1324s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 100i,22n,104p,1192b,1358s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 pdfTeX warning (dest): name{is_complete_theory} has been referenced but does no
 t exist, replaced by a fixed one
@@ -1342,6 +1339,10 @@ t exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{henkization} has been referenced but does not exist
 , replaced by a fixed one
+
+
+pdfTeX warning (dest): name{lefchetz} has been referenced but does not exist, r
+eplaced by a fixed one
 
 {/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/share/texm
 f-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr/share/texmf-dist/fonts/enc/
@@ -1356,24 +1357,23 @@ sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/euler/e
-ufm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
-></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf-
-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/type1/pu
-blic/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplri
-.pfb>
-Output written on m4r.pdf (53 pages, 612883 bytes).
+></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.p
+fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/euler/eufm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></
+usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dis
+t/fonts/type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/tex-gyre/qplri.pfb>
+Output written on m4r.pdf (56 pages, 620145 bytes).
 PDF statistics:
- 2086 PDF objects out of 2487 (max. 8388607)
- 1954 compressed objects within 20 object streams
- 1266 named destinations out of 1440 (max. 500000)
- 309 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2312 PDF objects out of 2487 (max. 8388607)
+ 2177 compressed objects within 22 object streams
+ 1433 named destinations out of 1440 (max. 500000)
+ 325 words of extra memory for PDF output out of 10000 (max. 10000000)
 
