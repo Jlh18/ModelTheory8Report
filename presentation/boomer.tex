@@ -1,0 +1,522 @@
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{cochineal}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz-cd}
+\usepackage{adjustbox}
+
+% xcolor
+\definecolor{darkgrey}{gray}{0.10}
+\definecolor{lightgrey}{gray}{0.30}
+\definecolor{slightgrey}{gray}{0.80}
+\definecolor{softblue}{RGB}{30,100,200}
+\definecolor{mono}{RGB}{150,100,100}
+
+
+% % Set the monospace font
+\usepackage{inconsolata}
+
+% % Monospace colour
+\newcommand{\code}[1]{\texttt{\color{mono}#1}}
+
+% % Misc
+\newcommand{\brkt}[1]{\left(#1\right)}
+\newcommand{\sqbrkt}[1]{\left[#1\right]}
+\newcommand{\dash}{\text{-}}
+\newcommand{\tdt}{\times \dots \times}
+
+% % Logic
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+\newcommand{\IFF}{\leftrightarrow}
+\newcommand{\limplies}{\Leftarrow}
+\newcommand{\NOT}{\neg\,}
+\newcommand{\AND}{\land}
+\newcommand{\OR}{\lor}
+\newenvironment{forward}{($\implies$)}{}
+\newenvironment{backward}{($\limplies$)}{}
+% General way of making larger symbols with limits above and below
+\makeatletter
+\DeclareRobustCommand\bigop[1]{%
+  \mathop{\vphantom{\sum}\mathpalette\bigop@{#1}}\slimits@
+}
+\newcommand{\bigop@}[2]{%
+  \vcenter{%
+    \sbox\z@{$#1\sum$}%
+    \hbox{\resizebox{
+      \ifx#1\displaystyle.7\fi\dimexpr\ht\z@+\dp\z@}{!}{$\m@th#2$}}% symbol size
+  }%
+}
+\makeatother
+\newcommand{\bigforall}[2]{\DOTSB\bigop{\forall}_{#1}^{#2}}
+\newcommand{\bigexists}[2]{\DOTSB\bigop{\exists}_{#1}^{#2}}
+\newcommand{\bigand}[2]{\DOTSB\bigop{\mbox{\Large$\land$}}_{#1}^{#2}}
+\newcommand{\bigor}[2]{\DOTSB\bigop{\mbox{\Large$\lor$}}_{#1}^{#2}}
+
+% % Sets
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\st}{\,|\,}
+\newcommand{\minus}{\setminus}
+\newcommand{\subs}{\subseteq}
+\newcommand{\ssubs}{\subsetneq}
+\DeclareMathOperator{\im}{Im}
+\newcommand{\nothing}{\varnothing}
+\newcommand\res[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace
+  % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|}
+  % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% % Greek
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\de}{\delta}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\io}{\iota}
+\newcommand{\ka}{\kappa}
+\newcommand{\la}{\lambda}
+\newcommand{\om}{\omega}
+\newcommand{\si}{\sigma}
+
+\newcommand{\Ga}{\Gamma}
+\newcommand{\De}{\Delta}
+\newcommand{\Th}{\Theta}
+\newcommand{\La}{\Lambda}
+\newcommand{\Si}{\Sigma}
+\newcommand{\Om}{\Omega}
+
+% % Mathbb
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\U}{\mathbb{U}}
+
+% % Mathcal
+\renewcommand{\AA}{\mathcal{A}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\JJ}{\mathcal{J}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\QQ}{\mathcal{Q}}
+\newcommand{\RR}{\mathcal{R}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\TT}{\mathcal{T}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\VV}{\mathcal{V}}
+\newcommand{\WW}{\mathcal{W}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\YY}{\mathcal{Y}}
+\newcommand{\ZZ}{\mathcal{Z}}
+
+% % Mathfrak
+\newcommand{\f}[1]{\mathfrak{#1}}
+
+% % Mathrsfs
+\newcommand{\s}[1]{\mathscr{#1}}
+
+% % Category Theory
+\newcommand{\obj}[1]{\mathrm{Obj}\left(#1\right)}
+\newcommand{\Hom}[3]{\mathrm{Hom}_{#3}(#1, #2)\,}
+\newcommand{\mor}[3]{\mathrm{Mor}_{#3}(#1, #2)\,}
+\newcommand{\End}[2]{\mathrm{End}_{#2}#1\,}
+\newcommand{\aut}[2]{\mathrm{Aut}_{#2}#1\,}
+\newcommand{\CAT}{\mathbf{Cat}}
+\newcommand{\SET}{\mathbf{Set}}
+\newcommand{\TOP}{\mathbf{Top}}
+%\newcommand{\GRP}{\mathbf{Grp}}
+\newcommand{\RING}{\mathbf{Ring}}
+\newcommand{\MOD}[1][R]{#1\text{-}\mathbf{Mod}}
+\newcommand{\VEC}[1][K]{#1\text{-}\mathbf{Vec}}
+\newcommand{\ALG}[1][R]{#1\text{-}\mathbf{Alg}}
+\newcommand{\PSH}[1]{\mathbf{PSh}\brkt{#1}}
+\newcommand{\map}[2]{ \yrightarrow[#2][2.5pt]{#1}[-1pt] }
+\newcommand{\op}{^{op}}
+\newcommand{\darrow}{\downarrow}
+\newcommand{\LIM}[2]{\varprojlim_{#2}#1}
+\newcommand{\COLIM}[2]{\varinjlim_{#2}#1}
+\newcommand{\hookr}{\hookrightarrow}
+
+% % Algebra
+\newcommand{\iso}{\cong}
+\newcommand{\nsub}{\trianglelefteq}
+\newcommand{\id}[1]{\mathbbm{1}_{#1}}
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\coker}{Coker}
+\DeclareMathOperator{\spec}{Spec}
+
+% % Analysis
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\check}[1]{\widecheck{#1}}
+
+% % Galois
+\newcommand{\Gal}[2]{\mathrm{Gal}_{#1}(#2)}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\newcommand{\emb}[3]{\mathrm{Emb}_{#1}(#2, #3)}
+\newcommand{\Char}[1]{\mathrm{Char}#1}
+
+% % Model Theory
+\newcommand{\intp}[2]{
+    \star_{\text{\scalebox{0.7}{$#1$}}}^{
+    \text{\scalebox{0.7}{$#2$}}}}
+\newcommand{\subintp}[3]{
+    {#3}_{\text{\scalebox{0.7}{$#1$}}}^{
+    \text{\scalebox{0.7}{$#2$}}}}
+\newcommand{\modintp}[2]{#2^\text{\scalebox{0.7}{$#1$}}}
+\newcommand{\mmintp}[1]{\modintp{\MM}{#1}}
+\newcommand{\nnintp}[1]{\modintp{\NN}{#1}}
+\DeclareMathOperator{\const}{constants}
+\DeclareMathOperator{\func}{functions}
+\DeclareMathOperator{\rel}{relations}
+\newcommand{\term}[1]{{#1}_\mathrm{ter}}
+% \newcommand{\tv}[1]{\textrm{tv}_{#1}}
+% \newcommand{\struc}[1]{\mathbf{Str}(#1)}
+% \newcommand{\form}[1]{{#1}_\mathrm{for}}
+% \newcommand{\var}[1]{{#1}_\mathrm{var}}
+% \newcommand{\theory}[1]{{#1}_\mathrm{the}}
+% \newcommand{\carrier}[1]{{#1}_\mathrm{car}}
+% \newcommand{\model}[1]{\vDash_{#1}}
+% \newcommand{\nodel}[1]{\nvDash_{#1}}
+% \newcommand{\modelsi}{\model{\Si}}
+% \newcommand{\nodelsi}{\nvDash_{\Si}}
+% \newcommand{\eldiag}[2]{\mathrm{ElDiag}(#1,#2)}
+% \newcommand{\atdiag}[2]{\mathrm{AtDiag}(#1,#2)}
+% \newcommand{\Theory}{\mathrm{Th}}
+% \newcommand{\unisen}[1]{{#1}_\mathrm{uni}}
+\newcommand{\lift}[2]{\uparrow_{#1}^{#2}}
+\newcommand{\fall}[2]{\downarrow_{#1}^{#2}}
+\DeclareMathOperator{\GRP}{GRP}
+\newcommand{\RNG}{\mathrm{RNG}}
+\newcommand{\ER}{\mathrm{ER}}
+\DeclareMathOperator{\FLD}{FLD}
+\DeclareMathOperator{\ID}{ID}
+\DeclareMathOperator{\ZFC}{ZFC}
+\DeclareMathOperator{\ACF}{ACF}
+\newcommand{\BLN}{\mathrm{BLN}}
+\newcommand{\PO}{\mathrm{PO}}
+\DeclareMathOperator{\tp}{tp}
+\DeclareMathOperator{\qftp}{qftp}
+\DeclareMathOperator{\qf}{qf}
+\DeclareMathOperator{\eqzero}{eqzero}
+\newcommand{\MR}[2]{\mathrm{MR}^{#1}(#2)}
+\DeclareMathOperator{\MD}{MD}
+\DeclareMathOperator{\acl}{acl}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\mdeg}{m.deg}
+\DeclareMathOperator{\kdim}{k.dim}
+\newcommand{\Mod}[1]{EDITTHIS {#1}}
+% % Set theory
+\DeclareMathOperator{\ord}{Ord}
+
+% % Boolean algebra
+\newcommand{\NEG}{\smallsetminus}
+\newcommand{\upa}[1]{#1^{\uparrow}}
+
+% % Field theory
+\DeclareMathOperator{\tdeg}{t.deg}
+\newcommand{\zmo}[2][p]{\Z/#1^{#2}\Z}
+
+%% code from mathabx.sty and mathabx.dcl to get some symbols from mathabx
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+
+% hyperref
+\hypersetup{
+      colorlinks = true,
+      linkcolor = {softblue},
+      citecolor = {blue}
+}
+
+\newcommand{\link}[1]{\hypertarget{#1}{}}
+\newcommand{\linkto}[2]{\hyperlink{#1}{#2}}
+
+\newenvironment{dfn}{
+  \textbf{Definition} \,
+
+}{\newline}
+
+
+\usepackage{color}
+\definecolor{keywordcolor}{rgb}{0.6, 0.3, 0.6}   % light purple
+\definecolor{tacticcolor}{rgb}{0.2, 0.2, 0.6}    % dark purple
+\definecolor{commentcolor}{rgb}{0.4, 0.4, 0.4}   % grey
+\definecolor{symbolcolor}{rgb}{0.7, 0.2, 0.2}    % blue
+\definecolor{sortcolor}{rgb}{0.2, 0.7, 0.7}      % cyan
+\definecolor{attributecolor}{RGB}{120,0,0}       % maroon
+\definecolor{draculaGrey}{RGB}{25, 27, 15}       % grey
+
+\def\lstlanguagefiles{lstlean.tex}
+% set default language
+\lstset{language=lean}
+
+\title{Ax-Grothendieck in lean}
+\subtitle{Joseph Hua}
+\date{\today}
+% \author{}
+\institute{Imperial College London}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[fragile]{Polynomial maps}
+
+  \begin{definition}[Polynomial maps]
+    \link{poly_map}
+    Polynomial maps on a field $K$ are regular endomorphisms on $K^{n}$,
+    i.e. $n$ polynomials in $K[x_1,\dots,x_{n}]$.
+  \end{definition}
+
+  \pause
+
+  \textbf{Examples}
+
+  \begin{itemize}
+    \item <2-> Surjective but not injective: $f : \C \to \C := x \mapsto x^{2}$
+
+    \item <3-> Neither surjective nor injective:
+          $f : \C^{2} \to \C^{2} := (x,y) \mapsto (x,xy)$
+    \item <4-> Bijective:
+          $f : \C^{3} \to \C^{3} := (x,y,z) \mapsto ( x , y , z + xy )$
+  \end{itemize}
+  \pause \pause \pause
+
+  \textbf{Code}
+
+  \begin{lstlisting}
+  def poly_map (K : Type*) [comm_semiring K] (n : ℕ) : Type* :=
+  fin n → mv_polynomial (fin n) K
+
+  def eval : poly_map K n → (fin n → K) → (fin n → K) :=
+  λ ps as k, mv_polynomial.eval as (ps k) \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ax-Grothendieck}
+
+  \begin{theorem}[Ax-Grothendieck]
+    \link{ax_groth}
+    Any injective polynomial map over an algebraically closed field is surjective.
+    In particular injective polynomial maps over $\C$ are surjective.
+
+  \end{theorem}
+
+  \pause
+
+\begin{lstlisting}
+  theorem Ax_Groth {n : ℕ} {ps : poly_map K n}
+    (hinj : function.injective (poly_map.eval ps)) :
+  function.surjective (poly_map.eval ps) := sorry \end{lstlisting}
+
+  \pause
+
+\begin{itemize}[<+->]
+  \item Amazing fact: the Lefschetz principle implies that we only need to show
+        this for a single algebraically closed field of characteristic $n$ ($\ACF_{n}$)
+        and it will be true for all of $\ACF_{n}$ ($n$ is zero or prime).
+  \item Amazing fact: Lefschetz also says that if we show it for all
+        $\ACF_{p}$ for large $p$ then it is also true for $\ACF_{0}$.
+  \item Good news: We can easily show it for algebraic closures of $\F_{p}$
+        for any $p$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Locally finite fields}
+  \begin{definition}[Locally finite fields]
+    \link{locally_finite}
+    Let $K$ be a field of characteristic $p$ a prime.
+    Then the following are equivalent definitions for $K$ being a
+    \textit{locally finite field}:
+    \begin{enumerate}
+        \item The minimal subfield generated by any finite subset of $K$ is finite.
+        \item $\F_p \to K$ is algebraic.
+        \item $K$ embeds into an algebraic closure of $\F_p$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+  \link{ax_groth_local}
+  Locally finite fields satisfy Ax-Grothendieck.
+\end{theorem}
+\begin{proof}
+  \[ \F_{p} \hookr \F_{p}(\code{coeffs}) \hookr K\]
+  \[ \downarrow_{\F_{p}(\code{coeffs})} \text{ respects injectivity }\]
+\end{proof}
+
+\end{frame}
+
+% \begin{frame}[fragile]{Locally finite fields}
+% \begin{lstlisting}
+%   lemma Ax_Groth_of_locally_finite (K₀ : Type*) {L : Type*}
+%     [field K₀] [fintype K₀] [comm_ring L] [algebra K₀ L] (alg : algebra.is_algebraic K₀ L)
+%     (n) (ps : poly_map L n) (hinj : function.injective (poly_map.eval ps)) :
+%     function.surjective (poly_map.eval ps) := sorry \end{lstlisting}
+% \end{frame}
+
+
+\begin{frame}[fragile]{The Lefschetz principle}
+  \begin{theorem}[Lefschetz principle]
+    \link{lefschetz}
+    Let $\phi$ be a sentence in the language of rings. % EXAMPLE = exists x ≠ y , x^2 + x + 1 = 0 ∧ y^2 + y + 1 = 0
+    Then the following are equivalent:
+    \begin{enumerate}
+        \item Some model of $\ACF_0$ satisfies $\phi$.
+        (If you like $\C \vDash \phi$.)
+        \item $\ACF_0 \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+            greater than $n$, $\ACF_p \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+        greater than $n$, some model of $\ACF_p$ satisfies $\phi$.
+    \end{enumerate}
+    ($1. \IFF 2.$) and ($3. \IFF 4.$) are due to the theories $\ACF_{p}$
+    being complete for any $p$ ($0$ or prime);
+    ($2. \IFF 3.$) due to compactness theorem.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}[fragile]{Proof overview}
+An overview of the proof:
+
+\adjustbox{scale=0.8,center}{%
+\begin{tikzcd}[column sep=large]
+	{\text{(algebraic) $\chi_{p}$ Ax-G}} \\
+	{\text{(model th.) $\chi_{p}$ Ax-G}} \\
+	{\text{(model th.) }\chi_p \text{ Ax-G}} & {\text{(algebraic) }\chi_p \text{ Ax-G}} \\
+	{\text{(model th.) }\chi_0 \text{ Ax-G}} & {\text{(algebraic) }\chi_0 \text{ Ax-G}} && {\text{(algebraic) Ax-G}}
+	\arrow["{\ACF_{p} \text{is complete}}", shift right=5, from=2-1, to=3-1]
+	\arrow["{\text{Lefschetz }\chi\text{-change}}", shift right=5, from=3-1, to=4-1]
+  \arrow["{\text{soundness}}", shift right=5, from=1-1, to=2-1]
+  \arrow["{\text{completeness}}"', from=3-1, to=3-2]
+	\arrow["{\text{completeness}}"', from=4-1, to=4-2]
+	\arrow[from=3-2, to=4-4]
+	\arrow["{\text{case on }\chi}", from=4-2, to=4-4]
+\end{tikzcd}
+}
+
+\end{frame}
+
+
+% \section{Titleformats}
+
+% \begin{frame}{Metropolis titleformats}
+% 	\begin{itemize}
+% 		\item Regular
+% 		\item \textsc{Smallcaps}
+% 		\item \textsc{allsmallcaps}
+% 		\item ALLCAPS
+% 	\end{itemize}
+% 	They can either be set at once for every title type or individually.
+% \end{frame}
+
+% \subsection{Tricks}
+
+% {
+%     \metroset{titleformat frame=smallcaps}
+% \begin{frame}{Small caps}
+% 	This frame uses the \texttt{smallcaps} titleformat.
+
+% 	\begin{alertblock}{Potential Problems}
+% 		Be aware, that not every font supports small caps. If for example you typeset your presentation with pdfTeX and the Computer Modern Sans Serif font, every text in smallcaps will be typeset with the Computer Modern Serif font instead.
+% 	\end{alertblock}
+% \end{frame}
+% }
+
+% \begin{frame}{Blocks}
+%   Three different block environments are pre-defined and may be styled with an
+%   optional background color.
+
+%   \begin{columns}[T,onlytextwidth]
+%     \column{0.5\textwidth}
+%       \begin{block}{Default}
+%         Block content.
+%       \end{block}
+
+%       \begin{alertblock}{Alert}
+%         Block content.
+%       \end{alertblock}
+
+%       \begin{exampleblock}{Example}
+%         Block content.
+%       \end{exampleblock}
+
+%     \column{0.5\textwidth}
+
+%       \metroset{block=fill}
+
+%       \begin{block}{Default}
+%         Block content.
+%       \end{block}
+
+%       \begin{alertblock}{Alert}
+%         Block content.
+%       \end{alertblock}
+
+%       \begin{exampleblock}{Example}
+%         Block content.
+%       \end{exampleblock}
+
+%   \end{columns}
+% \end{frame}
+
+% {%
+% \setbeamertemplate{frame footer}{My custom footer}
+% \begin{frame}[fragile]{Frame footer}
+%     themename defines a custom beamer template to add a text to the footer. It can be set via
+%     \begin{verbatim}\setbeamertemplate{frame footer}{My custom footer}\end{verbatim}
+% \end{frame}
+% }
+
+
+\end{document}

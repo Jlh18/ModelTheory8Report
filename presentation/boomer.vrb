@@ -1,0 +1,19 @@
+\frametitle{Proof overview}
+An overview of the proof:
+
+\adjustbox{scale=0.8,center}{%
+\begin{tikzcd}[column sep=large]
+	{\text{(algebraic) $\chi_{p}$ Ax-G}} \\
+	{\text{(model th.) $\chi_{p}$ Ax-G}} \\
+	{\text{(model th.) }\chi_p \text{ Ax-G}} & {\text{(algebraic) }\chi_p \text{ Ax-G}} \\
+	{\text{(model th.) }\chi_0 \text{ Ax-G}} & {\text{(algebraic) }\chi_0 \text{ Ax-G}} && {\text{(algebraic) Ax-G}}
+	\arrow["{\ACF_{p} \text{is complete}}", shift right=5, from=2-1, to=3-1]
+	\arrow["{\text{Lefschetz }\chi\text{-change}}", shift right=5, from=3-1, to=4-1]
+  \arrow["{\text{soundness}}", shift right=5, from=1-1, to=2-1]
+  \arrow["{\text{completeness}}"', from=3-1, to=3-2]
+	\arrow["{\text{completeness}}"', from=4-1, to=4-2]
+	\arrow[from=3-2, to=4-4]
+	\arrow["{\text{case on }\chi}", from=4-2, to=4-4]
+\end{tikzcd}
+}
+
