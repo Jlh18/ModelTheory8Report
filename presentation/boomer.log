@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  10 JUN 2022 17:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  11 JUN 2022 13:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1218,32 +1218,36 @@ Overfull \vbox (13.79993pt too high) detected at line 311
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-\openout4 = `boomer.vrb'.
-
- (./boomer.vrb
-LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 3.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 313
+.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 313
+.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 5.
+ut line 313.
 
 (/usr/share/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-)
+) [2
+
+]
+\openout4 = `boomer.vrb'.
+
+
+(./boomer.vrb
+LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
+(Font)              scaled to size 10.0pt on input line 3.
 LaTeX Font Info:    Trying to load font information for TS1+Cochineal-TLF on in
 put line 14.
-
-(/usr/share/texmf-dist/tex/latex/cochineal/TS1Cochineal-TLF.fd
+ (/usr/share/texmf-dist/tex/latex/cochineal/TS1Cochineal-TLF.fd
 File: TS1Cochineal-TLF.fd 2016/01/19 (msharpe) Font definitions for TS1/Cochine
 al-TLF.
 )
@@ -1263,18 +1267,10 @@ LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 6.0pt on input line 30.
 )
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 344.
+(Font)              scaled to size 12.0pt on input line 346.
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
-(Font)              scaled to size 4.0pt on input line 344.
- [2
-
-] (./boomer.vrb
-pdfTeX warning (ext4): destination with the same identifier (name{poly_map}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4     \link{poly_map}
-                       ) [3
+(Font)              scaled to size 4.0pt on input line 346.
+ [3
 
 ] (./boomer.vrb
 pdfTeX warning (ext4): destination with the same identifier (name{poly_map}) ha
@@ -1300,21 +1296,21 @@ s been already used, duplicate ignored
 l.4     \link{poly_map}
                        ) [6
 
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{poly_map}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4     \link{poly_map}
+                       ) [7
+
 ]
 \openout4 = `boomer.vrb'.
 
  (./boomer.vrb
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/it' will be
 (Font)              scaled to size 10.0pt on input line 3.
-) [7
-
-] (./boomer.vrb
-pdfTeX warning (ext4): destination with the same identifier (name{ax_groth}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4     \link{ax_groth}
-                       ) [8
+) [8
 
 ] (./boomer.vrb
 pdfTeX warning (ext4): destination with the same identifier (name{ax_groth}) ha
@@ -1340,21 +1336,101 @@ s been already used, duplicate ignored
 l.4     \link{ax_groth}
                        ) [11
 
-]
-\openout4 = `boomer.vrb'.
-
- (./boomer.vrb) [12
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{ax_groth}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4     \link{ax_groth}
+                       ) [12
 
 ]
 \openout4 = `boomer.vrb'.
 
  (./boomer.vrb) [13
 
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
+e}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3     \link{locally_finite}
+                             
+pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
+l}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.15   \link{ax_groth_local}
+                            ) [14
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
+e}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3     \link{locally_finite}
+                             
+pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
+l}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.15   \link{ax_groth_local}
+                            ) [15
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
+e}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3     \link{locally_finite}
+                             
+pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
+l}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.15   \link{ax_groth_local}
+                            ) [16
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
+e}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3     \link{locally_finite}
+                             
+pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
+l}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.15   \link{ax_groth_local}
+                            ) [17
+
 ]
 \openout4 = `boomer.vrb'.
 
+ (./boomer.vrb) [18
 
-(./boomer.vrb) [14
+] [19
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb)
+[20
+
+] (./boomer.vrb) [21
+
+] (./boomer.vrb) [22
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb) [23
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb) [24
 
 ]
 \tf@nav=\write6
@@ -1368,16 +1444,16 @@ l.4     \link{ax_groth}
 
  (./boomer.aux)
 Package rerunfilecheck Info: File `boomer.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 99250AC4649B932387706603864C246A;199.
  ) 
 Here is how much of TeX's memory you used:
- 31010 strings out of 478238
- 618533 string characters out of 5850456
- 916523 words of memory out of 5000000
- 48512 multiletter control sequences out of 15000+600000
+ 31127 strings out of 478238
+ 620792 string characters out of 5850456
+ 981523 words of memory out of 5000000
+ 48591 multiletter control sequences out of 15000+600000
  659734 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,22n,122p,1829b,1130s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,22n,122p,1829b,1380s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/t
 exmf-dist/fonts/enc/dvips/cochineal/coch_otkq6i.enc}{/usr/share/texmf-dist/font
 s/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/share/texmf-dist/fonts/enc/dvips/coch
@@ -1398,10 +1474,10 @@ fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/
 share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texm
 f-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/ty
 pe1/public/cm-super/sfss1000.pfb>
-Output written on boomer.pdf (14 pages, 379882 bytes).
+Output written on boomer.pdf (24 pages, 395649 bytes).
 PDF statistics:
- 201 PDF objects out of 1000 (max. 8388607)
- 140 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 269 PDF objects out of 1000 (max. 8388607)
+ 198 compressed objects within 2 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 59 words of extra memory for PDF output out of 10000 (max. 10000000)
 
