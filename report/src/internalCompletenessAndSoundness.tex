@@ -1,5 +1,8 @@
 In this section and the next we focus on proving internal
-completeness and soundness results:
+completeness and soundness results.
+The details of this section are usually omitted in literature,
+but \code{lean} brings these issues to the surface.
+
 \begin{prop}[Internal completeness and soundness]
   \link{algebraic_objects_iff_models}
   The following are true
@@ -9,8 +12,8 @@ completeness and soundness results:
           that models the theory of rings.
     \item A type $A$ is a field (according to lean) if and only if
           it is a model of the theory of fields.
-    \item A type $A$ is an algebraically closed field (of characteristic p)
-          if and only if it is a model of $\ACF_{(p)}$.
+    \item A type $A$ is an algebraically closed field (of characteristic n)
+          if and only if it is a model of $\ACF_{(n)}$, where $n$ is zero or prime.
   \end{itemize}
   For the purposes of design in lean it is
   more sensible to split each ``if and only if'' into separate constructions,
@@ -18,7 +21,7 @@ completeness and soundness results:
   and vice versa.
   Although rather trivial on paper,
   converting between these facts takes a bit of work in \texttt{lean},
-  especially for case of $\ACF_{p}$,
+  especially for case of $\ACF_{n}$,
   where some ground work needs to be done for interpreting \texttt{gen\_monic\_poly}.
 \end{prop}
 

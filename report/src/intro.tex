@@ -56,23 +56,110 @@ except some contributions from Chris Hughes,
 which I specify in comments above the theorems and definitions.
 
 Most definitions and proofs in this document follow the ideas given in
-David Marker's book on Model Theory \cite{marker} and formalization of the theory in \code{flypitch}.
+David Marker's book on Model Theory \cite{marker}
+and formalization of the theory in \code{flypitch}.
 
-\subsection*{Overview}
+\subsection*{Summary of contents}
 
+Throughout this document I try to incorporate explanations of \code{lean} code,
+including some type theoretic notions.
+With the intention of not distracting from the project,
+I have incorporated this alongside my exposition of the theory;
+most of these type theoretic concepts are explained in
+\linkto{model_theory_background}{section 2}.
 
+In order to be true to the formalization process
+I tend to work backwards:
+I first prove the main result from its lemmas,
+then prove the lemmas in later sections.
+Similarly, whilst formalizing a result I would first state the lemma in \code{lean}
+and try to establish whether the lemma is the appropriate approach
+to the final result before (removing the placeholder \code{sorry} and) providing a proof.
+Furthermore, model theoretic lemmas tend to be technical and better motivated using results.
 
-\subsection*{Formalization}
+In \linkto{model_theory_background}{section 2} I introduce the basics of model theory and
+the model theory in the language of rings,
+motivated by the aim of writing down the sentence
+``any degree two polynomial over a given ring has a root'' as a mathematical object.
+This then allows us to classify the ``theory of rings'', ``theory of fields'' and
+``theory of algebraically closed fields'' ($\ACF$), also as mathematical objects.
 
-% ? The choice of generality in which to work
-% (model theory: multi-sorted, algebraic/relational.
-% Maybe mention previous attempt at non-standard analysis being seperate from other bits of mathlib)
+In \linkto{algebraic_objects_iff_models}{section 3}
+I show that models of the theory of rings are the same thing
+as ``actual'' rings, where ``actual'' rings are the rings defined in \code{mathlib}.
+Similarly, I show that models of the theory of fields are the same thing as ``actual'' fields.
+These facts are usually glossed over in the literature,
+since it is obvious that the finite collection of sentences in the theories of
+rings and fields correspond exactly to the ``actual'' properties they must satisfy.
+However, it is more complicated to do the same for $\ACF$,
+since ``actual'' algebraically closed fields are defined by
+quantifying over all polynomials on the field,
+whereas model theoretically we need a trick in order to
+do the same quantification (we must write each possible polynomial out).
 
-% ? Obvious identifications and transferring structure + properties across identified objects
-% ? (model theory: ring theory models and actual actual rings) %? important from a computer science POV
+We informally call this kind of conversion between model theory and ``actual'' algebra
+``internal completeness and soundness''.
+From a computer science perspective,
+internal completeness and soundness is important as a user interface for
+converting between a model theory library and \code{mathlib}.
+It is essential for the purpose of making model theoretic results that
+are usable in formalization of other areas of mathematics.
+In this sense this project not only formalizes the model theory,
+but also shows that model theory can be a practical tool for formalizing
+purely algebraic results.
 
-% ? Cardinality is a pain in the ass
+In the first half of \linkto{section_4}{section 4} I introduce Ax-Grothendieck,
+provide an overview of its proof,
+discuss its model theoretic statement,
+then show the relevant internal completeness and soundness lemmas.
+In the latter half I state without proof \linkto{lefschetz}{the Lefschetz principle},
+and prove Ax-Grothendieck using it.
+The rest of the document is dedicated to proving Lefschetz.
 
-% ? Finite things e.g. sums
+An important difficulty with formalizing the model theoretic statement of Ax-Grothendieck
+is simply writing down long and complicated terms and formulas.
+For example, we will need terms that involve sums indexed by some set;
+see the \linkto{ax_groth_formula}{Ax-Grothendieck formula}.
 
-% ? Structure with missing properties, e.g. addition and multiplication for ring terms.
+\[ \sum_{f\texttt{ : monom\_deg\_le n d}} p_{f}\prod_{i < n} x^{f i}\]
+
+However, the collection of terms (with addition as applying the function symbol $+$)
+does not form a ring (addition of terms in the language of rings is not even associative).
+This makes writing down a sum indexed by a set very difficult;
+a problem I circumvented by using sums indexed by a list.
+
+In \linkto{lefschetz_proof}{section 5} I prove Lefschetz,
+which requires two lemmas: the compactness theorem (which we do not prove)
+and \linkto{vaught_test}{Vaught's test}.
+
+In \linkto{section_6}{section 6} I prove Vaught's test,
+which is a corollary of the lemma \linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem}.
+
+In \linkto{section_7}{section 7} I prove Upwards L\"{o}wenheim-Skolem.
+This is a result about the cardinality of models of a theory,
+and its proof relies on two different kind of constructions.
+The first is constructing new languages and theories that
+extend our original language and theory.
+The second is constructing a model associated to a theory (satisfying some properties)
+called \linkto{term_model}{\code{term\_model}}.
+We then work on computing the cardinality of this model,
+which requires some general lemmas relating the cardinalities
+of function symbols, terms, and formulas in a language,
+which we prove in \linkto{cardinality_lemmas}{section 8}.
+
+The cardinality of the collection of terms or formulas in a language
+is often not discussed in detail,
+though it is very important in many model theory constructions.
+A potential set-theoretic formalization of this has cardinality baked into the framework:
+terms and formulas can be defined as strings of symbols that satisfy certain properties
+(from which we extract their induction principles).
+Thus terms and formulas can be injected into the collection of
+all strings of symbols, which has an obvious cardinality.
+My proof of these cardinality bounds for terms and formulas
+follows exactly this idea.\footnote{
+  That is not to say this formalization is advantageous:
+  the way terms and formulas are formalized in \code{flypitch}
+  means that induction on terms and formulas is baked into their definition,
+  which I believe is much more important than their cardinality.
+  Inductive principles do not come for free with strings of symbols.}
+

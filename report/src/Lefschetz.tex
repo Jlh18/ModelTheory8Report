@@ -97,7 +97,7 @@ To prove \linkto{lefschetz}{Lefschetz} we need the following
 In this section we will introduce and apply these lemmas.
 Vaught's test will be proven in a \linkto{vaught_proof}{later section}.
 The compactness theorem will not be proven
-in detail as it was part of the flypitch project.
+in detail as I use the proof from flypitch project.
 
 \subsection{$\ACF_{n}$ is complete (Vaught's test)}
 We want to show that $\ACF_{n}$ is complete.
@@ -350,11 +350,13 @@ However, the essence of the proof is the same.
 \end{rmk}
 
 \begin{rmk}
-  The proof of the compactness theorem given in \texttt{flypitch} essentially
+  The key part of the proof of the compactness theorem given in \texttt{flypitch} essentially
   appeals to a construction of a model called
   \texttt{term\_model} via \linkto{henkinization}{Henkinization}.
-  We go through the essence of this construction whilst
+  We will give an overview of this construction whilst
   \linkto{upwards_lowenheim_skolem_proof}{proving upwards L\"{o}wenheim-Skolem}.
+  In fact, David Marker \cite{marker} proves both compactness and upwards L\"{o}wenheim-Skolem
+  in one go using Henkinization.
 \end{rmk}
 
 \subsection{Proving Lefschetz}
@@ -470,3 +472,5 @@ $\Om \vDash \neg \phi$, which is a contradiction.
 end \end{lstlisting}
 
 \end{proof}
+
+The rest of this document will be dedicated to proving \linkto{vaught_test}{Vaught's test} and its dependencies.

@@ -1,3 +1,5 @@
+\link{section_6}
+
 In this section we go back to general model theory,
 with the goal of proving \linkto{vaught_test}{Vaught's test}.
 This proof of Vaught's test relies on (a variant of) the
@@ -22,11 +24,7 @@ hence the word ``upward'' in the name.
 This can be done using the above by taking $T$ to be the set of
 sentences satisfied by the structure.
 
-\subsection{Proof of Vaught's Test}
-\link{vaught_proof}
-
-We first apply \linkto{upwards_lowenheim_skolem}{
-  Upwards L\"{o}wenheim-Skolem} to prove \linkto{vaught_test}{Vaught's test}.
+We are ready to prove Vaught's test.
 Recall the statement:
 
 \begin{lstlisting}
@@ -34,7 +32,7 @@ lemma is_complete'_of_only_infinite_of_categorical
   [is_algebraic L] {T : Theory L} (M : Structure L) (hM : M ⊨ T)
   (hinf : only_infinite T) {κ : cardinal}
   (hκ : ∀ n, #(L.functions n) ≤ κ) (hωκ : ω ≤ κ) (hcat : categorical κ T) :
-  is_complete' T := sorry \end{lstlisting}
+  is_complete' T := \end{lstlisting}
 
 \begin{proof}
 The proof is by contradiction.
@@ -88,10 +86,14 @@ end
 \end{lstlisting}
 \end{proof}
 
-\subsection{Upwards L\"{o}wenheim-Skolem}
+The rest of this document will be dedicated to proving
+\linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem} and its dependencies.
+
+
+\section{Upwards L\"{o}wenheim-Skolem}
 \link{upwards_lowenheim_skolem_proof}
 
-Our remaining goal is to prove
+Our goal in this section is to prove
 \linkto{upwards_lowenheim_skolem}{Upwards L\"{o}wenheim-Skolem}.
 
 \begin{lstlisting}
@@ -100,18 +102,30 @@ theorem has_sized_model_of_has_infinite_model [is_algebraic L] {T : Theory L} {�
   (∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ infinite M) →
   ∃ M : Structure L, nonempty M ∧ M ⊨ T ∧ #M = κ := sorry \end{lstlisting}
 
-The idea of the proof is that we want to design a model of the right size
-by making a language $L_{2}$ extending $L$ and an $L_{2}$-theory $T_{2}$ extending $T$
+In subsection 7.1 we make a language $L_{2}$ extending $L$ and an $L_{2}$-theory $T_{2}$ extending $T$
 (extending in the sense that any $L_{2}$-model of $T_{2}$ reduces down to a $L$-model of $T$),
 such that the design of $L_{2}$ and $T_{2}$ guarantee that any model of $T_{2}$ is large enough.
-Meanwhile, we design an $L_{2}$-model \code{term\_model} of $T_{2}$,
-by taking the type of all the $L_{2}$-terms,
-and quotienting by equality deduced by $T_{2}$ (this requires $T_{2}$ to be \linkto{henkization}{Henkin}),
-guaranteeing that \code{term\_model} is small enough
-- it will be bounded by the number of terms,
-and thus by the number of function symbols in the language.
 
-\subsubsection{Adding distinct constant symbols}
+Meanwhile in subsection 7.2, for any $L$-language \code{T},
+we design an $L$-structure \code{term\_model T},
+by taking the type of all the $L$-terms,
+and quotienting by equality deduced by $T$.
+Being the quotient of terms will ensure the cardinality of this
+structure bounded above by the number of terms,
+and hence \code{term\_model} will be small enough.
+
+We would hope that \code{term\_model T2} is a model of $T_{2}$,
+which would give us a model of the right size.
+However, for \code{term\_model} to be a model of $T$ we need that $T$
+is \linkto{is_complete_theory}{maximal consistent}
+and \linkto{henkization}{Henkin}, hence we need to extend $L_{2}$ and $T_{2}$ once more.
+We do this in $7.3$.
+
+In $7.4$ we compute the cardinality of \code{term\_model},
+and complete the proof of Upwards L\"{o}wenheim-Skolem,
+leaving some technical cardinality lemmas for the next section.
+
+\subsection{Adding distinct constant symbols}
 
 Suppose we have a language $L$ and a consistent theory $T$ that has
 an infinite model $M$, as well as an infinite cardinal $\kappa$.
@@ -289,8 +303,8 @@ boils down to the fact that the realization of constant symbols
 was an injection when restricted to the symbols from \code{con\_fin}.
 We omit the rest of the code.
 
-\subsubsection{\code{term\_model}}
-
+\subsection{\code{term\_model}}
+\link{term_model}
 Recalling that our goal is to construct a model of a fixed cardinality,
 we can move on to designing our model.
 In the \code{flypitch} project, they called this construction \code{term\_model}.
@@ -322,7 +336,7 @@ However, in suitable conditions we will have that for any $L$-sentence $\phi$
 \]
 These conditions are
 \begin{itemize}
-  \item $T$ is a \linkto{is_complete_theory}{maximal complete theory}
+  \item $T$ is a \linkto{is_complete_theory}{maximally consistent theory}
         (called \code{is\_complete} in \code{flypitch}).
   \item The theory $T$ is Henkin, or has the witness property,
         or $L$ has enough constant symbols with respect to $T$:
@@ -360,7 +374,7 @@ thus by our assumption $\code{term\_model} \vDash \phi(a)$,
 and a bit of work shows $\code{term\_model} \vDash \phi_{c}$,
 a contradiction.
 
-\subsubsection{Henkinization}
+\subsection{Henkinization}
 
 \link{henkinization}
 
@@ -529,7 +543,7 @@ which follows from general theory about reducts and API for
 The final goal is finding the cardinality of \code{term\_model},
 which we explore in the next subsection.
 
-\subsubsection{Cardinality of \code{term\_model}}
+\subsection{Cardinality of \code{term\_model}}
 
 Our goal is
 \begin{lstlisting}
@@ -676,7 +690,7 @@ lemma henkin_language_le_cardinal [is_algebraic L] {T : Theory L}
   (hLκ : ∀ n, # (L.functions n) ≤ κ) (n : ℕ) :
   # ((@henkin_language _ _ hconsis).functions n) ≤ κ := sorry \end{lstlisting}
 
-We also prove this lemma in the \linkto{henkinization_cardinality}{next subsection}.
+We also prove this lemma in the \linkto{henkinization_cardinality}{next section}.
 Note that we assume the language is algebraic for simplicity.
 This condition can be dropped but saves a bit of work for our use case.
 Indeed in our use case, the sum of algebraic languages is algebraic,
@@ -718,11 +732,13 @@ Hence the sum is bounded by $\kappa$.
       { simp [of_constants] } } \end{lstlisting}
 
 Hence we have completed the proof of Upwards L\"{o}wenheim-Skolem.
+It remains to clear up the three cardinality lemmas that we needed.
 
-\subsection{Cardinality lemmas}
+
+\section{Cardinality lemmas}
 
 \link{cardinality_lemmas}
-\subsubsection{Terms}
+\subsection{Terms}
 
 In this subsection we prove that the number of preterms is bounded by
 the number of function symbols in the language.
@@ -881,7 +897,7 @@ begin
     { exact le_max_right _ _ } }
 end \end{lstlisting}
 
-\subsubsection{Formulas}
+\subsection{Formulas}
 
 We make a similar construction for formulas,
 where we bound the number of formulas by the number of terms.
@@ -1007,11 +1023,11 @@ The rest is simple cardinal arithmetic.
   { exact le_max_left _ _ },
   { exact le_max_right _ _ } } \end{lstlisting}
 
-\subsubsection{Henkinization}
+\subsection{Henkinization}
 
 \link{henkinization_cardinality}
 
-We are showing
+In this subsection we show
 
 \begin{lstlisting}
 lemma henkin_language_le_cardinal [is_algebraic L] {T : Theory L}

@@ -1,7 +1,11 @@
-In this section we will introduce both \linkto{ax_groth_thm}{Ax-Grothendieck} and
-its model theoretic counterpart.
-We then investigate internal completeness and soundness for these statements.
-We state the lemmas used in its proof, and use them to prove it.
+\link{section_4}
+In this section we will introduce and prove \linkto{ax_groth_thm}{Ax-Grothendieck},
+leaving a key lemma - \linkto{lefschetz}{Lefschetz} - to be proven in later sections.
+In 4.1 and 4.2 we try to write the statement of Ax-Grothendieck model-theoretically.
+In 4.3 we investigate internal completeness and soundness for this statement.
+In 4.4 and 4.5 we state the lemmas required for proving Ax-Grothendieck,
+the proof of 4.5 is given immediately (on paper only).
+In 4.6 we conclude with a proof of Ax-Grothendieck.
 
 \begin{dfn}[Polynomial maps]
   \link{dfn_poly_map}
@@ -254,6 +258,8 @@ formula coming after.
 
 Now we are ready to express Ax-Grothendieck model theoretically and state internal
 soundness and completeness.
+\link{ax_groth_formula}
+
 \begin{lstlisting}
 /-- Ax-Grothendieck stated model-theoretically -/
 def Ax_Groth_formula (n d : ℕ) : sentence ring_signature :=
@@ -456,6 +462,7 @@ To talk about Lefschetz it is sensible to first make the following definitions:
 
 \begin{dfn}[Maximal theories and complete theories]
     \link{dfn_complete_theory}
+    \link{is_complete_theory}
     An $L$-theory $T$ is \textit{complete}
     when either of the following equivalent definitions hold:
     \begin{itemize}
@@ -638,3 +645,6 @@ begin
     apply @char_p.char_p_to_char_zero _ _ hp },
 end \end{lstlisting}
 \end{proof}
+
+The rest of this document will be dedicated to proving \linkto{lefschetz}{Lefschetz}
+and its dependencies.
