@@ -1,3 +1,5 @@
+\subsection*{Motivation}
+
 It is a basic fact of linear algebra that any linear map
 between vector spaces of the same finite dimension is
 injective if and only if it is surjective.
@@ -22,25 +24,55 @@ injectivity of a polynomial map implies surjectivity,
 and the proof we will give is model theoretic,
 roughly saying ``we may reduce to the finite field case''.
 
-This project formalizes this proof of Ax-Grothendieck in \code{lean}\footnote{
+This project formalizes this proof of Ax-Grothendieck in
+\href{https://leanprover.github.io/}{\code{lean}},
+which is a theorem prover\footnote{
   As far as I am aware this is the first attempt to formalize Ax-Grothendieck in
-  proof verification software. }.
+  a theorem prover. }.
 My github repository for this project is accessible at
 \url{github.com/Jlh18/ModelTheoryInLean8}.
 
-\subsection*{References}
+\subsection*{References and acknowledgments}
 
-I work on a fork of the \code{flypitch} project \cite{flypitch},
+The standard library for mathematics in \code{lean} is a community project called
+\code{mathlib},
+which contains results about rings, polynomials, algebraic closures and so on.
+Currently \code{mathlib} is developing its model theory library,
+but this \textit{is not} what I am using.
+My \code{lean} code extends both \code{mathlib} and an existing model theory library
+called the \code{flypitch} project \cite{flypitch},
 which built the framework for basic model theory and proved the
 independence of the continuum hypothesis.
-I have made many updates to this fork to make it compatible with
-more modern versions of \code{mathlib}.
+As \code{mathlib} is frequently updated,
+old projects need maintenance in order to be compatible with modern versions.
+I have Yakov Pechersky and Kevin Buzzard to thank for laboriously helping me
+update the \code{flypitch} project to be compatible with newer versions of \code{mathlib}.
+
 My original work all lies in the folder \code{src/Rings},
 even though a lot of the code (such as the proof of \linkto{vaught_test}{Vaught's test})
 is general model theory.
-Unless specified in comments above the theorems and definitions,
-the content of \code{src/Rings} is my original work.
+Most of the content of \code{src/Rings} is my original work,
+except some contributions from Chris Hughes,
+which I specify in comments above the theorems and definitions.
 
-Unless specified otherwise,
-all definitions and proofs in this document follow the ideas given in
+Most definitions and proofs in this document follow the ideas given in
 David Marker's book on Model Theory \cite{marker} and formalization of the theory in \code{flypitch}.
+
+\subsection*{Overview}
+
+
+
+\subsection*{Formalization}
+
+% ? The choice of generality in which to work
+% (model theory: multi-sorted, algebraic/relational.
+% Maybe mention previous attempt at non-standard analysis being seperate from other bits of mathlib)
+
+% ? Obvious identifications and transferring structure + properties across identified objects
+% ? (model theory: ring theory models and actual actual rings) %? important from a computer science POV
+
+% ? Cardinality is a pain in the ass
+
+% ? Finite things e.g. sums
+
+% ? Structure with missing properties, e.g. addition and multiplication for ring terms.

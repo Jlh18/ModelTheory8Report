@@ -109,12 +109,10 @@
     "AND"
     "OR"
     "bigop"
-    "supp"
     "st"
     "minus"
     "subs"
     "ssubs"
-    "im"
     "nothing"
     "al"
     "be"
@@ -176,71 +174,19 @@
     "iso"
     "nsub"
     "inv"
-    "dom"
-    "codom"
-    "coker"
-    "spec"
-    "Orb"
-    "Stab"
-    "const"
-    "func"
-    "rel"
-    "GRP"
     "RNG"
     "ER"
-    "FLD"
-    "ID"
-    "ZFC"
-    "ACF"
     "BLN"
     "PO"
-    "tp"
-    "qftp"
-    "qf"
-    "eqzero"
-    "MD"
-    "acl"
-    "cl"
-    "mdeg"
-    "kdim"
-    "ord"
     "NEG"
-    "tdeg"
     "widecheck"
     "lstlanguagefiles")
    (LaTeX-add-environments
     "forward"
     "backward"
+    "rmk"
     "cd")
    (LaTeX-add-bibliographies
-    "refs")
-   (LaTeX-add-amsthm-newtheorems
-    "rmk")
-   (LaTeX-add-amsthm-newtheoremstyles
-    "definitionstyle"
-    "propositionstyle"
-    "exercisestyle"
-    "remarkstyle")
-   (LaTeX-add-mdframed-mdtheorems
-    '("dfn" "new")
-    '("prop" "new")
-    '("cor" "new")
-    '("lem" "new")
-    '("ex" "new")
-    '("eg" "new")
-    '("nttn" "new"))
-   (LaTeX-add-color-definecolors
-    "darkgrey"
-    "lightgrey"
-    "slightgrey"
-    "softblue"
-    "mono"
-    "keywordcolor"
-    "tacticcolor"
-    "commentcolor"
-    "symbolcolor"
-    "sortcolor"
-    "attributecolor"
-    "draculaGrey"))
+    "refs"))
  :latex)
 

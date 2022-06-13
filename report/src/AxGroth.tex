@@ -69,10 +69,10 @@ An overview of the proof of Ax-Grothendieck follows:
         (stated model-theoretically).
   \item By \linkto{lefchetz}{Lefschetz} again ($\ACF_{p}$ is complete),
         it suffices to only prove the statement for a single model of $\ACF_{p}$,
-        for which we will pick the algebraic closure of $\F_{p}$.
+        for which we will pick an algebraic closure of $\F_{p}$.
   \item Converting back using internal soundness, it suffices to prove
-        the algebraic statement for the algebraic closure of $\F_{p}$.
-        This wil be a specialization of
+        the algebraic statement for an algebraic closure of $\F_{p}$.
+        This will be a specialization of
         \linkto{ax_groth_locally_fin}{Ax-Grothendieck for locally finite fields}.
         Intuitively this says: locally the polynomial map restricts to an injection
         on finite affine varieties, and injectivity on a finite set is surjective.
@@ -559,7 +559,7 @@ We conclude with a proof of Ax-Grothendieck.
 
 \begin{proof}
 By \linkto{ax_groth_locally_fin}{Ax-Grothendieck for locally finite fields},
-the theorem holds for the algebraic closure of $\F_{p}$.
+the theorem holds for an algebraic closure of $\F_{p}$.
 \begin{lstlisting}
 lemma Ax_Groth_algebraic_closure_zmod (p : ℕ) [hp : fact (nat.prime p)] {n} :
   ∀ (ps : poly_map (algebraic_closure.of_ulift_zmod.{u} p) n),
@@ -569,7 +569,7 @@ Ax_Groth_of_locally_finite (ulift.{u} (zmod p))
 
 By internal soundness (\code{realize\_Ax\_Groth\_formula}),
 this implies that for any naturals $n$ and $d$,
-the algebraic closure of $\F_{p}$ satisfies \code{Ax\_Groth\_formula n d}.
+an algebraic closure of $\F_{p}$ satisfies \code{Ax\_Groth\_formula n d}.
 
 \begin{lstlisting}
 lemma ACFₚ_ssatisfied_Ax_Groth_formula {p : ℕ} [hp : fact p.prime] (n : ℕ) :
@@ -579,7 +579,7 @@ begin
   { rw realize_Ax_Groth_formula,
     exact Ax_Groth_algebraic_closure_zmod p }, \end{lstlisting}
 
-Since $\ACF_{p}$ is complete and the algebraic closure of $\F_{p}$ is a model,
+Since $\ACF_{p}$ is complete and an algebraic closure of $\F_{p}$ is a model,
 \code{Ax\_Groth\_formula n d} is satisfied in any model of $\ACF_{p}$.
 
 \begin{lstlisting}

@@ -124,7 +124,8 @@ The following condition turns out to be useful for showing a theory is complete.
 
 We check that categoricity holds for $\ACF_{n}$ and uncountable cardinals.
 \begin{prop}[Categoricity for $\ACF_{n}$]
-  If two algebraically closed fields have the same \textit{uncountable}
+  Let $n$ be zero or prime.
+  If two algebraically closed fields of characteristic $n$ have the same \textit{uncountable}
   cardinality then they are (non-canonically) isomorphic.
   \begin{lstlisting}
 lemma ring_equiv_of_cardinal_eq_of_char_eq
@@ -205,8 +206,8 @@ of algebraically closed fields of a fixed characteristic is complete.
 \begin{proof}
   The two proofs are similar, so we focus on the characteristic $0$ case.
   According to Vaught's test, we first need to show that $\ACF_{0}$ is consistent,
-  which we can do by simply giving a model: the algebraic closure of $\Q$.
-  (For $\ACF_{p}$ we take the algebraic closure of $\F_{p}$.)
+  which we can do by simply giving a model: an algebraic closure of $\Q$.
+  (For $\ACF_{p}$ we take an algebraic closure of $\F_{p}$.)
   We already have all the tools to make such a model:
   \begin{itemize}
     \item Mathlib has definitions of the rationals \texttt{rat} and finite fields \texttt{zmod}.
@@ -361,7 +362,7 @@ However, the essence of the proof is the same.
 We are now ready to prove the Lefschetz principle.
 We begin by showing that if $\ACF_{0}$ deduces a ring sentence $\phi$
 then $\ACF_{p}$ deduces $\phi$ for large $p$.
-We prove it seperately because it will be used in the converse!
+We prove it separately because it will be used in the converse!
 
 \begin{lstlisting}
 theorem characteristic_change_left (ϕ : sentence ring_signature) :
@@ -451,7 +452,7 @@ than their maximum.
       cases hm with m hm,
       obtain ⟨ p , hle , hp ⟩ := nat.exists_infinite_primes (max n m).succ, \end{lstlisting}
 
-We take the algebraic closure $\Om$ of $\F_{p}$ as a model of $\ACF_{p}$,
+We take an algebraic closure $\Om$ of $\F_{p}$ as a model of $\ACF_{p}$,
 and since $p$ is suitably large, we have that $\Om \vDash \phi$ and
 $\Om \vDash \neg \phi$, which is a contradiction.
 

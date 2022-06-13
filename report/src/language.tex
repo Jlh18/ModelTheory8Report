@@ -57,7 +57,7 @@
   will be used to define the \linkto{ring_theory}{theory of rings},
   the theory of integral domains, the theory of fields, and so on.
   In more generality we can make the language of groups and
-  theory of groups, abelian groups, cyclic groups and so on.
+  theory of groups, Abelian groups, cyclic groups and so on.
 
   In the appendix we provide the example of the
   \linkto{dfn_bin_rel}{language with just a single binary relation}.
@@ -81,8 +81,8 @@ focus our examples around this.
     Let the following be the language of rings:
     \begin{itemize}
         \item The function symbols are the constant symbols $0, 1 : A$,
-        the symbols for addition and multiplication $+ , \times : A^2 \to A$
-        and taking for inverse $- : A \to A$.
+        $+ , \times : A^2 \to A$ for addition and multiplication
+        and $- : A \to A$ for taking additive inverse.
         \item There are no relation symbols.
     \end{itemize}
 
@@ -151,10 +151,10 @@ and the relation between structures and formulas
 
 We want to write down all sensible combinations of symbols (and variables)
 we can make in a language.
-We can think of multivariable polynomials over the integers as such:
+We can think of multi-variable polynomials over the integers as such:
 the only sensible combinations of symbols $0,1,-,+,*$ and variables
 are elements of $\Z{[x_{k}]}_{k \in \N}$,
-where $x_{k}$ are the varaibles. We formalize this generally as terms.
+where $x_{k}$ are the variables. We formalize this generally as terms.
 
 \subsection{Terms and formulas}
 
@@ -193,7 +193,7 @@ where $x_{k}$ are the varaibles. We formalize this generally as terms.
     \item The second constructor says ``for all naturals $l$ and function symbols $f$,
           \code{bd\_func f} is something of type \code{bounded\_preterm l}''.
           This makes sense since \code{bounded\_preterm l} is a type by the first line of code.
-    \item The curley brackets just say
+    \item The curly brackets just say
           ``you can leave out this input and \code{lean} will know what it is''.
   \end{itemize}
 
@@ -218,7 +218,7 @@ where $x_{k}$ are the varaibles. We formalize this generally as terms.
   In this document we say ``something of type \code{A}'' to avoid confusion.
 
   Terms in inductively defined types are (as mentioned before)
-  freely generated symbols using the contructors.
+  freely generated symbols using the constructors.
   Similarly, terms in a language are freely generated symbols using
   the symbols from the language.
 \end{rmk}
@@ -261,9 +261,9 @@ This will be expressed as a formula.
   \end{itemize}
 
   We take formulas to be preformulas with nothing missing.
-  Note that we take the de Brujn index convension here.
-  If $\phi$ were the formula $x_{0} + x_{1} = x_{2}$ then $\forall \phi$ would be
-  the formula $\forall x_{0} : A, x_{0} + x_{1} = x_{2}$,
+  Note that we take the de Brujn index convention here.
+  If $\phi$ were the formula $x_{0} + x_{1} = x_{2}$ then
+  $\forall x_{0}, \phi$ would be the formula $\forall x_{0} : A, x_{0} + x_{1} = x_{2}$,
   which is really $\forall x : A, x + x_{0} = x_{1}$,
   so that all the remaining free variables are shifted down.
 
@@ -318,7 +318,7 @@ This will be expressed as a formula.
   }
 
   The induction principle for terms states that to prove a statement about
-  bounded preterms missing \code{any number of inputs},
+  bounded preterms missing \textit{any number of inputs},
   it suffices to prove the statement for the variables,
   to prove the statement for \code{bd\_func f},
   and to prove the statement for \code{bd\_app t s} given proofs for the statement
@@ -396,7 +396,7 @@ We can now write down the sentences that describe rings with ease.
 \link{sentences_for_ring_theory}
 
 \begin{lstlisting}
-  /-- Assosiativity of addition -/
+  /-- Associativity of addition -/
   def add_assoc : sentence ring_signature :=
   ∀' ∀' ∀' ( (x_ 0 + x_ 1) + x_ 2 ≃ x_ 0 + (x_ 1 + x_ 2) )
 
@@ -419,7 +419,7 @@ We can now write down the sentences that describe rings with ease.
   /-- Commutativity of multiplication -/
   def mul_comm : sentence ring_signature := ∀' ∀' ( x_ 0 * x_ 1 ≃ x_ 1 * x_ 0   )
 
-  /-- Distributibity -/
+  /-- Distributivity -/
   def add_mul : sentence ring_signature :=
   ∀' ∀' ∀' ( (x_ 0 + x_ 1) * x_ 2 ≃ x_ 0 * x_ 2 + x_ 1 * x_ 2 )\end{lstlisting}
 
@@ -546,7 +546,7 @@ Thus terms should be interpreted as maps $A^{n} \to A$ for an $L$-structure $A$.
     This is defined by recursion on (pre)terms.
     When the preterm $t$ is a variable $x_{k}$, we interpret $t$ as a map
     that picks out the $k$-th part of the $n$-tuple \code{xs}.
-    This is like projecting to the $k$-th axis when we view \code{M} as an affine line.
+    This is like projecting to the $k$-th axis when we view $\code{M}^{n}$ as an affine $n$-space.
     When the term is a function symbol, then we automatically get a map from the
     definition of structures.
     In the last case we are applying a preterm $t_{1}$ to a term $t_{2}$,
@@ -609,8 +609,8 @@ and algebraically closed fields in terms of the sentences that axiomatize them.
 We call these theories.
 
 Note that this is \textit{the whole point of model theory},
-we will be able to work with terms, formulas, structures and theories tangibly,
-as terms in types (or set theoretically as elements of some sets''.
+we will be able to work with terms, formulas, structures and theories tangibly
+as mathematical objects rather than in a meta-theory.
 This allows us to reason about logic itself,
 and its interaction with the real world.
 
@@ -734,11 +734,11 @@ and its interaction with the real world.
   set.insert (p ≃ 0) ACF\end{lstlisting}
 
   To define the theory of algebraically closed fields of characteristic $0$,
-  we add a sentence $p + 1 \ne 0$ for each natural $p$.
+  we add a sentence $n + 1 \ne 0$ for each natural $n$.
 
   \begin{lstlisting}
-  def plus_one_ne_zero (p : ℕ) : sentence ring_signature :=
-  ¬ (p + 1 ≃ 0)
+  def plus_one_ne_zero (n : ℕ) : sentence ring_signature :=
+  ¬ (n + 1 ≃ 0)
 
   def ACF₀ : Theory ring_signature := ACF ∪ (set.range plus_one_ne_zero)  \end{lstlisting}
 

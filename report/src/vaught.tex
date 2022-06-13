@@ -293,7 +293,7 @@ We omit the rest of the code.
 
 Recalling that our goal is to construct a model of a fixed cardinality,
 we can move on to designing our model.
-In \code{flypitch} this construction is called \code{term\_model}.
+In the \code{flypitch} project, they called this construction \code{term\_model}.
 In brief, given an $L$-theory $T$, the structure consists of:
 \begin{itemize}
   \item The collection of $L$-terms with no variables (\code{closed\_term L})
@@ -372,8 +372,8 @@ The first thing to do is to make it Henkin, ensuring it is still consistent,
 we call the language we extended to $L_{H}$ and the new $L_{H}$-theory $T_{H}$.
 Secondly, we throw in enough formulas to make it maximally consistent,
 and call this new theory $T_{m}$.
-All of this is done in \code{flypitch} and can mostly be found in \code{henkin.lean}.
-An overview follows.
+This part of the code was not written by me, but from the \code{flypitch} project.
+It can mostly be found in \code{henkin.lean}. An overview follows.
 
 The second step can be done in either of the following ways:
 \begin{itemize}
@@ -474,8 +474,8 @@ Both of these steps are combined together as
 def completion_of_henkinization {L} {T : Theory L} (hT : is_consistent T) : Theory (henkin_language) := sorry
 \end{lstlisting}
 
-We are now ready to prove Upwards L\"{o}wenheim-Skolem
-sans the part about cardinality.
+We are now ready to prove Upwards L\"{o}wenheim-Skolem,
+only leaving out the part about cardinality.
 
 \begin{lstlisting}
 theorem has_sized_model_of_has_infinite_model [is_algebraic L] {T : Theory L} {κ : cardinal}
@@ -1019,7 +1019,7 @@ lemma henkin_language_le_cardinal [is_algebraic L] {T : Theory L}
   (hLκ : ∀ n, # (L.functions n) ≤ κ) (n : ℕ) :
   #((@henkin_language _ _ hconsis).functions n) ≤ κ := sorry \end{lstlisting}
 
-In \code{flypitch} they design a general process of taking the colimit
+In the \code{flypitch} project they design a general process of taking the colimit
 of a collection (directed diagram) of languages,
 which specialises to making \code{henkin\_language}.
 To bound the cardinality of the colimit of languages we just need that

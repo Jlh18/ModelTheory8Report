@@ -70,15 +70,16 @@ injectivity for locally finite fields.
 An example:
 \[ P = x^{2} + x + 1 : \bar{\F}_{2} \to \bar{\F}_{2}\]
 is a polynomial map between locally finite fields.
-This is surjective since the algebraic closure has all
+This is surjective since an algebraic closure has all
 roots of all polynomials over it.
 It is \textit{not injective} since this polynomial is
-separable in characteristic two (its derivative is a unit).
+separable in characteristic two,
+or just noting that $P(0) = P(1) = 1$.
 
 The reason any imitation of the above proof will fail
 in this direction is that the restriction of a surjective polynomial map
 is not in general surjective.
-Let $a \in \bar{F}_{2}$ be a root of $x^{2} + x + 1$. Then
+Let $a \in \bar{\F}_{2}$ be a root of $x^{2} + x + 1$. Then
 \[ P |_{\F(a)} : \F(a) \to \F(a) \]
 takes $0,1 \mapsto 1$ and $a, a + 1 \mapsto 0$.
 Note that $\F(a)$ is size $4$ so we have shown it is

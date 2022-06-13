@@ -13,7 +13,7 @@ completeness and soundness results:
           if and only if it is a model of $\ACF_{(p)}$.
   \end{itemize}
   For the purposes of design in lean it is
-  more sensible to split each ``if and only if'' into seperate constructions,
+  more sensible to split each ``if and only if'' into separate constructions,
   for converting the algebraic objects into their model theoretic counterparts
   and vice versa.
   Although rather trivial on paper,
@@ -391,7 +391,7 @@ In order to do this we \textit{could} try to reconstruct $p$
 using our previous construction \code{polynomial. term\_evaluated\_at\_coeffs}.
 However, unfortunately I have discovered that generally it can be
 more straightforward to simply develop each side of the argument
-(interanal completeness and soundness) seperately.
+(interanal completeness and soundness) separately.
 I make use of a result in the library that writes a polynomial
 evaluated at a root as a sum indexed by its degree:
 

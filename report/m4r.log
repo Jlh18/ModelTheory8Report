@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  10 JUN 2022 14:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  13 JUN 2022 11:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -995,32 +995,32 @@ LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 \openout5 = `m4r.toc'.
 
  [2] (./src/intro.tex
-LaTeX Font Info:    Trying to load font information for TS1+qpl on input line 9
-.
+LaTeX Font Info:    Trying to load font information for TS1+qpl on input line 1
+1.
 
 (/usr/share/texmf-dist/tex/latex/tex-gyre/ts1qpl.fd
 File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 )) (./src/language.tex
+[3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 9.0pt on input line 20.
-
-[3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 55.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 79.
  [4]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 161.
-Package mdframed Info: Not enough space on this page on input line 211.
+(mdframed)              on input line 79.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 142.
  [5]
-Package mdframed Info: Not enough space on this page on input line 211.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 161.
  [6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -1043,19 +1043,20 @@ LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 440.
+ [10]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 483.
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 (Font)              scaled to size 10.0pt on input line 483.
- [10]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 532.
+ [11]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 562.
- [11]
+ [12]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 617.
@@ -1067,16 +1068,11 @@ LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 635.
-[12]
-Package mdframed Info: Not enough space on this page on input line 745.
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 745.
- [13]) (./src/internalCompletenessAndSoundness.tex
+[13] [14]) (./src/internalCompletenessAndSoundness.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
- [14]
+
 Overfull \hbox (8.41486pt too wide) in paragraph at lines 43--49
 \T1/qpl/m/n/10 We first make the very ob-vi-ous ob-ser-va-tion that given the [
 ]\T1/zi4/m/it/10 lean[] \T1/qpl/m/n/10 in-stances of []\T1/zi4/m/it/10 [has_zer
@@ -1103,11 +1099,10 @@ Overfull \hbox (2.83833pt too wide) in paragraph at lines 215--221
 ring_theory[]
  []
 
-[18] [19] [20]) (./src/AxGroth.tex
+[18] [19] [20] [21]) (./src/AxGroth.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 6.
- [21]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 29.
@@ -1125,28 +1120,24 @@ Given a model $\OML/cmm/m/it/10 M$ \T1/qpl/m/n/10 of \T1/zi4/m/it/10 ring_theor
 y \T1/qpl/m/n/10 and a (huge) list (\T1/zi4/m/it/10 dvector\T1/qpl/m/n/10 )
  []
 
-[26] [27]
+[26] [27] [28]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 457.
- [28]
+ [29]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 524.
-Package mdframed Info: Not enough space on this page on input line 539.
- [29]
-Package mdframed Info: Not enough space on this page on input line 539.
  (./src/locally_finite.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 8.
+ [30]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 41.
- [30]
-Package mdframed Info: Not enough space on this page on input line 52.
-) [31]) (./src/Lefschetz.tex
-[32]
+) [31] [32])
+(./src/Lefschetz.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 102.
@@ -1226,28 +1217,29 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 126.
+Package mdframed Info: Not enough space on this page on input line 138.
 [33]
+Package mdframed Info: Not enough space on this page on input line 138.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 180.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 202.
+(mdframed)              on input line 181.
  [34]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 241
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 203.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 242
 .
  (/usr/share/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-)
+) [35]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 262.
- [35]
+(mdframed)              on input line 263.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 283.
+(mdframed)              on input line 284.
 
-Overfull \hbox (4.94426pt too wide) in paragraph at lines 295--303
+Overfull \hbox (4.94426pt too wide) in paragraph at lines 296--304
 []\T1/qpl/m/n/10 I prove the sec-ond state-ment in \T1/zi4/m/it/10 Rings.ToMath
 lib.completeness.lean \T1/qpl/m/n/10 (us-ing a lemma from \T1/zi4/m/it/10 flypi
 tch
@@ -1255,36 +1247,38 @@ tch
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 304.
+(mdframed)              on input line 305.
 [36] [37]) (./src/vaught.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 6.
- [38] [39] [40] [41]
+ [38]
+Package mdframed Info: Not enough space on this page on input line 17.
+ [39] [40] [41]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 292.
 
-
+[42]
 Overfull \hbox (5.55994pt too wide) in paragraph at lines 310--314
 \T1/qpl/m/n/10 closed terms. The term we pick is $\OML/cmm/m/it/10 r$ \T1/qpl/m
 /n/10 ap-plied to the pre-vi-ous $\OML/cmm/m/it/10 n$ \T1/qpl/m/n/10 closed ter
 ms (us-ing []\T1/zi4/m/it/10 bd_apps_rel[]\T1/qpl/m/n/10 ). 
  []
 
-[42] [43] [44]
+[43] [44] [45]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 532.
 
-[45]
+
 Overfull \hbox (34.52176pt too wide) in paragraph at lines 554--559
 []\T1/qpl/m/n/10 The first point fol-lows from our def-i-ni-tion of []\T1/zi4/m
 /it/10 distinct_constants[]\T1/qpl/m/n/10 : Sup-pose $\OML/cmm/m/it/10 M$ \T1/q
 pl/m/n/10 is a ([]\T1/zi4/m/it/10 Language.of_constants
  []
 
-[46] [47] [48]
+[46] [47] [48] [49]
 Overfull \hbox (9.57767pt too wide) in paragraph at lines 815--824
 []\T1/qpl/m/n/10 The cases where $\OML/cmm/m/it/10 x$ \T1/qpl/m/n/10 and $\OML/
 cmm/m/it/10 y$ \T1/qpl/m/n/10 are not built by the same con-struc-tor are easy 
@@ -1298,19 +1292,17 @@ Overfull \hbox (23.90099pt too wide) in paragraph at lines 815--824
 /it/10 preterm_symbol[]
  []
 
-[49] [50]
+[50] [51]
 Overfull \hbox (63.02496pt too wide) in paragraph at lines 939--945
 []\T1/qpl/m/n/10 Here we have taken ad-van-tage of an in-duc-tion lemma made fo
 r []\T1/zi4/m/it/10 bounded_formula[] \T1/qpl/m/n/10 rather than []\T1/zi4/m/it
 /10 bounded_preformula[]\T1/qpl/m/n/10 .
  []
 
-[51] [52] [53]) (./src/appendix.tex
+[52] [53]) (./src/appendix.tex [54]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
- [54]
-Package mdframed Info: Not enough space on this page on input line 12.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 14.
@@ -1324,6 +1316,7 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 64.
  [55]
+Package mdframed Info: Not enough space on this page on input line 82.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 84.
@@ -1333,7 +1326,10 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 132.
-) [56] (./m4r.bbl) [57] (./m4r.aux)
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 150.
+ [56]) (./m4r.bbl) [57] (./m4r.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1341,10 +1337,10 @@ Package rerunfilecheck Info: File `m4r.out' has not changed.
 (rerunfilecheck)             Checksum: 3C49081BA5EE34EBF71B2020B31600B2;6389.
  ) 
 Here is how much of TeX's memory you used:
- 31100 strings out of 478238
- 575524 string characters out of 5850456
- 1171717 words of memory out of 5000000
- 47339 multiletter control sequences out of 15000+600000
+ 31038 strings out of 478238
+ 574850 string characters out of 5850456
+ 1075329 words of memory out of 5000000
+ 47277 multiletter control sequences out of 15000+600000
  537379 words of font info for 114 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,22n,104p,1192b,1345s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1386,10 +1382,10 @@ m10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></
 usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dis
 t/fonts/type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/publi
 c/tex-gyre/qplri.pfb>
-Output written on m4r.pdf (57 pages, 622716 bytes).
+Output written on m4r.pdf (57 pages, 623742 bytes).
 PDF statistics:
- 2322 PDF objects out of 2487 (max. 8388607)
- 2186 compressed objects within 22 object streams
+ 2323 PDF objects out of 2487 (max. 8388607)
+ 2187 compressed objects within 22 object streams
  1438 named destinations out of 1440 (max. 500000)
  325 words of extra memory for PDF output out of 10000 (max. 10000000)
 
