@@ -167,19 +167,6 @@
    (LaTeX-add-environments
     "forward"
     "backward"
-    "dfn")
-   (LaTeX-add-xcolor-definecolors
-    "darkgrey"
-    "lightgrey"
-    "slightgrey"
-    "softblue"
-    "mono"
-    "keywordcolor"
-    "tacticcolor"
-    "commentcolor"
-    "symbolcolor"
-    "sortcolor"
-    "attributecolor"
-    "draculaGrey"))
+    "dfn"))
  :latex)
 

@@ -331,17 +331,19 @@
           $f : \C^{2} \to \C^{2} := (x,y) \mapsto (x,xy)$
     \item <4-> Bijective:
           $f : \C^{3} \to \C^{3} := (x,y,z) \mapsto ( x , y , z + xy )$
+    \item <5-> Bijective $f : \bar{\F_{2}} \to \bar{\F_{2}}  := x \mapsto x^{2}$
+    \item <6-> Surjective but not injective $f : \bar{\F_{3}} \to \bar{\F_{3}} := x \mapsto x^{2}$
   \end{itemize}
-  \pause \pause \pause
+  % \pause \pause \pause
 
-  \textbf{Code}
+  % \textbf{Code}
 
-  \begin{lstlisting}
-  def poly_map (K : Type*) [comm_semiring K] (n : ℕ) : Type* :=
-  fin n → mv_polynomial (fin n) K
+  % \begin{lstlisting}
+  % def poly_map (K : Type*) [comm_semiring K] (n : ℕ) : Type* :=
+  % fin n → mv_polynomial (fin n) K
 
-  def eval : poly_map K n → (fin n → K) → (fin n → K) :=
-  λ ps as k, mv_polynomial.eval as (ps k) \end{lstlisting}
+  % def eval : poly_map K n → (fin n → K) → (fin n → K) :=
+  % λ ps as k, mv_polynomial.eval as (ps k) \end{lstlisting}
 
 \end{frame}
 
@@ -354,24 +356,21 @@
 
   \end{theorem}
 
-  \pause
+%   \pause
 
-\begin{lstlisting}
-  theorem Ax_Groth {n : ℕ} {ps : poly_map K n}
-    (hinj : function.injective (poly_map.eval ps)) :
-  function.surjective (poly_map.eval ps) := sorry \end{lstlisting}
+% \begin{lstlisting}
+%   theorem Ax_Groth {n : ℕ} {ps : poly_map K n}
+%     (hinj : function.injective (poly_map.eval ps)) :
+%   function.surjective (poly_map.eval ps) := sorry \end{lstlisting}
 
   \pause
 
 \begin{itemize}[<+->]
-  \item Amazing fact: the Lefschetz principle implies that if we show
-        this for a single algebraically closed field of characteristic $n$
+  \item Amazing fact (Lefschetz): true for a single algebraically closed field of characteristic $n$
         (a model of $\ACF_{n}$)
-        and it will be true for any model of $\ACF_{n}$ ($n$ is zero or prime).
-  \item Amazing fact: Lefschetz also says that if we show it for all
-        $\ACF_{p}$ for large $p$ then it is also true for $\ACF_{0}$.
-  \item Good news: We can easily show it for algebraic closures of $\F_{p}$
-        for any $p$.
+        $\to$ true for any model of $\ACF_{n}$ ($n$ is zero or prime).
+  \item Amazing fact (Lefschetz): true for $\ACF_{p}$ for all large prime $p$ $\to$ true for $\ACF_{0}$.
+  \item Good news: We can easily show it for algebraic closures of finite fields.
 \end{itemize}
 \end{frame}
 
@@ -387,15 +386,14 @@
         \item $K$ embeds into an algebraic closure of $\F_p$.
     \end{enumerate}
 \end{definition}
-\pause
-\begin{theorem}
+\visible<4>{\begin{theorem}
   \link{ax_groth_local}
   Locally finite fields satisfy Ax-Grothendieck.
 \end{theorem}
 \begin{proof}
   \[ \F_{p} \hookr \F_{p}(\code{coeffs}) \hookr K\]
   \[ \downarrow_{\F_{p}(\code{coeffs})} \text{ respects injectivity }\]
-\end{proof}
+\end{proof}}
 \end{frame}
 
 % \begin{frame}[fragile]{Locally finite fields}
@@ -412,7 +410,7 @@
     \link{lefschetz}
     Let $\phi$ be a sentence in the language of rings. % EXAMPLE = exists x ≠ y , x^2 + x + 1 = 0 ∧ y^2 + y + 1 = 0
     Then the following are equivalent:
-    \begin{enumerate}
+    \begin{enumerate}[<+->]
         \item Some model of $\ACF_0$ satisfies $\phi$.
         (If you like $\C \vDash \phi$.)
         \item $\ACF_0 \vDash \phi$
@@ -430,70 +428,81 @@
 \section{Model Theory}
 
 \begin{frame}[fragile]{Languages}
-\begin{columns}
-    \begin{column}{0.5\textwidth}
-\adjustbox{{scale=0.8,center}}{%
+% \begin{columns}
+%     \begin{column}{0.3\textwidth}
+\adjustbox{{scale=1}}{%
 \begin{lstlisting}
 structure Language : Type (u+1) :=
   (functions : ℕ → Type u)
-  (relations : ℕ → Type u) \end{lstlisting}}
+  (relations : ℕ → Type u) \end{lstlisting}
+}
+\vspace{1 em}
 
-\vspace{3 em}
+\pause
 
-\visible<3>{
+% \begin{column}{0.8\textwidth}<2->
+  \begin{definition}[Language of rings]
+    \link{dfn_rings}
+        Let the following be the language of rings:
+    \begin{itemize}
+        \item The function symbols are the constant symbols $0, 1$,
+        $+ , \times$ for addition and multiplication
+        and $-$ for taking additive inverse.
+        \item There are no relation symbols.
+    \end{itemize}
+  \end{definition}
+% \end{column}
+% \end{columns}
+
+\pause
+
 \textbf{More examples}
 
 \begin{itemize}
-  \item Lanugage of groups
+  \item Language of groups
   \item Language of monoid actions from a monoid $M$
         and modules on a ring $A$
   \item Single binary relations
-\end{itemize}}
+\end{itemize}
 
-\end{column}
-
-\begin{column}{0.5\textwidth}<2->
-\adjustbox{scale=0.8,center}{%
-\begin{lstlisting}
-  inductive ring_consts : Type*
-  | zero : ring_consts
-  | one : ring_consts
-
-  inductive ring_unaries : Type*
-  | neg : ring_unaries
-
-  inductive ring_binaries : Type*
-  | add : ring_binaries
-  | mul : ring_binaries
-
-  def ring_funcs : ℕ → Type*
-  | 0 := ring_consts
-  | 1 := ring_unaries
-  | 2 := ring_binaries
-  | (n + 3) := pempty
-
-  def ring_signature : Language :=
-  (Language.mk) (ring_funcs)
-    (λ n, pempty) \end{lstlisting}}
-\end{column}
-\end{columns}
+% \end{column}
 \end{frame}
 
+
 \begin{frame}[fragile]{Terms and formulas}
-% \adjustbox{{scale=0.8}}{%
-\begin{lstlisting}
-inductive bounded_preterm (n : ℕ) : ℕ → Type u
-  | x_ : ∀ (k : fin n), bounded_preterm 0
-  | bd_func : ∀ {l : ℕ} (f : L.functions l), bounded_preterm l
-  | bd_app : ∀ {l : ℕ} (t : bounded_preterm (l + 1))
-      (s : bounded_preterm 0), bounded_preterm l
 
- def bounded_term (n : ℕ) := bounded_preterm L n 0\end{lstlisting}
-%}
+  Terms are ``free algebraic expressions'' on some number of variables,
+  i.e. sensible combinations of variable and function symbols.
+  \begin{itemize}[<+->]
+    \item Terms with $n$ variables in the language of rings
+          can be interpreted as elements of $\Z[x_{1},\dots,x_{n}]$
+          (this will identify $x_{1} + x_{2}$ and $x_{2} + x_{1}$,
+          which are \textit{distinct terms}).
+    \item Terms with $n$ variables in the language of groups
+          can be interpreted as elements of the free group on
+          $\set{x_{1},\dots,x_{n}}$.
+    \item Terms with $n$ variables in the language of modules
+          over a ring $A$ can be interpreted as
+          elements of the free module $A^{\oplus n}$.
+    \item Terms with $n$ variables in the language of binary relations is
+          just the set $\set{x_{1},\dots,x_{n}}$.
+  \end{itemize}
 
-  \[
-  x_{1} * 0 \rightsquigarrow \code{bd\_app (bd\_app (bd\_func mul) (x\_ 1)) (bd\_func zero)}
-  \]
+
+  % \adjustbox{{scale=0.8}}{%
+% \begin{lstlisting}
+% inductive bounded_preterm (n : ℕ) : ℕ → Type u
+%   | x_ : ∀ (k : fin n), bounded_preterm 0
+%   | bd_func : ∀ {l : ℕ} (f : L.functions l), bounded_preterm l
+%   | bd_app : ∀ {l : ℕ} (t : bounded_preterm (l + 1))
+%       (s : bounded_preterm 0), bounded_preterm l
+
+%  def bounded_term (n : ℕ) := bounded_preterm L n 0\end{lstlisting}
+% %}
+
+%   \[
+%   x_{1} * 0 \rightsquigarrow \code{bd\_app (bd\_app (bd\_func mul) (x\_ 1)) (bd\_func zero)}
+%   \]
 
 
 % \adjustbox{scale=0.8,center}{%
@@ -512,22 +521,105 @@ inductive bounded_preterm (n : ℕ) : ℕ → Type u
 % \[ \forall x_{2} \, x_{1} \, x_{0} : A, \exists x_{3} : A, x_{0} x_{3}^{2} + x_{1} x_{3} + x_{2} = 0 \]
 \end{frame}
 
+\begin{frame}[fragile]{Terms and formulas}
 
+  Formulas are logical combinations of terms, equality,
+  (and other relation symbols from the language if there are any).
+  \begin{itemize}[<+->]
+    \item[]
+          \[ x_{0}^{2} + 2 x_{1} + 1 = x_{2} \]
+    \item[] \[ x_{0}^{2} + 2 x_{1} + 1 = x_{2} \, \to \, x_{2} \ne x_{0}\]
+    \item[] \[ \forall x_{2} \, x_{1}, \exists x_{0}, x_{0}^{2} + 2 x_{1} + 1 = x_{2} \, \to \, x_{2} \ne x_{0}\]
+  \end{itemize}
+  We only need $\bot, =, \to, \forall$, and the relation symbols from the language.
 
-\begin{frame}[fragile]{Proof overview}
-An overview of the proof:
+\end{frame}
+
+\begin{frame}[fragile]{Structures in a language}
+  If $L$ is a language and $M$ is a set
+  then an $L$-\textit{structure} on $M$ consists of the following
+    \begin{itemize}[<+->]
+      \item Each function symbol $f$ of arity $n$ is interpreted as a
+            function $M^{n} \to M$.
+      \item Each relation symbol $r$ of arity $n$
+            is interpreted as a proposition on $M^{n} \to \texttt{Prop}$,
+            or equivalently as a subset $S \hookr M^{n}$.
+      \vspace{1 em}
+
+      \item[] $\N, \Z, \Q, \bar{\Q}, \F_{p}, \set{0}$ can be made into
+            structures in the language of rings.
+      \item[] $\varnothing$ cannot be.
+    \end{itemize}
+  \end{frame}
+
+\begin{frame}[fragile]{Structures}
+  Fix a structure $M$ in a language $L$.
+  Terms with $n$ variables are interpreted as functions from the structure to itself.
+  \begin{itemize}
+    \item <2-> Variables are interpreted as projection to an affine line.
+  \end{itemize}
+  \pause \pause
+  Formulas with $n$ free variables are interpreted as predicates
+  on the structure in the obvious way. \pause
+  Example: $b , c $ are elements of $M$ then
+  \[\forall x_{0}, x_{0}^{2} + 2 x_{1} + 1 = x_{2}\] applied to $b, c$ is interpreted as
+  the proposition \[\text{``for all $a$ in $M$, } a^{2} + 2 b + 1 = c\text{''}\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Models}
+  A theory is a set of sentences (formulas with no free variables),
+  a model is a structure that satisfies all those sentences. \pause
+  The theory of rings contains the sentences corresponding to
+  the axioms of a ring. \pause Example: commutativity of multiplication
+  \begin{lstlisting}
+  def mul_comm : sentence ring_signature :=
+    ∀' ∀' ( x_ 0 * x_ 1 ≃ x_ 1 * x_ 0 ) \end{lstlisting} \pause
+  \begin{itemize}
+    \item Ring axioms
+    \item Field axioms $=$ ring axioms $\cup$ inverse $\cup$ $0 \ne 1$
+    \item $\ACF$
+    \item Characteristic
+  \end{itemize} \pause
+\end{frame}
+
+\begin{frame}[fragile]{The Lefschetz principle}
+  \begin{theorem}[Lefschetz principle]
+    \link{lefschetz2}
+    Let $\phi$ be a sentence in the language of rings. % EXAMPLE = exists x ≠ y , x^2 + x + 1 = 0 ∧ y^2 + y + 1 = 0
+    Then the following are equivalent:
+    \begin{enumerate}
+        \item Some model of $\ACF_0$ satisfies $\phi$.
+        (If you like $\C \vDash \phi$.)
+        \item $\ACF_0 \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+            greater than $n$, $\ACF_p \vDash \phi$
+        \item There exists $n \in \N$ such that for any prime $p$
+        greater than $n$, some model of $\ACF_p$ satisfies $\phi$.
+    \end{enumerate} \pause
+    \begin{proof}
+      \link{lefschetz_proof}
+      ($1. \IFF 2.$) and ($3. \IFF 4.$) ``$\ACF_{n}$ is complete''
+      by Vaught's test. \pause
+
+      ($2. \IFF 3.$) ``$\chi$-change'' by compactness theorem.
+    \end{proof}
+\end{theorem}
+\end{frame}
+
+\begin{frame}[fragile]{Ax-Grothendieck proof}
 
 \adjustbox{scale=0.8,center}{%
 \begin{tikzcd}[column sep=large]
-	{\text{(algebraic) $\chi_{p}$ Ax-G}} \\
-	{\text{(model th.) $\chi_{p}$ Ax-G}} \\
-	{\text{(model th.) }\chi_p \text{ Ax-G}} & {\text{(algebraic) }\chi_p \text{ Ax-G}} \\
+	{\text{(algebraic) Ax-G for } \bar{\F_p}} \\
+	{\text{(model th.) Ax-G for } \bar{\F_{p}} } \\
+	{\text{(model th.) $\chi_{p}$ Ax-G}} & {\text{(algebraic) }\chi_p \text{ Ax-G}} \\
 	{\text{(model th.) }\chi_0 \text{ Ax-G}} & {\text{(algebraic) }\chi_0 \text{ Ax-G}} && {\text{(algebraic) Ax-G}}
 	\arrow["{\ACF_{p} \text{is complete}}", shift right=5, from=2-1, to=3-1]
 	\arrow["{\text{Lefschetz }\chi\text{-change}}", shift right=5, from=3-1, to=4-1]
-  \arrow["{\text{soundness}}", shift right=5, from=1-1, to=2-1]
-  \arrow["{\text{completeness}}"', from=3-1, to=3-2]
-	\arrow["{\text{completeness}}"', from=4-1, to=4-2]
+  \arrow["{\text{i-soundness}}", shift right=5, from=1-1, to=2-1]
+  \arrow["{\text{i-completeness}}"', from=3-1, to=3-2]
+	\arrow["{\text{i-completeness}}"', from=4-1, to=4-2]
 	\arrow[from=3-2, to=4-4]
 	\arrow["{\text{case on }\chi}", from=4-2, to=4-4]
 \end{tikzcd}
@@ -536,75 +628,8 @@ An overview of the proof:
 \end{frame}
 
 
-% \section{Titleformats}
 
-% \begin{frame}{Metropolis titleformats}
-% 	\begin{itemize}
-% 		\item Regular
-% 		\item \textsc{Smallcaps}
-% 		\item \textsc{allsmallcaps}
-% 		\item ALLCAPS
-% 	\end{itemize}
-% 	They can either be set at once for every title type or individually.
-% \end{frame}
 
-% \subsection{Tricks}
-
-% {
-%     \metroset{titleformat frame=smallcaps}
-% \begin{frame}{Small caps}
-% 	This frame uses the \texttt{smallcaps} titleformat.
-
-% 	\begin{alertblock}{Potential Problems}
-% 		Be aware, that not every font supports small caps. If for example you typeset your presentation with pdfTeX and the Computer Modern Sans Serif font, every text in smallcaps will be typeset with the Computer Modern Serif font instead.
-% 	\end{alertblock}
-% \end{frame}
-% }
-
-% \begin{frame}{Blocks}
-%   Three different block environments are pre-defined and may be styled with an
-%   optional background color.
-
-%   \begin{columns}[T,onlytextwidth]
-%     \column{0.5\textwidth}
-%       \begin{block}{Default}
-%         Block content.
-%       \end{block}
-
-%       \begin{alertblock}{Alert}
-%         Block content.
-%       \end{alertblock}
-
-%       \begin{exampleblock}{Example}
-%         Block content.
-%       \end{exampleblock}
-
-%     \column{0.5\textwidth}
-
-%       \metroset{block=fill}
-
-%       \begin{block}{Default}
-%         Block content.
-%       \end{block}
-
-%       \begin{alertblock}{Alert}
-%         Block content.
-%       \end{alertblock}
-
-%       \begin{exampleblock}{Example}
-%         Block content.
-%       \end{exampleblock}
-
-%   \end{columns}
-% \end{frame}
-
-% {%
-% \setbeamertemplate{frame footer}{My custom footer}
-% \begin{frame}[fragile]{Frame footer}
-%     themename defines a custom beamer template to add a text to the footer. It can be set via
-%     \begin{verbatim}\setbeamertemplate{frame footer}{My custom footer}\end{verbatim}
-% \end{frame}
-% }
 
 
 \end{document}

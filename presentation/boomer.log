@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  11 JUN 2022 13:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.23)  15 JUN 2022 12:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1253,24 +1253,13 @@ al-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 14.
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 25
-.
-
-(/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
-File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
-)
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 25.
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 25.
-LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 30.
 )
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 346.
+(Font)              scaled to size 12.0pt on input line 348.
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
-(Font)              scaled to size 4.0pt on input line 346.
- [3
+(Font)              scaled to size 4.0pt on input line 348.
+
+[3
 
 ] (./boomer.vrb
 pdfTeX warning (ext4): destination with the same identifier (name{poly_map}) ha
@@ -1304,21 +1293,21 @@ s been already used, duplicate ignored
 l.4     \link{poly_map}
                        ) [7
 
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{poly_map}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4     \link{poly_map}
+                       ) [8
+
 ]
 \openout4 = `boomer.vrb'.
 
  (./boomer.vrb
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/it' will be
 (Font)              scaled to size 10.0pt on input line 3.
-) [8
-
-] (./boomer.vrb
-pdfTeX warning (ext4): destination with the same identifier (name{ax_groth}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4     \link{ax_groth}
-                       ) [9
+) [9
 
 ] (./boomer.vrb
 pdfTeX warning (ext4): destination with the same identifier (name{ax_groth}) ha
@@ -1347,7 +1336,16 @@ l.4     \link{ax_groth}
 ]
 \openout4 = `boomer.vrb'.
 
- (./boomer.vrb) [13
+ (./boomer.vrb
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 20
+.
+
+(/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 10.0pt on input line 20.
+) [13
 
 ] (./boomer.vrb
 pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
@@ -1360,8 +1358,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
 l}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.15   \link{ax_groth_local}
-                            ) [14
+l.20 \end{proof}}
+                 ) [14
 
 ] (./boomer.vrb
 pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
@@ -1374,8 +1372,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
 l}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.15   \link{ax_groth_local}
-                            ) [15
+l.20 \end{proof}}
+                 ) [15
 
 ] (./boomer.vrb
 pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
@@ -1388,49 +1386,168 @@ pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
 l}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.15   \link{ax_groth_local}
-                            ) [16
+l.20 \end{proof}}
+                 ) [16
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb) [17
 
 ] (./boomer.vrb
-pdfTeX warning (ext4): destination with the same identifier (name{locally_finit
-e}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{lefschetz}) h
+as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3     \link{locally_finite}
-                             
-pdfTeX warning (ext4): destination with the same identifier (name{ax_groth_loca
-l}) has been already used, duplicate ignored
+l.3     \link{lefschetz}
+                        ) [18
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{lefschetz}) h
+as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.15   \link{ax_groth_local}
-                            ) [17
+l.3     \link{lefschetz}
+                        ) [19
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{lefschetz}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3     \link{lefschetz}
+                        ) [20
+
+] [21
 
 ]
 \openout4 = `boomer.vrb'.
 
- (./boomer.vrb) [18
+ (./boomer.vrb
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 9.0pt on input line 3.
+) [22
 
-] [19
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{dfn_rings}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.14     \link{dfn_rings}
+                         ) [23
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{dfn_rings}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.14     \link{dfn_rings}
+                         ) [24
 
 ]
 \openout4 = `boomer.vrb'.
 
- (./boomer.vrb)
-[20
+ (./boomer.vrb) [25
 
-] (./boomer.vrb) [21
+] (./boomer.vrb) [26
 
-] (./boomer.vrb) [22
+]
+(./boomer.vrb) [27
+
+] (./boomer.vrb) [28
 
 ]
 \openout4 = `boomer.vrb'.
 
- (./boomer.vrb) [23
+ (./boomer.vrb) [29
+
+] (./boomer.vrb)
+[30
+
+] (./boomer.vrb) [31
 
 ]
 \openout4 = `boomer.vrb'.
 
- (./boomer.vrb) [24
+ (./boomer.vrb) [32
+
+] (./boomer.vrb) [33
+
+] (./boomer.vrb) [34
+
+] (./boomer.vrb) [35
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb) [36
+
+] (./boomer.vrb) [37
+
+] (./boomer.vrb) [38
+
+] (./boomer.vrb) [39
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb
+LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 8
+.
+
+(/usr/share/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
+File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
+(Font)              scaled to size 9.0pt on input line 8.
+) [40
+
+] (./boomer.vrb)
+[41
+
+] (./boomer.vrb) [42
+
+] (./boomer.vrb) [43
+
+] (./boomer.vrb) [44
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb) [45
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{lefschetz2}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3     \link{lefschetz2}
+                         
+pdfTeX warning (ext4): destination with the same identifier (name{lefschetz_pro
+of}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.16       \link{lefschetz_proof}
+                                 ) [46
+
+] (./boomer.vrb
+pdfTeX warning (ext4): destination with the same identifier (name{lefschetz2}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3     \link{lefschetz2}
+                         
+pdfTeX warning (ext4): destination with the same identifier (name{lefschetz_pro
+of}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.16       \link{lefschetz_proof}
+                                 ) [47
+
+]
+\openout4 = `boomer.vrb'.
+
+ (./boomer.vrb) [48
 
 ]
 \tf@nav=\write6
@@ -1447,37 +1564,38 @@ Package rerunfilecheck Info: File `boomer.out' has not changed.
 (rerunfilecheck)             Checksum: 99250AC4649B932387706603864C246A;199.
  ) 
 Here is how much of TeX's memory you used:
- 31127 strings out of 478238
- 620792 string characters out of 5850456
- 981523 words of memory out of 5000000
- 48591 multiletter control sequences out of 15000+600000
- 659734 words of font info for 93 fonts, out of 8000000 for 9000
+ 31212 strings out of 478238
+ 621747 string characters out of 5850456
+ 892245 words of memory out of 5000000
+ 48573 multiletter control sequences out of 15000+600000
+ 646198 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,22n,122p,1829b,1380s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/t
-exmf-dist/fonts/enc/dvips/cochineal/coch_otkq6i.enc}{/usr/share/texmf-dist/font
-s/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/share/texmf-dist/fonts/enc/dvips/coch
-ineal/coch_jhwmea.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cochineal/coch_cuw
-7wa.enc}</usr/share/texmf-dist/fonts/type1/public/cochineal/Cochineal-Bold.pfb>
-</usr/share/texmf-dist/fonts/type1/public/cochineal/Cochineal-Italic.pfb></usr/
-share/texmf-dist/fonts/type1/public/cochineal/Cochineal-Roman.pfb></usr/share/t
-exmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.
-pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.p
-fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/
-share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texm
-f-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/cm-super/sfss1000.pfb>
-Output written on boomer.pdf (24 pages, 395649 bytes).
+ 128i,22n,122p,1829b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr/share/tex
+mf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/e
+nc/dvips/inconsolata/i4-t1-0.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cochine
+al/coch_otkq6i.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cochineal/coch_jhwmea
+.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cochineal/coch_cuw7wa.enc}</usr/sha
+re/texmf-dist/fonts/type1/public/cochineal/Cochineal-Bold.pfb></usr/share/texmf
+-dist/fonts/type1/public/cochineal/Cochineal-Italic.pfb></usr/share/texmf-dist/
+fonts/type1/public/cochineal/Cochineal-Roman.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pf
+b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/
+fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf-dist/fonts/type
+1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-sup
+er/sfss1000.pfb>
+Output written on boomer.pdf (48 pages, 434512 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
- 198 compressed objects within 2 object streams
- 56 named destinations out of 1000 (max. 500000)
+ 413 PDF objects out of 1000 (max. 8388607)
+ 315 compressed objects within 4 object streams
+ 107 named destinations out of 1000 (max. 500000)
  59 words of extra memory for PDF output out of 10000 (max. 10000000)
 
